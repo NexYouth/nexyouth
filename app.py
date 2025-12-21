@@ -379,7 +379,7 @@ def home():
         <!-- Hero Section -->
         <section id="home" class="hero">
             <video autoplay muted loop playsinline>
-                <source src="https://media.istockphoto.com/id/1369850776/video/business-people-in-the-office.mp4?s=mp4-640x640-is" type="video/mp4">
+                <source src="https://assets.mixkit.co/active_storage/videos/16/16-720.mp4" type="video/mp4">
             </video>
             <div>
                 <h1>Empowering youth to build the future.</h1>
