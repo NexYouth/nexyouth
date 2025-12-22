@@ -48,10 +48,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }
 
         nav .logo {
-            font-size: 1.2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: #000;
             text-decoration: none;
+            letter-spacing: 1px;
         }
 
         nav ul {
@@ -63,7 +64,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         nav a {
             text-decoration: none;
             color: #666;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
+            font-weight: 500;
             transition: color 0.2s;
         }
 
