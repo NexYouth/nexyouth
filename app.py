@@ -38,7 +38,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             position: sticky;
             top: 0;
             z-index: 50;
-            padding: 1.5rem 2rem;
+            padding: 0.8rem 2rem;
         }
 
         nav .container {
@@ -56,7 +56,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }
 
         nav .logo img {
-            height: 50px;
+            height: 70px;
             width: auto;
         }
 
@@ -69,15 +69,15 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         nav a {
             text-decoration: none;
             color: #333;
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 500;
             transition: color 0.2s;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         nav a:hover {
-            color: #000;
+            color: #00d4ff;
         }
 
         .container {
@@ -496,7 +496,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
             position: sticky;
             top: 0;
             z-index: 50;
-            padding: 1.5rem 2rem;
+            padding: 0.8rem 2rem;
         }
 
         nav .container {
@@ -514,7 +514,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
         }
 
         nav .logo img {
-            height: 50px;
+            height: 70px;
             width: auto;
         }
 
@@ -527,15 +527,15 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
         nav a {
             text-decoration: none;
             color: #333;
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 500;
             transition: color 0.2s;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         nav a:hover {
-            color: #000;
+            color: #00d4ff;
         }
 
         .container {
@@ -795,6 +795,16 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     </div>
                 </div>
 
+                <!-- Ethan Luo -->
+                <div class="team-card">
+                    <img src="https://www.nexyouth.org/Member_Eluo1.png" alt="Ethan Luo">
+                    <div class="team-card-content">
+                        <div class="team-role">Oakville Chapter President</div>
+                        <h3>Ethan Luo</h3>
+                        <p>Ethan is a Grade 10 student at Abbey Park High School in Oakville. With 2 years of competitive debate experience, he has advanced at prestigious tournaments such as Harvard WSDC, Queens BPHS, McGill BPHS, and Hart House High Schools. Outside debate, he enjoys clarinet, trail running, and co-hosting Perception Podcast.</p>
+                    </div>
+                </div>
+
                 <!-- Chloe Huang -->
                 <div class="team-card">
                     <img src="https://www.nexyouth.org/Member_Chuan1.jpg" alt="Chloe Huang">
@@ -922,16 +932,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                         <div class="team-role">Science Instructor</div>
                         <h3>Ronnie Liu</h3>
                         <p>Hello, my name is Ronnie Liu. I am a gifted grade 10 scholar at Richmond Hill High School. I love teaching because I enjoy watching children learn and discover new things, as well as meet new friends along the way.</p>
-                    </div>
-                </div>
-
-                <!-- Ethan Luo -->
-                <div class="team-card">
-                    <img src="https://www.nexyouth.org/Member_Eluo1.png" alt="Ethan Luo">
-                    <div class="team-card-content">
-                        <div class="team-role">Debate Coach</div>
-                        <h3>Ethan Luo</h3>
-                        <p>Ethan is a Grade 10 student at Abbey Park High School in Oakville. With 2 years of competitive debate experience, he has advanced at prestigious tournaments such as Harvard WSDC, Queens BPHS, McGill BPHS, and Hart House High Schools. Outside debate, he enjoys clarinet, trail running, and co-hosting Perception Podcast.</p>
                     </div>
                 </div>
 

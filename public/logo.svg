@@ -1,19 +1,19 @@
-<svg viewBox="0 0 280 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
     <!-- Icon: Circle with arrow -->
-    <g transform="translate(5, 3)">
+    <g transform="translate(8, 5)">
         <!-- Outer circle -->
-        <circle cx="27" cy="27" r="25" stroke="#00d4ff" stroke-width="2" fill="none"/>
+        <circle cx="35" cy="35" r="32" stroke="#00d4ff" stroke-width="2.5" fill="none"/>
         <!-- Arrow pointing up -->
-        <path d="M27 12 L38 30 L32 30 L32 40 L22 40 L22 30 L16 30 Z" fill="#00d4ff"/>
+        <path d="M35 14 L50 38 L42 38 L42 52 L28 52 L28 38 L20 38 Z" fill="#00d4ff"/>
         <!-- Small circle at bottom -->
-        <circle cx="27" cy="46" r="3" fill="#00d4ff"/>
+        <circle cx="35" cy="60" r="4" fill="#00d4ff"/>
     </g>
     
     <!-- Text: NexYouth -->
-    <text x="65" y="38" font-family="Outfit, -apple-system, BlinkMacSystemFont, sans-serif" font-size="36" font-weight="600" letter-spacing="-0.5">
+    <text x="88" y="48" font-family="Outfit, -apple-system, BlinkMacSystemFont, sans-serif" font-size="42" font-weight="600" letter-spacing="-0.5">
         <tspan fill="#00d4ff">Nex</tspan><tspan fill="#1a1a2e">Youth</tspan>
     </text>
     
     <!-- Tagline -->
-    <text x="65" y="58" font-family="Outfit, -apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="400" letter-spacing="1.2" fill="#999999">IGNITE PASSION, INSPIRE YOUTH</text>
+    <text x="88" y="70" font-family="Outfit, -apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="400" letter-spacing="1.5" fill="#666666">IGNITE PASSION, INSPIRE YOUTH</text>
 </svg>
