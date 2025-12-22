@@ -354,7 +354,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             </a>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/about">Our Team</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="/#what-we-do">What We Do</a></li>
                 <li><a href="/#programs">Programs</a></li>
                 <li><a href="/#community">Community</a></li>
@@ -473,7 +473,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="NexYouth - Meet our team of passionate volunteers.">
-    <title>Our Team - NexYouth</title>
+    <title>About - NexYouth</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -733,7 +733,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
             </a>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/about">Our Team</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="/#what-we-do">What We Do</a></li>
                 <li><a href="/#programs">Programs</a></li>
                 <li><a href="/#community">Community</a></li>
@@ -745,7 +745,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
     <!-- About Hero -->
     <section class="about-hero">
         <div class="container">
-            <h1>Our Team</h1>
+            <h1>The Team Behind NexYouth.</h1>
             <p>At the heart of NexYouth is our inspiring community of volunteers — passionate individuals who dedicate their time, skills, and creativity to driving meaningful change. Coming from diverse backgrounds in science, education, advocacy, and the arts, our volunteers share a common commitment to protecting the environment and empowering youth.</p>
         </div>
     </section>
@@ -962,7 +962,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
         <div class="container">
             <div class="links">
                 <a href="/">Home</a>
-                <a href="/about">Our Team</a>
+                <a href="/about">About</a>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank">Get Involved</a>
                 <a href="https://discord.com/invite/qqT2ce3NY7" target="_blank">Discord</a>
                 <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
