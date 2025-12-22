@@ -350,7 +350,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <nav>
         <div class="container">
             <a href="/" class="logo">
-                <img src="/static/nexyouthlogo.jpg" alt="NexYouth">
+                <img src="/static/logo.svg" alt="NexYouth">
             </a>
             <ul>
                 <li><a href="/">Home</a></li>
@@ -729,7 +729,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
     <nav>
         <div class="container">
             <a href="/" class="logo">
-                <img src="/static/nexyouthlogo.jpg" alt="NexYouth">
+                <img src="/static/logo.svg" alt="NexYouth">
             </a>
             <ul>
                 <li><a href="/">Home</a></li>
@@ -755,16 +755,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
         <div class="container">
             <h2>Meet the Team</h2>
             <div class="team-grid">
-                <!-- Stephanie Uzea -->
-                <div class="team-card">
-                    <img src="https://www.nexyouth.org/Member_Suzea1.png" alt="Stephanie Uzea">
-                    <div class="team-card-content">
-                        <div class="team-role">Canada Head & Director of Operations</div>
-                        <h3>Stephanie Uzea</h3>
-                        <p>Stephanie is an aspiring environmental engineer with a passion for writing. She's written multiple comics about her brother if he were a superhero as well as a science fiction trilogy. In her free time, she likes trying out new foods and cross-country running.</p>
-                    </div>
-                </div>
-
                 <!-- Justin Huang -->
                 <div class="team-card">
                     <img src="https://www.nexyouth.org/Member_Jhuan1.jpg" alt="Justin Huang">
@@ -782,6 +772,16 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                         <div class="team-role">Co Founder</div>
                         <h3>Max Wen</h3>
                         <p>Hi, I'm Max, one of the co-founders of NexYouth. I'm in Grade 9 and have been debating and teaching for over 2 years! I enjoy public speaking, STEM, and content creation(@MaxW3n).</p>
+                    </div>
+                </div>
+
+                <!-- Stephanie Uzea -->
+                <div class="team-card">
+                    <img src="https://www.nexyouth.org/Member_Suzea1.png" alt="Stephanie Uzea">
+                    <div class="team-card-content">
+                        <div class="team-role">Canada Head & Director of Operations</div>
+                        <h3>Stephanie Uzea</h3>
+                        <p>Stephanie is an aspiring environmental engineer with a passion for writing. She's written multiple comics about her brother if he were a superhero as well as a science fiction trilogy. In her free time, she likes trying out new foods and cross-country running.</p>
                     </div>
                 </div>
 
