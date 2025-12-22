@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, url_for
+import os
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 # CSS Styles
 styles = """
@@ -381,7 +382,6 @@ def home():
         <section id="home" class="hero">
             <video autoplay muted loop playsinline>
                 <source src="/static/main_background.mp4" type="video/mp4">
-                <!-- Fallback if mp4 not available -->
                 Your browser does not support the video tag.
             </video>
             <div>
