@@ -1,12 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 50">
-  <!-- Nex text -->
-  <text x="0" y="36" font-family="Arial, sans-serif" font-size="32" font-weight="800" fill="#000" letter-spacing="2">Nex</text>
-  
-  <!-- Spark/Star icon in the middle -->
-  <g transform="translate(75, 8)">
-    <polygon points="12,0 15,9 24,9 17,15 20,24 12,18 4,24 7,15 0,9 9,9" fill="#ff6b35"/>
-  </g>
-  
-  <!-- Youth text -->
-  <text x="105" y="36" font-family="Arial, sans-serif" font-size="32" font-weight="800" fill="#000" letter-spacing="2">Youth</text>
+<svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Outer circle -->
+    <circle cx="45" cy="45" r="42" stroke="#00d4ff" stroke-width="2.5" fill="none"/>
+    <!-- Arrow pointing up -->
+    <path d="M45 20 L60 50 L52 50 L52 65 L38 65 L38 50 L30 50 Z" fill="#00d4ff"/>
+    <!-- Small circle at bottom -->
+    <circle cx="45" cy="72" r="5" fill="#00d4ff"/>
 </svg>

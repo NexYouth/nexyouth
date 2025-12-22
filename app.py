@@ -16,6 +16,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="NexYouth - Empowering youth globally through skill development and mentorship.">
     <title>NexYouth - Empowering Youth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -24,7 +25,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: #333;
             background: #fff;
@@ -346,8 +347,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <a href="#home" class="logo">
-                <img src="/static/logo.svg" alt="NexYouth" style="height: 40px;">
+            <a href="/" class="logo">
+                <img src="/static/nexyouthlogo.jpg" alt="NexYouth" class="logo-icon">
+                <span class="logo-text"><span class="nex">Nex</span><span class="youth">Youth</span></span>
             </a>
             <ul>
                 <li><a href="/">Home</a></li>
@@ -471,6 +473,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="NexYouth - Meet our team of passionate volunteers.">
     <title>Our Team - NexYouth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -479,7 +482,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: #333;
             background: #fff;
@@ -504,12 +507,31 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
         }
 
         nav .logo {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             text-decoration: none;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        }
+
+        nav .logo-icon {
+            width: 45px;
+            height: 45px;
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
+        }
+
+        nav .logo-text {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        nav .logo-text .nex {
+            color: #00d4ff;
+        }
+
+        nav .logo-text .youth {
+            color: #000;
         }
 
         nav ul {
@@ -723,7 +745,8 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
     <nav>
         <div class="container">
             <a href="/" class="logo">
-                <img src="/static/logo.svg" alt="NexYouth" style="height: 40px;">
+                <img src="/static/nexyouthlogo.jpg" alt="NexYouth" class="logo-icon">
+                <span class="logo-text"><span class="nex">Nex</span><span class="youth">Youth</span></span>
             </a>
             <ul>
                 <li><a href="/">Home</a></li>
