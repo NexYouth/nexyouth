@@ -345,7 +345,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <a href="#home" class="logo">NexYouth</a>
+            <a href="#home" class="logo">
+                <img src="/static/logo.svg" alt="NexYouth" style="height: 40px;">
+            </a>
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#what-we-do">What We Do</a></li>
