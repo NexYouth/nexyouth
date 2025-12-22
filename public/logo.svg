@@ -1,17 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
-  <defs>
-    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#ff6b35"/>
-      <stop offset="100%" style="stop-color:#ff8c5a"/>
-    </linearGradient>
-  </defs>
-  <!-- N icon with upward arrow symbolizing growth -->
-  <g transform="translate(0, 5)">
-    <path d="M5 40 L5 10 L20 40 L20 10" stroke="url(#gradient)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12.5 5 L8 12 L17 12 Z" fill="#ff6b35"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 50">
+  <!-- Nex text -->
+  <text x="0" y="36" font-family="Arial, sans-serif" font-size="32" font-weight="800" fill="#000" letter-spacing="2">Nex</text>
+  
+  <!-- Spark/Star icon in the middle -->
+  <g transform="translate(75, 8)">
+    <polygon points="12,0 15,9 24,9 17,15 20,24 12,18 4,24 7,15 0,9 9,9" fill="#ff6b35"/>
   </g>
-  <!-- Text -->
-  <text x="35" y="35" font-family="Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="1">
-    <tspan fill="#000">Nex</tspan><tspan fill="#ff6b35">Youth</tspan>
-  </text>
+  
+  <!-- Youth text -->
+  <text x="105" y="36" font-family="Arial, sans-serif" font-size="32" font-weight="800" fill="#000" letter-spacing="2">Youth</text>
 </svg>
