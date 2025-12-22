@@ -398,8 +398,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                     </div>
                 </li>
                 <li><a href="/#community">Community</a></li>
-                <li><a href="/about">About</a></li>
                 <li><a href="/partner">Partner</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="/#contact">Contact</a></li>
             </ul>
         </div>
@@ -830,8 +830,8 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     </ul>
                 </li>
                 <li><a href="/#community">Community</a></li>
-                <li><a href="/about">About</a></li>
                 <li><a href="/partner">Partner</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="/#contact">Contact</a></li>
             </ul>
         </div>
@@ -1366,8 +1366,8 @@ SKILL_DEVELOPMENT_TEMPLATE = """
                     </ul>
                 </li>
                 <li><a href="/#community">Community</a></li>
-                <li><a href="/about">About</a></li>
                 <li><a href="/partner">Partner</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="/#contact">Contact</a></li>
             </ul>
         </div>
@@ -1793,8 +1793,8 @@ SEMINARS_TEMPLATE = """
                     </ul>
                 </li>
                 <li><a href="/#community">Community</a></li>
-                <li><a href="/about">About</a></li>
                 <li><a href="/partner">Partner</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="/#contact">Contact</a></li>
             </ul>
         </div>
@@ -2270,8 +2270,8 @@ MENTORSHIP_TEMPLATE = """
                     </ul>
                 </li>
                 <li><a href="/#community">Community</a></li>
-                <li><a href="/about">About</a></li>
                 <li><a href="/partner">Partner</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="/#contact">Contact</a></li>
             </ul>
         </div>
@@ -2847,8 +2847,8 @@ PARTNER_TEMPLATE = """
                     </ul>
                 </li>
                 <li><a href="/#community">Community</a></li>
-                <li><a href="/about">About</a></li>
                 <li><a href="/partner">Partner</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="/#contact">Contact</a></li>
             </ul>
         </div>
