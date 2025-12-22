@@ -1,12 +1,12 @@
 from flask import Flask, render_template_string, send_from_directory
 import os
 
-app = Flask(__name__, static_folder='static', static_url_path='/static')
+app = Flask(__name__, static_folder='public', static_url_path='/static')
 
 @app.route('/static/<path:filename>')
 def serve_static(filename):
-    """Serve static files"""
-    return send_from_directory(os.path.join(os.path.dirname(__file__), 'static'), filename)
+    """Serve static files from public folder"""
+    return send_from_directory(os.path.join(os.path.dirname(__file__), 'public'), filename)
 
 HTML_TEMPLATE = """<!DOCTYPE html>
     <html lang="en">
