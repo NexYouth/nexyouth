@@ -354,10 +354,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             </a>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
                 <li><a href="/#what-we-do">What We Do</a></li>
                 <li><a href="/#programs">Programs</a></li>
                 <li><a href="/#community">Community</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="/#contact">Contact</a></li>
             </ul>
         </div>
@@ -733,10 +733,10 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
             </a>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
                 <li><a href="/#what-we-do">What We Do</a></li>
                 <li><a href="/#programs">Programs</a></li>
                 <li><a href="/#community">Community</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="/#contact">Contact</a></li>
             </ul>
         </div>
