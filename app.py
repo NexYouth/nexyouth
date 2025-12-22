@@ -2648,6 +2648,91 @@ PARTNER_TEMPLATE = """
             line-height: 1.6;
         }
 
+        /* Current Partners Section */
+        .current-partners {
+            padding: 5rem 2rem;
+            background: #f9f9f9;
+        }
+
+        .current-partners h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .current-partners > .container > p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .partner-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .partner-card-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .partner-card-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .partner-card-header span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .partner-card-body {
+            padding: 2rem;
+        }
+
+        .partner-card-body h4 {
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            margin-bottom: 0.8rem;
+        }
+
+        .partner-card-body p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .partner-tag {
+            display: inline-block;
+            background: #e8f9ff;
+            color: #00a8cc;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
         .cta-section {
             background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
             color: white;
@@ -2802,6 +2887,26 @@ PARTNER_TEMPLATE = """
                     <div class="type-icon">🏛️</div>
                     <h3>Foundation Partners</h3>
                     <p>Support our mission through grants and funding. Your foundation can help us scale our programs and reach underserved communities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="current-partners">
+        <div class="container">
+            <h2>Our Current Partners</h2>
+            <p>We're proud to collaborate with organizations that share our vision for youth empowerment.</p>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-card-header">
+                        <h3>CICS Immigrant Youth Centre</h3>
+                        <span>Community Partner</span>
+                    </div>
+                    <div class="partner-card-body">
+                        <h4>In-Person Public Speaking Classes</h4>
+                        <p>We partnered with CICS Immigrant Youth Centre to deliver in-person public speaking classes, helping immigrant youth build confidence and communication skills essential for their success in Canada.</p>
+                        <span class="partner-tag">Public Speaking</span>
+                    </div>
                 </div>
             </div>
         </div>
