@@ -66,6 +66,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             gap: 2rem;
         }
 
+        nav li {
+            position: relative;
+        }
+
         nav a {
             text-decoration: none;
             color: #333;
@@ -78,6 +82,36 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
         nav a:hover {
             color: #00d4ff;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5;
         }
 
         .container {
@@ -355,7 +389,14 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/#what-we-do">What We Do</a></li>
-                <li><a href="/#programs">Programs</a></li>
+                <li class="dropdown">
+                    <a href="/#programs">Programs ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="/programs/skill-development">Skill Development Courses</a>
+                        <a href="/programs/seminars">Expert Seminars & Talks</a>
+                        <a href="/programs/mentorship">Global Mentorship Network</a>
+                    </div>
+                </li>
                 <li><a href="/#community">Community</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/#contact">Contact</a></li>
@@ -524,6 +565,10 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
             gap: 2rem;
         }
 
+        nav ul li {
+            position: relative;
+        }
+
         nav a {
             text-decoration: none;
             color: #333;
@@ -536,6 +581,47 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
 
         nav a:hover {
             color: #00d4ff;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            z-index: 100;
+        }
+
+        .dropdown-menu li {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #333;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5;
+            color: #00d4ff;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
         .container {
@@ -734,7 +820,14 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/#what-we-do">What We Do</a></li>
-                <li><a href="/#programs">Programs</a></li>
+                <li class="dropdown">
+                    <a href="/#programs">Programs</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/programs/skill-development">Skill Development Courses</a></li>
+                        <li><a href="/programs/seminars">Expert Seminars & Talks</a></li>
+                        <li><a href="/programs/mentorship">Global Mentorship Network</a></li>
+                    </ul>
+                </li>
                 <li><a href="/#community">Community</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/#contact">Contact</a></li>
@@ -978,6 +1071,1307 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
 @app.route('/about')
 def about():
     return render_template_string(ABOUT_TEMPLATE)
+
+# Program Page Templates
+SKILL_DEVELOPMENT_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Development Courses - NexYouth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        nav {
+            background: white;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 0.8rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        nav .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            z-index: 100;
+        }
+
+        .dropdown-menu li {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #333;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5;
+            color: #00d4ff;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .program-hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .program-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .program-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .program-content {
+            padding: 5rem 2rem;
+        }
+
+        .program-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+        }
+
+        .program-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #00d4ff;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .course-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .course-card p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .cta-section {
+            background: #00d4ff;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: #00d4ff;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        footer a:hover {
+            color: #00d4ff;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .program-hero h1 {
+                font-size: 2rem;
+            }
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/static/logo.svg" alt="NexYouth">
+            </a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/#what-we-do">What We Do</a></li>
+                <li class="dropdown">
+                    <a href="/#programs">Programs</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/programs/skill-development">Skill Development Courses</a></li>
+                        <li><a href="/programs/seminars">Expert Seminars & Talks</a></li>
+                        <li><a href="/programs/mentorship">Global Mentorship Network</a></li>
+                    </ul>
+                </li>
+                <li><a href="/#community">Community</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="program-hero">
+        <div class="container">
+            <h1>Skill Development Courses</h1>
+            <p>Empowering youth with practical skills for the future. Our comprehensive courses cover essential topics from public speaking to environmental science, designed to help you grow and lead.</p>
+        </div>
+    </section>
+
+    <section class="program-content">
+        <div class="container">
+            <h2>Our Course Offerings</h2>
+            <p>We offer a wide range of courses designed to equip young people with the skills they need to make a difference in their communities and beyond. Each course is led by experienced instructors passionate about youth development.</p>
+
+            <div class="courses-grid">
+                <div class="course-card">
+                    <h3>Public Speaking & Debate</h3>
+                    <p>Build confidence and communication skills through structured debate training and public speaking exercises. Perfect for future leaders and advocates.</p>
+                </div>
+                <div class="course-card">
+                    <h3>Environmental Science</h3>
+                    <p>Explore the science behind climate change, ecosystems, and sustainability. Learn how to analyze environmental data and propose solutions.</p>
+                </div>
+                <div class="course-card">
+                    <h3>Leadership & Team Building</h3>
+                    <p>Develop essential leadership skills through hands-on activities and real-world projects. Learn to inspire and motivate teams effectively.</p>
+                </div>
+                <div class="course-card">
+                    <h3>STEM Fundamentals</h3>
+                    <p>Introduction to science, technology, engineering, and mathematics concepts through engaging experiments and projects.</p>
+                </div>
+                <div class="course-card">
+                    <h3>Content Creation</h3>
+                    <p>Learn video editing, social media strategy, and digital storytelling to amplify your message and reach broader audiences.</p>
+                </div>
+                <div class="course-card">
+                    <h3>Project Management</h3>
+                    <p>Master the fundamentals of planning, executing, and delivering impactful community projects from start to finish.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Learning?</h2>
+            <p>Join our next cohort and develop skills that will last a lifetime.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank" class="cta-btn">Enroll Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="links">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank">Get Involved</a>
+                <a href="https://discord.com/invite/qqT2ce3NY7" target="_blank">Discord</a>
+                <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
+                <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
+            </div>
+            <p>&copy; 2025 NexYouth. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+"""
+
+SEMINARS_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Seminars & Talks - NexYouth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        nav {
+            background: white;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 0.8rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        nav .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            z-index: 100;
+        }
+
+        .dropdown-menu li {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #333;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5;
+            color: #00d4ff;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .program-hero {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .program-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .program-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .program-content {
+            padding: 5rem 2rem;
+        }
+
+        .program-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+        }
+
+        .program-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .seminars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .seminar-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .seminar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .seminar-card-header {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .seminar-card-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .seminar-card-header span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .seminar-card-body {
+            padding: 1.5rem;
+        }
+
+        .seminar-card-body p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .topics-section {
+            background: #f9f9f9;
+            padding: 5rem 2rem;
+        }
+
+        .topics-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .topics-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .topic-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .topic-icon {
+            width: 50px;
+            height: 50px;
+            background: #ff6b35;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .topic-item span {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .cta-section {
+            background: #ff6b35;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: #ff6b35;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        footer a:hover {
+            color: #ff6b35;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .program-hero h1 {
+                font-size: 2rem;
+            }
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .seminars-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/static/logo.svg" alt="NexYouth">
+            </a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/#what-we-do">What We Do</a></li>
+                <li class="dropdown">
+                    <a href="/#programs">Programs</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/programs/skill-development">Skill Development Courses</a></li>
+                        <li><a href="/programs/seminars">Expert Seminars & Talks</a></li>
+                        <li><a href="/programs/mentorship">Global Mentorship Network</a></li>
+                    </ul>
+                </li>
+                <li><a href="/#community">Community</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="program-hero">
+        <div class="container">
+            <h1>Expert Seminars & Talks</h1>
+            <p>Learn from industry leaders, environmental experts, and successful entrepreneurs. Our seminars bring world-class knowledge directly to aspiring young changemakers.</p>
+        </div>
+    </section>
+
+    <section class="program-content">
+        <div class="container">
+            <h2>Featured Seminars</h2>
+            <p>Our expert-led seminars cover a wide range of topics designed to inspire, educate, and empower the next generation of leaders. Each session features interactive Q&A and networking opportunities.</p>
+
+            <div class="seminars-grid">
+                <div class="seminar-card">
+                    <div class="seminar-card-header">
+                        <h3>Climate Action Leadership</h3>
+                        <span>Environmental Series</span>
+                    </div>
+                    <div class="seminar-card-body">
+                        <p>Explore strategies for leading climate initiatives in your community. Learn from environmental activists and policy experts about making real impact.</p>
+                    </div>
+                </div>
+                <div class="seminar-card">
+                    <div class="seminar-card-header">
+                        <h3>Youth Entrepreneurship</h3>
+                        <span>Business Series</span>
+                    </div>
+                    <div class="seminar-card-body">
+                        <p>Discover how young entrepreneurs are building successful ventures. Get practical advice on ideation, funding, and scaling your ideas.</p>
+                    </div>
+                </div>
+                <div class="seminar-card">
+                    <div class="seminar-card-header">
+                        <h3>Tech for Good</h3>
+                        <span>Innovation Series</span>
+                    </div>
+                    <div class="seminar-card-body">
+                        <p>Learn how technology can be leveraged to solve social and environmental challenges. Hear from tech leaders making a difference.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="topics-section">
+        <div class="container">
+            <h2>Topics We Cover</h2>
+            <div class="topics-list">
+                <div class="topic-item">
+                    <div class="topic-icon">🌍</div>
+                    <span>Sustainability & Climate</span>
+                </div>
+                <div class="topic-item">
+                    <div class="topic-icon">💡</div>
+                    <span>Innovation & Technology</span>
+                </div>
+                <div class="topic-item">
+                    <div class="topic-icon">🎯</div>
+                    <span>Leadership & Strategy</span>
+                </div>
+                <div class="topic-item">
+                    <div class="topic-icon">📢</div>
+                    <span>Advocacy & Communication</span>
+                </div>
+                <div class="topic-item">
+                    <div class="topic-icon">🤝</div>
+                    <span>Community Building</span>
+                </div>
+                <div class="topic-item">
+                    <div class="topic-icon">📊</div>
+                    <span>Data & Research</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Don't Miss Our Next Seminar</h2>
+            <p>Join our mailing list to get notified about upcoming expert talks and events.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank" class="cta-btn">Sign Up</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="links">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank">Get Involved</a>
+                <a href="https://discord.com/invite/qqT2ce3NY7" target="_blank">Discord</a>
+                <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
+                <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
+            </div>
+            <p>&copy; 2025 NexYouth. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+"""
+
+MENTORSHIP_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Mentorship Network - NexYouth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        nav {
+            background: white;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 0.8rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        nav .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            z-index: 100;
+        }
+
+        .dropdown-menu li {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #333;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5;
+            color: #00d4ff;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .program-hero {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .program-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .program-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .program-content {
+            padding: 5rem 2rem;
+        }
+
+        .program-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+        }
+
+        .program-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .benefit-card p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .how-it-works {
+            background: #f9f9f9;
+            padding: 5rem 2rem;
+        }
+
+        .how-it-works h2 {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: #1a1a2e;
+        }
+
+        .step p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: #6366f1;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        footer a:hover {
+            color: #8b5cf6;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .program-hero h1 {
+                font-size: 2rem;
+            }
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/static/logo.svg" alt="NexYouth">
+            </a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/#what-we-do">What We Do</a></li>
+                <li class="dropdown">
+                    <a href="/#programs">Programs</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/programs/skill-development">Skill Development Courses</a></li>
+                        <li><a href="/programs/seminars">Expert Seminars & Talks</a></li>
+                        <li><a href="/programs/mentorship">Global Mentorship Network</a></li>
+                    </ul>
+                </li>
+                <li><a href="/#community">Community</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="program-hero">
+        <div class="container">
+            <h1>Global Mentorship Network</h1>
+            <p>Connect with experienced mentors from around the world who are passionate about guiding the next generation of leaders and changemakers.</p>
+        </div>
+    </section>
+
+    <section class="program-content">
+        <div class="container">
+            <h2>Why Mentorship Matters</h2>
+            <p>Our Global Mentorship Network pairs young leaders with experienced professionals who can provide guidance, support, and real-world insights. Whether you're exploring career paths, working on a project, or developing leadership skills, our mentors are here to help you succeed.</p>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Personalized Guidance</h3>
+                    <p>Get one-on-one support tailored to your unique goals and challenges from mentors who have been in your shoes.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌐</div>
+                    <h3>Global Perspectives</h3>
+                    <p>Connect with mentors from diverse backgrounds and industries across different countries and cultures.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3>Career Development</h3>
+                    <p>Gain insights into various career paths and develop skills that will set you apart in your future endeavors.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤝</div>
+                    <h3>Lasting Connections</h3>
+                    <p>Build meaningful relationships that extend beyond the program and become part of a supportive network.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Apply</h3>
+                    <p>Fill out our application form telling us about your goals and what you're looking for in a mentor.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Get Matched</h3>
+                    <p>Our team carefully matches you with a mentor based on your interests, goals, and background.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Connect</h3>
+                    <p>Meet with your mentor regularly via video calls, work on projects together, and grow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Whether you want to be a mentee or share your experience as a mentor, we'd love to hear from you.</p>
+            <div class="cta-buttons">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank" class="cta-btn">Find a Mentor</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank" class="cta-btn secondary">Become a Mentor</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="links">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank">Get Involved</a>
+                <a href="https://discord.com/invite/qqT2ce3NY7" target="_blank">Discord</a>
+                <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
+                <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
+            </div>
+            <p>&copy; 2025 NexYouth. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+"""
+
+# Program Routes
+@app.route('/programs/skill-development')
+def skill_development():
+    return render_template_string(SKILL_DEVELOPMENT_TEMPLATE)
+
+@app.route('/programs/seminars')
+def seminars():
+    return render_template_string(SEMINARS_TEMPLATE)
+
+@app.route('/programs/mentorship')
+def mentorship():
+    return render_template_string(MENTORSHIP_TEMPLATE)
 
 @app.route('/<path:path>')
 def catch_all(path):
