@@ -1,10 +1,22 @@
-from flask import Flask, url_for
+from flask import Flask, render_template_string, send_from_directory
 import os
 
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 
-# CSS Styles
-styles = """
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    """Serve static files"""
+    return send_from_directory(os.path.join(os.path.dirname(__file__), 'static'), filename)
+
+HTML_TEMPLATE = """<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="NexYouth - Empowering youth globally through skill development and mentorship.">
+        <title>NexYouth - Empowering Youth</title>
+        <style>
+            
     * {
         margin: 0;
         padding: 0;
@@ -70,14 +82,13 @@ styles = """
     .hero {
         min-height: 80vh;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
         color: white;
         text-align: center;
         padding: 4rem 2rem;
         position: relative;
         overflow: hidden;
-        padding-top: 6rem;
     }
 
     .hero::before {
@@ -97,138 +108,124 @@ styles = """
         left: 50%;
         min-width: 100%;
         min-height: 100%;
-        width: 100%;
-        height: 100%;
         transform: translate(-50%, -50%);
-        z-index: 0;
         object-fit: cover;
+        z-index: 0;
     }
 
-    .hero > div {
+    .hero .container {
         position: relative;
         z-index: 2;
-    }
-    
-    .hero h1 {
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-    }
-    
-    .hero p {
-        text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-    }
-    
-    .hero-button {
-        background: #000 !important;
-        color: white !important;
-    }
-    
-    .hero-button:hover {
-        background: #333 !important;
     }
 
     .hero h1 {
         font-size: 3.5rem;
         margin-bottom: 1rem;
         font-weight: 700;
-        line-height: 1.2;
     }
 
     .hero p {
-        font-size: 1.1rem;
-        max-width: 700px;
-        margin: 0 auto 2rem;
-        color: #fff;
-        line-height: 1.7;
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.95;
     }
 
-    .hero-button {
+    .cta-button {
         display: inline-block;
-        background: #000;
+        background: #ff6b35;
         color: white;
-        padding: 0.8rem 2.5rem;
-        border: none;
-        border-radius: 4px;
-        font-weight: 600;
-        cursor: pointer;
+        padding: 0.75rem 2rem;
+        border-radius: 5px;
         text-decoration: none;
         transition: background 0.3s ease;
-        font-size: 0.95rem;
+        font-weight: 600;
     }
 
-    .hero-button:hover {
-        background: #333;
+    .cta-button:hover {
+        background: #ff5520;
     }
 
-    /* What We Do Section */
-    .what-we-do {
-        padding: 6rem 0;
-        background: white;
-        text-align: center;
+    /* About Section */
+    .about {
+        padding: 5rem 2rem;
+        background: #f9f9f9;
     }
 
-    .what-we-do h2 {
+    .about h2 {
         font-size: 2.5rem;
         margin-bottom: 2rem;
-        font-weight: 700;
+        text-align: center;
+        color: #000;
     }
 
-    .what-we-do-content {
-        max-width: 700px;
-        margin: 0 auto 2rem;
-        font-size: 1.05rem;
+    .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+    }
+
+    .about-text h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #000;
+    }
+
+    .about-text p {
+        margin-bottom: 1rem;
         color: #666;
         line-height: 1.8;
     }
 
-    .links {
+    .about-features {
         display: flex;
-        gap: 2rem;
-        justify-content: center;
-        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 1rem;
     }
 
-    .links a {
-        text-decoration: none;
-        color: #000;
-        font-weight: 600;
-        border-bottom: 2px solid #000;
-        padding-bottom: 0.3rem;
-        transition: opacity 0.3s ease;
+    .feature-item {
+        display: flex;
+        gap: 1rem;
     }
 
-    .links a:hover {
-        opacity: 0.6;
+    .feature-icon {
+        font-size: 2rem;
+        flex-shrink: 0;
     }
 
-    /* Featured Events Section */
-    .featured-events {
-        padding: 6rem 0;
-        background: #f8f8f8;
+    .feature-text h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
     }
 
-    .featured-events h2 {
+    /* Events Section */
+    .events {
+        padding: 5rem 2rem;
+    }
+
+    .events h2 {
         font-size: 2.5rem;
         margin-bottom: 3rem;
-        font-weight: 700;
         text-align: center;
     }
 
     .events-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 2.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
     }
 
     .event-card {
         background: white;
         border-radius: 8px;
         overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .event-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .event-card img {
@@ -238,31 +235,28 @@ styles = """
     }
 
     .event-card-content {
-        padding: 2rem;
+        padding: 1.5rem;
     }
 
-    .event-card h3 {
-        font-size: 1.4rem;
-        margin-bottom: 1rem;
-        font-weight: 600;
+    .event-card-content h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
     }
 
-    .event-card p {
+    .event-card-content p {
         color: #666;
         font-size: 0.95rem;
-        line-height: 1.7;
     }
 
     /* Testimonials Section */
     .testimonials {
-        padding: 6rem 0;
-        background: white;
+        padding: 5rem 2rem;
+        background: #f9f9f9;
     }
 
     .testimonials h2 {
         font-size: 2.5rem;
         margin-bottom: 3rem;
-        font-weight: 700;
         text-align: center;
     }
 
@@ -273,95 +267,72 @@ styles = """
     }
 
     .testimonial-card {
-        background: #f8f8f8;
+        background: white;
         padding: 2rem;
         border-radius: 8px;
-        border-left: 4px solid #000;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .testimonial-text {
-        color: #666;
-        font-size: 0.95rem;
-        line-height: 1.8;
-        margin-bottom: 1.5rem;
         font-style: italic;
+        margin-bottom: 1.5rem;
+        color: #666;
+        line-height: 1.8;
     }
 
     .testimonial-author {
         font-weight: 600;
-        color: #000;
-        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
     }
 
     .testimonial-title {
+        font-size: 0.9rem;
         color: #999;
-        font-size: 0.85rem;
-        margin-top: 0.5rem;
     }
 
     /* Footer */
     footer {
         background: #000;
         color: white;
-        padding: 3rem 0;
+        padding: 3rem 2rem;
         text-align: center;
     }
 
     footer .links {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
+        display: flex;
         justify-content: center;
+        gap: 2rem;
     }
 
-    footer .links a {
-        color: white;
-        border-bottom-color: white;
+    footer a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+        color: #ff6b35;
     }
 
     footer p {
-        font-size: 0.9rem;
         color: #999;
+        font-size: 0.9rem;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
-        nav ul {
-            gap: 1.5rem;
-            font-size: 0.85rem;
+        .about-content {
+            grid-template-columns: 1fr;
         }
 
         .hero h1 {
             font-size: 2rem;
         }
 
-        .what-we-do h2,
-        .featured-events h2,
-        .testimonials h2 {
-            font-size: 1.8rem;
-        }
-
-        .links {
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .events-grid {
-            grid-template-columns: 1fr;
+        nav ul {
+            gap: 1.5rem;
         }
     }
-"""
-
-@app.route("/")
-def home():
-    html = f"""
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="NexYouth - Empowering youth globally through skill development and mentorship.">
-        <title>NexYouth - Empowering Youth</title>
-        <style>
-            {styles}
         </style>
     </head>
     <body>
@@ -371,8 +342,9 @@ def home():
                 <div class="logo">NexYouth</div>
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#stats">Impact</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -380,34 +352,63 @@ def home():
 
         <!-- Hero Section -->
         <section id="home" class="hero">
-            <video autoplay muted loop playsinline>
+            <video autoplay muted loop>
                 <source src="/static/main_background.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <div>
-                <h1>Empowering youth to build the future.</h1>
-                <p>A government-accredited NGO dedicated to fostering positive change through skill development, mentorship, and community building.</p>
-                <a href="#what-we-do" class="hero-button">Learn More</a>
-            </div>
-        </section>
-
-        <!-- What We Do Section -->
-        <section id="what-we-do" class="what-we-do">
             <div class="container">
-                <h2>What We Do.</h2>
-                <div class="what-we-do-content">
-                    <p>Here at NexYouth, we are on a mission to empower youth through high-quality education, hands-on training, and meaningful mentorship. We create inclusive communities where young people can develop skills, explore opportunities, and become the changemakers of tomorrow.</p>
-                </div>
-                <div class="links">
-                    <a href="#featured">Featured Events</a>
-                    <a href="#testimonials">Our Community</a>
-                    <a href="#contact">Get Involved</a>
+                <h1>Empower Your Future</h1>
+                <p>Join a global community of youth empowering themselves through skill development and mentorship</p>
+                <a href="#programs" class="cta-button">Explore Programs</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2>About NexYouth</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Who We Are</h3>
+                        <p>NexYouth is a global organization dedicated to empowering young people with the skills, knowledge, and mentorship they need to succeed in an ever-changing world.</p>
+                        <p>We believe that every young person deserves access to quality education, guidance, and opportunities. Our mission is to bridge the gap between education and employment by providing practical, industry-relevant skills and mentorship.</p>
+                    </div>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">🎓</div>
+                            <div class="feature-text">
+                                <h4>Expert-Led Training</h4>
+                                <p>Learn from industry professionals and experienced mentors</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🌍</div>
+                            <div class="feature-text">
+                                <h4>Global Community</h4>
+                                <p>Connect with youth from around the world</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">💼</div>
+                            <div class="feature-text">
+                                <h4>Career Support</h4>
+                                <p>Get guidance on career development and opportunities</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🚀</div>
+                            <div class="feature-text">
+                                <h4>Innovation Focus</h4>
+                                <p>Learn cutting-edge skills for the future</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Featured Events Section -->
-        <section id="featured" class="featured-events">
+        <!-- Programs Section -->
+        <section id="programs" class="events">
             <div class="container">
                 <h2>Featured Programs & Events.</h2>
                 <div class="events-grid">
@@ -474,8 +475,19 @@ def home():
         </footer>
     </body>
     </html>
-    """
-    return html
+"""
 
-if __name__ == "__main__":
-    app.run(debug=False, port=8000)
+@app.route('/')
+def index():
+    return render_template_string(HTML_TEMPLATE)
+
+@app.route('/<path:path>')
+def catch_all(path):
+    """Catch all routes and return the main page for client-side routing"""
+    return render_template_string(HTML_TEMPLATE)
+
+if __name__ == '__main__':
+    app.run(debug=True, port=8000)
+
+# WSGI entry point for Vercel
+app = app
