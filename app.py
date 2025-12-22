@@ -50,12 +50,14 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }
 
         nav .logo {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #000;
+            display: flex;
+            align-items: center;
             text-decoration: none;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        }
+
+        nav .logo img {
+            height: 50px;
+            width: auto;
         }
 
         nav ul {
@@ -348,8 +350,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <nav>
         <div class="container">
             <a href="/" class="logo">
-                <img src="/static/nexyouthlogo.jpg" alt="NexYouth" class="logo-icon">
-                <span class="logo-text"><span class="nex">Nex</span><span class="youth">Youth</span></span>
+                <img src="/static/nexyouthlogo.jpg" alt="NexYouth">
             </a>
             <ul>
                 <li><a href="/">Home</a></li>
@@ -509,29 +510,12 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
         nav .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
             text-decoration: none;
         }
 
-        nav .logo-icon {
-            width: 45px;
-            height: 45px;
-            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
-        }
-
-        nav .logo-text {
-            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
-        nav .logo-text .nex {
-            color: #00d4ff;
-        }
-
-        nav .logo-text .youth {
-            color: #000;
+        nav .logo img {
+            height: 50px;
+            width: auto;
         }
 
         nav ul {
@@ -745,8 +729,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
     <nav>
         <div class="container">
             <a href="/" class="logo">
-                <img src="/static/nexyouthlogo.jpg" alt="NexYouth" class="logo-icon">
-                <span class="logo-text"><span class="nex">Nex</span><span class="youth">Youth</span></span>
+                <img src="/static/nexyouthlogo.jpg" alt="NexYouth">
             </a>
             <ul>
                 <li><a href="/">Home</a></li>
