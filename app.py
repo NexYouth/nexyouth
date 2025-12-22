@@ -69,13 +69,14 @@ styles = """
     .hero {
         min-height: 80vh;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         color: white;
         text-align: center;
         padding: 4rem 2rem;
         position: relative;
         overflow: hidden;
+        padding-top: 6rem;
     }
 
     .hero::before {
