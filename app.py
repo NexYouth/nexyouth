@@ -48,11 +48,12 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }
 
         nav .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: 2.2rem;
+            font-weight: 800;
             color: #000;
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         nav ul {
@@ -63,10 +64,12 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
         nav a {
             text-decoration: none;
-            color: #666;
-            font-size: 1.1rem;
-            font-weight: 500;
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
             transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         nav a:hover {
