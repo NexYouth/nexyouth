@@ -1,6 +1,6 @@
 from flask import Flask
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 # CSS Styles
 styles = """
@@ -379,7 +379,9 @@ def home():
         <!-- Hero Section -->
         <section id="home" class="hero">
             <video autoplay muted loop playsinline>
-                <source src="https://assets.mixkit.co/active_storage/videos/16/16-720.mp4" type="video/mp4">
+                <source src="/static/main_background.mp4" type="video/mp4">
+                <!-- Fallback if mp4 not available -->
+                Your browser does not support the video tag.
             </video>
             <div>
                 <h1>Empowering youth to build the future.</h1>
