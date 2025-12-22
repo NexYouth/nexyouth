@@ -825,6 +825,16 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     </div>
                 </div>
 
+                <!-- Keerti Joshi -->
+                <div class="team-card">
+                    <img src="https://www.nexyouth.org/Member_Kjosh1.png" alt="Keerti Joshi">
+                    <div class="team-card-content">
+                        <div class="team-role">Debate Coach</div>
+                        <h3>Keerti Joshi</h3>
+                        <p>I'm Keerti, I'm a grade 11 student at Upper Canada College. I've been debating since Grade 8 and I debate in both WSDC and BP formats. I am a new member of the Canadian National Debating Team and have competed and won in many tournaments run by Canadian Universities.</p>
+                    </div>
+                </div>
+
                 <!-- Kristen Yip -->
                 <div class="team-card">
                     <img src="https://www.nexyouth.org/Member_Kyip1.png" alt="Kristen Yip">
@@ -842,16 +852,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                         <div class="team-role">Economics Instructor</div>
                         <h3>Cody Zhang</h3>
                         <p>Cody Zhang is a high schooler from Toronto and scored a 5 on AP Micro and makes economics simple, fun, and engaging!</p>
-                    </div>
-                </div>
-
-                <!-- Keerti Joshi -->
-                <div class="team-card">
-                    <img src="https://www.nexyouth.org/Member_Kjosh1.png" alt="Keerti Joshi">
-                    <div class="team-card-content">
-                        <div class="team-role">Debate Coach</div>
-                        <h3>Keerti Joshi</h3>
-                        <p>I'm Keerti, I'm a grade 11 student at Upper Canada College. I've been debating since Grade 8 and I debate in both WSDC and BP formats. I am a new member of the Canadian National Debating Team and have competed and won in many tournaments run by Canadian Universities.</p>
                     </div>
                 </div>
 
