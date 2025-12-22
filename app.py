@@ -399,6 +399,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 </li>
                 <li><a href="/#community">Community</a></li>
                 <li><a href="/about">About</a></li>
+                <li><a href="/partner">Partner</a></li>
                 <li><a href="/#contact">Contact</a></li>
             </ul>
         </div>
@@ -830,6 +831,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                 </li>
                 <li><a href="/#community">Community</a></li>
                 <li><a href="/about">About</a></li>
+                <li><a href="/partner">Partner</a></li>
                 <li><a href="/#contact">Contact</a></li>
             </ul>
         </div>
@@ -1365,6 +1367,7 @@ SKILL_DEVELOPMENT_TEMPLATE = """
                 </li>
                 <li><a href="/#community">Community</a></li>
                 <li><a href="/about">About</a></li>
+                <li><a href="/partner">Partner</a></li>
                 <li><a href="/#contact">Contact</a></li>
             </ul>
         </div>
@@ -1559,7 +1562,7 @@ SEMINARS_TEMPLATE = """
         }
 
         .program-hero {
-            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
             color: white;
             text-align: center;
             padding: 6rem 2rem;
@@ -1617,7 +1620,7 @@ SEMINARS_TEMPLATE = """
         }
 
         .seminar-card-header {
-            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
             color: white;
             padding: 1.5rem;
         }
@@ -1675,7 +1678,7 @@ SEMINARS_TEMPLATE = """
         .topic-icon {
             width: 50px;
             height: 50px;
-            background: #ff6b35;
+            background: #0d9488;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1690,7 +1693,7 @@ SEMINARS_TEMPLATE = """
         }
 
         .cta-section {
-            background: #ff6b35;
+            background: #0d9488;
             color: white;
             text-align: center;
             padding: 4rem 2rem;
@@ -1711,7 +1714,7 @@ SEMINARS_TEMPLATE = """
         .cta-btn {
             display: inline-block;
             background: white;
-            color: #ff6b35;
+            color: #0d9488;
             padding: 1rem 2.5rem;
             border-radius: 4px;
             text-decoration: none;
@@ -1745,7 +1748,7 @@ SEMINARS_TEMPLATE = """
         }
 
         footer a:hover {
-            color: #ff6b35;
+            color: #14b8a6;
         }
 
         footer p {
@@ -1791,6 +1794,7 @@ SEMINARS_TEMPLATE = """
                 </li>
                 <li><a href="/#community">Community</a></li>
                 <li><a href="/about">About</a></li>
+                <li><a href="/partner">Partner</a></li>
                 <li><a href="/#contact">Contact</a></li>
             </ul>
         </div>
@@ -2267,6 +2271,7 @@ MENTORSHIP_TEMPLATE = """
                 </li>
                 <li><a href="/#community">Community</a></li>
                 <li><a href="/about">About</a></li>
+                <li><a href="/partner">Partner</a></li>
                 <li><a href="/#contact">Contact</a></li>
             </ul>
         </div>
@@ -2372,6 +2377,498 @@ def seminars():
 @app.route('/programs/mentorship')
 def mentorship():
     return render_template_string(MENTORSHIP_TEMPLATE)
+
+# Partner Page Template
+PARTNER_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner With Us - NexYouth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        nav {
+            background: white;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 0.8rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        nav .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            z-index: 100;
+        }
+
+        .dropdown-menu li {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #333;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5;
+            color: #00d4ff;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .partner-hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .partner-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .partner-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .partner-intro {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .partner-intro h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+        }
+
+        .partner-intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #555;
+        }
+
+        .partner-types {
+            background: #f9f9f9;
+            padding: 5rem 2rem;
+        }
+
+        .partner-types h2 {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .type-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #00d4ff;
+        }
+
+        .type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .type-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .type-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .type-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .benefits-section {
+            padding: 5rem 2rem;
+        }
+
+        .benefits-section h2 {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit-check {
+            width: 30px;
+            height: 30px;
+            background: #00d4ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-item span {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: #00d4ff;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-email {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .contact-email a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        footer a:hover {
+            color: #00d4ff;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .partner-hero h1 {
+                font-size: 2rem;
+            }
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/static/logo.svg" alt="NexYouth">
+            </a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/#what-we-do">What We Do</a></li>
+                <li class="dropdown">
+                    <a href="/#programs">Programs</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/programs/skill-development">Skill Development Courses</a></li>
+                        <li><a href="/programs/seminars">Expert Seminars & Talks</a></li>
+                        <li><a href="/programs/mentorship">Global Mentorship Network</a></li>
+                    </ul>
+                </li>
+                <li><a href="/#community">Community</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/partner">Partner</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="partner-hero">
+        <div class="container">
+            <h1>Corporate, Nonprofit & Foundation Partners</h1>
+            <p>Give back to education, impact and community. Join us in empowering the next generation of leaders and changemakers.</p>
+        </div>
+    </section>
+
+    <section class="partner-intro">
+        <div class="container">
+            <h2>Why Partner With NexYouth?</h2>
+            <p>Everything we do is guided by our core values of youth empowerment, environmental stewardship, and community impact. We're always interested in seeking new corporate and foundation partners and sponsors to become part of our network.</p>
+            <p>Together, we can create meaningful opportunities for young people to develop skills, gain mentorship, and make a difference in their communities.</p>
+        </div>
+    </section>
+
+    <section class="partner-types">
+        <div class="container">
+            <h2>Partnership Opportunities</h2>
+            <div class="types-grid">
+                <div class="type-card">
+                    <div class="type-icon">🏢</div>
+                    <h3>Corporate Partners</h3>
+                    <p>Align your brand with youth development and environmental education. Sponsor programs, provide mentors, or support our initiatives through corporate giving.</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">🤝</div>
+                    <h3>Nonprofit Partners</h3>
+                    <p>Collaborate on joint programs, share resources, and amplify our collective impact. Together we can reach more young people and create lasting change.</p>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon">🏛️</div>
+                    <h3>Foundation Partners</h3>
+                    <p>Support our mission through grants and funding. Your foundation can help us scale our programs and reach underserved communities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits-section">
+        <div class="container">
+            <h2>Partnership Benefits</h2>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <span>Brand visibility across our platforms and events</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <span>Recognition on our website and marketing materials</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <span>Access to a network of motivated young leaders</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <span>Employee engagement and volunteer opportunities</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <span>Co-branded programs and initiatives</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <span>Impact reports and success stories</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Interested in Partnering?</h2>
+            <p>We'd love to hear from you. Let's discuss how we can work together to empower youth and create positive change.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank" class="cta-btn">Get In Touch</a>
+            <p class="contact-email">Or email us directly at <a href="mailto:nexyouthcontact@gmail.com">nexyouthcontact@gmail.com</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="links">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/partner">Partner</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank">Get Involved</a>
+                <a href="https://discord.com/invite/qqT2ce3NY7" target="_blank">Discord</a>
+                <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
+                <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
+            </div>
+            <p>&copy; 2025 NexYouth. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+"""
+
+@app.route('/partner')
+def partner():
+    return render_template_string(PARTNER_TEMPLATE)
 
 @app.route('/<path:path>')
 def catch_all(path):
