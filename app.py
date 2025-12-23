@@ -264,6 +264,53 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             line-height: 1.7;
         }
 
+        /* Statistics Section */
+        .statistics {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 5rem 2rem;
+        }
+
+        .statistics h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .stat-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            color: #ccc;
+        }
+
         /* Testimonials Section */
         .testimonials {
             background: #f9f9f9;
@@ -425,6 +472,45 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             <div class="action-links">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank">Get Involved</a>
                 <a href="#contact">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics">
+        <div class="container">
+            <h2>Our Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Individuals Impacted</div>
+                    <div class="stat-description">Impacted 1000+ individuals</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">90+</div>
+                    <div class="stat-label">Schools Represented</div>
+                    <div class="stat-description">Students from 90+ Schools</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">13+</div>
+                    <div class="stat-label">Countries Reached</div>
+                    <div class="stat-description">Students from 13+ Countries</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">26+</div>
+                    <div class="stat-label">Cities of Operation</div>
+                    <div class="stat-description">Operating in 26+ different Cities</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">700+</div>
+                    <div class="stat-label">Students Taught</div>
+                    <div class="stat-description">Taught over 700+ Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12+</div>
+                    <div class="stat-label">States & Provinces</div>
+                    <div class="stat-description">Operating in many different states and provinces</div>
+                </div>
             </div>
         </div>
     </section>
