@@ -2631,60 +2631,209 @@ PARTNER_TEMPLATE = """
         }
 
         .partner-hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
             color: white;
             text-align: center;
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .partner-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .partner-hero-badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
         }
 
         .partner-hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 3.5rem;
+            font-weight: 800;
             margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .partner-hero h1 span {
+            background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .partner-hero p {
             font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
             line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #00d4ff;
+        }
+
+        .hero-stat-label {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-top: 0.3rem;
         }
 
         .partner-intro {
-            padding: 5rem 2rem;
-            text-align: center;
+            padding: 6rem 2rem;
+            background: white;
         }
 
-        .partner-intro h2 {
-            font-size: 2.2rem;
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .intro-content h2 {
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
             color: #1a1a2e;
+            line-height: 1.3;
         }
 
-        .partner-intro p {
+        .intro-content p {
             font-size: 1.1rem;
             line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto 2rem;
             color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-features {
+            margin-top: 2rem;
+        }
+
+        .intro-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-feature-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .intro-feature-text h4 {
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            margin-bottom: 0.3rem;
+        }
+
+        .intro-feature-text p {
+            font-size: 0.95rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .intro-image {
+            position: relative;
+        }
+
+        .intro-image-main {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .intro-image-float {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-image-float-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #00d4ff;
+        }
+
+        .intro-image-float-text {
+            font-size: 0.9rem;
+            color: #666;
         }
 
         .partner-types {
-            background: #f9f9f9;
-            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+            padding: 6rem 2rem;
         }
 
         .partner-types h2 {
-            font-size: 2rem;
-            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             text-align: center;
             color: #1a1a2e;
+        }
+
+        .partner-types > .container > p {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
         }
 
         .types-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -2692,12 +2841,262 @@ PARTNER_TEMPLATE = """
 
         .type-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 20px;
             padding: 2.5rem;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid #00d4ff;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00d4ff, #0099cc);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.15);
+            border-color: rgba(0, 212, 255, 0.2);
+        }
+
+        .type-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .type-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #e8f9ff 0%, #d0f0ff 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .type-card:hover .type-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .type-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .type-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .type-card-link {
+            color: #00d4ff;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .type-card-link:hover {
+            gap: 0.8rem;
+        }
+
+        /* Impact Numbers Section */
+        .impact-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 5rem 2rem;
+            color: white;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .impact-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .impact-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .impact-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        .benefits-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .benefits-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .benefits-section > .container > p {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border-color: #00d4ff;
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.2rem;
+            color: #1a1a2e;
+            margin-bottom: 0.8rem;
+        }
+
+        .benefit-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Current Partners Section */
+        .current-partners {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+        }
+
+        .current-partners h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .current-partners > .container > p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .partner-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .partner-card-header {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .partner-card-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .partner-card-header span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            background: rgba(255,255,255,0.2);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .partner-card-body {
+            padding: 2rem;
+        }
+
+        .partner-card-body h4 {
+            font-size: 1.2rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .partner-card-body p {
+            font-size: 1rem;
+            color: #666;
         }
 
         .type-card:hover {
@@ -2854,73 +3253,122 @@ PARTNER_TEMPLATE = """
 
         .partner-video {
             margin: 1.5rem 0;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
         .partner-video video {
             width: 100%;
             display: block;
-            border-radius: 8px;
         }
 
         .partner-tag {
             display: inline-block;
-            background: #e8f9ff;
-            color: #00a8cc;
-            padding: 0.3rem 0.8rem;
+            background: linear-gradient(135deg, #e8f9ff 0%, #d0f0ff 100%);
+            color: #0099cc;
+            padding: 0.4rem 1rem;
             border-radius: 20px;
             font-size: 0.85rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .cta-section {
-            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
             color: white;
             text-align: center;
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .cta-section .container {
+            position: relative;
+            z-index: 1;
         }
 
         .cta-section h2 {
-            font-size: 2.2rem;
+            font-size: 2.8rem;
             margin-bottom: 1rem;
             color: white;
         }
 
+        .cta-section h2 span {
+            background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .cta-section p {
             font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         .cta-btn {
             display: inline-block;
-            background: white;
-            color: #00d4ff;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
             padding: 1rem 2.5rem;
-            border-radius: 4px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
         }
 
         .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: none;
+        }
+
+        .cta-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .contact-email {
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             font-size: 1rem;
-            opacity: 0.9;
+            opacity: 0.8;
         }
 
         .contact-email a {
-            color: white;
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-email a:hover {
             text-decoration: underline;
         }
 
@@ -2954,9 +3402,31 @@ PARTNER_TEMPLATE = """
             font-size: 0.9rem;
         }
 
+        @media (max-width: 1024px) {
+            .intro-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .types-grid, .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .partner-hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            .hero-stats {
+                gap: 2rem;
+            }
+            .types-grid, .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            .partners-grid {
+                grid-template-columns: 1fr;
             }
             nav ul {
                 gap: 1rem;
@@ -2997,37 +3467,151 @@ PARTNER_TEMPLATE = """
 
     <section class="partner-hero">
         <div class="container">
-            <h1>Corporate, Nonprofit & Foundation Partners</h1>
-            <p>Give back to education, impact and community. Join us in empowering the next generation of leaders and changemakers.</p>
+            <div class="partner-hero-badge">🤝 Partnership Program</div>
+            <h1>Let's Create <span>Impact Together</span></h1>
+            <p>Partner with NexYouth to empower the next generation of leaders. Together, we can provide youth with the skills, mentorship, and opportunities they need to succeed.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-number">1000+</div>
+                    <div class="hero-stat-label">Youth Impacted</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">13+</div>
+                    <div class="hero-stat-label">Countries</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">90+</div>
+                    <div class="hero-stat-label">Schools</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section class="partner-intro">
-        <div class="container">
-            <h2>Why Partner With NexYouth?</h2>
-            <p>Everything we do is guided by our core values of youth empowerment, environmental stewardship, and community impact. We're always interested in seeking new corporate and foundation partners and sponsors to become part of our network.</p>
-            <p>Together, we can create meaningful opportunities for young people to develop skills, gain mentorship, and make a difference in their communities.</p>
+        <div class="intro-grid">
+            <div class="intro-content">
+                <h2>Why Partner With NexYouth?</h2>
+                <p>We're building a global movement of empowered youth. Your partnership helps us expand our reach, develop innovative programs, and create lasting change in communities worldwide.</p>
+                <div class="intro-features">
+                    <div class="intro-feature">
+                        <div class="intro-feature-icon">🎯</div>
+                        <div class="intro-feature-text">
+                            <h4>Direct Impact</h4>
+                            <p>Your support directly funds programs that transform young lives</p>
+                        </div>
+                    </div>
+                    <div class="intro-feature">
+                        <div class="intro-feature-icon">🌍</div>
+                        <div class="intro-feature-text">
+                            <h4>Global Reach</h4>
+                            <p>Connect with motivated youth across 13+ countries</p>
+                        </div>
+                    </div>
+                    <div class="intro-feature">
+                        <div class="intro-feature-icon">📊</div>
+                        <div class="intro-feature-text">
+                            <h4>Measurable Results</h4>
+                            <p>Track your impact with detailed reports and success stories</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="intro-image">
+                <video class="intro-image-main" autoplay muted loop playsinline>
+                    <source src="/static/partner_video.mp4" type="video/mp4">
+                </video>
+                <div class="intro-image-float">
+                    <div class="intro-image-float-number">700+</div>
+                    <div class="intro-image-float-text">Students Taught</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section class="partner-types">
         <div class="container">
             <h2>Partnership Opportunities</h2>
+            <p>Choose the partnership model that aligns with your organization's goals and values.</p>
             <div class="types-grid">
                 <div class="type-card">
                     <div class="type-icon">🏢</div>
                     <h3>Corporate Partners</h3>
-                    <p>Align your brand with youth development and environmental education. Sponsor programs, provide mentors, or support our initiatives through corporate giving.</p>
+                    <p>Align your brand with youth empowerment. Sponsor programs, provide mentors from your team, or support initiatives through corporate giving.</p>
+                    <a href="#contact-form" class="type-card-link">Learn More →</a>
                 </div>
                 <div class="type-card">
                     <div class="type-icon">🤝</div>
                     <h3>Nonprofit Partners</h3>
-                    <p>Collaborate on joint programs, share resources, and amplify our collective impact. Together we can reach more young people and create lasting change.</p>
+                    <p>Collaborate on joint programs, share resources, and amplify our collective impact. Together we can reach more young people.</p>
+                    <a href="#contact-form" class="type-card-link">Learn More →</a>
                 </div>
                 <div class="type-card">
                     <div class="type-icon">🏛️</div>
                     <h3>Foundation Partners</h3>
-                    <p>Support our mission through grants and funding. Your foundation can help us scale our programs and reach underserved communities.</p>
+                    <p>Support our mission through grants and funding. Help us scale programs and reach underserved communities globally.</p>
+                    <a href="#contact-form" class="type-card-link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="impact-section">
+        <div class="container">
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <div class="impact-number">26+</div>
+                    <div class="impact-label">Cities of Operation</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-number">12+</div>
+                    <div class="impact-label">States & Provinces</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-number">100%</div>
+                    <div class="impact-label">Volunteer-Run</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-number">∞</div>
+                    <div class="impact-label">Potential Impact</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits-section">
+        <div class="container">
+            <h2>Partnership Benefits</h2>
+            <p>Join a network of organizations committed to youth empowerment and community impact.</p>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎨</div>
+                    <h3>Brand Visibility</h3>
+                    <p>Logo placement on our website, events, and marketing materials reaching thousands of students and families.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">👥</div>
+                    <h3>Talent Pipeline</h3>
+                    <p>Connect with motivated, skilled young people for internships, mentorship, or future employment.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎤</div>
+                    <h3>Speaking Opportunities</h3>
+                    <p>Share your expertise at our seminars and events, positioning your organization as a thought leader.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💼</div>
+                    <h3>Employee Engagement</h3>
+                    <p>Provide meaningful volunteer opportunities for your team through mentorship and workshops.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤝</div>
+                    <h3>Co-Branded Programs</h3>
+                    <p>Create custom programs that align with your CSR goals and make a tangible community impact.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <h3>Impact Reports</h3>
+                    <p>Receive detailed analytics and success stories showcasing the difference your partnership makes.</p>
                 </div>
             </div>
         </div>
@@ -3035,8 +3619,8 @@ PARTNER_TEMPLATE = """
 
     <section class="current-partners">
         <div class="container">
-            <h2>Our Current Partners</h2>
-            <p>We're proud to collaborate with organizations that share our vision for youth empowerment.</p>
+            <h2>Our Partners in Action</h2>
+            <p>See how our partnerships create real impact for youth around the world.</p>
             <div class="partners-grid">
                 <div class="partner-card">
                     <div class="partner-card-header">
@@ -3044,7 +3628,7 @@ PARTNER_TEMPLATE = """
                         <span>Community Partner</span>
                     </div>
                     <div class="partner-card-body">
-                        <h4>In-Person Public Speaking Classes</h4>
+                        <h4>📚 In-Person Public Speaking Classes</h4>
                         <p>We partnered with CICS Immigrant Youth Centre to deliver in-person public speaking classes, helping immigrant youth build confidence and communication skills essential for their success in Canada.</p>
                         <div class="partner-video">
                             <video controls playsinline>
@@ -3059,44 +3643,15 @@ PARTNER_TEMPLATE = """
         </div>
     </section>
 
-    <section class="benefits-section">
+    <section class="cta-section" id="contact-form">
         <div class="container">
-            <h2>Partnership Benefits</h2>
-            <div class="benefits-list">
-                <div class="benefit-item">
-                    <div class="benefit-check">✓</div>
-                    <span>Brand visibility across our platforms and events</span>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-check">✓</div>
-                    <span>Recognition on our website and marketing materials</span>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-check">✓</div>
-                    <span>Access to a network of motivated young leaders</span>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-check">✓</div>
-                    <span>Employee engagement and volunteer opportunities</span>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-check">✓</div>
-                    <span>Co-branded programs and initiatives</span>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-check">✓</div>
-                    <span>Impact reports and success stories</span>
-                </div>
+            <h2>Ready to <span>Make a Difference</span>?</h2>
+            <p>Let's discuss how we can work together to empower youth and create lasting positive change in communities worldwide.</p>
+            <div class="cta-buttons">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank" class="cta-btn">Become a Partner</a>
+                <a href="mailto:nexyouthcontact@gmail.com" class="cta-btn secondary">Schedule a Call</a>
             </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <div class="container">
-            <h2>Interested in Partnering?</h2>
-            <p>We'd love to hear from you. Let's discuss how we can work together to empower youth and create positive change.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank" class="cta-btn">Get In Touch</a>
-            <p class="contact-email">Or email us directly at <a href="mailto:nexyouthcontact@gmail.com">nexyouthcontact@gmail.com</a></p>
+            <p class="contact-email">Or reach us directly at <a href="mailto:nexyouthcontact@gmail.com">nexyouthcontact@gmail.com</a></p>
         </div>
     </section>
 
