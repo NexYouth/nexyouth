@@ -985,7 +985,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <div class="team-card-content">
                         <div class="team-role">Co Founder</div>
                         <h3>Justin Huang</h3>
-                        <p>Justin is an enthusiast of the environment. He is an avid reader of all forms of media related to the environment. He hopes that through this contest, others will also find their own love and passion for one of the largest global issues in the world.</p>
+                        <p>Justin is the co-founder of NexYouth. He is interested in how young people learn through experience, connection, and initiative, and focuses on creating spaces where youth can explore ideas and take ownership of what they care about.</p>
                     </div>
                 </div>
 
