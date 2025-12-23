@@ -607,12 +607,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <section id="contact" class="cta-section">
         <div class="container">
             <h2>Join Our Community Today</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 2rem;">Ready to start your journey? Connect with us on our platforms or fill out our form to get involved.</p>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">Ready to start your journey? Connect with us or fill out our form to get involved.</p>
             <div class="action-links" style="justify-content: center;">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank" style="color: #ff6b35;">Get Involved</a>
-                <a href="https://discord.com/invite/qqT2ce3NY7" target="_blank" style="color: #ff6b35;">Discord</a>
-                <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank" style="color: #ff6b35;">Instagram</a>
-                <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank" style="color: #ff6b35;">LinkedIn</a>
             </div>
         </div>
     </section>
