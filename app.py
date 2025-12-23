@@ -266,36 +266,84 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
         /* Statistics Section */
         .statistics {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
             color: white;
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .statistics::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .statistics h2 {
             text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             color: white;
+            position: relative;
+        }
+
+        .statistics > .container > p {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            position: relative;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
         }
 
         .stat-card {
             text-align: center;
-            padding: 1.5rem;
+            padding: 2rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 800;
-            color: #00d4ff;
+            background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .stat-label {
@@ -476,45 +524,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         </div>
     </section>
 
-    <!-- Statistics Section -->
-    <section class="statistics">
-        <div class="container">
-            <h2>Our Impact</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Individuals Impacted</div>
-                    <div class="stat-description">Impacted 1000+ individuals</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">90+</div>
-                    <div class="stat-label">Schools Represented</div>
-                    <div class="stat-description">Students from 90+ Schools</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">13+</div>
-                    <div class="stat-label">Countries Reached</div>
-                    <div class="stat-description">Students from 13+ Countries</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">26+</div>
-                    <div class="stat-label">Cities of Operation</div>
-                    <div class="stat-description">Operating in 26+ different Cities</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">700+</div>
-                    <div class="stat-label">Students Taught</div>
-                    <div class="stat-description">Taught over 700+ Students</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">12+</div>
-                    <div class="stat-label">States & Provinces</div>
-                    <div class="stat-description">Operating in many different states and provinces</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Programs Section -->
     <section id="programs" class="programs">
         <div class="container">
@@ -531,6 +540,40 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 <div class="program-card">
                     <h3>Global Mentorship Network</h3>
                     <p>Get paired with mentors who can guide your personal and professional development. Our mentors bring real-world experience and genuine commitment to your growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics">
+        <div class="container">
+            <h2>Our Impact</h2>
+            <p>Making a difference across the globe through youth empowerment</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Individuals Impacted</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">90+</div>
+                    <div class="stat-label">Schools Represented</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">13+</div>
+                    <div class="stat-label">Countries Reached</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">26+</div>
+                    <div class="stat-label">Cities of Operation</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">700+</div>
+                    <div class="stat-label">Students Taught</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12+</div>
+                    <div class="stat-label">States & Provinces</div>
                 </div>
             </div>
         </div>
