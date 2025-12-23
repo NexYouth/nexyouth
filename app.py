@@ -620,12 +620,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <!-- Footer -->
     <footer id="contact-footer">
         <div class="container">
-            <div class="links">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank">Get Involved</a>
-                <a href="https://discord.com/invite/qqT2ce3NY7" target="_blank">Discord</a>
-                <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
-                <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
-            </div>
             <p>&copy; 2023 NexYouth. All rights reserved.</p>
         </div>
     </footer>
@@ -1184,14 +1178,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="links">
-                <a href="/">Home</a>
-                <a href="/about">About</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank">Get Involved</a>
-                <a href="https://discord.com/invite/qqT2ce3NY7" target="_blank">Discord</a>
-                <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
-                <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
-            </div>
             <p>&copy; 2023 NexYouth. All rights reserved.</p>
         </div>
     </footer>
@@ -1553,14 +1539,6 @@ SKILL_DEVELOPMENT_TEMPLATE = """
 
     <footer>
         <div class="container">
-            <div class="links">
-                <a href="/">Home</a>
-                <a href="/about">About</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank">Get Involved</a>
-                <a href="https://discord.com/invite/qqT2ce3NY7" target="_blank">Discord</a>
-                <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
-                <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
-            </div>
             <p>&copy; 2023 NexYouth. All rights reserved.</p>
         </div>
     </footer>
@@ -2015,14 +1993,6 @@ SEMINARS_TEMPLATE = """
 
     <footer>
         <div class="container">
-            <div class="links">
-                <a href="/">Home</a>
-                <a href="/about">About</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank">Get Involved</a>
-                <a href="https://discord.com/invite/qqT2ce3NY7" target="_blank">Discord</a>
-                <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
-                <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
-            </div>
             <p>&copy; 2023 NexYouth. All rights reserved.</p>
         </div>
     </footer>
@@ -2479,14 +2449,6 @@ MENTORSHIP_TEMPLATE = """
 
     <footer>
         <div class="container">
-            <div class="links">
-                <a href="/">Home</a>
-                <a href="/about">About</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank">Get Involved</a>
-                <a href="https://discord.com/invite/qqT2ce3NY7" target="_blank">Discord</a>
-                <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
-                <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
-            </div>
             <p>&copy; 2023 NexYouth. All rights reserved.</p>
         </div>
     </footer>
@@ -3657,15 +3619,6 @@ PARTNER_TEMPLATE = """
 
     <footer>
         <div class="container">
-            <div class="links">
-                <a href="/">Home</a>
-                <a href="/about">About</a>
-                <a href="/partner">Partner</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank">Get Involved</a>
-                <a href="https://discord.com/invite/qqT2ce3NY7" target="_blank">Discord</a>
-                <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
-                <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
-            </div>
             <p>&copy; 2023 NexYouth. All rights reserved.</p>
         </div>
     </footer>
