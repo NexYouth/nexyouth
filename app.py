@@ -2723,6 +2723,18 @@ PARTNER_TEMPLATE = """
             margin-bottom: 1rem;
         }
 
+        .partner-video {
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .partner-video video {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+        }
+
         .partner-tag {
             display: inline-block;
             background: #e8f9ff;
@@ -2905,6 +2917,12 @@ PARTNER_TEMPLATE = """
                     <div class="partner-card-body">
                         <h4>In-Person Public Speaking Classes</h4>
                         <p>We partnered with CICS Immigrant Youth Centre to deliver in-person public speaking classes, helping immigrant youth build confidence and communication skills essential for their success in Canada.</p>
+                        <div class="partner-video">
+                            <video controls playsinline>
+                                <source src="/static/partner_video.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <span class="partner-tag">Public Speaking</span>
                     </div>
                 </div>
