@@ -3648,7 +3648,7 @@ PARTNER_TEMPLATE = """
             <h2>Ready to <span>Make a Difference</span>?</h2>
             <p>Let's discuss how we can work together to empower youth and create lasting positive change in communities worldwide.</p>
             <div class="cta-buttons">
-                <a href="mailto:nexyouth.master@gmail.com?subject=Partnership%20Interest" class="cta-btn">Become a Partner</a>
+                <a href="mailto:nexyouth.master@gmail.com?subject=Partnership Interest" class="cta-btn">Become a Partner</a>
                 <a href="mailto:nexyouth.master@gmail.com" class="cta-btn secondary">Schedule a Call</a>
             </div>
             <p class="contact-email">Or reach us directly at <a href="mailto:nexyouth.master@gmail.com">nexyouth.master@gmail.com</a></p>
