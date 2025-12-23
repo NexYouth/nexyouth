@@ -3629,7 +3629,7 @@ PARTNER_TEMPLATE = """
                     </div>
                     <div class="partner-card-body">
                         <h4>📚 In-Person Public Speaking Classes</h4>
-                        <p>We partnered with CICS Immigrant Youth Centre to deliver in-person public speaking classes, helping immigrant youth build confidence and communication skills essential for their success in Canada.</p>
+                        <p>We partnered with CICS Immigrant Youth Centre to deliver in-person public speaking workshops that create space for newcomer youth to build confidence, voice, and self-expression.</p>
                         <div class="partner-video">
                             <video controls playsinline>
                                 <source src="/static/partner_video.mp4" type="video/mp4">
