@@ -1003,7 +1003,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                 <div class="team-card">
                     <img src="https://www.nexyouth.org/Member_Suzea1.png" alt="Stephanie Uzea">
                     <div class="team-card-content">
-                        <div class="team-role">Canada Head & Director of Operations</div>
+                        <div class="team-role">Canada President & Director of Operations</div>
                         <h3>Stephanie Uzea</h3>
                         <p>Stephanie is an aspiring environmental engineer with a passion for writing. She's written multiple comics about her brother if he were a superhero as well as a science fiction trilogy. In her free time, she likes trying out new foods and cross-country running.</p>
                     </div>
@@ -1043,7 +1043,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                 <div class="team-card">
                     <img src="https://www.nexyouth.org/Member_Rwei1.png" alt="Rachel Wei">
                     <div class="team-card-content">
-                        <div class="team-role">Coquitlam Chapter Head</div>
+                        <div class="team-role">Coquitlam Chapter President</div>
                         <h3>Rachel Wei</h3>
                         <p>Rachel Wei is a rising senior at Port Moody Secondary School. She loves playing basketball, is an avid debater, and loves her pet cat! She is also a passionate environmentalist.</p>
                     </div>
