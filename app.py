@@ -552,8 +552,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             <p>Making a difference across the globe through youth empowerment</p>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Individuals Impacted</div>
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Individuals Reached</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">90+</div>
@@ -3472,7 +3472,7 @@ PARTNER_TEMPLATE = """
             <p>Partner with NexYouth to empower the next generation of leaders. Together, we can provide youth with the skills, mentorship, and opportunities they need to succeed.</p>
             <div class="hero-stats">
                 <div class="hero-stat">
-                    <div class="hero-stat-number">1000+</div>
+                    <div class="hero-stat-number">5000+</div>
                     <div class="hero-stat-label">Youth Impacted</div>
                 </div>
                 <div class="hero-stat">
