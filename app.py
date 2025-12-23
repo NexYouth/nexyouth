@@ -626,7 +626,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
                 <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
             </div>
-            <p>&copy; 2025 NexYouth. All rights reserved.</p>
+            <p>&copy; 2023 NexYouth. All rights reserved.</p>
         </div>
     </footer>
 </body>
@@ -1192,7 +1192,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                 <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
                 <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
             </div>
-            <p>&copy; 2025 NexYouth. All rights reserved.</p>
+            <p>&copy; 2023 NexYouth. All rights reserved.</p>
         </div>
     </footer>
 </body>
@@ -1561,7 +1561,7 @@ SKILL_DEVELOPMENT_TEMPLATE = """
                 <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
                 <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
             </div>
-            <p>&copy; 2025 NexYouth. All rights reserved.</p>
+            <p>&copy; 2023 NexYouth. All rights reserved.</p>
         </div>
     </footer>
 </body>
@@ -2023,7 +2023,7 @@ SEMINARS_TEMPLATE = """
                 <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
                 <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
             </div>
-            <p>&copy; 2025 NexYouth. All rights reserved.</p>
+            <p>&copy; 2023 NexYouth. All rights reserved.</p>
         </div>
     </footer>
 </body>
@@ -2487,7 +2487,7 @@ MENTORSHIP_TEMPLATE = """
                 <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
                 <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
             </div>
-            <p>&copy; 2025 NexYouth. All rights reserved.</p>
+            <p>&copy; 2023 NexYouth. All rights reserved.</p>
         </div>
     </footer>
 </body>
@@ -3666,7 +3666,7 @@ PARTNER_TEMPLATE = """
                 <a href="https://www.instagram.com/nexyouth.ngo/" target="_blank">Instagram</a>
                 <a href="https://www.linkedin.com/company/nexyouth-society/" target="_blank">LinkedIn</a>
             </div>
-            <p>&copy; 2025 NexYouth. All rights reserved.</p>
+            <p>&copy; 2023 NexYouth. All rights reserved.</p>
         </div>
     </footer>
 </body>
