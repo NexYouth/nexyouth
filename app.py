@@ -863,22 +863,26 @@ HTML_TEMPLATE = """
 <body>
     <!-- Navigation -->
     <nav>
-        <a href="/" class="logo">
-            <img src="/static/logo.svg" alt="NexYouth Logo">
-        </a>
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/#programs">Programs</a></li>
-            <li><a href="/#events">Events</a></li>
-            <li><a href="/#partners">Partners</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="mailto:nexyouth.master@gmail.com" class="nav-btn">Get Involved →</a></li>
-        </ul>
-        <div class="mobile-menu-btn">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/static/logo.svg" alt="NexYouth">
+            </a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/#what-we-do">What We Do</a></li>
+                <li class="dropdown">
+                    <a href="/#programs">Programs</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/programs/skill-development">Skill Development Courses</a></li>
+                        <li><a href="/programs/seminars">Expert Seminars & Talks</a></li>
+                        <li><a href="/programs/mentorship">Global Mentorship Network</a></li>
+                    </ul>
+                </li>
+                <li><a href="/#community">Community</a></li>
+                <li><a href="/partner">Partner</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -1468,14 +1472,23 @@ CONTACT_TEMPLATE = """
         <a href="/" class="logo">
             <img src="/static/logo.svg" alt="NexYouth Logo">
         </a>
-        <ul class="nav-links">
+        <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/#about">About</a></li>
-            <li><a href="/#programs">Programs</a></li>
-            <li><a href="/#events">Events</a></li>
+            <li><a href="/#what-we-do">What We Do</a></li>
+            <li class="dropdown">
+                <a href="/#programs">Programs</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/programs/skill-development">Skill Development Courses</a></li>
+                    <li><a href="/programs/seminars">Expert Seminars & Talks</a></li>
+                    <li><a href="/programs/mentorship">Global Mentorship Network</a></li>
+                </ul>
+            </li>
+            <li><a href="/#community">Community</a></li>
+            <li><a href="/partner">Partner</a></li>
+            <li><a href="/about">About</a></li>
             <li><a href="/contact">Contact</a></li>
-            <li><a href="mailto:nexyouth.master@gmail.com" class="nav-btn">Get Involved →</a></li>
         </ul>
+    </div>
     </nav>
 
     <!-- Hero -->
@@ -1972,17 +1985,27 @@ ABOUT_TEMPLATE = """
 <body>
     <!-- Navigation -->
     <nav>
-        <a href="/" class="logo">
-            <img src="/static/logo.svg" alt="NexYouth Logo">
-        </a>
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/#programs">Programs</a></li>
-            <li><a href="/#events">Events</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="mailto:nexyouth.master@gmail.com" class="nav-btn">Get Involved →</a></li>
-        </ul>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/static/logo.svg" alt="NexYouth">
+            </a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/#what-we-do">What We Do</a></li>
+                <li class="dropdown">
+                    <a href="/#programs">Programs</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/programs/skill-development">Skill Development Courses</a></li>
+                        <li><a href="/programs/seminars">Expert Seminars & Talks</a></li>
+                        <li><a href="/programs/mentorship">Global Mentorship Network</a></li>
+                    </ul>
+                </li>
+                <li><a href="/#community">Community</a></li>
+                <li><a href="/partner">Partner</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
     <!-- Hero -->
