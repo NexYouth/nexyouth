@@ -32,8 +32,13 @@ NAVIGATION_HTML = """
             </li>
             <li><a href="/#community">Community</a></li>
             <li><a href="/partner">Partner</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li class="dropdown">
+                <a href="/about">About</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>
@@ -2006,84 +2011,95 @@ CONTACT_TEMPLATE = """
             padding: 0 2rem;
         }
 
-        .contact-section {
+        .contact-wrapper {
             padding: 5rem 2rem;
             background: white;
         }
 
-        .contact-content {
+        .contact-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: start;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .contact-info h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #1a1a2e;
-            margin-bottom: 2rem;
-            font-weight: 700;
+            margin-bottom: 2.5rem;
+            font-weight: 800;
         }
 
         .contact-item {
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 2px solid #eee;
         }
 
         .contact-item:last-child {
             border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
         }
 
         .contact-item h3 {
-            font-size: 1.1rem;
-            color: #00d4ff;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
+            font-size: 1rem;
+            color: #1a1a2e;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .contact-item p {
-            font-size: 1rem;
+        .contact-item p,
+        .contact-item a {
+            font-size: 1.1rem;
             color: #555;
+            line-height: 1.8;
         }
 
         .contact-item a {
             color: #00d4ff;
             text-decoration: none;
+            font-weight: 500;
             transition: color 0.3s ease;
         }
 
         .contact-item a:hover {
             color: #0099cc;
+            text-decoration: underline;
         }
 
-        .form-container h2 {
-            font-size: 2rem;
+        .form-section h2 {
+            font-size: 2.2rem;
             color: #1a1a2e;
-            margin-bottom: 2rem;
-            font-weight: 700;
+            margin-bottom: 2.5rem;
+            font-weight: 800;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
             color: #1a1a2e;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
+            padding: 1rem;
+            border: 1.5px solid #ddd;
             border-radius: 8px;
             font-family: 'Outfit', sans-serif;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
+            background: white;
         }
 
         .form-group input:focus,
@@ -2094,6 +2110,132 @@ CONTACT_TEMPLATE = """
         }
 
         .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            padding: 1.1rem 3rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .contact-wrapper {
+                padding: 3rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    """ + NAVIGATION_HTML + """
+
+    <section class="hero">
+        <div class="container">
+            <h1>Get In Touch</h1>
+            <p>Have questions or want to collaborate? We'd love to hear from you. Reach out anytime.</p>
+        </div>
+    </section>
+
+    <section class="contact-wrapper">
+        <div class="contact-layout">
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                
+                <div class="contact-item">
+                    <h3>Email Us</h3>
+                    <p><a href="mailto:info@nexyouth.org">info@nexyouth.org</a></p>
+                </div>
+
+                <div class="contact-item">
+                    <h3>Community Inquiries</h3>
+                    <p>Interested in joining our volunteer community? Let us know how you'd like to contribute to youth empowerment!</p>
+                </div>
+
+                <div class="contact-item">
+                    <h3>Partnership Opportunities</h3>
+                    <p>Want to partner with NexYouth? We collaborate with organizations to create meaningful impact for youth worldwide.</p>
+                </div>
+
+                <div class="contact-item">
+                    <h3>Program Information</h3>
+                    <p>Questions about our skill development, seminars, or mentorship programs? We're here to help guide you!</p>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Send us a Message</h2>
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Full Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="What is this about?" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us more..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 NexYouth. All rights reserved. | Grow • Lead • Act</p>
+        </div>
+    </footer>
+</body>
+</html>
+"""        .form-group textarea {
             resize: vertical;
             min-height: 150px;
         }
