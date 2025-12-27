@@ -2990,9 +2990,60 @@ CONTACT_TEMPLATE = """
 
                     <button type="submit" class="submit-btn">Send Message</button>
                 </form>
+                <div id="successMessage" style="display: none; margin-top: 2rem; padding: 1.5rem; background: #e8f9ff; border-left: 4px solid #00d4ff; border-radius: 8px;">
+                    <h3 style="color: #00d4ff; margin-bottom: 0.5rem; font-size: 1.2rem;">✓ Message Sent Successfully</h3>
+                    <p style="color: #0d2137; margin: 0; line-height: 1.6;">Thank you for reaching out! We've received your message and will get back to you as soon as possible. Our team typically responds within 24-48 hours.</p>
+                </div>
             </div>
         </div>
     </section>
+
+    <script>
+        document.querySelector('#contactForm') && document.querySelector('#contactForm').addEventListener('submit', function(e) {
+            const form = this;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            // Disable button during submission
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            // Use fetch to submit to Formspree and catch the response
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    form.style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // Reset form
+                    form.reset();
+                    form.style.display = 'block';
+                    
+                    // Hide success message after 10 seconds and reset form
+                    setTimeout(() => {
+                        document.getElementById('successMessage').style.display = 'none';
+                        form.reset();
+                    }, 10000);
+                } else {
+                    alert('There was an error sending your message. Please try again.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            })
+            .catch(error => {
+                alert('There was an error sending your message. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            });
+        });
+    </script>
 
     <footer>
         <div class="container">
