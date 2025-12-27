@@ -195,9 +195,22 @@ HOME_TEMPLATE = """
             background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
             color: white;
             text-align: center;
-            padding: 8rem 2rem;
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
         }
 
         .hero::before {
@@ -207,16 +220,17 @@ HOME_TEMPLATE = """
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+            background: rgba(15, 15, 26, 0.6);
+            z-index: 1;
             pointer-events: none;
         }
 
         .hero .container {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .hero h1 {
@@ -428,26 +442,14 @@ HOME_TEMPLATE = """
     """ + NAVIGATION_HTML + """
 
     <section class="hero">
+        <video autoplay muted loop playsinline>
+            <source src="/static/main_background.mp4" type="video/mp4">
+        </video>
         <div class="container">
             <h1>Creating Space for Youth. <span>Shape the Future.</span></h1>
             <p>NexYouth provides global youth with skill development, mentorship, and hands-on opportunities to become changemakers in their communities.</p>
             <div class="hero-buttons">
-                <a href="#programs" class="btn btn-primary">Learn More</a>
-                <a href="/partner" class="btn btn-secondary">Become a Partner</a>
-            </div>
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">5000+</div>
-                    <div class="stat-label">Youth Impacted</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">13+</div>
-                    <div class="stat-label">Countries</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">90+</div>
-                    <div class="stat-label">Schools</div>
-                </div>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" class="btn btn-primary">Take Action</a>
             </div>
         </div>
     </section>
@@ -497,7 +499,7 @@ HOME_TEMPLATE = """
 
     <footer id="contact">
         <div class="container">
-            <p>&copy; 2025 NexYouth. All rights reserved. | Grow • Lead • Act</p>
+            <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
         </div>
     </footer>
 </body>
@@ -2058,7 +2060,7 @@ ABOUT_TEMPLATE = """
                 </div>
                 <div class="team-member">
                     <div class="team-member-image">
-                        <img src="/AaronYang.jpg" alt="Aaron Yang" onerror="this.style.display='none'">
+                        <img src="/static/AaronYang.jpg" alt="Aaron Yang" onerror="this.style.display='none'">
                     </div>
                     <h3>Aaron Yang</h3>
                     <span class="role">Team Member</span>
@@ -2066,7 +2068,7 @@ ABOUT_TEMPLATE = """
                 </div>
                 <div class="team-member">
                     <div class="team-member-image">
-                        <img src="/VincentPham.jpg" alt="Vincent Pham" onerror="this.style.display='none'">
+                        <img src="/static/VincentPham.jpg" alt="Vincent Pham" onerror="this.style.display='none'">
                     </div>
                     <h3>Vincent Pham</h3>
                     <span class="role">Team Member</span>
@@ -2074,7 +2076,7 @@ ABOUT_TEMPLATE = """
                 </div>
                 <div class="team-member">
                     <div class="team-member-image">
-                        <img src="/WilliamWang.jpg" alt="William Wang" onerror="this.style.display='none'">
+                        <img src="/static/WilliamWang.jpg" alt="William Wang" onerror="this.style.display='none'">
                     </div>
                     <h3>William Wang</h3>
                     <span class="role">Team Member</span>
@@ -2094,7 +2096,7 @@ ABOUT_TEMPLATE = """
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 NexYouth. All rights reserved. | Grow • Lead • Act</p>
+            <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
         </div>
     </footer>
 </body>
