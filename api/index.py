@@ -1,8 +1,19 @@
-from flask import Flask, render_template_string, send_from_directory
+from flask import Flask, render_template_string, send_from_directory, request, jsonify
+from flask_mail import Mail, Message
 import os
 import re
 
 app = Flask(__name__, static_folder='../public', static_url_path='/static')
+
+# Mail configuration for Gmail
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = os.environ.get('GMAIL_USER', 'nexyouth.master@gmail.com')
+app.config['MAIL_PASSWORD'] = os.environ.get('GMAIL_PASSWORD', '')
+app.config['MAIL_DEFAULT_SENDER'] = 'nexyouth.master@gmail.com'
+
+mail = Mail(app)
 
 @app.route('/static/<path:filename>')
 def serve_static(filename):
@@ -2212,7 +2223,7 @@ CONTACT_TEMPLATE = """
 
             <div class="form-section">
                 <h2>Send us a Message</h2>
-                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <form id="contactForm">
                     <div class="form-group">
                         <label for="name">Your Name</label>
                         <input type="text" id="name" name="name" placeholder="Full Name" required>
@@ -2238,6 +2249,40 @@ CONTACT_TEMPLATE = """
             </div>
         </div>
     </section>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+            
+            try {
+                button.disabled = true;
+                button.textContent = 'Sending...';
+                
+                const response = await fetch('/send-contact-email', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('Thank you! Your message has been sent successfully.');
+                    this.reset();
+                } else {
+                    alert('Error: ' + (data.error || 'Failed to send message'));
+                }
+            } catch (error) {
+                alert('Error sending message: ' + error.message);
+            } finally {
+                button.disabled = false;
+                button.textContent = originalText;
+            }
+        });
+    </script>
 
     <footer>
         <div class="container">
@@ -2271,6 +2316,45 @@ def skills():
 @app.route('/programs/seminars')
 def seminars():
     return render_template_string(SEMINARS_TEMPLATE)
+
+@app.route('/send-contact-email', methods=['POST'])
+def send_contact_email():
+    """Handle contact form submission and send email"""
+    try:
+        name = request.form.get('name', '').strip()
+        email = request.form.get('email', '').strip()
+        subject = request.form.get('subject', '').strip()
+        message = request.form.get('message', '').strip()
+        
+        # Validate inputs
+        if not all([name, email, subject, message]):
+            return jsonify({'success': False, 'error': 'All fields are required'}), 400
+        
+        # Create email message
+        msg = Message(
+            subject=f"Contact Form: {subject}",
+            recipients=['nexyouth.master@gmail.com'],
+            body=f"""
+New Contact Form Submission
+
+Name: {name}
+Email: {email}
+Subject: {subject}
+
+Message:
+{message}
+            """,
+            reply_to=email
+        )
+        
+        # Send email
+        mail.send(msg)
+        
+        return jsonify({'success': True, 'message': 'Email sent successfully!'}), 200
+    
+    except Exception as e:
+        print(f"Email error: {str(e)}")
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/<path:path>')
 def catch_all(path):
