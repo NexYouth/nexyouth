@@ -2191,7 +2191,7 @@ CONTACT_TEMPLATE = """
                 
                 <div class="contact-item">
                     <h3>Email Us</h3>
-                    <p><a href="mailto:info@nexyouth.org">info@nexyouth.org</a></p>
+                    <p><a href="mailto:nexyouth.master@gmail.com">nexyouth.master@gmail.com</a></p>
                 </div>
 
                 <div class="contact-item">
