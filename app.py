@@ -26,7 +26,7 @@ NAVIGATION_HTML = """
                 <a href="/#programs">Programs</a>
                 <ul class="dropdown-menu">
                     <li><a href="/programs/skill-development">Skill Development Courses</a></li>
-                    <li><a href="/programs/seminars">Expert Seminars & Talks</a></li>
+                    <li><a href="/programs/seminars">Expert & Youth Seminars</a></li>
                     <li><a href="/programs/mentorship">Global Mentorship Network</a></li>
                 </ul>
             </li>
@@ -2103,6 +2103,593 @@ ABOUT_TEMPLATE = """
 </html>
 """
 
+# ============== SKILLS PAGE ==============
+SKILLS_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Development Courses - NexYouth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        """ + NAVIGATION_STYLES + """
+
+        .hero {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 212, 255, 0.1);
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .course-section {
+            padding: 5rem 2rem;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+
+        .course-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .course-header h2 {
+            font-size: 2.2rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+
+        .course-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .session-content {
+            margin-bottom: 4rem;
+        }
+
+        .session-title {
+            font-size: 1.8rem;
+            color: #1a1a2e;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .session-number {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .session-description {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+            border-radius: 12px;
+            padding-bottom: 100%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .image-placeholder:hover {
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .image-placeholder img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .placeholder-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #999;
+            font-size: 1rem;
+            font-weight: 500;
+            z-index: 1;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .session-title {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    """ + NAVIGATION_HTML + """
+
+    <section class="hero">
+        <div class="container">
+            <h1>Skill Development Courses</h1>
+            <p>Comprehensive programs designed to equip youth with essential skills for success in the modern world.</p>
+        </div>
+    </section>
+
+    <section class="course-section">
+        <div class="container">
+            <div class="course-header">
+                <h2>Our Programs</h2>
+                <p>Choose from our diverse range of skill-building courses tailored for youth at all levels.</p>
+            </div>
+
+            <div class="session-content">
+                <div class="session-title">
+                    <div class="session-number">1</div>
+                    <div>Public Speaking and Debating Class</div>
+                </div>
+                <p class="session-description">
+                    Master the art of public speaking and competitive debate. Our experienced coaches will guide you through presentation techniques, argumentation strategies, and real-world debate competition preparation.
+                </p>
+                <div class="image-grid">
+                    <div class="image-placeholder">
+                        <div class="placeholder-text">📸 Photo 1</div>
+                    </div>
+                    <div class="image-placeholder">
+                        <div class="placeholder-text">📸 Photo 2</div>
+                    </div>
+                    <div class="image-placeholder">
+                        <div class="placeholder-text">📸 Photo 3</div>
+                    </div>
+                    <div class="image-placeholder">
+                        <div class="placeholder-text">📸 Photo 4</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="session-content">
+                <div class="session-title">
+                    <div class="session-number">2</div>
+                    <div>Summer Camp</div>
+                </div>
+                <p class="session-description">
+                    Experience an intensive summer program combining skill development, team building, and outdoor activities. Our summer camps provide youth with unforgettable experiences and valuable friendships while developing leadership skills.
+                </p>
+            </div>
+
+            <div class="session-content">
+                <div class="session-title">
+                    <div class="session-number">3</div>
+                    <div>STEM Classes</div>
+                </div>
+                <p class="session-description">
+                    Explore Science, Technology, Engineering, and Mathematics through hands-on learning experiences. From robotics to coding, our STEM classes inspire creativity and problem-solving skills essential for future careers.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Develop Your Skills?</h2>
+            <p>Join thousands of youth transforming their futures through our comprehensive skill development programs.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" class="cta-btn">Get Started Today</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 NexYouth. All rights reserved. | Grow • Lead • Act</p>
+        </div>
+    </footer>
+</body>
+</html>
+"""
+
+SEMINARS_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert & Youth Seminars - NexYouth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        """ + NAVIGATION_STYLES + """
+
+        .hero {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 212, 255, 0.1);
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .course-section {
+            padding: 5rem 2rem;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+
+        .course-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .course-header h2 {
+            font-size: 2.2rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+
+        .course-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .session-content {
+            margin-bottom: 4rem;
+        }
+
+        .session-title {
+            font-size: 1.8rem;
+            color: #1a1a2e;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .session-number {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .session-description {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #999;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .session-title {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .video-placeholder {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    """ + NAVIGATION_HTML + """
+
+    <section class="hero">
+        <div class="container">
+            <h1>Expert & Youth Seminars</h1>
+            <p>Engage with industry experts and peers to explore diverse topics and broaden your perspectives.</p>
+        </div>
+    </section>
+
+    <section class="course-section">
+        <div class="container">
+            <div class="course-header">
+                <h2>Our Seminars</h2>
+                <p>Discover a variety of seminars designed to inspire, educate, and connect youth with experts in various fields.</p>
+            </div>
+
+            <div class="session-content">
+                <div class="session-title">
+                    <div class="session-number">1</div>
+                    <div>Youth Seminars</div>
+                </div>
+                <p class="session-description">
+                    Connect with fellow youth leaders and explore topics that matter to your generation. Our youth-led seminars create an inclusive space for peer learning, networking, and exploring new ideas. From social entrepreneurship to environmental innovation, discover opportunities to make an impact.
+                </p>
+                <div class="video-placeholder">
+                    🎥 Video Space - Coming Soon
+                </div>
+            </div>
+
+            <div class="session-content">
+                <div class="session-title">
+                    <div class="session-number">2</div>
+                    <div>Expert Seminars</div>
+                </div>
+                <p class="session-description">
+                    Learn directly from industry professionals and thought leaders. Our expert seminars bring experienced practitioners to share their knowledge, insights, and career pathways. Whether it's tech, business, science, or social impact, gain valuable perspectives from those shaping the future.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Expand Your Knowledge?</h2>
+            <p>Join our community of engaged learners and discover new perspectives from industry experts and passionate youth leaders.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" class="cta-btn">Register Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 NexYouth. All rights reserved. | Grow • Lead • Act</p>
+        </div>
+    </footer>
+</body>
+</html>
+"""
+
 @app.route('/')
 def home():
     return render_template_string(WEBSITE_HTML)
@@ -2114,6 +2701,14 @@ def partner():
 @app.route('/about')
 def about():
     return render_template_string(ABOUT_TEMPLATE)
+
+@app.route('/programs/skill-development')
+def skills():
+    return render_template_string(SKILLS_TEMPLATE)
+
+@app.route('/programs/seminars')
+def seminars():
+    return render_template_string(SEMINARS_TEMPLATE)
 
 @app.route('/<path:path>')
 def catch_all(path):
