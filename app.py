@@ -102,28 +102,39 @@ NAVIGATION_STYLES = """
             top: 100%;
             left: 0;
             background: white;
-            min-width: 220px;
+            min-width: 250px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             border-radius: 8px;
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
             transition: all 0.3s ease;
-            padding: 0.5rem 0;
+            padding: 0;
             z-index: 100;
+            display: flex;
+            flex-direction: column;
+            list-style: none;
         }
 
         .dropdown-menu li {
             display: block;
+            width: 100%;
         }
 
         .dropdown-menu a {
             display: block;
-            padding: 0.8rem 1.2rem;
+            padding: 0.6rem 1.2rem;
             font-size: 0.9rem;
             text-transform: none;
             letter-spacing: 0;
             color: #333;
+            border-bottom: 1px solid #f0f0f0;
+            white-space: nowrap;
+            line-height: 0.5;
+        }
+
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
         }
 
         .dropdown-menu a:hover {
@@ -2935,7 +2946,7 @@ CONTACT_TEMPLATE = """
                 
                 <div class="contact-item">
                     <h3>Email Us</h3>
-                    <p><a href="mailto:info@nexyouth.org">info@nexyouth.org</a></p>
+                    <p><a href="mailto:nexyouth.master@gmail.com">nexyouth.master@gmail.com</a></p>
                 </div>
 
                 <div class="contact-item">
@@ -2979,138 +2990,6 @@ CONTACT_TEMPLATE = """
 
                     <button type="submit" class="submit-btn">Send Message</button>
                 </form>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 NexYouth. All rights reserved. | Grow • Lead • Act</p>
-        </div>
-    </footer>
-</body>
-</html>
-"""
-            outline: none;
-            border-color: #00d4ff;
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .submit-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-            color: white;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
-        }
-
-        footer {
-            background: #000;
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        footer p {
-            color: #999;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .contact-section {
-                padding: 3rem 2rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    """ + NAVIGATION_HTML + """
-
-    <section class="hero">
-        <div class="container">
-            <h1>Get In Touch</h1>
-            <p>Have questions? We'd love to hear from you. Reach out to us anytime.</p>
-        </div>
-    </section>
-
-    <section class="contact-section">
-        <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h2>Contact Information</h2>
-                    
-                    <div class="contact-item">
-                        <h3>Email</h3>
-                        <p><a href="mailto:info@nexyouth.org">info@nexyouth.org</a></p>
-                    </div>
-
-                    <div class="contact-item">
-                        <h3>Community Inquiries</h3>
-                        <p>Interested in joining our volunteer community? Let us know how you'd like to contribute!</p>
-                    </div>
-
-                    <div class="contact-item">
-                        <h3>Partnership Opportunities</h3>
-                        <p>Explore how your organization can partner with NexYouth to empower youth and create meaningful impact.</p>
-                    </div>
-
-                    <div class="contact-item">
-                        <h3>Program Information</h3>
-                        <p>Want to learn more about our skill development, seminars, or mentorship programs? We're here to help!</p>
-                    </div>
-                </div>
-
-                <div class="form-container">
-                    <h2>Send us a Message</h2>
-                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
-                </div>
             </div>
         </div>
     </section>
