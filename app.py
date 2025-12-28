@@ -1496,7 +1496,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
 
 @app.route('/about')
 def about():
-    return render_template_string(ABOUT_TEMPLATE)
+    return render_template('about.html')
 
 # Program Page Templates
 SKILL_DEVELOPMENT_TEMPLATE = """
@@ -2747,19 +2747,19 @@ MENTORSHIP_TEMPLATE = """
 # Program Routes
 @app.route('/programs/skill-development')
 def skill_development():
-    return render_template_string(SKILL_DEVELOPMENT_TEMPLATE)
+    return render_template('skill-development.html')
 
 @app.route('/programs/seminars')
 def seminars():
-    return render_template_string(SEMINARS_TEMPLATE)
+    return render_template('seminars.html')
 
 @app.route('/programs/mentorship')
 def mentorship():
-    return render_template_string(MENTORSHIP_TEMPLATE)
+    return render_template('mentorship.html')
 
 @app.route('/programs/environmental-competition')
 def environmental_competition():
-    return render_template_string(ENVIRONMENTAL_COMPETITION_TEMPLATE)
+    return render_template('environmental-competition.html')
 
 # Partner Page Template
 ENVIRONMENTAL_COMPETITION_TEMPLATE = """
@@ -5204,11 +5204,11 @@ CONTACT_TEMPLATE = """<!DOCTYPE html>
 
 @app.route('/partner')
 def partner():
-    return render_template_string(PARTNER_TEMPLATE)
+    return render_template('partner.html')
 
 @app.route('/contact')
 def contact():
-    return render_template_string(CONTACT_TEMPLATE)
+    return render_template('contact.html')
 
 @app.route('/success')
 def success():
@@ -5297,9 +5297,9 @@ def success():
 def catch_all(path):
     """Catch all routes and return the main page for client-side routing"""
     if path == 'about':
-        return render_template_string(ABOUT_TEMPLATE)
+        return render_template('about.html')
     if path == 'contact':
-        return render_template_string(CONTACT_TEMPLATE)
+        return render_template('contact.html')
     return render_template_string(HTML_TEMPLATE)
 
 if __name__ == '__main__':
