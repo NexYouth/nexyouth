@@ -1,7 +1,7 @@
-from flask import Flask, render_template_string, send_from_directory, request
+from flask import Flask, render_template, render_template_string, send_from_directory, request
 import os
 
-app = Flask(__name__, static_folder='public', static_url_path='/static')
+app = Flask(__name__, static_folder='public', static_url_path='/static', template_folder='templates')
 
 @app.route('/static/<path:filename>')
 def serve_static(filename):
@@ -640,7 +640,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
 @app.route('/')
 def index():
-    return render_template_string(HTML_TEMPLATE)
+    return render_template('index.html')
 
 # ============== ABOUT PAGE ==============
 ABOUT_TEMPLATE = """<!DOCTYPE html>
