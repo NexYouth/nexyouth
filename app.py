@@ -1410,6 +1410,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                         <a href="/programs/skill-development">Skill Development Courses</a>
                         <a href="/programs/seminars">Expert Seminars & Talks</a>
                         <a href="/programs/mentorship">Global Mentorship Network</a>
+                        <a href="/programs/environmental-competition">Environmental Youth Competition</a>
                     </div>
                 </li>
                 <li><a href="/#community">Community</a></li>
@@ -5365,6 +5366,7 @@ CONTACT_TEMPLATE = """<!DOCTYPE html>
                         <a href="/programs/skill-development">Skill Development Courses</a>
                         <a href="/programs/seminars">Expert Seminars & Talks</a>
                         <a href="/programs/mentorship">Global Mentorship Network</a>
+                        <a href="/programs/environmental-competition">Environmental Youth Competition</a>
                     </div>
                 </li>
                 <li><a href="/#community">Community</a></li>
