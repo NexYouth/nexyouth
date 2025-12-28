@@ -516,7 +516,7 @@
 
         @media (max-width: 768px) {
             nav {
-                padding: 0.6rem 1rem;
+                padding: 0.8rem 1rem;
             }
 
             nav .logo img {
@@ -524,12 +524,57 @@
             }
 
             nav ul {
-                gap: 0.8rem;
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                gap: 0;
+                border-top: 1px solid #eee;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                width: 100%;
+                position: relative;
             }
 
             nav a {
-                font-size: 0.75rem;
-                letter-spacing: 0.5px;
+                display: block;
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: #f5f5f5;
+                border-radius: 0;
+                min-width: auto;
+            }
+
+            .dropdown-menu.active {
+                display: block;
+            }
+
+            .dropdown-menu a {
+                padding: 0.6rem 2rem 0.6rem 3rem;
+                font-size: 0.85rem;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
             }
 
             .container {
@@ -537,7 +582,7 @@
             }
 
             .hero {
-                padding: 4rem 1rem;
+                padding: 3rem 1rem;
             }
 
             .hero h1 {
@@ -550,7 +595,7 @@
             }
 
             .who-we-are {
-                padding: 4rem 1rem;
+                padding: 3rem 1rem;
             }
 
             .who-we-are h2 {
@@ -587,7 +632,7 @@
             }
 
             .what-we-do {
-                padding: 4rem 1rem;
+                padding: 3rem 1rem;
             }
 
             .what-we-do h2 {
@@ -599,7 +644,7 @@
             }
 
             .leadership {
-                padding: 4rem 1rem;
+                padding: 3rem 1rem;
             }
 
             .leadership h2 {
@@ -657,12 +702,16 @@
         }
 
         @media (max-width: 480px) {
+            nav {
+                padding: 0.6rem 0.8rem;
+            }
+
             nav .logo img {
                 height: 40px;
             }
 
             nav a {
-                font-size: 0.65rem;
+                font-size: 0.9rem;
             }
 
             .hero h1 {
