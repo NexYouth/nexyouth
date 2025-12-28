@@ -450,35 +450,235 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
+            nav {
+                padding: 0.8rem 1rem;
             }
 
-            .hero p {
-                font-size: 1.1rem;
+            nav .logo img {
+                height: 50px;
             }
 
             nav ul {
-                gap: 1rem;
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                gap: 0;
+                border-top: 1px solid #eee;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                width: 100%;
+                position: relative;
+            }
+
+            nav a {
+                display: block;
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: #f5f5f5;
+                border-radius: 0;
+                min-width: auto;
+            }
+
+            .dropdown-menu.active {
+                display: block;
+            }
+
+            .dropdown-menu a {
+                padding: 0.6rem 2rem 0.6rem 3rem;
+                font-size: 0.85rem;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero {
+                min-height: 70vh;
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.6rem;
+                margin-bottom: 2rem;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
 
             .action-links {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.8rem;
             }
 
             .action-links a {
-                display: block;
-                padding: 0.5rem;
+                padding: 0.8rem 1.5rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem 0.8rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-label {
+                font-size: 0.95rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            footer .links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.6rem 0.8rem;
+            }
+
+            nav .logo img {
+                height: 40px;
+            }
+
+            .hero {
+                min-height: 60vh;
+                padding: 1.5rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.4rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .cta-button {
+                padding: 0.7rem 1.8rem;
+                font-size: 0.9rem;
             }
 
             section {
-                padding: 3rem 1rem;
+                padding: 1.5rem 1rem;
             }
 
             section h2 {
+                font-size: 1.3rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .what-we-do p {
+                font-size: 0.95rem;
+            }
+
+            .program-card {
+                padding: 1.5rem;
+            }
+
+            .program-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .program-card p {
+                font-size: 0.9rem;
+            }
+
+            .statistics {
+                padding: 3rem 1rem;
+            }
+
+            .statistics h2 {
+                font-size: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .stat-number {
                 font-size: 1.8rem;
-                margin-bottom: 2rem;
+            }
+
+            .stat-label {
+                font-size: 0.85rem;
+            }
+
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+
+            .testimonial-quote {
+                font-size: 0.95rem;
+            }
+
+            .cta-section {
+                padding: 2rem 1rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.3rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+            }
+
+            footer p {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -490,12 +690,17 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             <a href="/" class="logo">
                 <img src="/static/logo.svg" alt="NexYouth">
             </a>
-            <ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
                 <li><a href="/">Home</a></li>
                 <li><a href="/#what-we-do">What We Do</a></li>
                 <li class="dropdown">
                     <a href="/#programs">Programs ▾</a>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu" id="programsDropdown">
                         <a href="/programs/skill-development">Skill Development Courses</a>
                         <a href="/programs/seminars">Expert Seminars & Talks</a>
                         <a href="/programs/mentorship">Global Mentorship Network</a>
@@ -634,6 +839,46 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             <p>&copy; 2023 NexYouth. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        const programsDropdown = document.querySelector('.dropdown a');
+        const dropdownMenu = document.getElementById('programsDropdown');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('#navMenu a:not([href*="Programs"])');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Handle programs dropdown on mobile
+        const dropdownTrigger = document.querySelector('.dropdown a');
+        dropdownTrigger.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdownMenu.classList.toggle('active');
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                mobileMenuBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+                dropdownMenu.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
 """

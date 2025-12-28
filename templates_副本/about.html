@@ -103,37 +103,6 @@
             background: #f5f5f5;
         }
 
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-btn span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-btn.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .mobile-menu-btn.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-btn.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -722,17 +691,12 @@
             <a href="/" class="logo">
                 <img src="/static/logo.svg" alt="NexYouth">
             </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul id="navMenu">
+            <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/#what-we-do">What We Do</a></li>
                 <li class="dropdown">
                     <a href="/#programs">Programs ▾</a>
-                    <div class="dropdown-menu" id="programsDropdown">
+                    <div class="dropdown-menu">
                         <a href="/programs/skill-development">Skill Development Courses</a>
                         <a href="/programs/seminars">Expert Seminars & Talks</a>
                         <a href="/programs/mentorship">Global Mentorship Network</a>
@@ -1061,45 +1025,5 @@
             <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
         </div>
     </footer>
-
-    <script>
-        // Mobile menu functionality
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        const programsDropdown = document.querySelector('.dropdown a');
-        const dropdownMenu = document.getElementById('programsDropdown');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when clicking on a link
-        const navLinks = document.querySelectorAll('#navMenu a:not([href*="Programs"])');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuBtn.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Handle programs dropdown on mobile
-        const dropdownTrigger = document.querySelector('.dropdown a');
-        dropdownTrigger.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                dropdownMenu.classList.toggle('active');
-            }
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('nav')) {
-                mobileMenuBtn.classList.remove('active');
-                navMenu.classList.remove('active');
-                dropdownMenu.classList.remove('active');
-            }
-        });
-    </script>
 </body>
 </html>

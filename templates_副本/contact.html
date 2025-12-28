@@ -103,41 +103,6 @@
             background: #f5f5f5;
         }
 
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-btn span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-btn.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .mobile-menu-btn.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-btn.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        .dropdown-menu a:hover {
-            background: #f5f5f5;
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -411,90 +376,8 @@
         }
 
         @media (max-width: 768px) {
-            nav {
-                padding: 0.8rem 1rem;
-            }
-
-            nav .logo img {
-                height: 50px;
-            }
-
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                gap: 0;
-                border-top: 1px solid #eee;
-            }
-
-            nav ul.active {
-                display: flex;
-            }
-
-            nav li {
-                width: 100%;
-                position: relative;
-            }
-
-            nav a {
-                display: block;
-                padding: 1rem 2rem;
-                font-size: 0.9rem;
-                text-transform: uppercase;
-            }
-
-            .dropdown-menu {
-                position: static;
-                display: none;
-                box-shadow: none;
-                background: #f5f5f5;
-                border-radius: 0;
-                min-width: auto;
-            }
-
-            .dropdown-menu.active {
-                display: block;
-            }
-
-            .dropdown-menu a {
-                padding: 0.6rem 2rem 0.6rem 3rem;
-                font-size: 0.85rem;
-            }
-
-            .dropdown:hover .dropdown-menu {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: flex;
-            }
-
-            .contact-hero {
-                padding: 3rem 1rem;
-            }
-
             .contact-hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .contact-hero p {
-                font-size: 1rem;
-            }
-
-            .contact-content {
-                padding: 3rem 1rem;
-            }
-
-            .contact-form h2 {
-                font-size: 1.8rem;
-            }
-
-            .contact-info h2 {
-                font-size: 1.8rem;
+                font-size: 2.5rem;
             }
 
             .contact-grid {
@@ -507,75 +390,9 @@
                 gap: 2rem;
             }
 
-            .cta-section {
-                padding: 3rem 1rem;
-            }
-
-            .cta-section h2 {
-                font-size: 1.8rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav {
-                padding: 0.6rem 0.8rem;
-            }
-
-            nav .logo img {
-                height: 40px;
-            }
-
-            .contact-hero {
-                padding: 2rem 1rem;
-            }
-
-            .contact-hero h1 {
-                font-size: 1.4rem;
-            }
-
-            .contact-hero p {
-                font-size: 0.95rem;
-            }
-
-            .contact-content {
-                padding: 1.5rem 1rem;
-            }
-
-            .contact-form h2 {
-                font-size: 1.3rem;
-            }
-
-            .contact-info h2 {
-                font-size: 1.3rem;
-            }
-
-            .form-group label {
+            nav ul {
+                gap: 1rem;
                 font-size: 0.9rem;
-            }
-
-            .info-block h4 {
-                font-size: 0.9rem;
-            }
-
-            .cta-section {
-                padding: 2rem 1rem;
-            }
-
-            .cta-section h2 {
-                font-size: 1.3rem;
-            }
-
-            .cta-btn {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.85rem;
-            }
-
-            footer {
-                padding: 2rem 1rem;
             }
         }
     </style>
@@ -586,17 +403,12 @@
             <a href="/" class="logo">
                 <img src="/static/logo.svg" alt="NexYouth">
             </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul id="navMenu">
+            <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/#what-we-do">What We Do</a></li>
                 <li class="dropdown">
                     <a href="/#programs">Programs ▾</a>
-                    <div class="dropdown-menu" id="programsDropdown">
+                    <div class="dropdown-menu">
                         <a href="/programs/skill-development">Skill Development Courses</a>
                         <a href="/programs/seminars">Expert Seminars & Talks</a>
                         <a href="/programs/mentorship">Global Mentorship Network</a>
@@ -678,45 +490,5 @@
             <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
         </div>
     </footer>
-
-    <script>
-        // Mobile menu functionality
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        const programsDropdown = document.querySelector('.dropdown a');
-        const dropdownMenu = document.getElementById('programsDropdown');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when clicking on a link
-        const navLinks = document.querySelectorAll('#navMenu a:not([href*="Programs"])');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuBtn.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Handle programs dropdown on mobile
-        const dropdownTrigger = document.querySelector('.dropdown a');
-        dropdownTrigger.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                dropdownMenu.classList.toggle('active');
-            }
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('nav')) {
-                mobileMenuBtn.classList.remove('active');
-                navMenu.classList.remove('active');
-                dropdownMenu.classList.remove('active');
-            }
-        });
-    </script>
 </body>
 </html>
