@@ -8,6 +8,157 @@ def serve_static(filename):
     """Serve static files from public folder"""
     return send_from_directory(os.path.join(os.path.dirname(__file__), 'public'), filename)
 
+# Unified Navigation and Styling
+NAVIGATION_HTML = """
+<nav>
+    <div class="container">
+        <a href="/" class="logo">
+            <img src="/static/logo.svg" alt="NexYouth">
+        </a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#what-we-do">What We Do</a></li>
+            <li class="dropdown">
+                <a href="/#programs">Programs</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/programs/skill-development">Skill Development Courses</a></li>
+                    <li><a href="/programs/seminars">Expert & Youth Seminars</a></li>
+                    <li><a href="/programs/mentorship">Global Mentorship Network</a></li>
+                </ul>
+            </li>
+            <li><a href="/#community">Community</a></li>            <li><a href="/test">Test</a></li>
+            <li class="dropdown">
+                <a href="/about">About</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+"""
+
+NAVIGATION_STYLES = """
+        nav {
+            background: white;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 0.8rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        nav .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 250px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            padding: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+        }
+
+        .dropdown-menu li {
+            display: block;
+            width: 100%;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+            white-space: nowrap;
+            line-height: 0.5;
+        }
+
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5;
+            color: #00d4ff;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav .logo img {
+                height: 50px;
+            }
+        }
+"""
+
 # ============== HOME PAGE ==============
 HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
