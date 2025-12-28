@@ -523,7 +523,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             <h2>What We Do</h2>
             <p>At NexYouth, we're on a mission to empower young people globally through skill development, mentorship, and community. We connect youth with industry experts, provide practical training, and create pathways to success in an ever-changing world.</p>
             <div class="action-links">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank">Get Involved</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform?pli=1" target="_blank">Get Involved</a>
                 <a href="/contact">Contact Us</a>
             </div>
         </div>
@@ -614,7 +614,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             <h2>Join Our Community Today</h2>
             <p style="font-size: 1.1rem; margin-bottom: 2rem;">Ready to start your journey? Join us now!</p>
             <div class="action-links" style="justify-content: center;">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank" style="color: #ff6b35;">Get Involved</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform?pli=1" target="_blank" style="color: #ff6b35;">Get Involved</a>
             </div>
         </div>
     </section>
@@ -1472,7 +1472,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
         <div class="container">
             <h2>Join Our Movement</h2>
             <p>Whether you're a young person looking to develop skills, a professional wanting to mentor, or an organization interested in partnering with us, we'd love to hear from you.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" class="cta-btn">Get Involved</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform?pli=1" class="cta-btn">Get Involved</a>
         </div>
     </section>
 
@@ -1833,7 +1833,7 @@ SKILL_DEVELOPMENT_TEMPLATE = """
         <div class="container">
             <h2>Ready to Start Learning?</h2>
             <p>Join our next cohort and develop skills that will last a lifetime.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank" class="cta-btn">Enroll Now</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform?pli=1" target="_blank" class="cta-btn">Enroll Now</a>
         </div>
     </section>
 
@@ -2287,7 +2287,7 @@ SEMINARS_TEMPLATE = """
         <div class="container">
             <h2>Don't Miss Our Next Seminar</h2>
             <p>Join our mailing list to get notified about upcoming expert talks and events.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank" class="cta-btn">Sign Up</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform?pli=1" target="_blank" class="cta-btn">Sign Up</a>
         </div>
     </section>
 
@@ -2742,7 +2742,7 @@ MENTORSHIP_TEMPLATE = """
             <p>Whether you want to be a mentee or share your experience as a mentor, we'd love to hear from you.</p>
             <div class="cta-buttons">
                 <a href="https://forms.gle/YxCWJ32dZJTofHREA" target="_blank" class="cta-btn">Find a Mentor</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" target="_blank" class="cta-btn secondary">Become a Mentor</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform?pli=1" target="_blank" class="cta-btn secondary">Become a Mentor</a>
             </div>
         </div>
     </section>
