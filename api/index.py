@@ -4601,7 +4601,7 @@ PARTNER_TEMPLATE = """
                     <div class="type-icon">🤝</div>
                     <h3>Nonprofit Partners</h3>
                     <p>Collaborate on joint programs, share resources, and amplify our collective impact. Together we can reach more young people.</p>
-                    <a href="#contact-form" class="type-card-link">Learn More →</a>
+                    <a href="/contact" class="type-card-link">Learn More →</a>
                 </div>
                 <div class="type-card">
                     <div class="type-icon">🏛️</div>
