@@ -873,11 +873,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         // Handle dropdown menu items click on mobile
         const dropdownItems = document.querySelectorAll('.dropdown-menu a');
         dropdownItems.forEach(item => {
-            item.addEventListener('click', () => {
+            item.addEventListener('click', (e) => {
                 if (window.innerWidth <= 768) {
+                    // Close menu but allow navigation to proceed
                     mobileMenuBtn.classList.remove('active');
                     navMenu.classList.remove('active');
                     dropdownMenu.classList.remove('active');
+                    // Let the link navigate
                 }
             });
         });
