@@ -1140,22 +1140,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
             line-height: 1.6;
         }
 
-        .linkedin-link {
-            display: inline-block;
-            margin-top: 1rem;
-        }
-
-        .linkedin-link a {
-            color: #00d4ff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .linkedin-link a:hover {
-            text-decoration: underline;
-        }
-
         /* Our Story Section */
         .our-story {
             padding: 6rem 2rem;
@@ -1523,9 +1507,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                         <h3>Justin Huang</h3>
                         <span class="title">Co-Founder</span>
                         <p>Justin is passionate about experiential learning and believes every youth deserves access to meaningful opportunities. As co-founder and president, he oversees strategic partnerships and expansion initiatives.</p>
-                        <div class="linkedin-link">
-                            <a href="https://linkedin.com" target="_blank">Connect on LinkedIn</a>
-                        </div>
                     </div>
 
                     <div class="featured-founder">
@@ -1533,9 +1514,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                         <h3>Max Wen</h3>
                         <span class="title">Co-Founder</span>
                         <p>Max co-founded NexYouth with a vision to democratize access to quality education and mentorship for youth globally. Passionate about creating systemic change through youth empowerment.</p>
-                        <div class="linkedin-link">
-                            <a href="https://linkedin.com" target="_blank">Connect on LinkedIn</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1592,7 +1570,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Justin Huang</h3>
                     <span class="title">Co-Founder</span>
                     <p>Justin is the co-founder of NexYouth. He is interested in how young people learn through experience, connection, and initiative, and focuses on creating spaces where youth can explore ideas and take ownership of what they care about.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1602,7 +1579,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Max Wen</h3>
                     <span class="title">Co-Founder</span>
                     <p>Max is dedicated to making youth development accessible globally. With expertise in program design, he drives innovation in our initiatives and curriculum.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1612,7 +1588,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Stephanie Uzea</h3>
                     <span class="title">Canada President & Director of Operations</span>
                     <p>Stephanie brings strategic vision and operational excellence to NexYouth. As Canada President and Director of Operations, she oversees Canadian operations and manages our growing team of volunteers and partners.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1622,7 +1597,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Xuhan Yang</h3>
                     <span class="title">Director of Technology</span>
                     <p>Xuhan, as Director of Technology, oversees our technology initiatives, developing digital solutions to make NexYouth's programs accessible to youth around the world. Passionate about innovation and impact.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1632,7 +1606,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Ethan Luo</h3>
                     <span class="title">Oakville Chapter President</span>
                     <p>Ethan is a Grade 10 student at Abbey Park High School in Oakville. With 2 years of competitive debate experience, he has advanced at prestigious tournaments such as Harvard WSDC, Queens BPHS, McGill BPHS, and Hart House High Schools. Outside debate, he enjoys clarinet, trail running, and co-hosting Perception Podcast.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1642,7 +1615,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Rachel Wei</h3>
                     <span class="title">Coquitlam Chapter President</span>
                     <p>Rachel, as president of the Coquitlam Chapter, oversees the chapter and is instrumental in building community connections. She's dedicated to making NexYouth's programs accessible to local youth.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1652,7 +1624,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Chloe Huang</h3>
                     <span class="title">Secretary</span>
                     <p>Chloe is a Grade 11 student at Earl of March High School. She is an avid volleyball player and loves sports!</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1662,7 +1633,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Keerti Joshi</h3>
                     <span class="title">Debate Coach</span>
                     <p>I'm Keerti, I'm a grade 11 student at Upper Canada College. I've been debating since Grade 8 and I debate in both WSDC and BP formats. I am a new member of the Canadian National Debating Team.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1672,7 +1642,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Kristen Yip</h3>
                     <span class="title">Debate Coach</span>
                     <p>Kristen Y (she/her) is a grade 9 student and avid debater. Achievements include: Top 4th speaker+top jr speaker (Harthouse Winter Open), top 3rd speaker + grand finalist (Harthouse Summer Open).</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1682,7 +1651,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Cody Zhang</h3>
                     <span class="title">Economics Instructor</span>
                     <p>Cody Zhang is a high schooler from Toronto and scored a 5 on AP Micro and makes economics simple, fun, and engaging!</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1692,7 +1660,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Jeffrey Liu</h3>
                     <span class="title">Debate Coach</span>
                     <p>Hi, I'm Jeffrey! I am a grade 11 student at Milliken Mills High School. In my free time I love cooking food, listening to music, and working out! Passionate about accessibility in debate.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1702,7 +1669,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Amy Liu</h3>
                     <span class="title">Debate Coach</span>
                     <p>Amy is a G10 student and a competitive debater who has won many debate tournaments.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1712,7 +1678,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Ferrari Zhang</h3>
                     <span class="title">Debate Coach</span>
                     <p>Ferrari is a G10 student and a competitive debater, who loves argumentation and refutation!</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1722,7 +1687,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Terrence Guo</h3>
                     <span class="title">Debate Coach</span>
                     <p>Terrence is a G12 student and a competitive debater at the national level, winning many debating tournaments, including being the top speaker at Hart House High Schools.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1732,7 +1696,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Yunfei Shuai</h3>
                     <span class="title">Contests Organizer</span>
                     <p>Yunfei wrote her first story when she was 7 years old and never looked back since. She is an avid sci-fi enthusiast and an aspiring astrophysicist.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1742,7 +1705,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Susan Zheng</h3>
                     <span class="title">Contests Organizer</span>
                     <p>Susan finds way too much enjoyment in daydreaming about fictional scenarios and promising herself she'll finish a project tomorrow. A sci-fi fanatic, she obsesses over specific concepts.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1752,7 +1714,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Shahrad Islam</h3>
                     <span class="title">Science Instructor</span>
                     <p>Hi! My name is Shahrad! Some things you should know about me are that I like playing sports, playing instruments, watching movies and shows, and I really like cats!</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1762,7 +1723,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Ronnie Liu</h3>
                     <span class="title">Science Instructor</span>
                     <p>Hello, my name is Ronnie Liu. I am a gifted grade 10 scholar at Richmond Hill High School. I love teaching because I enjoy watching children learn and discover new things.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1772,7 +1732,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Aaron Yang</h3>
                     <span class="title">Team Member</span>
                     <p>Aaron is a dedicated member of the NexYouth team passionate about empowering youth and creating meaningful educational opportunities.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1782,7 +1741,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>Vincent Pham</h3>
                     <span class="title">Team Member</span>
                     <p>Vincent is a committed volunteer with NexYouth who believes in the power of youth to create positive change and make a difference in their communities.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
 
                 <div class="team-member">
@@ -1792,7 +1750,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <h3>William Wang</h3>
                     <span class="title">Team Member</span>
                     <p>William is an enthusiastic member of the NexYouth community committed to fostering growth and leadership among young people.</p>
-                    <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
                 </div>
             </div>
         </div>
