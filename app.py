@@ -629,15 +629,707 @@ def index():
     return render_template_string(HTML_TEMPLATE)
 
 # ============== ABOUT PAGE ==============
-ABOUT_TEMPLATE = """<!DOCTYPE html>
+ABOUT_TEMPLATE = """
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NexYouth - Meet our team of passionate volunteers.">
-    <title>About - NexYouth</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>About Us - NexYouth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        """ + NAVIGATION_STYLES + """
+
+        .hero {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 0;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .about-hero {
+            background: white;
+            color: #1a1a2e;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: transparent;
+            pointer-events: none;
+        }
+
+        .about-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .community-content {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .mission-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mission-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+        }
+
+        .mission-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .founder-cards {
+            display: flex;
+            flex-direction: row;
+            gap: 1.5rem;
+        }
+
+        .founder-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            flex: 1;
+        }
+
+        .founder-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            object-fit: cover;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .founder-card h3 {
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            margin-bottom: 0.4rem;
+        }
+
+        .founder-card .role {
+            color: #00d4ff;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .founder-card p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #666;
+            text-align: center;
+            margin: 0;
+        }
+
+        .community-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .community-text p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #555;
+            margin: 0 0 1.2rem 0;
+            text-align: left;
+        }
+
+        .community-text p:last-child {
+            margin-bottom: 0;
+        }
+            padding: 5rem 2rem;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+            text-align: center;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            max-width: 900px;
+            margin: 0 auto 1.5rem;
+            text-align: center;
+        }
+
+        .story-section {
+            background: white;
+            padding: 6rem 2rem !important;
+        }
+
+        .what-we-do-section {
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1100px;
+            margin: 3rem auto 0;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #1a1a2e;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            text-align: left;
+            text-align: center;
+        }
+
+        .team-section {
+            background: white;
+            padding: 6rem 2rem;
+        }
+
+        .team-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .team-section > p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .programs-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+        }
+
+        .programs-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .programs-section > p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.15);
+        }
+
+        .program-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .program-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .program-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+        }
+
+        .team-member {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .team-member-image {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            margin: 0 auto 1.2rem;
+            background: linear-gradient(135deg, #e8f9ff 0%, #d0f0ff 100%);
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .team-member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-member h3 {
+            font-size: 1.05rem;
+            color: #1a1a2e;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .team-member .role {
+            font-size: 0.85rem;
+            color: #00d4ff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .team-member .bio {
+            font-size: 0.9rem;
+            line-height: 1.65;
+            color: #666;
+            text-align: center;
+            margin: 0;
+        }
+
+        @media (max-width: 1200px) {
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .community-section {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .community-section h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .community-section p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+            .section h2 {
+                font-size: 1.8rem;
+            }
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    """ + NAVIGATION_HTML + """
+
+    <section class="hero">
+        <div class="container">
+            <h1>About NexYouth</h1>
+            <p>Empowering youth through skill development, mentorship, and hands-on opportunities to create meaningful change.</p>
+        </div>
+    </section>
+
+    <section class="mission-section">
+        <div class="mission-content">
+            <h2>Our Mission</h2>
+            <p>At the heart of NexYouth is our inspiring community of volunteers — passionate individuals who dedicate their time, skills, and creativity to driving meaningful change.</p>
+            <p>Coming from diverse backgrounds in science, education, advocacy, and the arts, our volunteers share a common commitment to protecting the environment and empowering youth.</p>
+        </div>
+    </section>
+
+    <section class="mission-section">
+        <div class="mission-content">
+            <h2>Our Story</h2>
+            <p>NexYouth was founded by passionate high school students who believe in the power of youth to create meaningful change. Together, they've built a platform that connects young people with opportunities for growth and impact.</p>
+        </div>
+    </section>
+
+    <section class="mission-section">
+        <div class="mission-content">
+            <h2>Our Team</h2>
+            <p>Meet the passionate youth leaders who make NexYouth possible.</p>
+            <div class="team-grid" style="margin-top: 3rem;">
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Jhuan1.jpg" alt="Justin Huang" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Justin Huang</h3>
+                    <span class="role">Co-Founder</span>
+                    <p class="bio">Justin is the co-founder of NexYouth. He is interested in how young people learn through experience, connection, and initiative, and focuses on creating spaces where youth can explore ideas and take ownership of what they care about.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Mwen1.jpg" alt="Max Wen" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Max Wen</h3>
+                    <span class="role">Co-Founder</span>
+                    <p class="bio">Hi, I'm Max, one of the co-founders of NexYouth. I'm in Grade 9 and have been debating and teaching for over 2 years! I enjoy public speaking, STEM, and content creation.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Suzea1.png" alt="Stephanie Uzea" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Stephanie Uzea</h3>
+                    <span class="role">Canada Head & Director of Operations</span>
+                    <p class="bio">Stephanie is an aspiring environmental engineer with a passion for writing. She's written multiple comics about her brother if he were a superhero as well as a science fiction trilogy. In her free time, she likes trying out new foods and cross-country running.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Eluo1.png" alt="Ethan Luo" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Ethan Luo</h3>
+                    <span class="role">Debate Coach</span>
+                    <p class="bio">Ethan is a Grade 10 student at Abbey Park High School in Oakville. With 2 years of competitive debate experience, he has advanced at prestigious tournaments such as Harvard WSDC, Queens BPHS, McGill BPHS, and Hart House High Schools. Outside debate, he enjoys clarinet, trail running, and co-hosting Perception Podcast.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Rwei1.png" alt="Rachel Wei" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Rachel Wei</h3>
+                    <span class="role">Coquitlam Chapter Head</span>
+                    <p class="bio">Rachel Wei is a rising senior at Port Moody Secondary School. She loves playing basketball, is an avid debater, and loves her pet cat! She is also a passionate environmentalist.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Xyang1.jpg" alt="Xuhan Yang" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Xuhan Yang</h3>
+                    <span class="role">Director of Technology</span>
+                    <p class="bio">Hi I'm Xuhan! I'm a high schooler passionate about programming, math, or anything STEM related!</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Chuan1.jpg" alt="Chloe Huang" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Chloe Huang</h3>
+                    <span class="role">Secretary</span>
+                    <p class="bio">Chloe is a Grade 11 student at Earl of March High School. She is an avid volleyball player and loves sports!</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Kjosh1.png" alt="Keerti Joshi" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Keerti Joshi</h3>
+                    <span class="role">Debate Coach</span>
+                    <p class="bio">I'm Keerti, I'm a grade 11 student at Upper Canada College. I've been debating since Grade 8 and I debate in both WSDC and BP formats. I am a new member of the Canadian National Debating Team and have competed and won in many tournaments run by Canadian Universities.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Kyip1.png" alt="Kristen Yip" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Kristen Yip</h3>
+                    <span class="role">Debate Coach</span>
+                    <p class="bio">Kristen Y (she/her) is a grade 9 student and avid debater. Achievements include: Top 4th speaker+top jr speaker (Harthouse Winter Open), top 3rd speaker + grand finalist (Harthouse Summer Open), grand finalist + 4th jr speaker (Autumnloo 2024).</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Czhan1.png" alt="Cody Zhang" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Cody Zhang</h3>
+                    <span class="role">Economics Instructor</span>
+                    <p class="bio">Cody Zhang is a high schooler from Toronto and scored a 5 on AP Micro and makes economics simple, fun, and engaging!</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Jliu1.png" alt="Jeffrey Liu" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Jeffrey Liu</h3>
+                    <span class="role">Debate Coach</span>
+                    <p class="bio">Hi, i'm Jeffery! i am a grade 11 student at milliken Mills high school. In my free time i love cooking food, listening to music(especially hip hop and r&b), and working out! I am ecstatic to work with nexyouth this year to continue to promote accessibility in debate and further youth engagement!</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Aliu1.png" alt="Amy Liu" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Amy Liu</h3>
+                    <span class="role">Debate Coach</span>
+                    <p class="bio">Amy is a G10 student and a competitive debater who has won many debate tournaments.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Fzhan1.jpg" alt="Ferrari Zhang" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Ferrari Zhang</h3>
+                    <span class="role">Debate Coach</span>
+                    <p class="bio">Ferrari is a G10 student and a competitive debater, who loves argumentation and refutation!</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Tguo1.png" alt="Terrence Guo" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Terrence Guo</h3>
+                    <span class="role">Debate Coach</span>
+                    <p class="bio">Terrence is a G12 student and a competitive debater at the national level, winning many debating tournaments, including being the top speaker at Hart House High Schools.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Yshua1.png" alt="Yunfei Shuai" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Yunfei Shuai</h3>
+                    <span class="role">Contests Organizer</span>
+                    <p class="bio">Yunfei wrote her first story when she was 7 years old and never looked back since (it would be great if she could actually finish her writing projects though, something she is notoriously bad at). She is an avid sci-fi enthusiast and an aspiring astrophysicist.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Szhen1.png" alt="Susan Zheng" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Susan Zheng</h3>
+                    <span class="role">Contests Organizer</span>
+                    <p class="bio">Susan finds way too much enjoyment in daydreaming about fictional scenarios and promising herself she'll finish a project tomorrow. A sci-fi fanatic, she obsesses over very specific mathematical and scientific concepts she knows she will never understand.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Sisla1.png" alt="Shahrad Islam" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Shahrad Islam</h3>
+                    <span class="role">Science Instructor</span>
+                    <p class="bio">Hi! My name is Shahrad! Some things you should know about me are that I like playing sports, playing instruments, watching movies and shows, and I really like cats! I am happy to be a part of the NexYouth Team helping mentor and tutor others!</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="https://www.nexyouth.org/Member_Rliu1.png" alt="Ronnie Liu" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Ronnie Liu</h3>
+                    <span class="role">Science Instructor</span>
+                    <p class="bio">Hello, my name is Ronnie Liu. I am a gifted grade 10 scholar at Richmond Hill High School and I graduated with honors at Crosby Heights. I love teaching because I enjoy watching children learn and discover new things, as well as meet new friends along the way.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="/static/AaronYang.jpg" alt="Aaron Yang" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Aaron Yang</h3>
+                    <span class="role">Team Member</span>
+                    <p class="bio">Aaron is a dedicated member of the NexYouth team passionate about empowering youth and creating meaningful educational opportunities.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="/static/VincentPham.jpg" alt="Vincent Pham" onerror="this.style.display='none'">
+                    </div>
+                    <h3>Vincent Pham</h3>
+                    <span class="role">Team Member</span>
+                    <p class="bio">Vincent is a committed volunteer with NexYouth who believes in the power of youth to create positive change and make a difference in their communities.</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-image">
+                        <img src="/static/WilliamWang.jpg" alt="William Wang" onerror="this.style.display='none'">
+                    </div>
+                    <h3>William Wang</h3>
+                    <span class="role">Team Member</span>
+                    <p class="bio">William is an enthusiastic member of the NexYouth community committed to fostering growth and leadership among young people.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="community-section">
+        <div class="container" style="text-align: center;">
+            <h2>Join Our Community</h2>
+            <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem;">Become part of a global movement of empowered youth changemakers.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" class="cta-btn">Get Involved</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
+        </div>
+    </footer>
+</body>
+</html>
+"""
+
+SEMINARS_TEMPLATE = """
         * {
             margin: 0;
             padding: 0;
