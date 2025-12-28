@@ -484,8 +484,47 @@
         }
 
         @media (max-width: 768px) {
+            nav {
+                padding: 0.6rem 1rem;
+            }
+
+            nav .logo img {
+                height: 50px;
+            }
+
+            nav ul {
+                gap: 0.8rem;
+            }
+
+            nav a {
+                font-size: 0.75rem;
+                letter-spacing: 0.5px;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 4rem 1rem;
+            }
+
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .who-we-are {
+                padding: 4rem 1rem;
+            }
+
+            .who-we-are h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
             }
 
             .who-we-are-content,
@@ -495,12 +534,153 @@
                 gap: 2rem;
             }
 
+            .who-we-are-featured {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .featured-founder img,
+            .who-we-are-featured img {
+                width: 140px;
+                height: 140px;
+            }
+
+            .featured-founder h3,
+            .who-we-are-featured h3 {
+                font-size: 1.1rem;
+            }
+
+            .featured-founder p,
+            .who-we-are-featured p {
+                font-size: 0.85rem;
+            }
+
+            .what-we-do {
+                padding: 4rem 1rem;
+            }
+
+            .what-we-do h2 {
+                font-size: 1.8rem;
+            }
+
+            .what-we-do-text p {
+                font-size: 1rem;
+            }
+
+            .leadership {
+                padding: 4rem 1rem;
+            }
+
+            .leadership h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .leadership > .container > p {
+                font-size: 0.95rem;
+            }
+
             .team-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .team-member {
+                padding: 1.5rem;
+            }
+
+            .team-member-image {
+                width: 100px;
+                height: 100px;
+            }
+
+            .cta-section {
+                padding: 3rem 1rem;
             }
 
             .cta-section h2 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .cta-section p {
+                font-size: 0.95rem;
+            }
+
+            .cta-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+            }
+
+            footer .links {
+                gap: 1rem;
+            }
+
+            footer a {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav .logo img {
+                height: 40px;
+            }
+
+            nav a {
+                font-size: 0.65rem;
+            }
+
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .who-we-are h2,
+            .what-we-do h2,
+            .leadership h2 {
+                font-size: 1.5rem;
+            }
+
+            .who-we-are-featured {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-founder img,
+            .who-we-are-featured img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-member {
+                padding: 1rem;
+            }
+
+            .team-member-image {
+                width: 80px;
+                height: 80px;
+            }
+
+            .cta-section h2 {
+                font-size: 1.3rem;
+            }
+
+            .cta-btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.85rem;
+                display: block;
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
