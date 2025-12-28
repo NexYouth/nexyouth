@@ -746,7 +746,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             <div class="programs-grid">
                 <a href="/programs/skill-development" class="program-card" style="text-decoration: none; color: inherit;">
                     <h3>Skill Development Courses</h3>
-                    <p>Comprehensive training programs designed to equip youth with in-demand skills. From digital literacy to entrepreneurship, our courses prepare students for real-world success.</p>
+                    <p>Comprehensive training programs that equip youth with practical skills and real-world opportunities. From digital literacy, environmental analysis to entrepreneurship, our courses prepare students for real-world success.</p>
                 </a>
                 <a href="/programs/seminars" class="program-card" style="text-decoration: none; color: inherit;">
                     <h3>Expert Seminars & Talks</h3>
@@ -758,7 +758,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                 </a>
                 <a href="/programs/environmental-competition" class="program-card" style="text-decoration: none; color: inherit;">
                     <h3>Environmental Youth Competition</h3>
-                    <p>Compete globally with young innovators on environmental solutions. Submit essays, videos, or creative projects addressing real-world environmental challenges and win scholarships.</p>
+                    <p>Compete globally with young innovators to investigate real-world environmental challenges through research and data analysis. Tackle local environmental issues with actionable insights through essays, analytical reports, research, and win scholarships!</p>
                 </a>
             </div>
         </div>
@@ -2072,7 +2072,7 @@ SKILL_DEVELOPMENT_TEMPLATE = """
     <section class="program-hero">
         <div class="container">
             <h1>Skill Development Courses</h1>
-            <p>Empowering youth with practical skills for the future. Our comprehensive courses cover essential topics from public speaking to environmental science, designed to help you grow and lead.</p>
+            <p>Empowering youth with the skills and perspective to lead in the future.Programs grounded in critical thinking, environmental understanding, data literacy, and STEM.</p>
         </div>
     </section>
 

@@ -536,7 +536,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             <div class="programs-grid">
                 <div class="program-card">
                     <h3>Skill Development Courses</h3>
-                    <p>Comprehensive training programs designed to equip youth with in-demand skills. From digital literacy to entrepreneurship, our courses prepare students for real-world success.</p>
+                    <p>Comprehensive training programs that equip youth with practical skills and real-world opportunities. From digital literacy, environmental analysis to entrepreneurship, our courses prepare students for real-world success.</p>
                 </div>
                 <div class="program-card">
                     <h3>Expert Seminars & Talks</h3>
