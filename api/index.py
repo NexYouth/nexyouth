@@ -3264,9 +3264,9 @@ TEST_TEMPLATE = """
 
     <section class="partner-hero">
         <div class="container">
-            <div class="partner-hero-badge">🧪 Test Program</div>
-            <h1>Explore <span>NexYouth</span></h1>
-            <p>This is our test page showcasing our partnership program features and structure. Explore how we create impact together.</p>
+            <div class="partner-hero-badge">� Partnership Program</div>
+            <h1>Let's Create <span>Impact Together</span></h1>
+            <p>Partner with NexYouth to empower the next generation of leaders. Together, we can provide youth with the skills, mentorship, and opportunities they need to succeed.</p>
             <div class="hero-stats">
                 <div class="hero-stat">
                     <div class="hero-stat-number">5000+</div>
