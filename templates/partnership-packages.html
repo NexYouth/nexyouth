@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnership Packages - NexYouth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        nav {
+            background: white;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 0.8rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        nav .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #333;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5;
+            color: #00d4ff;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .packages-hero {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .packages-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .packages-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .packages-hero-badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .packages-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .packages-hero h1 span {
+            background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .packages-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #1a1a2e;
+            line-height: 1.3;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-subsection {
+            margin-top: 3rem;
+        }
+
+        .about-subsection h3 {
+            font-size: 1.8rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+
+        .about-subsection ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .about-subsection li {
+            margin-bottom: 0.8rem;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .about-subsection li::before {
+            content: '✓ ';
+            color: #00d4ff;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Why Partner Section */
+        .why-partner-section {
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+            padding: 6rem 2rem;
+        }
+
+        .why-partner-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .why-partner-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .why-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #00d4ff;
+            transition: transform 0.3s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .why-card h4 {
+            color: #1a1a2e;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .why-card p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .pricing-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border-color: #00d4ff;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
+        }
+
+        .pricing-card-header {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .pricing-card.featured .pricing-card-header {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .pricing-card.featured .pricing-badge {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .pricing-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+        }
+
+        .pricing-amount small {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .pricing-card-body {
+            padding: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.8rem 0;
+            color: #666;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li::before {
+            content: '✓ ';
+            color: #00d4ff;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .pricing-cta {
+            display: inline-block;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .pricing-card.featured .pricing-cta {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff5200 100%);
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Impact Section */
+        .impact-section {
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+            padding: 6rem 2rem;
+        }
+
+        .impact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .impact-section > .container > p {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .impact-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid #00d4ff;
+        }
+
+        .impact-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-label {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .contact-section h2 span {
+            color: #00d4ff;
+        }
+
+        .contact-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            border: 2px solid #00d4ff;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .contact-btn.secondary {
+            background: transparent;
+            color: #00d4ff;
+            border: 2px solid #00d4ff;
+        }
+
+        .contact-btn.secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .contact-email {
+            font-size: 1.1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-email a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .contact-email a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #0f0f1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: white;
+                gap: 0;
+                border-top: 1px solid #eee;
+                padding: 1rem 0;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            nav ul a {
+                display: block;
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .packages-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .packages-hero p {
+                font-size: 1.1rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-partner-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .contact-btn {
+                width: 100%;
+            }
+
+            .about-content h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .packages-hero {
+                padding: 4rem 1.5rem;
+            }
+
+            .packages-hero h1 {
+                font-size: 2rem;
+            }
+
+            .packages-hero p {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .pricing-card-body {
+                padding: 1.5rem;
+            }
+
+            .pricing-title {
+                font-size: 1.2rem;
+            }
+
+            .pricing-amount {
+                font-size: 2rem;
+            }
+
+            .about-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .about-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="https://www.nexyouth.org/NexYouth_Logo_Transparent.png" alt="NexYouth Logo" onerror="this.src='/static/logo.png'">
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
+                <li><a href="/">Home</a></li>
+                <li class="dropdown">
+                    <a href="#programs">Programs</a>
+                    <div class="dropdown-menu" id="programsDropdown">
+                        <a href="/skill-development">Skill Development</a>
+                        <a href="/mentorship">Mentorship</a>
+                        <a href="/seminars">Seminars</a>
+                        <a href="/environmental-competition">Environmental Youth Competition</a>
+                    </div>
+                </li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/partner">Partner</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="packages-hero">
+        <div class="container">
+            <span class="packages-hero-badge">Sponsorship Packages</span>
+            <h1>Invest in <span>Youth Empowerment</span></h1>
+            <p>Partner with NexYouth to support accessible education and empower the next generation of global leaders.</p>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-content">
+            <h2>About NexYouth Society</h2>
+            <p>NexYouth Society is a youth-led nonprofit organization focused on education access equity for youth. Through free and low-cost online and in-person programs, NexYouth provides tutoring, mentorship, and skill-building opportunities in areas such as math, science, coding, debate, language learning, and sustainability.</p>
+            <p>Our programs are designed to be accessible, student-centered, and impact-driven, empowering youth not only to learn, but also to apply their knowledge to real-world challenges.</p>
+
+            <div class="about-subsection">
+                <h3>Our Programs & Global Reach</h3>
+                <p>In addition to ongoing tutoring and educational courses, NexYouth organizes global youth initiatives and events that encourage students to think critically and act responsibly.</p>
+                <p>One of NexYouth's flagship initiatives is the International Youth Environmental Competition (IYEC) — a global youth competition that attracts youth globally to tackle environmental and sustainability issues through research, advocacy, and problem-solving.</p>
+                <p><strong>Together, NexYouth's programs and events create:</strong></p>
+                <ul>
+                    <li>Continuous academic support</li>
+                    <li>Leadership and skill development</li>
+                    <li>Global collaboration opportunities for youth</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-partner-section">
+        <div class="container">
+            <h2>Why Partner with NexYouth</h2>
+            <div class="why-partner-grid">
+                <div class="why-card">
+                    <h4>Support Education Equity</h4>
+                    <p>Help us provide equitable access to education for youth from all backgrounds.</p>
+                </div>
+                <div class="why-card">
+                    <h4>Engage Global Community</h4>
+                    <p>Connect with a motivated, international student and volunteer community.</p>
+                </div>
+                <div class="why-card">
+                    <h4>Gain Visibility</h4>
+                    <p>Your organization gains visibility across ongoing educational programs and global youth events like IYEC.</p>
+                </div>
+                <div class="why-card">
+                    <h4>Align with Values</h4>
+                    <p>Align with the values of education, youth leadership, and sustainability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <div class="container">
+            <h2>Sponsorship Opportunities</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card featured">
+                    <span class="pricing-badge">Most Popular</span>
+                    <div class="pricing-card-header">
+                        <div class="pricing-title">Platinum Partner</div>
+                        <div class="pricing-amount">$5,000</div>
+                    </div>
+                    <div class="pricing-card-body">
+                        <ul class="pricing-features">
+                            <li>Recognition as Platinum Partner</li>
+                            <li>Logo on NexYouth website homepage</li>
+                            <li>Logo on IYEC website homepage</li>
+                            <li>Naming rights for mentoring program & IYEC award</li>
+                            <li>Host 2–3 virtual workshops</li>
+                            <li>Major communications acknowledgment</li>
+                            <li>Student recruitment opportunity</li>
+                            <li>Impact summary report</li>
+                        </ul>
+                        <a href="/contact" class="pricing-cta">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <div class="pricing-title">Gold Partner</div>
+                        <div class="pricing-amount">$2,500</div>
+                    </div>
+                    <div class="pricing-card-body">
+                        <ul class="pricing-features">
+                            <li>Recognition as Gold Partner</li>
+                            <li>Logo on NexYouth website</li>
+                            <li>Logo on IYEC website</li>
+                            <li>Naming rights for mentoring program</li>
+                            <li>Host 1–2 virtual workshops</li>
+                            <li>Major communications acknowledgment</li>
+                            <li>Impact summary report</li>
+                        </ul>
+                        <a href="/contact" class="pricing-cta">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <div class="pricing-title">Silver Partner</div>
+                        <div class="pricing-amount">$1,000</div>
+                    </div>
+                    <div class="pricing-card-body">
+                        <ul class="pricing-features">
+                            <li>Logo on NexYouth website</li>
+                            <li>Logo on IYEC award section</li>
+                            <li>Selected communications recognition</li>
+                            <li>Program wrap-up acknowledgment</li>
+                        </ul>
+                        <a href="/contact" class="pricing-cta">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <div class="pricing-title">Bronze Partner</div>
+                        <div class="pricing-amount">$500</div>
+                    </div>
+                    <div class="pricing-card-body">
+                        <ul class="pricing-features">
+                            <li>Logo on NexYouth sponsor section</li>
+                            <li>Thank-you email recognition</li>
+                            <li>Summary communications</li>
+                        </ul>
+                        <a href="/contact" class="pricing-cta">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <div class="pricing-title">Community Supporter</div>
+                        <div class="pricing-amount">$300</div>
+                    </div>
+                    <div class="pricing-card-body">
+                        <ul class="pricing-features">
+                            <li>Logo on NexYouth sponsor section</li>
+                            <li>Community recognition</li>
+                        </ul>
+                        <a href="/contact" class="pricing-cta">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="impact-section">
+        <div class="container">
+            <h2>How Sponsorship Funds Are Used</h2>
+            <p>Your contribution directly supports our mission to expand educational access and empower youth globally.</p>
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <div class="impact-label">Free & Accessible Programs</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-label">Educational Courses & Materials</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-label">Youth Volunteer Training</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-label">Global Youth Initiatives</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-label">Underserved Community Outreach</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <h2>Ready to Make <span>Impact</span>?</h2>
+            <p>Join our network of partners committed to youth empowerment and education equity. Let's create meaningful change together.</p>
+            <div class="contact-buttons">
+                <a href="/contact" class="contact-btn">Become a Sponsor</a>
+                <a href="mailto:nexyouth.master@gmail.com" class="contact-btn secondary">Schedule a Call</a>
+            </div>
+            <p class="contact-email">Questions? Contact us at <a href="mailto:nexyouth.master@gmail.com">nexyouth.master@gmail.com</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 NexYouth. All rights reserved.</p>
+        </div>
+    </footer>
+
+<script>
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+    const programsDropdown = document.querySelector('.dropdown a');
+    const dropdownMenu = document.getElementById('programsDropdown');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link
+    const navLinks = document.querySelectorAll('#navMenu a:not([href*="Programs"])');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // Handle programs dropdown on mobile
+    const dropdownTrigger = document.querySelector('.dropdown a');
+    dropdownTrigger.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('active');
+        }
+    });
+
+    // Handle dropdown menu items click on mobile
+    const dropdownItems = document.querySelectorAll('.dropdown-menu a');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                mobileMenuBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+                dropdownMenu.classList.remove('active');
+            }
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('nav')) {
+            mobileMenuBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+            dropdownMenu.classList.remove('active');
+        }
+    });
+</script>
+</body>
+</html>

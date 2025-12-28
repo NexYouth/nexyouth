@@ -5526,6 +5526,10 @@ CONTACT_TEMPLATE = """<!DOCTYPE html>
 def partner():
     return render_template('partner.html')
 
+@app.route('/partnership-packages')
+def partnership_packages():
+    return render_template('partnership-packages.html')
+
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
