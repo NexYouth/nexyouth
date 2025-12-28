@@ -4897,19 +4897,19 @@ PARTNER_TEMPLATE = """
                     <div class="type-icon">🏢</div>
                     <h3>Corporate Partners</h3>
                     <p>Align your brand with youth empowerment. Sponsor programs, provide mentors from your team, or support initiatives through corporate giving.</p>
-                    <a href="#contact-form" class="type-card-link">Learn More →</a>
+                    <a href="/partnership-packages" class="type-card-link">Learn More →</a>
                 </div>
                 <div class="type-card">
                     <div class="type-icon">🤝</div>
                     <h3>Nonprofit Partners</h3>
                     <p>Collaborate on joint programs, share resources, and amplify our collective impact. Together we can reach more young people.</p>
-                    <a href="#contact-form" class="type-card-link">Learn More →</a>
+                    <a href="/partnership-packages" class="type-card-link">Learn More →</a>
                 </div>
                 <div class="type-card">
                     <div class="type-icon">🏛️</div>
                     <h3>Foundation Partners</h3>
                     <p>Support our mission through grants and funding. Help us scale programs and reach underserved communities globally.</p>
-                    <a href="#contact-form" class="type-card-link">Learn More →</a>
+                    <a href="/partnership-packages" class="type-card-link">Learn More →</a>
                 </div>
             </div>
         </div>
