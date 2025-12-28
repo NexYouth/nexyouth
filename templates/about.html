@@ -1142,6 +1142,18 @@
             }
         });
 
+        // Handle dropdown menu items click on mobile
+        const dropdownItems = document.querySelectorAll('.dropdown-menu a');
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    mobileMenuBtn.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    dropdownMenu.classList.remove('active');
+                }
+            });
+        });
+
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!e.target.closest('nav')) {
