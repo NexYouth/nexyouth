@@ -349,6 +349,19 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .hero {
+                min-height: auto;
+                padding: 3rem 1rem;
+            }
+
+            .hero video {
+                display: none;
+            }
+
+            .hero::before {
+                background: rgba(0, 0, 0, 0.7);
+            }
         }
 
         .stat-label {
