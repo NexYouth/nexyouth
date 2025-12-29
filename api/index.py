@@ -622,7 +622,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <!-- Footer -->
     <footer id="contact-footer">
         <div class="container">
-            <p>&copy; 2023 NexYouth. All rights reserved.</p>
+            <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
         </div>
     </footer>
 </body>
@@ -1839,7 +1839,7 @@ SKILL_DEVELOPMENT_TEMPLATE = """
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 NexYouth. All rights reserved.</p>
+            <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
         </div>
     </footer>
 </body>
@@ -2293,7 +2293,7 @@ SEMINARS_TEMPLATE = """
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 NexYouth. All rights reserved.</p>
+            <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
         </div>
     </footer>
 </body>
@@ -2749,7 +2749,7 @@ MENTORSHIP_TEMPLATE = """
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 NexYouth. All rights reserved.</p>
+            <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
         </div>
     </footer>
 </body>
@@ -3390,6 +3390,8 @@ ENVIRONMENTAL_COMPETITION_TEMPLATE = """
                         <p style="color: #888; font-size: 0.95rem; margin-bottom: 1rem;"><strong>Northwood High School • Irvine, California, USA</strong></p>
                         <p style="color: #333; font-size: 1rem; margin-bottom: 1rem;"><strong>Project: "Earth Z- Wildfire Solutions"</strong></p>
                         <p style="color: #666; line-height: 1.8;">Earth Z develops an AI system backed by real past and current data to detect areas of high fire risk, using datasets from NOAA and other sources. The team collected their own machine learning data to train the model, ensuring accuracy by correlating inputs with confirmed fire incidents.</p>
+                        <p style="color: #666; font-size: 1.1rem; margin-bottom: 1rem; margin-top: 1.5rem;">Explore more details about IYEC and get inspired by past winners' success stories.</p>
+                        <a href="https://globalenvironmentchallenge.org/" target="_blank" style="display: inline-block; padding: 0.75rem 2rem; background-color: #059669; color: white; text-decoration: none; border-radius: 0.5rem; font-weight: bold;">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -3418,14 +3420,6 @@ ENVIRONMENTAL_COMPETITION_TEMPLATE = """
                         <p style="color: #333; font-size: 1rem; margin-bottom: 1rem;"><strong>Project: "Building a Better Future for All Beings: Addressing Environmental Degradation in Construction"</strong></p>
                         <p style="color: #666; line-height: 1.8;">This project explores the harms caused by unsustainable construction on humans, animals, and communities, and presents a range of solutions to help mitigate these effects and promote more sustainable development practices.</p>
                     </div>
-                </div>
-            </div>
-
-            <div style="margin-bottom: 4rem;">
-                <h3 style="font-size: 1.5rem; color: #059669; margin-bottom: 2rem; border-bottom: 3px solid #059669; padding-bottom: 1rem;">Learn More About the Global Environmental Challenge</h3>
-                <p style="color: #666; font-size: 1.1rem; margin-bottom: 2rem; text-align: center;">Explore more details about the Global Environmental Challenge and get inspired by past winners' success stories.</p>
-                <div style="text-align: center;">
-                    <a href="https://globalenvironmentchallenge.org/" target="_blank" class="cta-btn" style="display: inline-block; padding: 0.75rem 2rem; background-color: #059669; color: white; text-decoration: none; border-radius: 0.5rem; font-weight: bold;">Learn More</a>
                 </div>
             </div>
 
@@ -3531,7 +3525,7 @@ ENVIRONMENTAL_COMPETITION_TEMPLATE = """
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 NexYouth & IYEC. All rights reserved.</p>
+            <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
         </div>
     </footer>
 </body>
@@ -4687,7 +4681,7 @@ PARTNER_TEMPLATE = """
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 NexYouth. All rights reserved.</p>
+            <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
         </div>
     </footer>
 </body>
