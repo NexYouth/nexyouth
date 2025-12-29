@@ -4,14 +4,14 @@ import os
 # Configure template folder for Vercel deployment
 template_dir = os.path.join(os.path.dirname(__file__), '..', 'templates')
 app = Flask(__name__, 
-            static_folder='public', 
+            static_folder='../static', 
             static_url_path='/static',
             template_folder=template_dir)
 
 @app.route('/static/<path:filename>')
 def serve_static(filename):
-    """Serve static files from public folder"""
-    return send_from_directory(os.path.join(os.path.dirname(__file__), 'public'), filename)
+    """Serve static files from static folder"""
+    return send_from_directory(os.path.join(os.path.dirname(__file__), '..', 'static'), filename)
 
 # ============== HOME PAGE ==============
 HTML_TEMPLATE = """<!DOCTYPE html>
@@ -3258,7 +3258,7 @@ ENVIRONMENTAL_COMPETITION_TEMPLATE = """
             <div class="competition-grid">
                 <div class="competition-card">
                     <div class="competition-icon">👥</div>
-                    <h3>For Youth Ages 13-18</h3>
+                    <h3>For Youth under 18</h3>
                     <p>Open to students and young activists from all backgrounds and experience levels worldwide.</p>
                 </div>
                 <div class="competition-card">
