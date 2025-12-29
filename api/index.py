@@ -3390,9 +3390,11 @@ ENVIRONMENTAL_COMPETITION_TEMPLATE = """
                         <p style="color: #888; font-size: 0.95rem; margin-bottom: 1rem;"><strong>Northwood High School • Irvine, California, USA</strong></p>
                         <p style="color: #333; font-size: 1rem; margin-bottom: 1rem;"><strong>Project: "Earth Z- Wildfire Solutions"</strong></p>
                         <p style="color: #666; line-height: 1.8;">Earth Z develops an AI system backed by real past and current data to detect areas of high fire risk, using datasets from NOAA and other sources. The team collected their own machine learning data to train the model, ensuring accuracy by correlating inputs with confirmed fire incidents.</p>
-                        <p style="color: #666; font-size: 1.1rem; margin-bottom: 1rem; margin-top: 1.5rem;">Explore more details about IYEC and get inspired by past winners' success stories.</p>
-                        <a href="https://globalenvironmentchallenge.org/" target="_blank" style="display: inline-block; padding: 0.75rem 2rem; background-color: #059669; color: white; text-decoration: none; border-radius: 0.5rem; font-weight: bold;">Learn More</a>
                     </div>
+                </div>
+                <p style="color: #666; font-size: 1.1rem; margin-bottom: 1rem; margin-top: 1.5rem;">Explore more details about IYEC and get inspired by past winners' success stories.</p>
+                <div style="text-align: center;">
+                    <a href="https://globalenvironmentchallenge.org/" target="_blank" style="display: inline-block; padding: 0.75rem 2rem; background-color: #059669; color: white; text-decoration: none; border-radius: 0.5rem; font-weight: bold;">Learn More</a>
                 </div>
             </div>
             <div>
