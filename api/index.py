@@ -2210,7 +2210,7 @@ SEMINARS_TEMPLATE = """
     <section class="program-hero">
         <div class="container">
             <h1>Seminars & Workships</h1>
-            <p>Learn from industry leaders, environmental experts, and successful entrepreneurs. Our seminars bring world-class knowledge directly to aspiring young changemakers.</p>
+            <p>Learn from industry leaders, environmental experts, and inspiring youth peers. Our seminars bring world-class knowledge directly to aspiring young changemakers.</p>
         </div>
     </section>
 
