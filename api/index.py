@@ -3422,37 +3422,10 @@ ENVIRONMENTAL_COMPETITION_TEMPLATE = """
             </div>
 
             <div style="margin-bottom: 4rem;">
-                <h3 style="font-size: 1.5rem; color: #059669; margin-bottom: 2rem; border-bottom: 3px solid #059669; padding-bottom: 1rem;">🏆 2023-2024 Senior Category Winners</h3>
-                
-                <div class="winner-card">
-                    <div class="winner-image">
-                        <div class="avatar avatar-jj">JJ</div>
-                    </div>
-                    <div class="winner-info">
-                        <h4 style="color: #059669; font-size: 1.3rem; margin-bottom: 0.5rem;">🥇 1st Place: Julie Jin</h4>
-                        <p style="color: #888; font-size: 0.95rem; margin-bottom: 1rem;"><strong>Colonel By Secondary School • Ottawa, Canada</strong></p>
-                        <p style="color: #333; font-size: 1rem; margin-bottom: 1rem;"><strong>Project: "Become a Biodiversity Hero – From the Comfort of Home and on the Road"</strong></p>
-                        <p style="color: #666; line-height: 1.8;">An innovative approach to engaging citizens in biodiversity conservation through accessible citizen science and environmental action, enabling individuals to make a real difference from their home or while traveling.</p>
-                    </div>
-                </div>
-
-                <div class="winner-card">
-                    <div class="winner-image">
-                        <div class="avatar avatar-jj2">JJ</div>
-                    </div>
-                    <div class="winner-info">
-                        <h4 style="color: #059669; font-size: 1.3rem; margin-bottom: 0.5rem;">🥈 2nd Place: Jenny Jin</h4>
-                        <p style="color: #888; font-size: 0.95rem; margin-bottom: 1rem;"><strong>Colonel By Secondary School • Ottawa, Canada</strong></p>
-                        <p style="color: #333; font-size: 1rem; margin-bottom: 1rem;"><strong>Project: "From Waste to Well-being: Managing the Global Waste Crisis"</strong></p>
-                        <p style="color: #666; line-height: 1.8;">A comprehensive examination of the global waste management crisis and innovative solutions to transform waste into valuable resources, promoting circular economy principles and environmental well-being.</p>
-                    </div>
-                </div>
-
-                <div style="background: white; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); border-left: 5px solid #d4d4d8;">
-                    <h4 style="color: #78716c; font-size: 1.3rem; margin-bottom: 0.5rem;">🌟 Honorable Mention: William Zeng</h4>
-                    <p style="color: #888; font-size: 0.95rem; margin-bottom: 1rem;"><strong>St Stephens School • Rome, Italy</strong></p>
-                    <p style="color: #333; font-size: 1rem; margin-bottom: 1rem;"><strong>Project: "Rome's Waste Management Crisis"</strong></p>
-                    <p style="color: #666; line-height: 1.8;">Proposed solutions include anaerobic digestion for organic waste, circular economy initiatives, and localized waste-to-energy plants to reduce reliance on waste exports. These approaches aim to foster a sustainable system, preparing the city for the upcoming Jubilee Year.</p>
+                <h3 style="font-size: 1.5rem; color: #059669; margin-bottom: 2rem; border-bottom: 3px solid #059669; padding-bottom: 1rem;">Learn More About the Global Environmental Challenge</h3>
+                <p style="color: #666; font-size: 1.1rem; margin-bottom: 2rem; text-align: center;">Explore more details about the Global Environmental Challenge and get inspired by past winners' success stories.</p>
+                <div style="text-align: center;">
+                    <a href="https://globalenvironmentchallenge.org/" target="_blank" class="cta-btn" style="display: inline-block; padding: 0.75rem 2rem; background-color: #059669; color: white; text-decoration: none; border-radius: 0.5rem; font-weight: bold;">Learn More</a>
                 </div>
             </div>
 
