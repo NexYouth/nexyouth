@@ -351,16 +351,16 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             }
 
             .hero {
-                min-height: auto;
-                padding: 3rem 1rem;
+                min-height: 100vh;
+                padding: 2rem 1rem;
             }
 
             .hero video {
-                display: none;
+                object-fit: cover;
             }
 
             .hero::before {
-                background: rgba(0, 0, 0, 0.7);
+                background: rgba(0, 0, 0, 0.5);
             }
         }
 

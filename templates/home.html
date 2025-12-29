@@ -344,16 +344,16 @@
             }
 
             .hero {
-                min-height: auto;
-                padding: 3rem 1rem;
+                min-height: 100vh;
+                padding: 2rem 1rem;
             }
 
             .hero video {
-                display: none;
+                object-fit: cover;
             }
 
             .hero::before {
-                background: rgba(0, 0, 0, 0.7);
+                background: rgba(0, 0, 0, 0.5);
             }
         }
 
@@ -892,6 +892,20 @@
                 dropdownMenu.classList.remove('active');
             }
         });
+
+        // Ensure video plays on mobile
+        const video = document.querySelector('.hero video');
+        if (video) {
+            video.play().catch(error => {
+                console.log('Autoplay prevented, attempting with user interaction');
+            });
+            
+            // Try to play on first user interaction
+            document.addEventListener('touchstart', function playVideo() {
+                video.play().catch(e => console.log('Play failed:', e));
+                document.removeEventListener('touchstart', playVideo);
+            }, { once: true });
+        }
     </script>
 </body>
 </html>
