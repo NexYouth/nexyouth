@@ -1,0 +1,19 @@
+<svg viewBox="0 0 320 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Icon: Circle with arrow -->
+    <g transform="translate(8, 5)">
+        <!-- Outer circle -->
+        <circle cx="35" cy="35" r="32" stroke="#00d4ff" stroke-width="2.5" fill="none"/>
+        <!-- Arrow pointing up -->
+        <path d="M35 14 L50 38 L42 38 L42 52 L28 52 L28 38 L20 38 Z" fill="#00d4ff"/>
+        <!-- Small circle at bottom -->
+        <circle cx="35" cy="60" r="4" fill="#00d4ff"/>
+    </g>
+    
+    <!-- Text: NexYouth -->
+    <text x="88" y="45" font-family="Outfit, -apple-system, BlinkMacSystemFont, sans-serif" font-size="42" font-weight="600" letter-spacing="-0.5">
+        <tspan fill="#00d4ff">Nex</tspan><tspan fill="#1a1a2e">Youth</tspan>
+    </text>
+    
+    <!-- Tagline -->
+    <text x="88" y="72" font-family="Outfit, -apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="700" letter-spacing="2" fill="#666666">GROW. LEAD. ACT.</text>
+</svg>
