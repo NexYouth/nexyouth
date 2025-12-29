@@ -890,7 +890,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
 
         /* Our Story Section */
         .our-story {
-            padding: 6rem 2rem;
+            padding: 6rem 2rem 3rem 2rem;
             background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
         }
 
@@ -933,7 +933,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
 
         /* What We Do Section */
         .what-we-do {
-            padding: 6rem 2rem;
+            padding: 3rem 2rem 6rem 2rem;
             background: white;
         }
 
