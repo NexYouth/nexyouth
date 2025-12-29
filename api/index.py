@@ -493,7 +493,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                     <a href="/#programs">Programs ▾</a>
                     <div class="dropdown-menu">
                         <a href="/programs/skill-development">Skill Development Courses</a>
-                        <a href="/programs/seminars">Expert Seminars & Talks</a>
+                        <a href="/programs/seminars">Seminars & Workships</a>
                         <a href="/programs/mentorship">Global Mentorship Network</a>
                     </div>
                 </li>
@@ -539,7 +539,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                     <p>Comprehensive training programs that equip youth with practical skills and real-world opportunities. From digital literacy, environmental analysis to entrepreneurship, our courses prepare students for real-world success.</p>
                 </div>
                 <div class="program-card">
-                    <h3>Expert Seminars & Talks</h3>
+                    <h3>Seminars & Workships</h3>
                     <p>Learn directly from industry leaders and experienced professionals. Our seminars provide insights into emerging opportunities and inspire the next generation of innovators.</p>
                 </div>
                 <div class="program-card">
@@ -1154,7 +1154,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                     <a href="/#programs">Programs ▾</a>
                     <div class="dropdown-menu">
                         <a href="/programs/skill-development">Skill Development Courses</a>
-                        <a href="/programs/seminars">Expert Seminars & Talks</a>
+                        <a href="/programs/seminars">Seminars & Workships</a>
                         <a href="/programs/mentorship">Global Mentorship Network</a>
                     </div>
                 </li>
@@ -1236,7 +1236,7 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
                 <div class="what-we-do-text">
                     <p>We operate three core programs designed to serve young people at different stages of their journey:</p>
                     <p><strong>Skill Development Courses:</strong> Our comprehensive courses cover essential topics from public speaking to STEM, delivered by passionate instructors committed to youth success.</p>
-                    <p><strong>Expert Seminars & Talks:</strong> We bring industry leaders and experts together with young people for interactive sessions on emerging opportunities and global challenges.</p>
+                    <p><strong>Seminars & Workships:</strong> We bring industry leaders and experts together with young people for interactive sessions on emerging opportunities and global challenges.</p>
                     <p><strong>Global Mentorship Network:</strong> Our mentorship program connects youth with experienced professionals worldwide who provide personalized guidance and support for career development and personal growth.</p>
                     <p>Beyond these programs, we're constantly innovating and listening to the youth we serve to develop initiatives that have real, lasting impact.</p>
                 </div>
@@ -1776,7 +1776,7 @@ SKILL_DEVELOPMENT_TEMPLATE = """
                     <a href="/#programs">Programs</a>
                     <ul class="dropdown-menu">
                         <li><a href="/programs/skill-development">Skill Development Courses</a></li>
-                        <li><a href="/programs/seminars">Expert Seminars & Talks</a></li>
+                        <li><a href="/programs/seminars">Seminars & Workships</a></li>
                         <li><a href="/programs/mentorship">Global Mentorship Network</a></li>
                     </ul>
                 </li>
@@ -1852,7 +1852,7 @@ SEMINARS_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expert Seminars & Talks - NexYouth</title>
+    <title>Seminars & Workships - NexYouth</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -2195,7 +2195,7 @@ SEMINARS_TEMPLATE = """
                     <a href="/#programs">Programs</a>
                     <ul class="dropdown-menu">
                         <li><a href="/programs/skill-development">Skill Development Courses</a></li>
-                        <li><a href="/programs/seminars">Expert Seminars & Talks</a></li>
+                        <li><a href="/programs/seminars">Seminars & Workships</a></li>
                         <li><a href="/programs/mentorship">Global Mentorship Network</a></li>
                     </ul>
                 </li>
@@ -2209,7 +2209,7 @@ SEMINARS_TEMPLATE = """
 
     <section class="program-hero">
         <div class="container">
-            <h1>Expert Seminars & Talks</h1>
+            <h1>Seminars & Workships</h1>
             <p>Learn from industry leaders, environmental experts, and successful entrepreneurs. Our seminars bring world-class knowledge directly to aspiring young changemakers.</p>
         </div>
     </section>
@@ -2664,7 +2664,7 @@ MENTORSHIP_TEMPLATE = """
                     <a href="/#programs">Programs</a>
                     <ul class="dropdown-menu">
                         <li><a href="/programs/skill-development">Skill Development Courses</a></li>
-                        <li><a href="/programs/seminars">Expert Seminars & Talks</a></li>
+                        <li><a href="/programs/seminars">Seminars & Workships</a></li>
                         <li><a href="/programs/mentorship">Global Mentorship Network</a></li>
                     </ul>
                 </li>
@@ -3230,7 +3230,7 @@ ENVIRONMENTAL_COMPETITION_TEMPLATE = """
                     <a href="/#programs">Programs ▾</a>
                     <div class="dropdown-menu">
                         <a href="/programs/skill-development">Skill Development Courses</a>
-                        <a href="/programs/seminars">Expert Seminars & Talks</a>
+                        <a href="/programs/seminars">Seminars & Workships</a>
                         <a href="/programs/mentorship">Global Mentorship Network</a>
                         <a href="/programs/environmental-competition">Environmental Youth Competition</a>
                     </div>
@@ -4480,7 +4480,7 @@ PARTNER_TEMPLATE = """
                     <a href="/#programs">Programs</a>
                     <ul class="dropdown-menu">
                         <li><a href="/programs/skill-development">Skill Development Courses</a></li>
-                        <li><a href="/programs/seminars">Expert Seminars & Talks</a></li>
+                        <li><a href="/programs/seminars">Seminars & Workships</a></li>
                         <li><a href="/programs/mentorship">Global Mentorship Network</a></li>
                     </ul>
                 </li>
@@ -5103,7 +5103,7 @@ CONTACT_TEMPLATE = """<!DOCTYPE html>
                     <a href="/#programs">Programs ▾</a>
                     <div class="dropdown-menu">
                         <a href="/programs/skill-development">Skill Development Courses</a>
-                        <a href="/programs/seminars">Expert Seminars & Talks</a>
+                        <a href="/programs/seminars">Seminars & Workships</a>
                         <a href="/programs/mentorship">Global Mentorship Network</a>
                     </div>
                 </li>
