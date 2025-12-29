@@ -5205,7 +5205,7 @@ CONTACT_TEMPLATE = """<!DOCTYPE html>
         <div class="container">
             <h2>Help Us Empower Youth Globally</h2>
             <p>Your support enables us to reach more young leaders, provide quality programs, and create lasting impact in communities worldwide. Together, we can shape the future.</p>
-            <a href="/#" class="cta-btn">Get Involved</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform?pli=1" target="_blank" class="cta-btn">Get Involved</a>
         </div>
     </section>
 
