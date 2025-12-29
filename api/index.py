@@ -520,7 +520,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline preload="metadata">
             <source src="/static/main_background.mp4" type="video/mp4">
         </video>
         <div class="content">

@@ -914,7 +914,7 @@
                 </div>
             </div>
             <div class="intro-image">
-                <video class="intro-image-main" muted loop playsinline preload="metadata">
+                <video class="intro-image-main" autoplay muted loop playsinline preload="metadata">
                     <source src="/static/partner_video.mp4" type="video/mp4">
                 </video>
             </div>
@@ -1106,27 +1106,22 @@
         }
     });
 
-    // Auto-play partner video on load
+    // Auto-play partner video on load with fallback
     const partnerVideo = document.querySelector('.intro-image-main');
     if (partnerVideo) {
-        partnerVideo.load();
-        const playPromise = partnerVideo.play();
+        partnerVideo.play().catch(error => {
+            console.log('Partner video autoplay blocked');
+        });
         
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log('Partner video autoplay blocked');
-            });
-        }
-        
-        // Play on first user interaction
-        const playOnInteraction = () => {
+        // Fallback: play on first user interaction
+        const playOnce = () => {
             partnerVideo.play().catch(e => console.log('Play failed:', e));
-            document.removeEventListener('touchstart', playOnInteraction);
-            document.removeEventListener('click', playOnInteraction);
+            document.removeEventListener('touchstart', playOnce);
+            document.removeEventListener('click', playOnce);
         };
         
-        document.addEventListener('touchstart', playOnInteraction, { once: true });
-        document.addEventListener('click', playOnInteraction, { once: true });
+        document.addEventListener('touchstart', playOnce, { once: true });
+        document.addEventListener('click', playOnce, { once: true });
     }
 </script>
 </body>

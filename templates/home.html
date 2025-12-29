@@ -719,7 +719,7 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <video muted loop playsinline preload="metadata">
+        <video autoplay muted loop playsinline preload="metadata">
             <source src="/static/main_background.mp4" type="video/mp4">
         </video>
         <div class="content">
@@ -893,35 +893,23 @@
             }
         });
 
-        // Ensure video plays on mobile
+        // Ensure video plays on mobile with user interaction fallback
         const video = document.querySelector('.hero video');
         if (video) {
-            // Try to load and play immediately
-            video.load();
-            const playPromise = video.play();
+            // Try to play on page load
+            video.play().catch(error => {
+                console.log('Autoplay not allowed, will play on first interaction');
+            });
             
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log('Autoplay blocked, will play on user interaction');
-                });
-            }
-            
-            // Play on first user interaction (touch or click)
-            const playOnInteraction = () => {
+            // Fallback: play on first user interaction if autoplay failed
+            const playOnce = () => {
                 video.play().catch(e => console.log('Play failed:', e));
-                document.removeEventListener('touchstart', playOnInteraction);
-                document.removeEventListener('click', playOnInteraction);
+                document.removeEventListener('touchstart', playOnce);
+                document.removeEventListener('click', playOnce);
             };
             
-            document.addEventListener('touchstart', playOnInteraction, { once: true });
-            document.addEventListener('click', playOnInteraction, { once: true });
-            
-            // Also try to play on visibility change
-            document.addEventListener('visibilitychange', () => {
-                if (!document.hidden) {
-                    video.play().catch(e => console.log('Play on visibility failed:', e));
-                }
-            });
+            document.addEventListener('touchstart', playOnce, { once: true });
+            document.addEventListener('click', playOnce, { once: true });
         }
     </script>
 </body>
