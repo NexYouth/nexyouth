@@ -719,7 +719,7 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <video autoplay muted loop playsinline>
+        <video muted loop playsinline preload="metadata">
             <source src="/static/main_background.mp4" type="video/mp4">
         </video>
         <div class="content">
@@ -896,15 +896,32 @@
         // Ensure video plays on mobile
         const video = document.querySelector('.hero video');
         if (video) {
-            video.play().catch(error => {
-                console.log('Autoplay prevented, attempting with user interaction');
-            });
+            // Try to load and play immediately
+            video.load();
+            const playPromise = video.play();
             
-            // Try to play on first user interaction
-            document.addEventListener('touchstart', function playVideo() {
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log('Autoplay blocked, will play on user interaction');
+                });
+            }
+            
+            // Play on first user interaction (touch or click)
+            const playOnInteraction = () => {
                 video.play().catch(e => console.log('Play failed:', e));
-                document.removeEventListener('touchstart', playVideo);
-            }, { once: true });
+                document.removeEventListener('touchstart', playOnInteraction);
+                document.removeEventListener('click', playOnInteraction);
+            };
+            
+            document.addEventListener('touchstart', playOnInteraction, { once: true });
+            document.addEventListener('click', playOnInteraction, { once: true });
+            
+            // Also try to play on visibility change
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) {
+                    video.play().catch(e => console.log('Play on visibility failed:', e));
+                }
+            });
         }
     </script>
 </body>

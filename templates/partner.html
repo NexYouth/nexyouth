@@ -914,7 +914,7 @@
                 </div>
             </div>
             <div class="intro-image">
-                <video class="intro-image-main" autoplay muted loop playsinline>
+                <video class="intro-image-main" muted loop playsinline preload="metadata">
                     <source src="/static/partner_video.mp4" type="video/mp4">
                 </video>
             </div>
@@ -1105,6 +1105,29 @@
             dropdownMenu.classList.remove('active');
         }
     });
+
+    // Auto-play partner video on load
+    const partnerVideo = document.querySelector('.intro-image-main');
+    if (partnerVideo) {
+        partnerVideo.load();
+        const playPromise = partnerVideo.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('Partner video autoplay blocked');
+            });
+        }
+        
+        // Play on first user interaction
+        const playOnInteraction = () => {
+            partnerVideo.play().catch(e => console.log('Play failed:', e));
+            document.removeEventListener('touchstart', playOnInteraction);
+            document.removeEventListener('click', playOnInteraction);
+        };
+        
+        document.addEventListener('touchstart', playOnInteraction, { once: true });
+        document.addEventListener('click', playOnInteraction, { once: true });
+    }
 </script>
 </body>
 </html>
