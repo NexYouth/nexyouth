@@ -563,40 +563,6 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         </div>
     </section>
 
-    <!-- Statistics Section -->
-    <section class="statistics">
-        <div class="container">
-            <h2>Our Impact</h2>
-            <p>Making a difference across the globe through youth empowerment</p>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">5000+</div>
-                    <div class="stat-label">Individuals Reached</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">90+</div>
-                    <div class="stat-label">Schools Represented</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">13+</div>
-                    <div class="stat-label">Countries Reached</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">26+</div>
-                    <div class="stat-label">Cities of Operation</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">700+</div>
-                    <div class="stat-label">Students Taught</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">12+</div>
-                    <div class="stat-label">States & Provinces</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Community Section -->
     <section id="community" class="testimonials">
         <div class="container">
