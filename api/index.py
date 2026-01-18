@@ -559,6 +559,14 @@ HTML_TEMPLATE = """<!DOCTYPE html>
                     <h3>Global Mentorship Network</h3>
                     <p>Get paired with mentors who can guide your personal and professional development. Our mentors bring real-world experience and genuine commitment to your growth.</p>
                 </div>
+                <div class="program-card">
+                    <h3>Environmental Youth Competition</h3>
+                    <p>Compete globally with young innovators to investigate real-world environmental challenges through research and data analysis. Tackle local environmental issues with actionable insights through essays, analytical reports, research, and win scholarships!</p>
+                </div>
+                <div class="program-card">
+                    <h3>Youth Tech Lab</h3>
+                    <p>Explore cutting-edge technology in our interactive lab environment. Build hands-on projects, learn emerging technologies, and collaborate with peers to create innovative solutions.</p>
+                </div>
             </div>
         </div>
     </section>
