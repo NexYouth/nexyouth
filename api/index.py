@@ -2752,6 +2752,10 @@ def mentorship():
 def environmental_competition():
     return render_template('environmental-competition.html')
 
+@app.route('/programs/youth-tech-lab')
+def youth_tech_lab():
+    return render_template('youth-tech-lab.html')
+
 # Environmental Competition Template
 ENVIRONMENTAL_COMPETITION_TEMPLATE = """
 <!DOCTYPE html>
