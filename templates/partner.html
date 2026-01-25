@@ -207,6 +207,32 @@
             background-clip: text;
         }
 
+        .hero-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .donate-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .donate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
         .partner-hero p {
             font-size: 1.3rem;
             max-width: 700px;
@@ -877,7 +903,10 @@
     <section class="partner-hero">
         <div class="container">
             <div class="partner-hero-badge">🤝 Partnership Program</div>
-            <h1>Let's Create <span>Impact Together</span></h1>
+            <div class="hero-title-row">
+                <h1>Let's Create <span>Impact Together</span></h1>
+                <a href="https://www.paypal.com/donate/?hosted_button_id=YOUR_BUTTON_ID" target="_blank" class="donate-btn">Donate</a>
+            </div>
             <p>Partner with NexYouth to empower the next generation of leaders. Together, we can provide youth with the skills, mentorship, and opportunities they need to succeed.</p>
         </div>
     </section>
