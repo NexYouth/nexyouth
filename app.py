@@ -58,15 +58,11 @@ def contact():
 def success():
     return render_template('success.html')
 
-# Catch-all route for client-side routing
-@app.route('/<path:path>')
-def catch_all(path):
-    """Catch all routes and return the main page for client-side routing"""
-    if path == 'about':
-        return render_template('about.html')
-    if path == 'contact':
-        return render_template('contact.html')
-    return render_template('home.html')
+# 404 Error Handler
+@app.errorhandler(404)
+def page_not_found(e):
+    """Handle 404 errors with custom error page"""
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)

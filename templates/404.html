@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page not found - NexYouth">
+    <title>404 - Page Not Found - NexYouth</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+    <link rel="apple-touch-icon" href="/static/logo.svg">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            border-bottom: 1px solid #eee;
+            padding: 0.8rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        nav .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Error Content */
+        .error-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            color: white;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff 0%, #ff6b35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .error-message {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+
+        .back-home {
+            display: inline-block;
+            background: #ff6b35;
+            color: white;
+            padding: 0.9rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .back-home:hover {
+            background: #ff5520;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.8rem 1rem;
+            }
+
+            nav .logo img {
+                height: 50px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .error-code {
+                font-size: 5rem;
+            }
+
+            .error-title {
+                font-size: 1.5rem;
+            }
+
+            .error-message {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav .logo img {
+                height: 40px;
+            }
+
+            .error-code {
+                font-size: 4rem;
+            }
+
+            .error-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/static/logo.svg" alt="NexYouth">
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Error Content -->
+    <div class="error-content">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Page Not Found</h1>
+        <p class="error-message">The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+        <a href="/" class="back-home">Back to Home</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 NexYouth. All rights reserved. | Grow &bull; Lead &bull; Act</p>
+        </div>
+    </footer>
+</body>
+</html>

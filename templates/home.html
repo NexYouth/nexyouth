@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="NexYouth - Empowering youth globally through skill development and mentorship.">
     <title>NexYouth - Empowering Youth</title>
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="NexYouth - Empowering Youth">
+    <meta property="og:description" content="Empowering youth globally through skill development and mentorship. Connect with mentors, develop in-demand skills, and unlock global opportunities.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nexyouth.org">
+    <meta property="og:image" content="/static/logo.svg">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NexYouth - Empowering Youth">
+    <meta name="twitter:description" content="Empowering youth globally through skill development and mentorship.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+    <link rel="apple-touch-icon" href="/static/logo.svg">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -101,6 +117,37 @@
 
         .dropdown-menu a:hover {
             background: #f5f5f5;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
         }
 
         .container {
@@ -400,6 +447,78 @@
             margin-bottom: 0.3rem;
         }
 
+        /* Video Testimonials */
+        .video-testimonials {
+            margin-top: 3rem;
+        }
+
+        .video-testimonials h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-card video {
+            width: 100%;
+            display: block;
+        }
+
+        .video-info {
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .video-info h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+
+        .video-info p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        @media (max-width: 1024px) {
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .video-testimonials h3 {
+                font-size: 1.5rem;
+            }
+        }
+
         .testimonial-title {
             font-size: 0.9rem;
             color: #999;
@@ -692,7 +811,7 @@
             <a href="/" class="logo">
                 <img src="/static/logo.svg" alt="NexYouth">
             </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -704,7 +823,7 @@
                     <a href="/#programs">Programs ▾</a>
                     <div class="dropdown-menu" id="programsDropdown">
                         <a href="/programs/skill-development">Skill Development Courses</a>
-                        <a href="/programs/seminars">Seminars & Workships</a>
+                        <a href="/programs/seminars">Seminars & Workshops</a>
                         <a href="/programs/mentorship">Global Mentorship Network</a>
                         <a href="/programs/environmental-competition">Environmental Youth Competition</a>
                         <a href="/programs/youth-tech-lab">Youth Tech Lab</a>
@@ -737,6 +856,7 @@
             <p>At NexYouth, we're on a mission to empower young people globally through skill development, mentorship, and community. We connect youth with industry experts, provide practical training, and create pathways to success in an ever-changing world.</p>
             <div class="action-links">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform?pli=1" target="_blank">Get Involved</a>
+                <a href="/contact">Contact Us</a>
             </div>
         </div>
     </section>
@@ -751,7 +871,7 @@
                     <p>Comprehensive programs focus on developing critical thinking, data literacy, environmental stewardship, and strong STEM foundations, guided by instructors committed to youth growth and success.</p>
                 </a>
                 <a href="/programs/seminars" class="program-card" style="text-decoration: none; color: inherit;">
-                    <h3>Seminars & Workships</h3>
+                    <h3>Seminars & Workshops</h3>
                     <p>Learn directly from industry leaders and experienced professionals. Our seminars provide insights into emerging opportunities and inspire the next generation of innovators.</p>
                 </a>
                 <a href="/programs/mentorship" class="program-card" style="text-decoration: none; color: inherit;">
@@ -789,6 +909,83 @@
                     <div class="testimonial-quote">"The practical skills and confidence I gained through NexYouth's programs have been instrumental in landing my dream internship and building my career."</div>
                     <div class="testimonial-author">Amina P.</div>
                     <div class="testimonial-title">Scholarship Winner</div>
+                </div>
+            </div>
+
+            <!-- Video Testimonials -->
+            <div class="video-testimonials">
+                <h3>Hear From Our Volunteers</h3>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <video controls preload="metadata" poster="">
+                            <source src="/static/Volunteer_Oakville_president_EthanLuo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Ethan Luo</h4>
+                            <p>Oakville Chapter President</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata" poster="">
+                            <source src="/static/Volunteer_Coding_Instructor_LucasHo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Lucas Ho</h4>
+                            <p>Coding Instructor</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata" poster="">
+                            <source src="/static/Volunteer_codiingInstructor_VincentPham.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Vincent Pham</h4>
+                            <p>Coding Instructor</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata" poster="">
+                            <source src="/static/volunteer_codingIntructor_WilliamWu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>William Wu</h4>
+                            <p>Coding Instructor</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata" poster="">
+                            <source src="/static/Volunteer_DebateCoach_KateSergieieva.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Kate Sergieieva</h4>
+                            <p>Debate Coach</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata" poster="">
+                            <source src="/static/Volunteer_DetateCoach_KristenYip.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Kristen Yip</h4>
+                            <p>Debate Coach</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata" poster="">
+                            <source src="/static/Volunteer_deabateCoach_HaimJoshi.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Haim Joshi</h4>
+                            <p>Debate Coach</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
