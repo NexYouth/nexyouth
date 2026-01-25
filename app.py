@@ -39,6 +39,11 @@ def environmental_competition():
 def youth_tech_lab():
     return render_template('youth-tech-lab.html')
 
+# Course Routes
+@app.route('/courses/debate')
+def debate_course():
+    return render_template('debate.html')
+
 # Partner Routes
 @app.route('/partner')
 def partner():

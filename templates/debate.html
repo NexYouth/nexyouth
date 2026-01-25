@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Speaking & Debate Courses - NexYouth</title>
+    <meta name="description" content="NexYouth Public Speaking & Debate Courses - Build confidence and communication skills through structured debate training.">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Public Speaking & Debate Courses - NexYouth">
+    <meta property="og:description" content="Build confidence and communication skills through structured debate training and public speaking exercises.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nexyouth.org/courses/debate">
+    <meta property="og:image" content="/static/logo.svg">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+    <link rel="apple-touch-icon" href="/static/logo.svg">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        nav {
+            background: white;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 0.8rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        nav .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #333;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5;
+            color: #00d4ff;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .program-hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .program-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .program-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .breadcrumb {
+            padding: 1rem 2rem;
+            background: #f9f9f9;
+        }
+
+        .breadcrumb a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            color: #666;
+        }
+
+        .courses-section {
+            padding: 4rem 2rem;
+        }
+
+        .courses-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .courses-section > .container > p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .class-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #00d4ff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .class-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .class-card.active {
+            border-left-color: #ff6b35;
+        }
+
+        .class-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .class-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+        }
+
+        .class-info .instructor {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .class-info .schedule {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .class-meta {
+            text-align: right;
+        }
+
+        .class-meta .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .class-meta .spots {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .class-details {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .class-details.show {
+            display: block;
+        }
+
+        .class-details p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .class-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .feature-icon {
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        .register-section {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .register-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .register-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+
+        .btn-register {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .btn-register:hover {
+            background: #e55a28;
+        }
+
+        .payment-info {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+
+        .payment-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .payment-method {
+            padding: 0.5rem 1rem;
+            background: #f0f0f0;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                border-bottom: 1px solid #eee;
+                z-index: 99;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            nav ul li {
+                border-bottom: 1px solid #eee;
+            }
+            nav ul a {
+                display: block;
+                padding: 1rem 2rem;
+            }
+            .dropdown-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: #f9f9f9;
+            }
+            #programsDropdown.active {
+                display: block;
+            }
+            .dropdown-menu a {
+                padding-left: 3rem;
+            }
+            .program-hero h1 {
+                font-size: 2rem;
+            }
+            .class-header {
+                flex-direction: column;
+            }
+            .class-meta {
+                text-align: left;
+            }
+            .register-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/static/logo.svg" alt="NexYouth">
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#what-we-do">What We Do</a></li>
+                <li class="dropdown">
+                    <a href="/#programs">Programs ▾</a>
+                    <div class="dropdown-menu" id="programsDropdown">
+                        <a href="/programs/skill-development">Skill Development Courses</a>
+                        <a href="/programs/seminars">Seminars & Workshops</a>
+                        <a href="/programs/mentorship">Global Mentorship Network</a>
+                        <a href="/programs/environmental-competition">Environmental Youth Competition</a>
+                        <a href="/programs/youth-tech-lab">Youth Tech Lab</a>
+                    </div>
+                </li>
+                <li><a href="/#community">Community</a></li>
+                <li><a href="/partner">Partner</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="/">Home</a> <span>/</span>
+            <a href="/programs/skill-development">Skill Development</a> <span>/</span>
+            <span>Public Speaking & Debate</span>
+        </div>
+    </div>
+
+    <section class="program-hero">
+        <div class="container">
+            <h1>Public Speaking & Debate</h1>
+            <p>Build confidence, critical thinking, and persuasive communication skills through our structured debate training and public speaking courses.</p>
+        </div>
+    </section>
+
+    <section class="courses-section">
+        <div class="container">
+            <h2>Available Classes</h2>
+            <p>Select a class to view details and register. Click on any class card to expand and see the registration form.</p>
+
+            <!-- Class 1: Beginner Public Speaking -->
+            <div class="class-card" data-class="beginner-speaking">
+                <div class="class-header">
+                    <div class="class-info">
+                        <h3>Beginner Public Speaking</h3>
+                        <p class="instructor">Instructor: Kate Sergieieva</p>
+                        <p class="schedule">Saturdays, 10:00 AM - 11:30 AM EST | 8 weeks</p>
+                    </div>
+                    <div class="class-meta">
+                        <div class="price">$120</div>
+                        <div class="spots">12 spots left</div>
+                    </div>
+                </div>
+                <div class="class-details">
+                    <p>Perfect for beginners ages 12-16 who want to overcome stage fright and develop foundational speaking skills. This course covers voice projection, body language, speech structure, and impromptu speaking techniques.</p>
+                    <div class="class-features">
+                        <div class="feature"><span class="feature-icon">✓</span> 8 live sessions</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Small group (max 15)</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Weekly practice exercises</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Certificate of completion</div>
+                    </div>
+                    <div class="register-section">
+                        <h4>Register for This Class</h4>
+                        <form class="register-form" action="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" method="GET" target="_blank">
+                            <div class="form-group">
+                                <label>Student Name</label>
+                                <input type="text" name="student_name" required placeholder="Enter student's full name">
+                            </div>
+                            <div class="form-group">
+                                <label>Parent/Guardian Email</label>
+                                <input type="email" name="email" required placeholder="Enter email address">
+                            </div>
+                            <div class="form-group">
+                                <label>Student Age</label>
+                                <select name="age" required>
+                                    <option value="">Select age</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" name="phone" placeholder="Enter phone number">
+                            </div>
+                            <div class="form-group full-width">
+                                <button type="submit" class="btn-register">Register & Proceed to Payment</button>
+                            </div>
+                        </form>
+                        <div class="payment-info">
+                            <p>After registration, you will be redirected to complete payment.</p>
+                            <div class="payment-methods">
+                                <span class="payment-method">Credit Card</span>
+                                <span class="payment-method">PayPal</span>
+                                <span class="payment-method">E-Transfer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Class 2: Competitive Debate Training -->
+            <div class="class-card" data-class="competitive-debate">
+                <div class="class-header">
+                    <div class="class-info">
+                        <h3>Competitive Debate Training</h3>
+                        <p class="instructor">Instructor: Kristen Yip</p>
+                        <p class="schedule">Sundays, 2:00 PM - 4:00 PM EST | 10 weeks</p>
+                    </div>
+                    <div class="class-meta">
+                        <div class="price">$180</div>
+                        <div class="spots">8 spots left</div>
+                    </div>
+                </div>
+                <div class="class-details">
+                    <p>Intensive training for students ages 14-18 interested in competitive debate. Learn parliamentary debate, case construction, rebuttal techniques, and competition strategies. Students will participate in practice rounds and mock tournaments.</p>
+                    <div class="class-features">
+                        <div class="feature"><span class="feature-icon">✓</span> 10 live sessions (2 hours)</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Mock tournament included</div>
+                        <div class="feature"><span class="feature-icon">✓</span> 1-on-1 feedback sessions</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Competition preparation</div>
+                    </div>
+                    <div class="register-section">
+                        <h4>Register for This Class</h4>
+                        <form class="register-form" action="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" method="GET" target="_blank">
+                            <div class="form-group">
+                                <label>Student Name</label>
+                                <input type="text" name="student_name" required placeholder="Enter student's full name">
+                            </div>
+                            <div class="form-group">
+                                <label>Parent/Guardian Email</label>
+                                <input type="email" name="email" required placeholder="Enter email address">
+                            </div>
+                            <div class="form-group">
+                                <label>Student Age</label>
+                                <select name="age" required>
+                                    <option value="">Select age</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Previous Debate Experience</label>
+                                <select name="experience">
+                                    <option value="">Select experience level</option>
+                                    <option value="none">No experience</option>
+                                    <option value="beginner">Beginner (< 1 year)</option>
+                                    <option value="intermediate">Intermediate (1-2 years)</option>
+                                    <option value="advanced">Advanced (2+ years)</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <button type="submit" class="btn-register">Register & Proceed to Payment</button>
+                            </div>
+                        </form>
+                        <div class="payment-info">
+                            <p>After registration, you will be redirected to complete payment.</p>
+                            <div class="payment-methods">
+                                <span class="payment-method">Credit Card</span>
+                                <span class="payment-method">PayPal</span>
+                                <span class="payment-method">E-Transfer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Class 3: Advanced Persuasion & Rhetoric -->
+            <div class="class-card" data-class="advanced-rhetoric">
+                <div class="class-header">
+                    <div class="class-info">
+                        <h3>Advanced Persuasion & Rhetoric</h3>
+                        <p class="instructor">Instructor: Haim Joshi</p>
+                        <p class="schedule">Wednesdays, 7:00 PM - 8:30 PM EST | 6 weeks</p>
+                    </div>
+                    <div class="class-meta">
+                        <div class="price">$150</div>
+                        <div class="spots">10 spots left</div>
+                    </div>
+                </div>
+                <div class="class-details">
+                    <p>For advanced speakers ages 15-18 looking to master the art of persuasion. This course dives deep into rhetorical techniques, logical argumentation, emotional appeals, and crafting compelling narratives for any audience.</p>
+                    <div class="class-features">
+                        <div class="feature"><span class="feature-icon">✓</span> 6 intensive sessions</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Guest speaker workshops</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Video feedback on speeches</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Final presentation showcase</div>
+                    </div>
+                    <div class="register-section">
+                        <h4>Register for This Class</h4>
+                        <form class="register-form" action="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" method="GET" target="_blank">
+                            <div class="form-group">
+                                <label>Student Name</label>
+                                <input type="text" name="student_name" required placeholder="Enter student's full name">
+                            </div>
+                            <div class="form-group">
+                                <label>Parent/Guardian Email</label>
+                                <input type="email" name="email" required placeholder="Enter email address">
+                            </div>
+                            <div class="form-group">
+                                <label>Student Age</label>
+                                <select name="age" required>
+                                    <option value="">Select age</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" name="phone" placeholder="Enter phone number">
+                            </div>
+                            <div class="form-group full-width">
+                                <button type="submit" class="btn-register">Register & Proceed to Payment</button>
+                            </div>
+                        </form>
+                        <div class="payment-info">
+                            <p>After registration, you will be redirected to complete payment.</p>
+                            <div class="payment-methods">
+                                <span class="payment-method">Credit Card</span>
+                                <span class="payment-method">PayPal</span>
+                                <span class="payment-method">E-Transfer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 NexYouth. All rights reserved. | Grow - Lead - Act</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        const dropdownMenu = document.getElementById('programsDropdown');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Handle programs dropdown on mobile
+        const dropdownTrigger = document.querySelector('.dropdown a');
+        dropdownTrigger.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdownMenu.classList.toggle('active');
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                mobileMenuBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+                dropdownMenu.classList.remove('active');
+            }
+        });
+
+        // Class card expand/collapse functionality
+        const classCards = document.querySelectorAll('.class-card');
+
+        classCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Don't collapse if clicking on form elements
+                if (e.target.tagName === 'INPUT' ||
+                    e.target.tagName === 'SELECT' ||
+                    e.target.tagName === 'BUTTON' ||
+                    e.target.tagName === 'LABEL') {
+                    return;
+                }
+
+                const details = card.querySelector('.class-details');
+                const isOpen = details.classList.contains('show');
+
+                // Close all other cards
+                classCards.forEach(otherCard => {
+                    otherCard.classList.remove('active');
+                    otherCard.querySelector('.class-details').classList.remove('show');
+                });
+
+                // Toggle current card
+                if (!isOpen) {
+                    card.classList.add('active');
+                    details.classList.add('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
