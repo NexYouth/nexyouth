@@ -432,6 +432,78 @@
             color: #999;
         }
 
+        /* Video Testimonials */
+        .video-testimonials {
+            margin-top: 3rem;
+        }
+
+        .video-testimonials h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-card video {
+            width: 100%;
+            display: block;
+        }
+
+        .video-info {
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .video-info h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+
+        .video-info p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        @media (max-width: 1024px) {
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .video-testimonials h3 {
+                font-size: 1.5rem;
+            }
+        }
+
         /* CTA Section */
         .cta-section {
             background: #000;
@@ -813,6 +885,83 @@
                     <div class="testimonial-quote">"The practical skills and confidence I gained through NexYouth's programs have been instrumental in landing my dream internship and building my career."</div>
                     <div class="testimonial-author">Amina P.</div>
                     <div class="testimonial-title">Scholarship Winner</div>
+                </div>
+            </div>
+
+            <!-- Video Testimonials -->
+            <div class="video-testimonials">
+                <h3>Hear From Our Volunteers</h3>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <video controls preload="metadata" poster="">
+                            <source src="/static/Volunteer_Oakville_president_EthanLuo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Ethan Luo</h4>
+                            <p>Oakville Chapter President</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata" poster="">
+                            <source src="/static/Volunteer_Coding_Instructor_LucasHo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Lucas Ho</h4>
+                            <p>Coding Instructor</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata" poster="">
+                            <source src="/static/Volunteer_codiingInstructor_VincentPham.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Vincent Pham</h4>
+                            <p>Coding Instructor</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata" poster="">
+                            <source src="/static/volunteer_codingIntructor_WilliamWu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>William Wu</h4>
+                            <p>Coding Instructor</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata" poster="">
+                            <source src="/static/Volunteer_DebateCoach_KateSergieieva.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Kate Sergieieva</h4>
+                            <p>Debate Coach</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata" poster="">
+                            <source src="/static/Volunteer_DetateCoach_KristenYip.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Kristen Yip</h4>
+                            <p>Debate Coach</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata" poster="">
+                            <source src="/static/Volunteer_deabateCoach_HaimJoshi.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Haim Joshi</h4>
+                            <p>Debate Coach</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
