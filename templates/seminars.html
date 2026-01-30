@@ -318,6 +318,71 @@
             transform: translateY(-2px);
         }
 
+        .featured-interview {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+        }
+
+        .featured-interview h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+            text-align: center;
+        }
+
+        .featured-interview > .container > p {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .interview-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        .interview-info h3 {
+            font-size: 1.5rem;
+            color: #1a1a2e;
+            margin-bottom: 0.5rem;
+        }
+
+        .interview-info .interview-guest {
+            color: #0d9488;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .interview-info p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #555;
+        }
+
         footer {
             background: #000;
             color: white;
@@ -395,6 +460,19 @@
             .seminars-grid {
                 grid-template-columns: 1fr;
             }
+            .featured-interview {
+                padding: 3rem 1rem;
+            }
+            .featured-interview h2 {
+                font-size: 1.6rem;
+            }
+            .interview-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .interview-info h3 {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
@@ -435,6 +513,29 @@
         <div class="container">
             <h1>Seminars & Workships</h1>
             <p>Learn from industry leaders, environmental experts, and inspiring youth peers. Our seminars bring world-class knowledge directly to aspiring young changemakers.</p>
+        </div>
+    </section>
+
+    <section class="featured-interview">
+        <div class="container">
+            <h2>Featured Interview</h2>
+            <p>Hear inspiring stories from young achievers who are making a difference.</p>
+            <div class="interview-content">
+                <div class="video-wrapper">
+                    <iframe
+                        src="https://www.youtube.com/embed/-SSPrIlqMPY"
+                        title="Interview with Hengbin - How a 14-year-old landed 5 Silicon Valley internships"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="interview-info">
+                    <h3>How a 14-Year-Old Landed 5 Silicon Valley Internships</h3>
+                    <p class="interview-guest">Featuring: Hengbin</p>
+                    <p>In this exclusive interview, Max sits down with Hengbin, a remarkable 14-year-old who secured 5 internships at Silicon Valley companies. Learn about his journey, strategies, and advice for young people looking to break into the tech industry.</p>
+                </div>
+            </div>
         </div>
     </section>
 
