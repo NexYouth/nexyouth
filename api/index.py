@@ -127,7 +127,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
         /* Hero Section */
         .hero {
-            min-height: 25vh;
+            min-height: 50vh;
+            max-width: 66.67%;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -159,7 +161,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             min-height: 100%;
             width: auto;
             height: auto;
-            object-fit: contain;
+            object-fit: cover;
+            object-position: center center;
             z-index: 0;
         }
 
@@ -355,12 +358,14 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             }
 
             .hero {
-                min-height: 25vh;
+                min-height: 35vh;
+                max-width: 100%;
                 padding: 1rem 1rem;
             }
 
             .hero video {
-                object-fit: contain;
+                object-fit: cover;
+                object-position: center center;
             }
 
             .hero::before {
