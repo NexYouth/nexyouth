@@ -127,15 +127,16 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: 25vh;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 1.5rem 2rem;
             position: relative;
             overflow: hidden;
+            background: #0f0f1a;
         }
 
         .hero::before {
@@ -145,17 +146,20 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
             z-index: 1;
         }
 
         .hero video {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
             z-index: 0;
         }
 
@@ -351,16 +355,16 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             }
 
             .hero {
-                min-height: 100vh;
-                padding: 2rem 1rem;
+                min-height: 25vh;
+                padding: 1rem 1rem;
             }
 
             .hero video {
-                object-fit: cover;
+                object-fit: contain;
             }
 
             .hero::before {
-                background: rgba(0, 0, 0, 0.5);
+                background: rgba(0, 0, 0, 0.4);
             }
         }
 
