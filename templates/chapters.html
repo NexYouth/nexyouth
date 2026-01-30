@@ -3,20 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact NexYouth - Get in touch with us for partnerships, inquiries, and opportunities.">
-    <title>Contact Us - NexYouth</title>
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Contact Us - NexYouth">
-    <meta property="og:description" content="Get in touch with us for partnerships, inquiries, and opportunities.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nexyouth.org/contact">
-    <meta property="og:image" content="/static/logo.svg">
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
-    <link rel="apple-touch-icon" href="/static/logo.svg">
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="description" content="NexYouth Chapters - Local communities empowering youth worldwide.">
+    <title>Chapters - NexYouth</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -32,6 +20,7 @@
             background: #fff;
         }
 
+        /* Navigation */
         nav {
             background: white;
             border-bottom: 1px solid #eee;
@@ -84,6 +73,7 @@
             color: #00d4ff;
         }
 
+        /* Dropdown Menu */
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -144,210 +134,193 @@
             transform: rotate(-45deg) translate(7px, -6px);
         }
 
-        .dropdown-menu a:hover {
-            background: #f5f5f5;
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        .contact-hero {
+        /* Hero Section */
+        .hero {
             background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
             color: white;
             text-align: center;
             padding: 6rem 2rem;
-            position: relative;
-            overflow: hidden;
         }
 
-        .contact-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .contact-hero .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-hero h1 {
-            font-size: 3.5rem;
+        .hero h1 {
+            font-size: 3rem;
             font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
+            margin-bottom: 1rem;
         }
 
-        .contact-hero h1 span {
-            background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .contact-hero p {
+        .hero p {
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto;
             opacity: 0.9;
         }
 
-        .contact-content {
+        /* Chapters Section */
+        .chapters {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+        }
+
+        .chapters h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #1a1a2e;
+        }
+
+        .chapters > .container > p {
+            text-align: center;
+            color: #666;
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .chapter-card {
+            text-align: center;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .chapter-card-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #e8f9ff 0%, #d0f0ff 100%);
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .chapter-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .chapter-card h3 {
+            font-size: 1.4rem;
+            color: #1a1a2e;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .chapter-card .title {
+            color: #00d4ff;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .chapter-card .location {
+            color: #ff6b35;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .chapter-card .bio {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        /* Start a Chapter Section */
+        .start-chapter {
             padding: 6rem 2rem;
             background: white;
         }
 
-        .contact-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 4rem;
-            margin-bottom: 6rem;
-        }
-
-        .contact-form h2 {
+        .start-chapter h2 {
             font-size: 2.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
             color: #1a1a2e;
-            font-weight: 800;
         }
 
-        .form-group {
-            margin-bottom: 2rem;
+        .start-chapter-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #333;
-            font-size: 0.95rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.85rem;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #00d4ff;
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-            color: white;
-            padding: 1.1rem 2.5rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 212, 255, 0.35);
-        }
-
-        .contact-info {
-            padding-top: 2rem;
-        }
-
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 2.5rem;
-            color: #1a1a2e;
-            font-weight: 800;
-        }
-
-        .info-block {
-            margin-bottom: 2.5rem;
-            padding-bottom: 2.5rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .info-block:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .info-block h4 {
-            font-size: 1rem;
-            margin-bottom: 0.8rem;
-            color: #1a1a2e;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .info-block p {
-            color: #555;
-            font-size: 0.95rem;
+        .start-chapter-content p {
+            font-size: 1.05rem;
             line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
         }
 
-        .info-block a {
-            color: #00d4ff;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
+        .start-chapter-benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
         }
 
-        .info-block a:hover {
-            color: #0099cc;
+        .benefit-item {
+            text-align: center;
+            padding: 1.5rem;
         }
 
+        .benefit-item h4 {
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-item p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        /* CTA Section */
         .cta-section {
             background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
             color: white;
-            padding: 5rem 2rem;
             text-align: center;
-            margin-bottom: 0;
+            padding: 6rem 2rem;
         }
 
         .cta-section h2 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
-            font-weight: 800;
+            color: white;
         }
 
         .cta-section p {
             font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-            opacity: 0.95;
-            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-btn {
@@ -355,67 +328,27 @@
             background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
             color: white;
             padding: 1rem 2.5rem;
-            border-radius: 6px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
         }
 
         .cta-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 212, 255, 0.35);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
         }
 
         footer {
-            background: #1a1a2e;
+            background: #000;
             color: white;
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-column h4 {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #00d4ff;
-            font-weight: 700;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-column a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .footer-column a:hover {
-            color: #00d4ff;
-        }
-
-        .footer-bottom {
+            padding: 3rem 2rem;
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
             color: #999;
             font-size: 0.9rem;
         }
@@ -483,38 +416,61 @@
                 display: flex;
             }
 
-            .contact-hero {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
                 padding: 3rem 1rem;
             }
 
-            .contact-hero h1 {
+            .hero h1 {
                 font-size: 1.8rem;
+                margin-bottom: 0.8rem;
             }
 
-            .contact-hero p {
+            .hero p {
                 font-size: 1rem;
             }
 
-            .contact-content {
+            .chapters {
                 padding: 3rem 1rem;
             }
 
-            .contact-form h2 {
+            .chapters h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .chapters > .container > p {
+                font-size: 0.95rem;
+            }
+
+            .chapters-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .chapter-card {
+                padding: 1.5rem;
+            }
+
+            .chapter-card-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .start-chapter {
+                padding: 3rem 1rem;
+            }
+
+            .start-chapter h2 {
                 font-size: 1.8rem;
             }
 
-            .contact-info h2 {
-                font-size: 1.8rem;
-            }
-
-            .contact-grid {
+            .start-chapter-benefits {
                 grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1rem;
             }
 
             .cta-section {
@@ -522,11 +478,29 @@
             }
 
             .cta-section h2 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+                margin-bottom: 0.8rem;
             }
 
-            .container {
-                padding: 0 1rem;
+            .cta-section p {
+                font-size: 0.95rem;
+            }
+
+            .cta-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+            }
+
+            footer .links {
+                gap: 1rem;
+            }
+
+            footer a {
+                font-size: 0.85rem;
             }
         }
 
@@ -539,40 +513,26 @@
                 height: 40px;
             }
 
-            .contact-hero {
-                padding: 2rem 1rem;
+            nav a {
+                font-size: 0.9rem;
             }
 
-            .contact-hero h1 {
+            .hero h1 {
                 font-size: 1.4rem;
             }
 
-            .contact-hero p {
-                font-size: 0.95rem;
-            }
-
-            .contact-content {
-                padding: 1.5rem 1rem;
-            }
-
-            .contact-form h2 {
-                font-size: 1.3rem;
-            }
-
-            .contact-info h2 {
-                font-size: 1.3rem;
-            }
-
-            .form-group label {
+            .hero p {
                 font-size: 0.9rem;
             }
 
-            .info-block h4 {
-                font-size: 0.9rem;
+            .chapters h2,
+            .start-chapter h2 {
+                font-size: 1.5rem;
             }
 
-            .cta-section {
-                padding: 2rem 1rem;
+            .chapter-card-image {
+                width: 100px;
+                height: 100px;
             }
 
             .cta-section h2 {
@@ -580,12 +540,11 @@
             }
 
             .cta-btn {
-                padding: 0.8rem 1.5rem;
+                padding: 0.7rem 1.2rem;
                 font-size: 0.85rem;
-            }
-
-            footer {
-                padding: 2rem 1rem;
+                display: block;
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -623,66 +582,75 @@
         </div>
     </nav>
 
-    <section class="contact-hero">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <h1>Get In <span>Touch</span></h1>
-            <p>Have questions or want to partner with us? We'd love to hear from you. Reach out and let's create positive change together.</p>
+            <h1>NexYouth Chapters</h1>
+            <p>Our chapters bring NexYouth's mission to local communities around the world. Each chapter is led by passionate youth leaders who organize events, programs, and initiatives to empower students in their area.</p>
         </div>
     </section>
 
-    <section class="contact-content">
-        <div class="contact-wrapper">
-            <div class="contact-grid">
-                <div class="contact-form">
-                    <h2>Get In Touch</h2>
-                    <form method="POST" action="https://formspree.io/f/xbdjopko" data-redirect="/success">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Submit</button>
-                    </form>
+    <!-- Chapters Section -->
+    <section class="chapters">
+        <div class="container">
+            <h2>Our Chapter Leaders</h2>
+            <p>Meet the dedicated leaders who are building thriving NexYouth communities in their regions.</p>
+
+            <div class="chapters-grid">
+                <div class="chapter-card">
+                    <div class="chapter-card-image">
+                        <img src="https://www.nexyouth.org/Member_Eluo1.png" alt="Ethan Luo" onerror="this.src='/static/placeholder.jpg'">
+                    </div>
+                    <h3>Ethan Luo</h3>
+                    <span class="title">Chapter President</span>
+                    <span class="location">Oakville, Ontario</span>
+                    <p class="bio">Ethan is a Grade 10 student at Abbey Park High School in Oakville. With 2 years of competitive debate experience, he has advanced at prestigious tournaments such as Harvard WSDC, Queens BPHS, McGill BPHS, and Hart House High Schools. Outside debate, he enjoys clarinet, trail running, and co-hosting Perception Podcast.</p>
                 </div>
 
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    
-                    <div class="info-block">
-                        <h4>Visit Us</h4>
-                        <p>Toronto, Canada</p>
+                <div class="chapter-card">
+                    <div class="chapter-card-image">
+                        <img src="https://www.nexyouth.org/Member_Rwei1.png" alt="Rachel Wei" onerror="this.src='/static/placeholder.jpg'">
                     </div>
+                    <h3>Rachel Wei</h3>
+                    <span class="title">Chapter President</span>
+                    <span class="location">Coquitlam, British Columbia</span>
+                    <p class="bio">Rachel, as president of the Coquitlam Chapter, oversees the chapter and is instrumental in building community connections. She's dedicated to making NexYouth's programs accessible to local youth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="info-block">
-                        <h4>Phone</h4>
-                        <p><a href="tel:+1234567890">Available upon request</a></p>
+    <!-- Start a Chapter Section -->
+    <section class="start-chapter">
+        <div class="container">
+            <h2>Start a Chapter</h2>
+            <div class="start-chapter-content">
+                <p>Are you passionate about empowering youth in your community? Starting a NexYouth chapter is a great way to make a difference while developing your leadership skills.</p>
+
+                <div class="start-chapter-benefits">
+                    <div class="benefit-item">
+                        <h4>Lead Your Community</h4>
+                        <p>Organize events and programs that directly impact students in your area.</p>
                     </div>
-
-                    <div class="info-block">
-                        <h4>Email Us</h4>
-                        <p><a href="mailto:nexyouth.master@gmail.com">nexyouth.master@gmail.com</a></p>
+                    <div class="benefit-item">
+                        <h4>Build Your Network</h4>
+                        <p>Connect with other chapter leaders and NexYouth's global community.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Develop Skills</h4>
+                        <p>Gain valuable leadership, organizational, and communication experience.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <h2>Help Us Empower Youth Globally</h2>
-            <p>Your support enables us to reach more young leaders, provide quality programs, and create lasting impact in communities worldwide. Together, we can shape the future.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform?pli=1" target="_blank" class="cta-btn">Get Involved</a>
+            <h2>Ready to Start a Chapter?</h2>
+            <p>Join our network of youth leaders and bring NexYouth's mission to your community. We provide resources, training, and support to help you succeed.</p>
+            <a href="/contact" class="cta-btn">Contact Us</a>
         </div>
     </section>
 
