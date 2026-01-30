@@ -1476,6 +1476,10 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
 def about():
     return render_template('about.html')
 
+@app.route('/chapters')
+def chapters():
+    return render_template('chapters.html')
+
 # Program Page Templates
 SKILL_DEVELOPMENT_TEMPLATE = """
 <!DOCTYPE html>
