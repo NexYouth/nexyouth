@@ -344,8 +344,34 @@
             font-size: 1.5rem;
             font-weight: 600;
             color: var(--accent-light);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             letter-spacing: 0.05em;
+        }
+
+        .hero-mission {
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            text-align: center;
+        }
+
+        .hero-mission-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent-light);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-mission-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-mission-text:last-child {
+            margin-bottom: 0;
         }
 
         .hero-description {
@@ -1981,10 +2007,17 @@
             <span class="hero-label">2025-2026 Competition Now Open</span>
             <h1 class="hero-title">International Youth<br>Environmental Competition</h1>
             <p class="hero-tagline">Inspire. Innovate. Impact.</p>
-            <p class="hero-description">Join thousands of young changemakers from around the world in addressing our planet's most pressing environmental challenges.</p>
+
+            <!-- Our Mission integrated into hero -->
+            <div class="hero-mission">
+                <h2 class="hero-mission-title">Our Mission</h2>
+                <p class="hero-mission-text">The International Youth Environmental Competition (IYEC) is an annual global event dedicated to empowering youth to address environmental and climate challenges through innovative solutions to local problems.</p>
+                <p class="hero-mission-text">We believe that young people have the creativity, passion, and determination to make a real difference in their communities and beyond.</p>
+            </div>
+
             <div class="hero-cta">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSc487tftJjAfLNuFsVuFODGCr7ljV-8DFdXyx9Lb5Szlxv24w/viewform" target="_blank" class="btn btn-primary btn-large">Register Now</a>
-                <a href="#about" class="btn btn-secondary btn-large">Learn More</a>
+                <a href="#global-impact" class="btn btn-secondary btn-large">Learn More</a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -1992,53 +2025,6 @@
             <div class="scroll-arrow"></div>
         </div>
     </header>
-
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Our Mission</span>
-                <h2 class="section-title">Shaping Tomorrow's Environmental Leaders</h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-content">
-                    <p class="lead">The International Youth Environmental Competition (IYEC) is an annual global event dedicated to empowering youth to address environmental and climate challenges through innovative solutions to local problems.</p>
-                    <p>We believe that young people have the creativity, passion, and determination to make a real difference in their communities and beyond. IYEC provides a platform for students worldwide to showcase their ideas, learn from peers, and gain recognition for their environmental initiatives.</p>
-                    <div class="about-features">
-                        <div class="feature">
-                            <div class="feature-icon">&#127919;</div>
-                            <div class="feature-text">
-                                <h4>No Experience Required</h4>
-                                <p>Open to all youth passionate about the environment</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">&#127760;</div>
-                            <div class="feature-text">
-                                <h4>Global Participation</h4>
-                                <p>Connect with like-minded youth worldwide</p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">&#128161;</div>
-                            <div class="feature-text">
-                                <h4>Multiple Formats</h4>
-                                <p>Express your ideas through essays, videos, or creative media</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="image-placeholder">
-                        <div class="placeholder-content">
-                            <span class="placeholder-icon">&#127793;</span>
-                            <span class="placeholder-text">Youth for the Planet</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Global Impact Section -->
     <section id="global-impact" class="section global-impact">
