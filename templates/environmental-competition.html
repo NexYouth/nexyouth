@@ -640,11 +640,23 @@
             color: var(--gray-700);
             white-space: nowrap;
             margin-top: 4px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2px 6px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3px 8px;
             border-radius: 4px;
             opacity: 0;
             transition: var(--transition);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .pin-count {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.5625rem;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 3px;
+            margin-left: 4px;
         }
 
         .map-pin:hover .pin-label {
@@ -2081,167 +2093,167 @@
                     <div class="map-pins">
                         <div class="map-pin" style="left: 18%; top: 35%;" data-country="USA" data-count="8">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">USA</span>
+                            <span class="pin-label">USA <span class="pin-count">8</span></span>
                         </div>
                         <div class="map-pin" style="left: 24%; top: 28%;" data-country="Canada" data-count="3">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Canada</span>
+                            <span class="pin-label">Canada <span class="pin-count">3</span></span>
                         </div>
                         <div class="map-pin" style="left: 48%; top: 25%;" data-country="UK/Ireland" data-count="2">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Europe</span>
+                            <span class="pin-label">Europe <span class="pin-count">2</span></span>
                         </div>
                         <div class="map-pin" style="left: 52%; top: 32%;" data-country="Turkey" data-count="4">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Turkey</span>
+                            <span class="pin-label">Turkey <span class="pin-count">4</span></span>
                         </div>
                         <div class="map-pin" style="left: 70%; top: 38%;" data-country="India" data-count="15">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">India</span>
+                            <span class="pin-label">India <span class="pin-count">15</span></span>
                         </div>
                         <div class="map-pin" style="left: 68%; top: 28%;" data-country="Pakistan" data-count="5">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Pakistan</span>
+                            <span class="pin-label">Pakistan <span class="pin-count">5</span></span>
                         </div>
                         <div class="map-pin" style="left: 78%; top: 42%;" data-country="Vietnam" data-count="3">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Vietnam</span>
+                            <span class="pin-label">Vietnam <span class="pin-count">3</span></span>
                         </div>
                         <div class="map-pin" style="left: 80%; top: 35%;" data-country="China" data-count="4">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">China</span>
+                            <span class="pin-label">China <span class="pin-count">4</span></span>
                         </div>
                         <div class="map-pin" style="left: 60%; top: 35%;" data-country="UAE/Qatar" data-count="12">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Middle East</span>
+                            <span class="pin-label">Middle East <span class="pin-count">12</span></span>
                         </div>
                         <div class="map-pin" style="left: 54%; top: 55%;" data-country="Kenya" data-count="4">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Kenya</span>
+                            <span class="pin-label">Kenya <span class="pin-count">4</span></span>
                         </div>
                         <div class="map-pin" style="left: 50%; top: 48%;" data-country="Nigeria" data-count="2">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Nigeria</span>
+                            <span class="pin-label">Nigeria <span class="pin-count">2</span></span>
                         </div>
                         <div class="map-pin" style="left: 52%; top: 60%;" data-country="South Africa" data-count="2">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">S. Africa</span>
+                            <span class="pin-label">S. Africa <span class="pin-count">2</span></span>
                         </div>
                         <div class="map-pin" style="left: 82%; top: 48%;" data-country="Singapore" data-count="5">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Singapore</span>
+                            <span class="pin-label">Singapore <span class="pin-count">5</span></span>
                         </div>
                         <div class="map-pin" style="left: 85%; top: 35%;" data-country="South Korea" data-count="3">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">S. Korea</span>
+                            <span class="pin-label">S. Korea <span class="pin-count">3</span></span>
                         </div>
                         <div class="map-pin" style="left: 80%; top: 30%;" data-country="Taiwan" data-count="4">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Taiwan</span>
+                            <span class="pin-label">Taiwan <span class="pin-count">4</span></span>
                         </div>
                         <div class="map-pin" style="left: 65%; top: 22%;" data-country="Kazakhstan" data-count="3">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Kazakhstan</span>
+                            <span class="pin-label">Kazakhstan <span class="pin-count">3</span></span>
                         </div>
                         <div class="map-pin" style="left: 75%; top: 45%;" data-country="Bangladesh" data-count="4">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Bangladesh</span>
+                            <span class="pin-label">Bangladesh <span class="pin-count">4</span></span>
                         </div>
                         <div class="map-pin" style="left: 90%; top: 70%;" data-country="Australia" data-count="2">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Australia</span>
+                            <span class="pin-label">Australia <span class="pin-count">2</span></span>
                         </div>
                         <div class="map-pin" style="left: 46%; top: 38%;" data-country="Spain" data-count="3">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Spain</span>
+                            <span class="pin-label">Spain <span class="pin-count">3</span></span>
                         </div>
                         <div class="map-pin" style="left: 28%; top: 55%;" data-country="Brazil" data-count="1">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Brazil</span>
+                            <span class="pin-label">Brazil <span class="pin-count">1</span></span>
                         </div>
                         <div class="map-pin" style="left: 20%; top: 45%;" data-country="Mexico" data-count="2">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Mexico</span>
+                            <span class="pin-label">Mexico <span class="pin-count">2</span></span>
                         </div>
                         <div class="map-pin" style="left: 72%; top: 45%;" data-country="Sri Lanka" data-count="2">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Sri Lanka</span>
+                            <span class="pin-label">Sri Lanka <span class="pin-count">2</span></span>
                         </div>
                         <div class="map-pin" style="left: 73%; top: 35%;" data-country="Nepal" data-count="3">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Nepal</span>
+                            <span class="pin-label">Nepal <span class="pin-count">3</span></span>
                         </div>
                         <div class="map-pin" style="left: 45%; top: 42%;" data-country="Morocco" data-count="2">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Morocco</span>
+                            <span class="pin-label">Morocco <span class="pin-count">2</span></span>
                         </div>
                         <div class="map-pin" style="left: 48%; top: 42%;" data-country="Algeria" data-count="1">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Algeria</span>
+                            <span class="pin-label">Algeria <span class="pin-count">1</span></span>
                         </div>
                         <div class="map-pin" style="left: 55%; top: 50%;" data-country="Uganda" data-count="2">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Uganda</span>
+                            <span class="pin-label">Uganda <span class="pin-count">2</span></span>
                         </div>
                         <div class="map-pin" style="left: 56%; top: 55%;" data-country="Rwanda" data-count="1">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Rwanda</span>
+                            <span class="pin-label">Rwanda <span class="pin-count">1</span></span>
                         </div>
                         <div class="map-pin" style="left: 54%; top: 40%;" data-country="Egypt" data-count="3">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Egypt</span>
+                            <span class="pin-label">Egypt <span class="pin-count">3</span></span>
                         </div>
                         <div class="map-pin" style="left: 67%; top: 25%;" data-country="Uzbekistan" data-count="2">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Uzbekistan</span>
+                            <span class="pin-label">Uzbekistan <span class="pin-count">2</span></span>
                         </div>
                         <div class="map-pin" style="left: 56%; top: 38%;" data-country="Israel" data-count="1">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Israel</span>
+                            <span class="pin-label">Israel <span class="pin-count">1</span></span>
                         </div>
                         <div class="map-pin" style="left: 62%; top: 35%;" data-country="Iran" data-count="2">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Iran</span>
+                            <span class="pin-label">Iran <span class="pin-count">2</span></span>
                         </div>
                         <div class="map-pin" style="left: 50%; top: 35%;" data-country="Greece" data-count="1">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Greece</span>
+                            <span class="pin-label">Greece <span class="pin-count">1</span></span>
                         </div>
                         <div class="map-pin" style="left: 95%; top: 75%;" data-country="New Zealand" data-count="1">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">New Zealand</span>
+                            <span class="pin-label">New Zealand <span class="pin-count">1</span></span>
                         </div>
                         <div class="map-pin" style="left: 84%; top: 52%;" data-country="Indonesia" data-count="3">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Indonesia</span>
+                            <span class="pin-label">Indonesia <span class="pin-count">3</span></span>
                         </div>
                         <div class="map-pin" style="left: 80%; top: 45%;" data-country="Thailand" data-count="2">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Thailand</span>
+                            <span class="pin-label">Thailand <span class="pin-count">2</span></span>
                         </div>
                         <div class="map-pin" style="left: 83%; top: 50%;" data-country="Malaysia" data-count="2">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Malaysia</span>
+                            <span class="pin-label">Malaysia <span class="pin-count">2</span></span>
                         </div>
                         <div class="map-pin" style="left: 86%; top: 45%;" data-country="Philippines" data-count="3">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Philippines</span>
+                            <span class="pin-label">Philippines <span class="pin-count">3</span></span>
                         </div>
                         <div class="map-pin" style="left: 59%; top: 40%;" data-country="Bahrain" data-count="1">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Bahrain</span>
+                            <span class="pin-label">Bahrain <span class="pin-count">1</span></span>
                         </div>
                         <div class="map-pin" style="left: 68%; top: 22%;" data-country="Turkmenistan" data-count="1">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Turkmenistan</span>
+                            <span class="pin-label">Turkmenistan <span class="pin-count">1</span></span>
                         </div>
                         <div class="map-pin" style="left: 70%; top: 18%;" data-country="Russia" data-count="2">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Russia</span>
+                            <span class="pin-label">Russia <span class="pin-count">2</span></span>
                         </div>
                         <div class="map-pin" style="left: 52%; top: 20%;" data-country="Sweden" data-count="1">
                             <span class="pin-dot"></span>
-                            <span class="pin-label">Sweden</span>
+                            <span class="pin-label">Sweden <span class="pin-count">1</span></span>
                         </div>
                     </div>
                 </div>
