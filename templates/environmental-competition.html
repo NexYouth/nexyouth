@@ -317,8 +317,8 @@
         .map-image {
             width: 100%;
             height: auto;
-            opacity: 0.4;
-            filter: invert(1);
+            opacity: 0.7;
+            filter: invert(1) brightness(1.3);
         }
 
         .map-pins {
@@ -904,6 +904,26 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .winner-avatar {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .winner-card.honorable {
+            border-left-color: #f59e0b;
+        }
+
+        .winner-card.ingenuity {
+            border-left-color: #8b5cf6;
         }
 
         .winner-info {
@@ -1610,7 +1630,7 @@
 
                 <div class="winner-card">
                     <div class="winner-image">
-                        <img src="/static/winner_Amanullah Solangi.png" alt="Amanullah Solangi">
+                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-10.png" alt="Amanullah Solangi">
                     </div>
                     <div class="winner-info">
                         <h4>🥇 1st Place: Amanullah Solangi</h4>
@@ -1622,7 +1642,7 @@
 
                 <div class="winner-card">
                     <div class="winner-image">
-                        <img src="/static/winner_Ngô Anh Tuấn.png" alt="Ngô Anh Tuấn & Duong Hai Mien">
+                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-9.png" alt="Ngô Anh Tuấn & Duong Hai Mien">
                     </div>
                     <div class="winner-info">
                         <h4>🥈 2nd Place: Ngô Anh Tuấn & Duong Hai Mien</h4>
@@ -1632,14 +1652,76 @@
                     </div>
                 </div>
 
-                <h3 class="category-title" style="margin-top: 3rem;">Ingenuity Award</h3>
+                <div class="winner-card honorable">
+                    <div class="winner-image">
+                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-11.png" alt="Chun-Shan CHANG">
+                    </div>
+                    <div class="winner-info">
+                        <h4>🏅 Honorable Mention: Chun-Shan CHANG</h4>
+                        <p class="winner-location">Taiwan</p>
+                        <p class="project-name">"Travel Experience & Environmental Perception"</p>
+                        <p class="project-desc">Research exploring the relationship between travel experiences and environmental awareness.</p>
+                    </div>
+                </div>
+
+                <div class="winner-card honorable">
+                    <div class="winner-image">
+                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-12.png" alt="William Zeng">
+                    </div>
+                    <div class="winner-info">
+                        <h4>🏅 Honorable Mention: William Zeng</h4>
+                        <p class="winner-location">USA</p>
+                        <p class="project-name">"Rome's Waste Management Crisis"</p>
+                        <p class="project-desc">Analysis and solutions for urban waste management challenges in major cities.</p>
+                    </div>
+                </div>
+
+                <h3 class="category-title" style="margin-top: 3rem;">Junior Category Winners</h3>
 
                 <div class="winner-card">
                     <div class="winner-image">
-                        <img src="/static/winner_2024_25IYEC Ingenuity Award.png" alt="Earth Z Team">
+                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-14.png" alt="Girl Scout Troop 436">
                     </div>
                     <div class="winner-info">
-                        <h4>🚀 Atharva Soni, Arav Kamat, Sadik Premjee & Aria Kamat</h4>
+                        <h4>🥇 1st Place: Girl Scout Troop 436</h4>
+                        <p class="winner-location">Alaska, USA</p>
+                        <p class="project-name">"The BioGlitter Initiative"</p>
+                        <p class="project-desc">Promoting biodegradable alternatives to traditional plastic glitter to reduce microplastic pollution.</p>
+                    </div>
+                </div>
+
+                <div class="winner-card">
+                    <div class="winner-image">
+                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-15.png" alt="Rui-Tong Yuan">
+                    </div>
+                    <div class="winner-info">
+                        <h4>🥈 2nd Place: Rui-Tong Yuan</h4>
+                        <p class="winner-location">Taiwan</p>
+                        <p class="project-name">"Building a Better Future"</p>
+                        <p class="project-desc">Exploring sustainable construction materials and methods for environmentally-friendly building practices.</p>
+                    </div>
+                </div>
+
+                <div class="winner-card honorable">
+                    <div class="winner-image">
+                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-16.png" alt="Syuan-Hao HUANG">
+                    </div>
+                    <div class="winner-info">
+                        <h4>🏅 Honorable Mention: Syuan-Hao HUANG</h4>
+                        <p class="winner-location">Taiwan</p>
+                        <p class="project-name">"Environmental Preservation vs Development"</p>
+                        <p class="project-desc">Examining the balance between environmental conservation and economic development.</p>
+                    </div>
+                </div>
+
+                <h3 class="category-title" style="margin-top: 3rem;">Special Awards</h3>
+
+                <div class="winner-card ingenuity">
+                    <div class="winner-image">
+                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-13.png" alt="Earth Z Team">
+                    </div>
+                    <div class="winner-info">
+                        <h4>🚀 Ingenuity Award: Atharva Soni, Arav Kamat, Sadik Premjee & Aria Kamat</h4>
                         <p class="winner-location">Northwood High School - Irvine, California, USA</p>
                         <p class="project-name">"Earth Z - Wildfire Solutions"</p>
                         <p class="project-desc">An AI-powered fire detection system designed to identify and alert authorities to wildfires earlier using real-time data and machine learning.</p>
@@ -1651,6 +1733,9 @@
                 <h3 class="category-title">Senior Category Winners</h3>
 
                 <div class="winner-card">
+                    <div class="winner-image">
+                        <div class="winner-avatar">JJ</div>
+                    </div>
                     <div class="winner-info">
                         <h4>🥇 1st Place: Julie Jin</h4>
                         <p class="winner-location">Ottawa, Canada</p>
@@ -1660,11 +1745,40 @@
                 </div>
 
                 <div class="winner-card">
+                    <div class="winner-image">
+                        <div class="winner-avatar">JJ</div>
+                    </div>
                     <div class="winner-info">
                         <h4>🥈 2nd Place: Jenny Jin</h4>
                         <p class="winner-location">Ottawa, Canada</p>
                         <p class="project-name">"From Waste to Well-being"</p>
                         <p class="project-desc">Addressing the global waste crisis through innovative waste management solutions and community engagement.</p>
+                    </div>
+                </div>
+
+                <h3 class="category-title" style="margin-top: 3rem;">Junior Category Winners</h3>
+
+                <div class="winner-card">
+                    <div class="winner-image">
+                        <div class="winner-avatar">AK</div>
+                    </div>
+                    <div class="winner-info">
+                        <h4>🥇 1st Place: Alisa Jiang & Katherine Jiang</h4>
+                        <p class="winner-location">Naples, Florida, USA</p>
+                        <p class="project-name">"Southwest Florida Environmental Issues"</p>
+                        <p class="project-desc">A comprehensive study of environmental challenges facing Southwest Florida and proposed solutions.</p>
+                    </div>
+                </div>
+
+                <div class="winner-card">
+                    <div class="winner-image">
+                        <div class="winner-avatar">EC</div>
+                    </div>
+                    <div class="winner-info">
+                        <h4>🥈 2nd Place: Even Chen</h4>
+                        <p class="winner-location">Shanghai, China</p>
+                        <p class="project-name">"A Spotlight on Local Actions"</p>
+                        <p class="project-desc">Highlighting local environmental initiatives that are making a positive impact on the environment.</p>
                     </div>
                 </div>
             </div>
