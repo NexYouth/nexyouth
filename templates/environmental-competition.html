@@ -348,29 +348,25 @@
             letter-spacing: 0.05em;
         }
 
-        .hero-mission {
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
+/* About Section */
+        .about-section {
+            background: var(--gray-50);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
         }
 
-        .hero-mission-title {
+        .about-text {
             font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--accent-light);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 1rem;
+            color: var(--gray-700);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
         }
 
-        .hero-mission-text {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.8;
-            margin-bottom: 0.75rem;
-        }
-
-        .hero-mission-text:last-child {
+        .about-text:last-child {
             margin-bottom: 0;
         }
 
@@ -2008,16 +2004,9 @@
             <h1 class="hero-title">International Youth<br>Environmental Competition</h1>
             <p class="hero-tagline">Inspire. Innovate. Impact.</p>
 
-            <!-- Our Mission integrated into hero -->
-            <div class="hero-mission">
-                <h2 class="hero-mission-title">Our Mission</h2>
-                <p class="hero-mission-text">The International Youth Environmental Competition (IYEC) is an annual global event dedicated to empowering youth to address environmental and climate challenges through innovative solutions to local problems.</p>
-                <p class="hero-mission-text">We believe that young people have the creativity, passion, and determination to make a real difference in their communities and beyond.</p>
-            </div>
-
             <div class="hero-cta">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSc487tftJjAfLNuFsVuFODGCr7ljV-8DFdXyx9Lb5Szlxv24w/viewform" target="_blank" class="btn btn-primary btn-large">Register Now</a>
-                <a href="#global-impact" class="btn btn-secondary btn-large">Learn More</a>
+                <a href="#about" class="btn btn-secondary btn-large">Learn More</a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -2025,6 +2014,20 @@
             <div class="scroll-arrow"></div>
         </div>
     </header>
+
+    <!-- Our Mission Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-label">About IYEC</span>
+                <h2 class="section-title">Our Mission</h2>
+            </div>
+            <div class="about-content">
+                <p class="about-text">The International Youth Environmental Competition (IYEC) is an annual global event dedicated to empowering youth to address environmental and climate challenges through innovative solutions to local problems.</p>
+                <p class="about-text">We believe that young people have the creativity, passion, and determination to make a real difference in their communities and beyond.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Global Impact Section -->
     <section id="global-impact" class="section global-impact">
