@@ -127,7 +127,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
         /* Hero Section */
         .hero {
-            min-height: 50vh;
+            min-height: 80vh;
             max-width: 66.67%;
             margin: 0 auto;
             display: flex;
