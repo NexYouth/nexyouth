@@ -17,102 +17,255 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
-        * {
+        /* CSS Variables */
+        :root {
+            /* Colors */
+            --primary: #0d9488;
+            --primary-dark: #0f766e;
+            --primary-light: #14b8a6;
+            --secondary: #1e3a5f;
+            --secondary-light: #2d4a6f;
+            --accent: #f59e0b;
+            --accent-light: #fbbf24;
+
+            /* Neutrals */
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-hero: linear-gradient(135deg, #0f766e 0%, #1e3a5f 50%, #134e4a 100%);
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-display: 'Playfair Display', Georgia, serif;
+
+            /* Spacing */
+            --section-padding: 6rem;
+            --container-max: 1200px;
+
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+
+            /* Transitions */
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: var(--font-sans);
+            font-size: 16px;
             line-height: 1.6;
-            color: #333;
-            background: #fff;
+            color: var(--gray-700);
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        nav {
-            background: white;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            padding: 0.8rem 2rem;
+        img {
+            max-width: 100%;
+            height: auto;
         }
 
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            display: flex;
-            align-items: center;
+        a {
             text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
         }
 
-        nav .logo img {
+        ul {
+            list-style: none;
+        }
+
+        /* Container */
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: var(--section-padding) 0;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-header.centered {
+            text-align: center;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--gray-500);
+            margin-top: 1rem;
+            max-width: 600px;
+        }
+
+        .section-header.centered .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-large {
+            padding: 1rem 2.5rem;
+            font-size: 1.0625rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 50px;
             width: auto;
         }
 
-        nav ul {
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .nav-links {
             display: flex;
-            list-style: none;
+            align-items: center;
             gap: 2rem;
         }
 
-        nav ul li {
-            position: relative;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-size: 1rem;
+        .nav-links a {
+            font-size: 0.9375rem;
             font-weight: 500;
-            transition: color 0.2s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--gray-600);
         }
 
-        nav a:hover {
-            color: #10b981;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 220px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 0.5rem 0;
-            z-index: 100;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 0.8rem 1.2rem;
-            font-size: 0.9rem;
-            text-transform: none;
-            letter-spacing: 0;
-            color: #333;
-        }
-
-        .dropdown-menu a:hover {
-            background: #f5f5f5;
-            color: #10b981;
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
         .mobile-menu-btn {
@@ -122,79 +275,84 @@
             background: none;
             border: none;
             cursor: pointer;
-            padding: 0.5rem;
+            padding: 5px;
         }
 
         .mobile-menu-btn span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            width: 24px;
+            height: 2px;
+            background: var(--gray-700);
+            transition: var(--transition);
         }
 
         /* Hero Section */
-        .program-hero {
-            background: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);
-            color: white;
-            text-align: center;
-            padding: 5rem 2rem;
+        .hero {
             position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
+            padding-top: 70px;
         }
 
-        .program-hero::before {
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-hero);
+            z-index: 0;
+        }
+
+        .hero-bg::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.3;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
-        .program-hero .container {
+        .hero-content {
             position: relative;
             z-index: 1;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
         }
 
         .hero-label {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .program-hero h1 {
-            font-size: 3rem;
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
             font-weight: 700;
+            color: var(--white);
+            line-height: 1.15;
             margin-bottom: 1rem;
-            line-height: 1.2;
         }
 
         .hero-tagline {
             font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 1rem;
-            opacity: 0.95;
+            color: var(--accent-light);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
         }
 
-        .program-hero p {
-            font-size: 1.15rem;
-            max-width: 700px;
+        .hero-description {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
             margin: 0 auto 2rem;
-            opacity: 0.9;
             line-height: 1.7;
         }
 
@@ -202,279 +360,396 @@
             display: flex;
             gap: 1rem;
             justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.9rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: white;
-            color: #059669;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: #059669;
-        }
-
-        /* Impact Stats */
-        .impact-section {
-            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
-            color: white;
-            padding: 5rem 2rem;
-        }
-
-        .impact-section h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .impact-section > .container > p {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.1rem;
             margin-bottom: 3rem;
         }
 
+        .hero-cta .btn-primary {
+            background: var(--accent);
+            color: var(--gray-900);
+        }
+
+        .hero-cta .btn-primary:hover {
+            background: var(--accent-light);
+        }
+
+        .hero-cta .btn-secondary {
+            background: transparent;
+            border-color: rgba(255, 255, 255, 0.5);
+            color: var(--white);
+        }
+
+        .hero-cta .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--white);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-arrow {
+            width: 24px;
+            height: 24px;
+            border-right: 2px solid rgba(255, 255, 255, 0.7);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* About Section */
+        .about {
+            background: var(--gray-50);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content .lead {
+            font-size: 1.25rem;
+            color: var(--gray-700);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .about-content p {
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+        }
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .feature {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            border-radius: var(--radius);
+        }
+
+        .feature-text h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-text p {
+            font-size: 0.9375rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .image-placeholder {
+            aspect-ratio: 4/3;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-2xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .placeholder-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--white);
+        }
+
+        .placeholder-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .placeholder-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        /* Global Impact Section */
+        .global-impact {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 50%, #f0f9ff 100%);
+        }
+
+        /* Impact Statistics */
         .impact-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
+            margin-bottom: 4rem;
         }
 
         .impact-stat {
             text-align: center;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem 1.5rem;
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+
+        .impact-stat:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
         }
 
         .impact-number {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-number::after {
+            content: '+';
+            font-size: 2rem;
+        }
+
+        .impact-number.no-plus::after {
+            content: '';
         }
 
         .impact-label {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-top: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
         }
 
         .impact-detail {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 0.3rem;
+            font-size: 0.875rem;
+            color: var(--gray-500);
         }
 
-        /* World Map */
+        /* World Map Container */
         .world-map-container {
-            margin-top: 4rem;
-            text-align: center;
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            padding: 2.5rem;
+            margin-bottom: 4rem;
+            box-shadow: var(--shadow-lg);
         }
 
         .map-title {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 2rem;
         }
 
         .world-map {
             position: relative;
+            width: 100%;
             max-width: 900px;
             margin: 0 auto;
-            border-radius: 12px;
+            aspect-ratio: 2/1;
+            background: linear-gradient(180deg, #e8f4fc 0%, #d4e8f7 100%);
+            border-radius: var(--radius-xl);
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1rem;
         }
 
         .map-image {
             width: 100%;
-            height: auto;
-            opacity: 0.7;
-            filter: invert(1) brightness(1.3);
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            filter: sepia(10%) hue-rotate(160deg) saturate(80%);
         }
 
+        /* Map Pins */
         .map-pins {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
         }
 
         .map-pin {
             position: absolute;
             cursor: pointer;
             z-index: 10;
+            transform: translate(-50%, -50%);
         }
 
         .pin-dot {
             display: block;
             width: 12px;
             height: 12px;
-            background: #10b981;
+            background: var(--accent);
+            border: 2px solid var(--white);
             border-radius: 50%;
-            border: 2px solid white;
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.5);
             animation: pulse 2s infinite;
         }
 
         .pin-label {
             position: absolute;
-            top: -25px;
+            top: 100%;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(16, 185, 129, 0.9);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
+            font-size: 0.625rem;
             font-weight: 600;
+            color: var(--gray-700);
             white-space: nowrap;
+            margin-top: 4px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2px 6px;
+            border-radius: 4px;
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: var(--transition);
         }
 
         .map-pin:hover .pin-label {
             opacity: 1;
         }
 
+        .map-pin:hover .pin-dot {
+            transform: scale(1.5);
+            background: var(--primary);
+        }
+
         @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5);
             }
-            70% {
-                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            50% {
+                box-shadow: 0 0 0 8px rgba(245, 158, 11, 0);
             }
         }
 
-        .map-tooltip {
-            position: absolute;
-            background: white;
-            color: #333;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            z-index: 100;
-            max-width: 250px;
-            display: none;
+        /* Testimonials */
+        .testimonials-section {
+            margin-bottom: 4rem;
         }
 
-        .map-tooltip h4 {
-            color: #059669;
-            margin-bottom: 0.5rem;
+        .testimonials-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 2rem;
         }
 
-        .map-tooltip p {
-            font-size: 0.85rem;
-            margin: 0;
-        }
-
-        /* About Section */
-        .about-section {
-            padding: 5rem 2rem;
-        }
-
-        .about-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: #1a1a2e;
-        }
-
-        .about-section p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            color: #555;
-        }
-
-        .features-grid {
+        .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 1.5rem;
         }
 
-        .feature-card {
-            background: white;
-            border-radius: 12px;
+        .testimonial-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
             padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #eee;
+            box-shadow: var(--shadow);
+            position: relative;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-size: 4rem;
+            font-family: Georgia, serif;
+            color: var(--primary);
+            opacity: 0.2;
+            line-height: 1;
         }
 
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        .testimonial-quote {
+            font-size: 0.9375rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.2rem;
-            font-size: 1.8rem;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.875rem;
+            flex-shrink: 0;
         }
 
-        .feature-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
-            color: #1a1a2e;
+        .author-info strong {
+            display: block;
+            font-size: 0.9375rem;
+            color: var(--gray-900);
         }
 
-        .feature-card p {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 0;
+        .author-info span {
+            font-size: 0.8125rem;
+            color: var(--gray-500);
         }
 
         /* Eligibility Section */
-        .eligibility-section {
-            background: #f9fafb;
-            padding: 5rem 2rem;
-        }
-
-        .eligibility-section h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-            color: #1a1a2e;
+        .eligibility {
+            background: var(--white);
         }
 
         .eligibility-cards {
@@ -486,22 +761,24 @@
         }
 
         .eligibility-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            text-align: center;
             position: relative;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .eligibility-card.featured {
-            border-color: #10b981;
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            text-align: center;
+            transition: var(--transition);
         }
 
         .eligibility-card:hover {
+            border-color: var(--primary);
             transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .eligibility-card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(to bottom, rgba(13, 148, 136, 0.03), var(--white));
         }
 
         .card-badge {
@@ -509,91 +786,78 @@
             top: -12px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-            color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.375rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .eligibility-card .card-icon {
+        .card-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
         }
 
         .eligibility-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
             margin-bottom: 0.5rem;
-            color: #1a1a2e;
         }
 
         .age-range {
-            color: #059669;
+            font-size: 1.125rem;
+            color: var(--primary);
             font-weight: 600;
-            font-size: 1.1rem;
             margin-bottom: 1.5rem;
         }
 
         .eligibility-card ul {
-            list-style: none;
             text-align: left;
         }
 
         .eligibility-card li {
             padding: 0.5rem 0;
-            color: #555;
-            position: relative;
             padding-left: 1.5rem;
+            position: relative;
+            color: var(--gray-600);
+            font-size: 0.9375rem;
         }
 
         .eligibility-card li::before {
-            content: '✓';
+            content: '\2713';
             position: absolute;
             left: 0;
-            color: #10b981;
-            font-weight: bold;
+            color: var(--primary);
+            font-weight: 600;
         }
 
         /* Themes Section */
-        .themes-section {
-            padding: 5rem 2rem;
-        }
-
-        .themes-section h2 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-            color: #1a1a2e;
-        }
-
-        .themes-section > .container > p {
-            text-align: center;
-            color: #666;
-            margin-bottom: 2.5rem;
+        .themes {
+            background: var(--gray-50);
         }
 
         .themes-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 1.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
         }
 
         .theme-card {
-            background: white;
+            background: var(--white);
+            border-radius: var(--radius-xl);
             padding: 2rem 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
         }
 
         .theme-card:hover {
-            border-color: #10b981;
             transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
         }
 
         .theme-icon {
@@ -602,210 +866,347 @@
         }
 
         .theme-card h3 {
-            font-size: 1rem;
-            color: #1a1a2e;
-            margin-bottom: 0.5rem;
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
         }
 
         .theme-card p {
-            font-size: 0.85rem;
-            color: #666;
-            margin: 0;
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            line-height: 1.6;
         }
 
-        /* Timeline Section - Horizontal */
-        .timeline-section {
-            background: #f9fafb;
-            padding: 5rem 2rem;
-            overflow-x: auto;
-        }
-
-        .timeline-section h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            color: #1a1a2e;
+        /* Timeline Section */
+        .timeline {
+            background: var(--white);
         }
 
         .timeline-container {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            max-width: 1100px;
-            margin: 0 auto;
             position: relative;
-            padding: 0 1rem;
+            padding: 2rem 0;
+            max-width: 100%;
+            overflow-x: auto;
         }
 
         .timeline-container::before {
             content: '';
             position: absolute;
-            top: 22px;
-            left: 50px;
-            right: 50px;
+            left: 0;
+            right: 0;
+            top: 2.5rem;
             height: 3px;
-            background: linear-gradient(to right, #10b981, #059669);
-            border-radius: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--gray-200) 20%, var(--gray-200) 100%);
+            border-radius: 2px;
         }
 
         .timeline-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            flex: 1;
             position: relative;
-            min-width: 160px;
+            flex: 1;
+            min-width: 180px;
+            padding: 0 0.75rem;
+            text-align: center;
         }
 
         .timeline-marker {
-            width: 44px;
-            height: 44px;
-            background: white;
-            border: 3px solid #10b981;
-            border-radius: 50%;
-            flex-shrink: 0;
             position: relative;
-            z-index: 1;
-            margin-bottom: 1rem;
+            width: 20px;
+            height: 20px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: var(--white);
+            border: 3px solid var(--gray-300);
+            z-index: 2;
+            transition: var(--transition);
         }
 
         .timeline-marker.active {
-            background: #10b981;
+            border-color: var(--primary);
+            background: var(--primary);
+            box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.2);
         }
 
-        .timeline-marker.active::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 12px;
-            height: 12px;
-            background: white;
-            border-radius: 50%;
+        .timeline-item:hover .timeline-marker {
+            transform: scale(1.2);
+            border-color: var(--primary);
         }
 
         .timeline-content {
-            background: white;
-            padding: 1.2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            width: 100%;
-            max-width: 180px;
+            background: var(--white);
+            padding: 1.25rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         .timeline-date {
-            color: #059669;
-            font-weight: 600;
-            font-size: 0.8rem;
             display: block;
-            margin-bottom: 0.3rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.5rem;
         }
 
         .timeline-content h3 {
             font-size: 1rem;
-            margin: 0.3rem 0;
-            color: #1a1a2e;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.375rem;
+            line-height: 1.3;
         }
 
         .timeline-content p {
-            font-size: 0.85rem;
-            color: #666;
+            font-size: 0.8125rem;
+            color: var(--gray-600);
             margin: 0;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
-        /* Judging Section */
-        .judging-section {
-            padding: 5rem 2rem;
+        /* Guidelines Section */
+        .guidelines {
+            background: var(--gray-50);
         }
 
-        .judging-section h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-            color: #1a1a2e;
-        }
-
-        .criteria-grid {
+        .guidelines-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
-            max-width: 1000px;
-            margin: 0 auto;
+            margin-bottom: 2rem;
         }
 
-        .criterion-card {
-            background: white;
+        .guideline-card {
+            background: var(--white);
             padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            text-align: center;
-            border-top: 4px solid #10b981;
+            border-radius: var(--radius-xl);
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        .guideline-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--gray-100);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .guideline-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+        }
+
+        .guideline-card p {
+            font-size: 0.9375rem;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+        }
+
+        .format-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            color: var(--gray-600);
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+        }
+
+        .guidelines-notes {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--primary);
+        }
+
+        .guidelines-notes h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .guidelines-notes ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .guidelines-notes li {
+            font-size: 0.9375rem;
+            color: var(--gray-600);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .guidelines-notes li::before {
+            content: '\2022';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Judging Section */
+        .judging {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .judging-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .judging-info .section-label {
+            color: var(--accent-light);
+        }
+
+        .judging-info .section-title {
+            color: var(--white);
+        }
+
+        .judging-info p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .judge-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: var(--radius-lg);
+        }
+
+        .judge-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .judge-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .judge-info p {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        .criteria-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .criterion {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.25rem;
+            border-radius: var(--radius-lg);
+            transition: var(--transition);
+        }
+
+        .criterion:hover {
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .criterion-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            flex-shrink: 0;
         }
 
-        .criterion-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: #1a1a2e;
+        .criterion-content {
+            flex: 1;
         }
 
-        .criterion-card p {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 1rem;
+        .criterion-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .criterion-content p {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
         }
 
         .criterion-weight {
-            display: inline-block;
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-            color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
+            font-size: 1.25rem;
             font-weight: 700;
+            color: var(--accent-light);
         }
 
         /* Awards Section */
-        .awards-section {
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-            color: white;
-            padding: 5rem 2rem;
-        }
-
-        .awards-section h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-            color: white;
+        .awards {
+            background: var(--white);
         }
 
         .awards-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
-            max-width: 1000px;
-            margin: 0 auto;
         }
 
         .award-card {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-xl);
             padding: 2rem;
-            border-radius: 16px;
             text-align: center;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .award-card:hover {
-            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .award-card.gold {
+            border-color: #fbbf24;
+            background: linear-gradient(to bottom, rgba(251, 191, 36, 0.1), var(--white));
+        }
+
+        .award-card.silver {
+            border-color: #9ca3af;
+            background: linear-gradient(to bottom, rgba(156, 163, 175, 0.1), var(--white));
+        }
+
+        .award-card.bronze {
+            border-color: #d97706;
+            background: linear-gradient(to bottom, rgba(217, 119, 6, 0.1), var(--white));
+        }
+
+        .award-card.special {
+            border-color: var(--primary);
+            background: linear-gradient(to bottom, rgba(13, 148, 136, 0.1), var(--white));
         }
 
         .award-badge {
@@ -814,40 +1215,51 @@
         }
 
         .award-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
             margin-bottom: 0.5rem;
         }
 
         .award-prize {
             font-size: 2rem;
             font-weight: 800;
-            margin-bottom: 0.5rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .award-card > p {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            margin-bottom: 1.5rem;
         }
 
         .award-card ul {
-            list-style: none;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            opacity: 0.9;
+            text-align: left;
         }
 
         .award-card li {
-            padding: 0.3rem 0;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            padding: 0.375rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .award-card li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 0.875rem;
         }
 
         /* Winners Section */
-        .winners-section {
-            padding: 5rem 2rem;
-            background: #f9fafb;
+        .winners {
+            background: var(--gray-50);
         }
 
-        .winners-section h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #1a1a2e;
-        }
-
+        /* Year Tabs */
         .year-tabs {
             display: flex;
             justify-content: center;
@@ -856,54 +1268,123 @@
         }
 
         .year-tab-btn {
-            padding: 0.8rem 2rem;
-            border: 2px solid #10b981;
-            background: transparent;
-            color: #059669;
-            border-radius: 30px;
-            font-weight: 600;
+            background: var(--white);
+            border: 2px solid var(--gray-300);
+            padding: 0.875rem 2rem;
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--gray-600);
+            border-radius: var(--radius-lg);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
-        .year-tab-btn.active, .year-tab-btn:hover {
-            background: #10b981;
-            color: white;
+        .year-tab-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
-        .category-title {
-            font-size: 1.4rem;
-            color: #059669;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 3px solid #10b981;
+        .year-tab-btn.active {
+            background: var(--gradient-primary);
+            border-color: var(--primary);
+            color: var(--white);
+        }
+
+        .year-content {
+            display: none;
+        }
+
+        .year-content.active {
+            display: block;
+        }
+
+        .winners-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--white);
+        }
+
+        .winners-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         .winner-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid #059669;
             display: flex;
-            gap: 2rem;
             align-items: flex-start;
+            gap: 1.5rem;
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .winner-image {
+        .winner-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .winner-card.ingenuity {
+            border: 2px solid var(--primary);
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.03) 0%, rgba(255, 255, 255, 1) 100%);
+        }
+
+        .winner-card.honorable {
+            border-left: 4px solid var(--gray-400);
+        }
+
+        .winner-photo {
             flex-shrink: 0;
             width: 120px;
             height: 120px;
-            border-radius: 12px;
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .winner-image img {
+        .winner-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .winner-card:hover .winner-photo img {
+            transform: scale(1.05);
         }
 
         .winner-avatar {
@@ -912,58 +1393,74 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-            color: white;
+            background: var(--gradient-primary);
+            color: var(--white);
             font-size: 2rem;
             font-weight: 700;
         }
 
-        .winner-card.honorable {
-            border-left-color: #f59e0b;
-        }
-
-        .winner-card.ingenuity {
-            border-left-color: #8b5cf6;
-        }
-
-        .winner-info {
-            flex-grow: 1;
-        }
-
-        .winner-info h4 {
-            color: #059669;
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .winner-location {
-            color: #888;
-            font-size: 0.9rem;
+        .winner-rank {
+            flex-shrink: 0;
+            padding: 0.5rem 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 50px;
             margin-bottom: 0.5rem;
         }
 
-        .project-name {
-            color: #333;
+        .winner-card.honorable .winner-rank {
+            background: var(--gray-500);
+        }
+
+        .winner-info {
+            flex: 1;
+        }
+
+        .winner-info h4 {
+            font-size: 1.125rem;
             font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .winner-location {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .winner-location::before {
+            content: '\1F4CD';
+            font-size: 0.75rem;
+        }
+
+        .project-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
         .project-desc {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.7;
+            font-size: 0.9375rem;
+            color: var(--gray-600);
+            margin: 0;
+            line-height: 1.6;
         }
 
         /* FAQ Section */
-        .faq-section {
-            padding: 5rem 2rem;
-        }
-
-        .faq-section h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-            color: #1a1a2e;
+        .faq {
+            background: var(--white);
         }
 
         .faq-list {
@@ -972,36 +1469,33 @@
         }
 
         .faq-item {
-            margin-bottom: 1rem;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--gray-200);
         }
 
         .faq-question {
             width: 100%;
-            padding: 1.2rem 1.5rem;
-            background: white;
-            border: none;
-            text-align: left;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #1a1a2e;
-            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.3s;
+            padding: 1.25rem 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.0625rem;
+            font-weight: 500;
+            color: var(--gray-900);
+            transition: var(--transition);
         }
 
         .faq-question:hover {
-            background: #f9fafb;
+            color: var(--primary);
         }
 
         .faq-icon {
             font-size: 1.5rem;
-            color: #10b981;
-            transition: transform 0.3s;
+            color: var(--primary);
+            transition: var(--transition);
         }
 
         .faq-item.active .faq-icon {
@@ -1009,59 +1503,60 @@
         }
 
         .faq-answer {
-            background: white;
-            padding: 0 1.5rem;
             max-height: 0;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: max-height 0.3s ease;
         }
 
         .faq-item.active .faq-answer {
-            padding: 1rem 1.5rem 1.5rem;
             max-height: 500px;
         }
 
         .faq-answer p {
-            color: #666;
+            padding-bottom: 1.25rem;
+            color: var(--gray-600);
             line-height: 1.7;
         }
 
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-            color: white;
+        /* Register CTA Section */
+        .register {
+            background: var(--gradient-primary);
+            color: var(--white);
             text-align: center;
-            padding: 5rem 2rem;
         }
 
-        .cta-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .cta-section p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.95;
+        .register-content {
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
         }
 
-        .deadline-box {
-            background: rgba(255, 255, 255, 0.15);
-            display: inline-block;
-            padding: 1rem 2rem;
-            border-radius: 12px;
+        .register-content h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .register-content > p {
+            font-size: 1.125rem;
+            opacity: 0.9;
             margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
+        }
+
+        .register-deadline {
+            display: inline-flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1rem 2rem;
+            border-radius: var(--radius-lg);
+            margin-bottom: 2rem;
         }
 
         .deadline-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            display: block;
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+            margin-bottom: 0.25rem;
         }
 
         .deadline-date {
@@ -1069,232 +1564,516 @@
             font-weight: 700;
         }
 
-        .cta-btn {
-            display: inline-block;
-            background: white;
-            color: #059669;
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
+        .register .btn-primary {
+            background: var(--accent);
+            color: var(--gray-900);
         }
 
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        .register .btn-primary:hover {
+            background: var(--accent-light);
+        }
+
+        .register-note {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            margin-top: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3, .newsletter h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-info > p, .newsletter > p {
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-method {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        .contact-method h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-method a {
+            color: var(--primary);
+            font-size: 0.9375rem;
+        }
+
+        .contact-method a:hover {
+            text-decoration: underline;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-size: 0.9375rem;
+            transition: var(--transition);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--primary);
         }
 
         /* Footer */
-        footer {
-            background: #000;
-            color: white;
-            padding: 3rem 2rem;
+        .footer {
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--gray-700);
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand .logo-text {
+            color: var(--white);
+        }
+
+        .footer-brand p {
+            color: var(--gray-400);
+            font-size: 0.9375rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .footer-column h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.25rem;
+            color: var(--gray-300);
+        }
+
+        .footer-column ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-column a {
+            color: var(--gray-400);
+            font-size: 0.9375rem;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
             text-align: center;
         }
 
-        footer p {
-            color: #999;
-            font-size: 0.9rem;
+        .footer-bottom p {
+            color: var(--gray-500);
+            font-size: 0.875rem;
         }
 
-        /* Responsive */
+        .footer-bottom .tagline {
+            color: var(--primary-light);
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive Styles */
         @media (max-width: 1024px) {
             .themes-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            .awards-grid, .criteria-grid {
+
+            .guidelines-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .awards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .impact-stats {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
             .timeline-container {
-                flex-wrap: wrap;
-                gap: 1.5rem;
-                justify-content: center;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+                -webkit-overflow-scrolling: touch;
             }
-            .timeline-container::before {
-                display: none;
-            }
+
             .timeline-item {
-                flex: 0 0 45%;
-                min-width: 180px;
+                min-width: 160px;
             }
         }
 
         @media (max-width: 768px) {
-            nav {
-                padding: 0.8rem 1rem;
+            :root {
+                --section-padding: 4rem;
             }
-            nav .logo img {
-                height: 50px;
+
+            .section-title {
+                font-size: 2rem;
             }
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                gap: 0;
-                border-top: 1px solid #eee;
-            }
-            nav ul.active {
-                display: flex;
-            }
-            nav a {
-                display: block;
-                padding: 1rem 2rem;
-            }
+
             .mobile-menu-btn {
                 display: flex;
             }
-            .dropdown-menu {
-                position: static;
-                display: none;
-                box-shadow: none;
-                background: #f5f5f5;
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: var(--shadow-lg);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
             }
-            .dropdown-menu.active {
-                display: block;
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
             }
-            .dropdown:hover .dropdown-menu {
-                display: none;
+
+            .hero-title {
+                font-size: 2.25rem;
             }
-            .program-hero h1 {
-                font-size: 2rem;
-            }
+
             .hero-tagline {
-                font-size: 1.2rem;
+                font-size: 1.25rem;
             }
-            .features-grid {
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .about-grid,
+            .judging-content,
+            .contact-grid {
                 grid-template-columns: 1fr;
+                gap: 2.5rem;
             }
+
             .eligibility-cards {
                 grid-template-columns: 1fr;
             }
+
             .themes-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .awards-grid, .criteria-grid {
+
+            .guidelines-grid,
+            .awards-grid {
                 grid-template-columns: 1fr;
             }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2.5rem;
+            }
+
+            .footer-links {
+                gap: 2rem;
+            }
+
+            .timeline-container {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+
+            .timeline-container::before {
+                left: 1.5rem;
+                right: auto;
+                top: 0;
+                bottom: 0;
+                width: 3px;
+                height: auto;
+                background: linear-gradient(180deg, var(--primary) 0%, var(--gray-200) 20%, var(--gray-200) 100%);
+            }
+
+            .timeline-item {
+                min-width: auto;
+                padding: 0 0 1.5rem 3.5rem;
+                text-align: left;
+            }
+
+            .timeline-marker {
+                position: absolute;
+                left: 0;
+                top: 0;
+                margin: 0;
+            }
+
+            .timeline-content {
+                padding: 1rem;
+            }
+
             .winner-card {
                 flex-direction: column;
                 text-align: center;
+                align-items: center;
             }
-            .winner-image {
-                margin: 0 auto;
+
+            .winner-photo {
+                width: 100px;
+                height: 100px;
             }
-            .container {
-                padding: 0 1rem;
+
+            .winner-location {
+                justify-content: center;
             }
-            .timeline-item {
-                flex: 0 0 100%;
+
+            .impact-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
-            .timeline-content {
-                max-width: 100%;
+
+            .impact-number {
+                font-size: 2.5rem;
             }
         }
 
         @media (max-width: 480px) {
-            nav .logo img {
-                height: 40px;
+            .hero-title {
+                font-size: 1.875rem;
             }
-            .program-hero {
-                padding: 3rem 1rem;
-            }
-            .program-hero h1 {
-                font-size: 1.6rem;
-            }
+
             .themes-grid {
                 grid-template-columns: 1fr;
             }
+
+            .year-tabs {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .year-tab-btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .winners-tabs {
+                flex-direction: column;
+            }
+
+            .winner-rank {
+                width: auto;
+                height: auto;
+                padding: 0.5rem 1rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
             .impact-stats {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .impact-stat {
+                padding: 1.25rem 1rem;
+            }
+
+            .impact-number {
+                font-size: 2rem;
+            }
+
+            .impact-label {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
             <a href="/" class="logo">
                 <img src="/static/logo.svg" alt="NexYouth">
             </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            <ul id="navMenu">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="/">Home</a></li>
-                <li><a href="/#what-we-do">What We Do</a></li>
-                <li class="dropdown">
-                    <a href="/#programs">Programs</a>
-                    <div class="dropdown-menu" id="programsDropdown">
-                        <a href="/programs/skill-development">Skill Development Courses</a>
-                        <a href="/programs/seminars">Seminars & Workshops</a>
-                        <a href="/programs/mentorship">Global Mentorship Network</a>
-                        <a href="/programs/environmental-competition">Environmental Youth Competition</a>
-                        <a href="/programs/youth-tech-lab">Youth Tech Lab</a>
-                    </div>
-                </li>
-                <li><a href="/chapters">Chapters</a></li>
-                <li><a href="/#community">Community</a></li>
-                <li><a href="/partner">Partner</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#themes">Themes</a></li>
+                <li><a href="#global-impact">Global Impact</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#winners">Winners</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="program-hero">
-        <div class="container">
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
             <span class="hero-label">2025-2026 Competition Now Open</span>
-            <h1>International Youth Environmental Competition</h1>
+            <h1 class="hero-title">International Youth<br>Environmental Competition</h1>
             <p class="hero-tagline">Inspire. Innovate. Impact.</p>
-            <p>Join thousands of young changemakers from around the world in addressing our planet's most pressing environmental challenges.</p>
+            <p class="hero-description">Join thousands of young changemakers from around the world in addressing our planet's most pressing environmental challenges.</p>
             <div class="hero-cta">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc487tftJjAfLNuFsVuFODGCr7ljV-8DFdXyx9Lb5Szlxv24w/viewform" target="_blank" class="btn btn-primary">Register Now</a>
-                <a href="#about" class="btn btn-secondary">Learn More</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc487tftJjAfLNuFsVuFODGCr7ljV-8DFdXyx9Lb5Szlxv24w/viewform" target="_blank" class="btn btn-primary btn-large">Register Now</a>
+                <a href="#about" class="btn btn-secondary btn-large">Learn More</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Our Mission</span>
+                <h2 class="section-title">Shaping Tomorrow's Environmental Leaders</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-content">
+                    <p class="lead">The International Youth Environmental Competition (IYEC) is an annual global event dedicated to empowering youth to address environmental and climate challenges through innovative solutions to local problems.</p>
+                    <p>We believe that young people have the creativity, passion, and determination to make a real difference in their communities and beyond. IYEC provides a platform for students worldwide to showcase their ideas, learn from peers, and gain recognition for their environmental initiatives.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <div class="feature-icon">&#127919;</div>
+                            <div class="feature-text">
+                                <h4>No Experience Required</h4>
+                                <p>Open to all youth passionate about the environment</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">&#127760;</div>
+                            <div class="feature-text">
+                                <h4>Global Participation</h4>
+                                <p>Connect with like-minded youth worldwide</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">&#128161;</div>
+                            <div class="feature-text">
+                                <h4>Multiple Formats</h4>
+                                <p>Express your ideas through essays, videos, or creative media</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <div class="placeholder-content">
+                            <span class="placeholder-icon">&#127793;</span>
+                            <span class="placeholder-text">Youth for the Planet</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Impact Stats -->
-    <section class="impact-section">
+    <!-- Global Impact Section -->
+    <section id="global-impact" class="section global-impact">
         <div class="container">
-            <h2>Our Global Community</h2>
-            <p>Young leaders making real impact across the world</p>
+            <div class="section-header centered">
+                <span class="section-label">Our Global Community</span>
+                <h2 class="section-title">Young Leaders Making Real Impact</h2>
+                <p class="section-subtitle">Join 120+ participants from 40+ countries working on innovative environmental solutions</p>
+            </div>
+
+            <!-- Impact Statistics -->
             <div class="impact-stats">
                 <div class="impact-stat">
-                    <div class="impact-number">120+</div>
+                    <div class="impact-number" data-count="120">120</div>
                     <div class="impact-label">Participants</div>
                     <div class="impact-detail">Young innovators worldwide</div>
                 </div>
                 <div class="impact-stat">
-                    <div class="impact-number">40+</div>
+                    <div class="impact-number" data-count="40">40</div>
                     <div class="impact-label">Countries</div>
                     <div class="impact-detail">Global representation</div>
                 </div>
                 <div class="impact-stat">
-                    <div class="impact-number">100+</div>
+                    <div class="impact-number" data-count="100">100</div>
                     <div class="impact-label">Projects</div>
                     <div class="impact-detail">Environmental solutions</div>
                 </div>
                 <div class="impact-stat">
-                    <div class="impact-number">5</div>
+                    <div class="impact-number no-plus" data-count="5">5</div>
                     <div class="impact-label">Continents</div>
                     <div class="impact-detail">Truly global reach</div>
                 </div>
             </div>
 
-            <!-- World Map -->
+            <!-- Interactive World Map -->
             <div class="world-map-container">
                 <h3 class="map-title">Where Our Participants Come From</h3>
                 <div class="world-map" id="world-map">
@@ -1308,7 +2087,7 @@
                             <span class="pin-dot"></span>
                             <span class="pin-label">Canada</span>
                         </div>
-                        <div class="map-pin" style="left: 48%; top: 25%;" data-country="Europe" data-count="2">
+                        <div class="map-pin" style="left: 48%; top: 25%;" data-country="UK/Ireland" data-count="2">
                             <span class="pin-dot"></span>
                             <span class="pin-label">Europe</span>
                         </div>
@@ -1332,7 +2111,7 @@
                             <span class="pin-dot"></span>
                             <span class="pin-label">China</span>
                         </div>
-                        <div class="map-pin" style="left: 60%; top: 35%;" data-country="Middle East" data-count="12">
+                        <div class="map-pin" style="left: 60%; top: 35%;" data-country="UAE/Qatar" data-count="12">
                             <span class="pin-dot"></span>
                             <span class="pin-label">Middle East</span>
                         </div>
@@ -1383,43 +2162,56 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2>Shaping Tomorrow's Environmental Leaders</h2>
-            <p>The International Youth Environmental Competition (IYEC) is an annual global event dedicated to empowering youth to address environmental and climate challenges through innovative solutions to local problems.</p>
-            <p>We believe that young people have the creativity, passion, and determination to make a real difference in their communities and beyond. IYEC provides a platform for students worldwide to showcase their ideas, learn from peers, and gain recognition for their environmental initiatives.</p>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>No Experience Required</h3>
-                    <p>Open to all youth passionate about the environment, regardless of background or prior experience.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
-                    <h3>Global Participation</h3>
-                    <p>Connect with like-minded youth from 40+ countries and 5 continents worldwide.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💡</div>
-                    <h3>Multiple Formats</h3>
-                    <p>Express your ideas through essays, videos, speeches, or creative media - your choice!</p>
+            <!-- Testimonials -->
+            <div class="testimonials-section">
+                <h3 class="testimonials-title">What Participants Say</h3>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"I want to participate in IYEC to showcase my initiative and inspire others to take meaningful action against climate change. Through this platform, I hope to share our journey and raise awareness."</div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">AS</div>
+                            <div class="author-info">
+                                <strong>Amanullah Solangi</strong>
+                                <span>Pakistan - 1st Place Winner</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"We believe young people have the power to make a difference. IYEC gave us the platform to share our ideas with the world and connect with like-minded youth globally."</div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">NT</div>
+                            <div class="author-info">
+                                <strong>Ngo Anh Tuan</strong>
+                                <span>Vietnam - 2nd Place Winner</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"We want to spread awareness about how harmful microplastics are to the environment. IYEC helped our initiative reach more people and amplify our message."</div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">GS</div>
+                            <div class="author-info">
+                                <strong>Girl Scout Troop 436</strong>
+                                <span>Alaska, USA - Junior 1st Place</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Eligibility Section -->
-    <section class="eligibility-section">
+    <section class="section eligibility">
         <div class="container">
-            <h2>Who Can Participate</h2>
+            <div class="section-header centered">
+                <span class="section-label">Who Can Participate</span>
+                <h2 class="section-title">Eligibility Requirements</h2>
+            </div>
             <div class="eligibility-cards">
                 <div class="eligibility-card">
-                    <div class="card-icon">👦</div>
+                    <div class="card-icon">&#128102;</div>
                     <h3>Junior Category</h3>
                     <p class="age-range">Ages 13 and below</p>
                     <ul>
@@ -1431,7 +2223,7 @@
                 </div>
                 <div class="eligibility-card featured">
                     <div class="card-badge">Most Popular</div>
-                    <div class="card-icon">🧑‍🎓</div>
+                    <div class="card-icon">&#129489;&#8205;&#127891;</div>
                     <h3>Senior Category</h3>
                     <p class="age-range">Ages 14-18</p>
                     <ul>
@@ -1446,51 +2238,57 @@
     </section>
 
     <!-- Themes Section -->
-    <section class="themes-section">
+    <section id="themes" class="section themes">
         <div class="container">
-            <h2>Environmental Themes</h2>
-            <p>Select a local issue related to at least one of these theme areas</p>
+            <div class="section-header centered">
+                <span class="section-label">Competition Focus Areas</span>
+                <h2 class="section-title">Environmental Themes</h2>
+                <p class="section-subtitle">Select a local issue related to at least one of these theme areas</p>
+            </div>
             <div class="themes-grid">
                 <div class="theme-card">
-                    <div class="theme-icon">🌳</div>
+                    <div class="theme-icon">&#127795;</div>
                     <h3>Nature & Protection</h3>
-                    <p>Biodiversity, habitat restoration</p>
+                    <p>Biodiversity conservation, habitat restoration, and ecosystem preservation initiatives</p>
                 </div>
                 <div class="theme-card">
-                    <div class="theme-icon">💨</div>
+                    <div class="theme-icon">&#128168;</div>
                     <h3>Air Quality</h3>
-                    <p>Emissions, air pollution solutions</p>
+                    <p>Solutions to improve air quality, reduce emissions, and combat air pollution</p>
                 </div>
                 <div class="theme-card">
-                    <div class="theme-icon">💧</div>
-                    <h3>Water & Ecosystems</h3>
-                    <p>Water conservation, marine life</p>
+                    <div class="theme-icon">&#128167;</div>
+                    <h3>Water & Bodies of Water</h3>
+                    <p>Addressing water pollution, conservation, and protecting aquatic ecosystems</p>
                 </div>
                 <div class="theme-card">
-                    <div class="theme-icon">♻️</div>
+                    <div class="theme-icon">&#9851;&#65039;</div>
                     <h3>Waste Management</h3>
-                    <p>Recycling, circular economy</p>
+                    <p>Innovative approaches to waste reduction, recycling, and circular economy</p>
                 </div>
                 <div class="theme-card">
-                    <div class="theme-icon">🌡️</div>
+                    <div class="theme-icon">&#127777;&#65039;</div>
                     <h3>Climate Change</h3>
-                    <p>Mitigation, climate resilience</p>
+                    <p>Mitigation strategies, adaptation solutions, and climate resilience projects</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Timeline Section -->
-    <section class="timeline-section">
+    <section id="timeline" class="section timeline">
         <div class="container">
-            <h2>2025-2026 Competition Timeline</h2>
+            <div class="section-header centered">
+                <span class="section-label">Important Dates</span>
+                <h2 class="section-title">2025-2026 Competition Timeline</h2>
+            </div>
             <div class="timeline-container">
                 <div class="timeline-item">
                     <div class="timeline-marker active"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">September 1, 2025</span>
                         <h3>Portal Opens</h3>
-                        <p>Registration and submission portal officially opens</p>
+                        <p>Registration and submission portal officially opens for all participants</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -1529,46 +2327,114 @@
         </div>
     </section>
 
-    <!-- Judging Criteria -->
-    <section class="judging-section">
+    <!-- Submission Guidelines -->
+    <section class="section guidelines">
         <div class="container">
-            <h2>How Projects Are Judged</h2>
-            <div class="criteria-grid">
-                <div class="criterion-card">
-                    <div class="criterion-icon">💡</div>
-                    <h3>Innovation</h3>
-                    <p>Originality and creativity of the proposed solution</p>
-                    <span class="criterion-weight">25%</span>
+            <div class="section-header centered">
+                <span class="section-label">How to Submit</span>
+                <h2 class="section-title">Submission Guidelines</h2>
+            </div>
+            <div class="guidelines-grid">
+                <div class="guideline-card">
+                    <div class="guideline-number">01</div>
+                    <h3>Written Essays</h3>
+                    <p>500-1000 words exploring your environmental solution in depth</p>
+                    <span class="format-tag">PDF or DOC</span>
                 </div>
-                <div class="criterion-card">
-                    <div class="criterion-icon">🎯</div>
-                    <h3>Impact</h3>
-                    <p>Potential environmental and community benefits</p>
-                    <span class="criterion-weight">25%</span>
+                <div class="guideline-card">
+                    <div class="guideline-number">02</div>
+                    <h3>Video Projects</h3>
+                    <p>1-5 minutes showcasing your initiative with visual storytelling</p>
+                    <span class="format-tag">MP4 or Link</span>
                 </div>
-                <div class="criterion-card">
-                    <div class="criterion-icon">⚙️</div>
-                    <h3>Feasibility</h3>
-                    <p>Practicality and scalability of implementation</p>
-                    <span class="criterion-weight">25%</span>
+                <div class="guideline-card">
+                    <div class="guideline-number">03</div>
+                    <h3>Recorded Speeches</h3>
+                    <p>Present your ideas through compelling oral presentation</p>
+                    <span class="format-tag">Audio/Video</span>
                 </div>
-                <div class="criterion-card">
-                    <div class="criterion-icon">📊</div>
-                    <h3>Presentation</h3>
-                    <p>Clarity and effectiveness of communication</p>
-                    <span class="criterion-weight">25%</span>
+                <div class="guideline-card">
+                    <div class="guideline-number">04</div>
+                    <h3>Creative Media</h3>
+                    <p>Art, infographics, apps, or other innovative formats</p>
+                    <span class="format-tag">Digital Link</span>
+                </div>
+            </div>
+            <div class="guidelines-notes">
+                <h4>Important Requirements:</h4>
+                <ul>
+                    <li><strong>Language:</strong> All submissions must be in English or include English subtitles</li>
+                    <li><strong>Originality:</strong> Work must be original with proper attribution for any referenced sources</li>
+                    <li><strong>Accessibility:</strong> Projects must be accessible via a digital link (Google Drive, YouTube, etc.)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Judging Criteria -->
+    <section class="section judging">
+        <div class="container">
+            <div class="judging-content">
+                <div class="judging-info">
+                    <span class="section-label">Evaluation Process</span>
+                    <h2 class="section-title">How Projects Are Judged</h2>
+                    <p>Our expert panel evaluates each submission based on four key criteria, ensuring a fair and comprehensive assessment of all projects.</p>
+                    <div class="judge-profile">
+                        <div class="judge-avatar">SW</div>
+                        <div class="judge-info">
+                            <h4>Featured Judge: Sigil Wen</h4>
+                            <p>Industry innovator, investor, and Wharton alumni</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="criteria-list">
+                    <div class="criterion">
+                        <div class="criterion-icon">&#128161;</div>
+                        <div class="criterion-content">
+                            <h4>Innovation</h4>
+                            <p>Originality and creativity of the proposed solution</p>
+                        </div>
+                        <div class="criterion-weight">25%</div>
+                    </div>
+                    <div class="criterion">
+                        <div class="criterion-icon">&#127919;</div>
+                        <div class="criterion-content">
+                            <h4>Impact</h4>
+                            <p>Potential environmental and community benefits</p>
+                        </div>
+                        <div class="criterion-weight">25%</div>
+                    </div>
+                    <div class="criterion">
+                        <div class="criterion-icon">&#9881;&#65039;</div>
+                        <div class="criterion-content">
+                            <h4>Feasibility</h4>
+                            <p>Practicality and scalability of implementation</p>
+                        </div>
+                        <div class="criterion-weight">25%</div>
+                    </div>
+                    <div class="criterion">
+                        <div class="criterion-icon">&#128202;</div>
+                        <div class="criterion-content">
+                            <h4>Presentation</h4>
+                            <p>Clarity and effectiveness of communication</p>
+                        </div>
+                        <div class="criterion-weight">25%</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Awards Section -->
-    <section class="awards-section">
+    <section id="awards" class="section awards">
         <div class="container">
-            <h2>Awards Structure</h2>
+            <div class="section-header centered">
+                <span class="section-label">Recognition & Prizes</span>
+                <h2 class="section-title">Awards Structure</h2>
+            </div>
             <div class="awards-grid">
-                <div class="award-card">
-                    <div class="award-badge">🥇</div>
+                <div class="award-card gold">
+                    <div class="award-badge">&#129351;</div>
                     <h3>1st Place</h3>
                     <div class="award-prize">$200</div>
                     <p>Scholarship Award</p>
@@ -1578,8 +2444,8 @@
                         <li>Social media recognition</li>
                     </ul>
                 </div>
-                <div class="award-card">
-                    <div class="award-badge">🥈</div>
+                <div class="award-card silver">
+                    <div class="award-badge">&#129352;</div>
                     <h3>2nd Place</h3>
                     <div class="award-prize">$150</div>
                     <p>Scholarship Award</p>
@@ -1589,25 +2455,25 @@
                         <li>Social media recognition</li>
                     </ul>
                 </div>
-                <div class="award-card">
-                    <div class="award-badge">🥉</div>
+                <div class="award-card bronze">
+                    <div class="award-badge">&#129353;</div>
                     <h3>Junior Award</h3>
                     <div class="award-prize">$100</div>
                     <p>Scholarship Award</p>
                     <ul>
                         <li>Certificate of Achievement</li>
                         <li>Website feature</li>
-                        <li>Encouragement award</li>
+                        <li>Encouragement for future participation</li>
                     </ul>
                 </div>
-                <div class="award-card">
-                    <div class="award-badge">⭐</div>
+                <div class="award-card special">
+                    <div class="award-badge">&#11088;</div>
                     <h3>Ingenuity Award</h3>
                     <div class="award-prize">Special</div>
                     <p>Recognition Award</p>
                     <ul>
                         <li>Certificate of Ingenuity</li>
-                        <li>Prominent feature</li>
+                        <li>Prominent website feature</li>
                         <li>Innovation spotlight</li>
                     </ul>
                 </div>
@@ -1616,183 +2482,203 @@
     </section>
 
     <!-- Winners Section -->
-    <section class="winners-section">
+    <section id="winners" class="section winners">
         <div class="container">
-            <h2>Past Award Winners</h2>
+            <div class="section-header centered">
+                <span class="section-label">Past Champions</span>
+                <h2 class="section-title">Award Winners</h2>
+            </div>
 
+            <!-- Year Tabs -->
             <div class="year-tabs">
                 <button class="year-tab-btn active" data-year="2024-2025">2024-2025</button>
                 <button class="year-tab-btn" data-year="2023-2024">2023-2024</button>
             </div>
 
-            <div class="year-content" id="content-2024-2025">
-                <h3 class="category-title">Senior Category Winners</h3>
-
-                <div class="winner-card">
-                    <div class="winner-image">
-                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-10.png" alt="Amanullah Solangi">
-                    </div>
-                    <div class="winner-info">
-                        <h4>🥇 1st Place: Amanullah Solangi</h4>
-                        <p class="winner-location">Government Degree College, Matiari - Hyderabad, Sindh, Pakistan</p>
-                        <p class="project-name">"Cool Hyderabad: A Green Initiative to Combat Urban Heat and Climate Change"</p>
-                        <p class="project-desc">A comprehensive tree planting initiative aimed at combating urban heat islands and improving air quality by planting 100,000 trees and involving the community.</p>
-                    </div>
+            <!-- 2024-2025 Winners -->
+            <div class="year-content active" id="year-2024-2025">
+                <div class="winners-tabs">
+                    <button class="tab-btn active" data-tab="senior-2025">Senior Category</button>
+                    <button class="tab-btn" data-tab="junior-2025">Junior Category</button>
+                    <button class="tab-btn" data-tab="special-2025">Special Awards</button>
                 </div>
-
-                <div class="winner-card">
-                    <div class="winner-image">
-                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-9.png" alt="Ngô Anh Tuấn & Duong Hai Mien">
+                <div class="winners-content">
+                    <div class="tab-content active" id="senior-2025">
+                        <div class="winner-card">
+                            <div class="winner-photo">
+                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-10.png" alt="Amanullah Solangi">
+                            </div>
+                            <div class="winner-info">
+                                <div class="winner-rank">1st Place</div>
+                                <h4>Amanullah Solangi</h4>
+                                <p class="winner-location">Pakistan</p>
+                                <p class="project-name">"Cool Hyderabad"</p>
+                                <p class="project-desc">A comprehensive tree planting initiative aimed at combating urban heat islands and improving air quality in Hyderabad.</p>
+                            </div>
+                        </div>
+                        <div class="winner-card">
+                            <div class="winner-photo">
+                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-9.png" alt="Ngo Anh Tuan & Duong Hai Mien">
+                            </div>
+                            <div class="winner-info">
+                                <div class="winner-rank">2nd Place</div>
+                                <h4>Ngo Anh Tuan & Duong Hai Mien</h4>
+                                <p class="winner-location">Vietnam</p>
+                                <p class="project-name">"Turning the Tides"</p>
+                                <p class="project-desc">An innovative approach to addressing coastal pollution and protecting marine ecosystems.</p>
+                            </div>
+                        </div>
+                        <div class="winner-card honorable">
+                            <div class="winner-photo">
+                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-11.png" alt="Chun-Shan CHANG">
+                            </div>
+                            <div class="winner-info">
+                                <div class="winner-rank">Honorable Mention</div>
+                                <h4>Chun-Shan CHANG</h4>
+                                <p class="winner-location">Taiwan</p>
+                                <p class="project-name">"Travel Experience & Environmental Perception"</p>
+                                <p class="project-desc">Research exploring the relationship between travel experiences and environmental awareness.</p>
+                            </div>
+                        </div>
+                        <div class="winner-card honorable">
+                            <div class="winner-photo">
+                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-12.png" alt="William Zeng">
+                            </div>
+                            <div class="winner-info">
+                                <div class="winner-rank">Honorable Mention</div>
+                                <h4>William Zeng</h4>
+                                <p class="winner-location">USA</p>
+                                <p class="project-name">"Rome's Waste Management Crisis"</p>
+                                <p class="project-desc">Analysis and solutions for urban waste management challenges in major cities.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="winner-info">
-                        <h4>🥈 2nd Place: Ngô Anh Tuấn & Duong Hai Mien</h4>
-                        <p class="winner-location">Nguyen Trai High School & Quy Don High School - Da Nang, Vietnam</p>
-                        <p class="project-name">"Turning the Tides: Restoring Coastal Paradise from Pollution's Grip"</p>
-                        <p class="project-desc">An innovative approach to addressing coastal pollution and protecting marine ecosystems through community action and waste management.</p>
+                    <div class="tab-content" id="junior-2025">
+                        <div class="winner-card">
+                            <div class="winner-photo">
+                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-14.png" alt="Girl Scout Troop 436">
+                            </div>
+                            <div class="winner-info">
+                                <div class="winner-rank">1st Place</div>
+                                <h4>Girl Scout Troop 436</h4>
+                                <p class="winner-location">Alaska, USA</p>
+                                <p class="project-name">"The BioGlitter Initiative"</p>
+                                <p class="project-desc">Promoting biodegradable alternatives to traditional plastic glitter to reduce microplastic pollution.</p>
+                            </div>
+                        </div>
+                        <div class="winner-card">
+                            <div class="winner-photo">
+                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-15.png" alt="Rui-Tong Yuan">
+                            </div>
+                            <div class="winner-info">
+                                <div class="winner-rank">2nd Place</div>
+                                <h4>Rui-Tong Yuan</h4>
+                                <p class="winner-location">Taiwan</p>
+                                <p class="project-name">"Building a Better Future"</p>
+                                <p class="project-desc">Exploring sustainable construction materials and methods for environmentally-friendly building practices.</p>
+                            </div>
+                        </div>
+                        <div class="winner-card honorable">
+                            <div class="winner-photo">
+                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-16.png" alt="Syuan-Hao HUANG">
+                            </div>
+                            <div class="winner-info">
+                                <div class="winner-rank">Honorable Mention</div>
+                                <h4>Syuan-Hao HUANG</h4>
+                                <p class="winner-location">Taiwan</p>
+                                <p class="project-name">"Environmental Preservation vs Development"</p>
+                                <p class="project-desc">Examining the balance between environmental conservation and economic development.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="winner-card honorable">
-                    <div class="winner-image">
-                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-11.png" alt="Chun-Shan CHANG">
-                    </div>
-                    <div class="winner-info">
-                        <h4>🏅 Honorable Mention: Chun-Shan CHANG</h4>
-                        <p class="winner-location">Taiwan</p>
-                        <p class="project-name">"Travel Experience & Environmental Perception"</p>
-                        <p class="project-desc">Research exploring the relationship between travel experiences and environmental awareness.</p>
-                    </div>
-                </div>
-
-                <div class="winner-card honorable">
-                    <div class="winner-image">
-                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-12.png" alt="William Zeng">
-                    </div>
-                    <div class="winner-info">
-                        <h4>🏅 Honorable Mention: William Zeng</h4>
-                        <p class="winner-location">USA</p>
-                        <p class="project-name">"Rome's Waste Management Crisis"</p>
-                        <p class="project-desc">Analysis and solutions for urban waste management challenges in major cities.</p>
-                    </div>
-                </div>
-
-                <h3 class="category-title" style="margin-top: 3rem;">Junior Category Winners</h3>
-
-                <div class="winner-card">
-                    <div class="winner-image">
-                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-14.png" alt="Girl Scout Troop 436">
-                    </div>
-                    <div class="winner-info">
-                        <h4>🥇 1st Place: Girl Scout Troop 436</h4>
-                        <p class="winner-location">Alaska, USA</p>
-                        <p class="project-name">"The BioGlitter Initiative"</p>
-                        <p class="project-desc">Promoting biodegradable alternatives to traditional plastic glitter to reduce microplastic pollution.</p>
-                    </div>
-                </div>
-
-                <div class="winner-card">
-                    <div class="winner-image">
-                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-15.png" alt="Rui-Tong Yuan">
-                    </div>
-                    <div class="winner-info">
-                        <h4>🥈 2nd Place: Rui-Tong Yuan</h4>
-                        <p class="winner-location">Taiwan</p>
-                        <p class="project-name">"Building a Better Future"</p>
-                        <p class="project-desc">Exploring sustainable construction materials and methods for environmentally-friendly building practices.</p>
-                    </div>
-                </div>
-
-                <div class="winner-card honorable">
-                    <div class="winner-image">
-                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-16.png" alt="Syuan-Hao HUANG">
-                    </div>
-                    <div class="winner-info">
-                        <h4>🏅 Honorable Mention: Syuan-Hao HUANG</h4>
-                        <p class="winner-location">Taiwan</p>
-                        <p class="project-name">"Environmental Preservation vs Development"</p>
-                        <p class="project-desc">Examining the balance between environmental conservation and economic development.</p>
-                    </div>
-                </div>
-
-                <h3 class="category-title" style="margin-top: 3rem;">Special Awards</h3>
-
-                <div class="winner-card ingenuity">
-                    <div class="winner-image">
-                        <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-13.png" alt="Earth Z Team">
-                    </div>
-                    <div class="winner-info">
-                        <h4>🚀 Ingenuity Award: Atharva Soni, Arav Kamat, Sadik Premjee & Aria Kamat</h4>
-                        <p class="winner-location">Northwood High School - Irvine, California, USA</p>
-                        <p class="project-name">"Earth Z - Wildfire Solutions"</p>
-                        <p class="project-desc">An AI-powered fire detection system designed to identify and alert authorities to wildfires earlier using real-time data and machine learning.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="year-content" id="content-2023-2024" style="display: none;">
-                <h3 class="category-title">Senior Category Winners</h3>
-
-                <div class="winner-card">
-                    <div class="winner-image">
-                        <div class="winner-avatar">JJ</div>
-                    </div>
-                    <div class="winner-info">
-                        <h4>🥇 1st Place: Julie Jin</h4>
-                        <p class="winner-location">Ottawa, Canada</p>
-                        <p class="project-name">"Become a Biodiversity Hero"</p>
-                        <p class="project-desc">An innovative project empowering individuals to protect biodiversity from the comfort of home and while traveling.</p>
-                    </div>
-                </div>
-
-                <div class="winner-card">
-                    <div class="winner-image">
-                        <div class="winner-avatar">JJ</div>
-                    </div>
-                    <div class="winner-info">
-                        <h4>🥈 2nd Place: Jenny Jin</h4>
-                        <p class="winner-location">Ottawa, Canada</p>
-                        <p class="project-name">"From Waste to Well-being"</p>
-                        <p class="project-desc">Addressing the global waste crisis through innovative waste management solutions and community engagement.</p>
-                    </div>
-                </div>
-
-                <h3 class="category-title" style="margin-top: 3rem;">Junior Category Winners</h3>
-
-                <div class="winner-card">
-                    <div class="winner-image">
-                        <div class="winner-avatar">AK</div>
-                    </div>
-                    <div class="winner-info">
-                        <h4>🥇 1st Place: Alisa Jiang & Katherine Jiang</h4>
-                        <p class="winner-location">Naples, Florida, USA</p>
-                        <p class="project-name">"Southwest Florida Environmental Issues"</p>
-                        <p class="project-desc">A comprehensive study of environmental challenges facing Southwest Florida and proposed solutions.</p>
-                    </div>
-                </div>
-
-                <div class="winner-card">
-                    <div class="winner-image">
-                        <div class="winner-avatar">EC</div>
-                    </div>
-                    <div class="winner-info">
-                        <h4>🥈 2nd Place: Even Chen</h4>
-                        <p class="winner-location">Shanghai, China</p>
-                        <p class="project-name">"A Spotlight on Local Actions"</p>
-                        <p class="project-desc">Highlighting local environmental initiatives that are making a positive impact on the environment.</p>
+                    <div class="tab-content" id="special-2025">
+                        <div class="winner-card ingenuity">
+                            <div class="winner-photo">
+                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-13.png" alt="Earth Z Team">
+                            </div>
+                            <div class="winner-info">
+                                <div class="winner-rank">Ingenuity Award</div>
+                                <h4>Atharva Soni, Arav Kamat, Sadik Premjee & Aria Kamat</h4>
+                                <p class="winner-location">California, USA</p>
+                                <p class="project-name">"Earth Z-Wildfire Solutions"</p>
+                                <p class="project-desc">An AI-powered fire detection system designed to identify and alert authorities to wildfires earlier, potentially saving forests and lives.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="https://globalenvironmentchallenge.org/" target="_blank" class="btn btn-primary" style="background: #059669; color: white;">View All Winners</a>
+            <!-- 2023-2024 Winners -->
+            <div class="year-content" id="year-2023-2024">
+                <div class="winners-tabs">
+                    <button class="tab-btn active" data-tab="senior-2024">Senior Category</button>
+                    <button class="tab-btn" data-tab="junior-2024">Junior Category</button>
+                </div>
+                <div class="winners-content">
+                    <div class="tab-content active" id="senior-2024">
+                        <div class="winner-card">
+                            <div class="winner-photo">
+                                <div class="winner-avatar">JJ</div>
+                            </div>
+                            <div class="winner-info">
+                                <div class="winner-rank">1st Place</div>
+                                <h4>Julie Jin</h4>
+                                <p class="winner-location">Ottawa, Canada</p>
+                                <p class="project-name">"Become a Biodiversity Hero"</p>
+                                <p class="project-desc">An innovative project empowering individuals to protect biodiversity from the comfort of home and while traveling.</p>
+                            </div>
+                        </div>
+                        <div class="winner-card">
+                            <div class="winner-photo">
+                                <div class="winner-avatar">JJ</div>
+                            </div>
+                            <div class="winner-info">
+                                <div class="winner-rank">2nd Place</div>
+                                <h4>Jenny Jin</h4>
+                                <p class="winner-location">Ottawa, Canada</p>
+                                <p class="project-name">"From Waste to Well-being"</p>
+                                <p class="project-desc">Addressing the global waste crisis through innovative waste management solutions and community engagement.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="junior-2024">
+                        <div class="winner-card">
+                            <div class="winner-photo">
+                                <div class="winner-avatar">AK</div>
+                            </div>
+                            <div class="winner-info">
+                                <div class="winner-rank">1st Place</div>
+                                <h4>Alisa Jiang & Katherine Jiang</h4>
+                                <p class="winner-location">Naples, Florida, USA</p>
+                                <p class="project-name">"Southwest Florida Environmental Issues"</p>
+                                <p class="project-desc">A comprehensive study of environmental challenges facing Southwest Florida and proposed solutions.</p>
+                            </div>
+                        </div>
+                        <div class="winner-card">
+                            <div class="winner-photo">
+                                <div class="winner-avatar">EC</div>
+                            </div>
+                            <div class="winner-info">
+                                <div class="winner-rank">2nd Place</div>
+                                <h4>Even Chen</h4>
+                                <p class="winner-location">Shanghai, China</p>
+                                <p class="project-name">"A Spotlight on Local Actions"</p>
+                                <p class="project-desc">Highlighting local environmental initiatives that are making a positive impact on the environment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq-section">
+    <section id="faq" class="section faq">
         <div class="container">
-            <h2>Frequently Asked Questions</h2>
+            <div class="section-header centered">
+                <span class="section-label">Questions & Answers</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
             <div class="faq-list">
                 <div class="faq-item">
                     <button class="faq-question">
@@ -1814,11 +2700,11 @@
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">
-                        <span>What format should my submission be in?</span>
+                        <span>How complex does my project need to be?</span>
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>You can submit essays (500-1000 words), videos (1-5 minutes), recorded speeches, or creative media like infographics or apps. All submissions must be in English or include English subtitles.</p>
+                        <p>Project complexity can vary based on your age group and experience. Junior participants might focus on simpler, local initiatives, while senior participants may tackle more complex challenges. What matters most is the thoughtfulness of your approach and the potential impact of your solution.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1827,7 +2713,16 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Beyond scholarship prizes, participants gain valuable experience in research, project development, and presentation skills. You'll connect with a global community of like-minded youth, receive recognition for your work, and contribute to real environmental solutions.</p>
+                        <p>Beyond the scholarship prizes, participants gain valuable experience in research, project development, and presentation skills. You'll also connect with a global community of like-minded youth, receive recognition for your work, and contribute to real environmental solutions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What language should my submission be in?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>All submissions must be in English or include English subtitles/translations. This ensures our international panel of judges can fairly evaluate all projects from participants around the world.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1836,68 +2731,176 @@
                         <span class="faq-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>You will receive a confirmation email after submitting your project through our portal. If you don't receive confirmation within 48 hours, please contact us at iyecteam@gmail.com.</p>
+                        <p>You will receive a confirmation email after submitting your project through our Google Forms portal. If you don't receive confirmation within 48 hours, please contact us at iyecteam@gmail.com.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
+    <!-- Registration CTA -->
+    <section id="register" class="section register">
         <div class="container">
-            <h2>Ready to Make a Difference?</h2>
-            <p>Join hundreds of young environmental leaders from around the world. Submit your project and be part of the solution.</p>
-            <div class="deadline-box">
-                <span class="deadline-label">Submission Deadline</span>
-                <span class="deadline-date">January 15, 2026</span>
+            <div class="register-content">
+                <h2>Ready to Make a Difference?</h2>
+                <p>Join hundreds of young environmental leaders from around the world. Submit your project and be part of the solution.</p>
+                <div class="register-deadline">
+                    <span class="deadline-label">Submission Deadline</span>
+                    <span class="deadline-date">January 15, 2026</span>
+                </div>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc487tftJjAfLNuFsVuFODGCr7ljV-8DFdXyx9Lb5Szlxv24w/viewform" target="_blank" class="btn btn-primary btn-large">Submit Your Project</a>
+                <p class="register-note">Registration is free and open to all youth 18 and under</p>
             </div>
-            <br><br>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc487tftJjAfLNuFsVuFODGCr7ljV-8DFdXyx9Lb5Szlxv24w/viewform" target="_blank" class="cta-btn">Submit Your Project</a>
-            <p style="margin-top: 1.5rem; font-size: 0.95rem; opacity: 0.9;">Registration is free and open to all youth 18 and under</p>
         </div>
     </section>
 
-    <footer>
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
         <div class="container">
-            <p>&copy; 2025 NexYouth. All rights reserved. | Grow - Lead - Act</p>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Have questions about the competition? We're here to help!</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <span class="contact-icon">&#128231;</span>
+                            <div>
+                                <h4>General Inquiries</h4>
+                                <a href="mailto:iyecteam@gmail.com">iyecteam@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <span class="contact-icon">&#129309;</span>
+                            <div>
+                                <h4>Sponsorship</h4>
+                                <a href="mailto:nexyouth.master@gmail.com">nexyouth.master@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="newsletter">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for competition updates, environmental news, and youth initiatives.</p>
+                    <form class="newsletter-form" action="#" method="POST">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <img src="/static/logo.svg" alt="NexYouth" style="height: 40px; filter: brightness(0) invert(1);">
+                    </a>
+                    <p>Empowering youth to create innovative solutions for our planet's environmental challenges.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Competition</h4>
+                        <ul>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#themes">Themes</a></li>
+                            <li><a href="#timeline">Timeline</a></li>
+                            <li><a href="#awards">Awards</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="#winners">Past Winners</a></li>
+                            <li><a href="#register">Register</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NexYouth - International Youth Environmental Competition. All rights reserved.</p>
+                <p class="tagline">Inspire. Innovate. Impact.</p>
+            </div>
         </div>
     </footer>
 
     <script>
         // Mobile menu functionality
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        const dropdownMenu = document.getElementById('programsDropdown');
+        const navLinks = document.getElementById('navLinks');
 
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
-
-        // Handle programs dropdown on mobile
-        const dropdownTrigger = document.querySelector('.dropdown > a');
-        if (dropdownTrigger) {
-            dropdownTrigger.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    dropdownMenu.classList.toggle('active');
-                }
-            });
-        }
 
         // Year tabs functionality
         const yearTabBtns = document.querySelectorAll('.year-tab-btn');
+        const yearContents = document.querySelectorAll('.year-content');
+
         yearTabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
+                const year = btn.dataset.year;
+
+                // Update active button
                 yearTabBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
-                const year = btn.dataset.year;
-                document.querySelectorAll('.year-content').forEach(content => {
-                    content.style.display = 'none';
+                // Update active content
+                yearContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `year-${year}`) {
+                        content.classList.add('active');
+                    }
                 });
-                document.getElementById('content-' + year).style.display = 'block';
+
+                // Reset category tabs for the new year
+                const activeYearContent = document.getElementById(`year-${year}`);
+                const categoryTabs = activeYearContent.querySelectorAll('.tab-btn');
+                const categoryContents = activeYearContent.querySelectorAll('.tab-content');
+
+                categoryTabs.forEach((tab, index) => {
+                    if (index === 0) {
+                        tab.classList.add('active');
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
+
+                categoryContents.forEach((content, index) => {
+                    if (index === 0) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Category tabs functionality within year content
+        document.querySelectorAll('.winners-tabs').forEach(tabsContainer => {
+            const tabs = tabsContainer.querySelectorAll('.tab-btn');
+            const contents = tabsContainer.nextElementSibling.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.dataset.tab;
+
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    // Update active content
+                    contents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === tabId) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
             });
         });
 
@@ -1910,13 +2913,18 @@
             });
         });
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('nav')) {
-                mobileMenuBtn.classList.remove('active');
-                navMenu.classList.remove('active');
-                if (dropdownMenu) dropdownMenu.classList.remove('active');
-            }
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
     </script>
 </body>
