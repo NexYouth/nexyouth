@@ -292,6 +292,114 @@
             margin-top: 0.3rem;
         }
 
+        /* World Map */
+        .world-map-container {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .map-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .world-map {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+        }
+
+        .map-image {
+            width: 100%;
+            height: auto;
+            opacity: 0.4;
+            filter: invert(1);
+        }
+
+        .map-pins {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .map-pin {
+            position: absolute;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .pin-dot {
+            display: block;
+            width: 12px;
+            height: 12px;
+            background: #10b981;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        .pin-label {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(16, 185, 129, 0.9);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .map-pin:hover .pin-label {
+            opacity: 1;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        .map-tooltip {
+            position: absolute;
+            background: white;
+            color: #333;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            max-width: 250px;
+            display: none;
+        }
+
+        .map-tooltip h4 {
+            color: #059669;
+            margin-bottom: 0.5rem;
+        }
+
+        .map-tooltip p {
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
         /* About Section */
         .about-section {
             padding: 5rem 2rem;
@@ -1163,6 +1271,96 @@
                     <div class="impact-number">5</div>
                     <div class="impact-label">Continents</div>
                     <div class="impact-detail">Truly global reach</div>
+                </div>
+            </div>
+
+            <!-- World Map -->
+            <div class="world-map-container">
+                <h3 class="map-title">Where Our Participants Come From</h3>
+                <div class="world-map" id="world-map">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/World_map_blank_without_borders.svg/1280px-World_map_blank_without_borders.svg.png" alt="World Map" class="map-image">
+                    <div class="map-pins">
+                        <div class="map-pin" style="left: 18%; top: 35%;" data-country="USA" data-count="8">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">USA</span>
+                        </div>
+                        <div class="map-pin" style="left: 24%; top: 28%;" data-country="Canada" data-count="3">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Canada</span>
+                        </div>
+                        <div class="map-pin" style="left: 48%; top: 25%;" data-country="Europe" data-count="2">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Europe</span>
+                        </div>
+                        <div class="map-pin" style="left: 52%; top: 32%;" data-country="Turkey" data-count="4">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Turkey</span>
+                        </div>
+                        <div class="map-pin" style="left: 70%; top: 38%;" data-country="India" data-count="15">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">India</span>
+                        </div>
+                        <div class="map-pin" style="left: 68%; top: 28%;" data-country="Pakistan" data-count="5">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Pakistan</span>
+                        </div>
+                        <div class="map-pin" style="left: 78%; top: 42%;" data-country="Vietnam" data-count="3">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Vietnam</span>
+                        </div>
+                        <div class="map-pin" style="left: 80%; top: 35%;" data-country="China" data-count="4">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">China</span>
+                        </div>
+                        <div class="map-pin" style="left: 60%; top: 35%;" data-country="Middle East" data-count="12">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Middle East</span>
+                        </div>
+                        <div class="map-pin" style="left: 54%; top: 55%;" data-country="Kenya" data-count="4">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Kenya</span>
+                        </div>
+                        <div class="map-pin" style="left: 50%; top: 48%;" data-country="Nigeria" data-count="2">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Nigeria</span>
+                        </div>
+                        <div class="map-pin" style="left: 52%; top: 60%;" data-country="South Africa" data-count="2">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">S. Africa</span>
+                        </div>
+                        <div class="map-pin" style="left: 82%; top: 48%;" data-country="Singapore" data-count="5">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Singapore</span>
+                        </div>
+                        <div class="map-pin" style="left: 85%; top: 35%;" data-country="South Korea" data-count="3">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">S. Korea</span>
+                        </div>
+                        <div class="map-pin" style="left: 80%; top: 30%;" data-country="Taiwan" data-count="4">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Taiwan</span>
+                        </div>
+                        <div class="map-pin" style="left: 65%; top: 22%;" data-country="Kazakhstan" data-count="3">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Kazakhstan</span>
+                        </div>
+                        <div class="map-pin" style="left: 75%; top: 45%;" data-country="Bangladesh" data-count="4">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Bangladesh</span>
+                        </div>
+                        <div class="map-pin" style="left: 90%; top: 70%;" data-country="Australia" data-count="2">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Australia</span>
+                        </div>
+                        <div class="map-pin" style="left: 46%; top: 38%;" data-country="Spain" data-count="3">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Spain</span>
+                        </div>
+                        <div class="map-pin" style="left: 28%; top: 55%;" data-country="Brazil" data-count="1">
+                            <span class="pin-dot"></span>
+                            <span class="pin-label">Brazil</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
