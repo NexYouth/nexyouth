@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>International Youth Environmental Competition - NexYouth</title>
-    <meta name="description" content="NexYouth Environmental Competition - Compete globally to investigate real-world environmental challenges through research and data analysis.">
+    <meta name="description" content="IYEC - Compete globally to investigate real-world environmental challenges through research and data analysis. Win scholarships while making a positive impact.">
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="International Youth Environmental Competition - NexYouth">
     <meta property="og:description" content="Compete globally to investigate real-world environmental challenges through research and data analysis.">
@@ -81,10 +81,9 @@
         }
 
         nav a:hover {
-            color: #00d4ff;
+            color: #10b981;
         }
 
-        /* Dropdown Menu */
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -113,9 +112,9 @@
 
         .dropdown-menu a:hover {
             background: #f5f5f5;
+            color: #10b981;
         }
 
-        /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
             flex-direction: column;
@@ -134,284 +133,636 @@
             transition: all 0.3s ease;
         }
 
-        .mobile-menu-btn.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .mobile-menu-btn.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-btn.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-        }
-
-        .dropdown-menu a:hover {
-            background: #f5f5f5;
-            color: #00d4ff;
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
+        /* Hero Section */
         .program-hero {
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            background: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);
             color: white;
             text-align: center;
-            padding: 6rem 2rem;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .program-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
         }
 
         .program-hero h1 {
             font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            opacity: 0.95;
         }
 
         .program-hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0.95;
-            line-height: 1.8;
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            line-height: 1.7;
         }
 
-        .program-content {
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #059669;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #059669;
+        }
+
+        /* Impact Stats */
+        .impact-section {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
+            color: white;
             padding: 5rem 2rem;
         }
 
-        .program-content h2 {
+        .impact-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-section > .container > p {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .impact-stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .impact-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .impact-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .impact-detail {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 0.3rem;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 5rem 2rem;
+        }
+
+        .about-section h2 {
             font-size: 2rem;
             margin-bottom: 1.5rem;
             color: #1a1a2e;
         }
 
-        .program-content p {
+        .about-section p {
             font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 1.5rem;
             color: #555;
         }
 
-        .competition-grid {
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-top: 3rem;
         }
 
-        .competition-card {
+        .feature-card {
             background: white;
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #eee;
         }
 
-        .competition-card:hover {
+        .feature-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
 
-        .competition-icon {
-            width: 80px;
-            height: 80px;
+        .feature-icon {
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, #059669 0%, #10b981 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
+            margin: 0 auto 1.2rem;
+            font-size: 1.8rem;
         }
 
-        .competition-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
             color: #1a1a2e;
         }
 
-        .competition-card p {
-            font-size: 1rem;
+        .feature-card p {
+            font-size: 0.95rem;
             color: #666;
             margin-bottom: 0;
         }
 
+        /* Eligibility Section */
+        .eligibility-section {
+            background: #f9fafb;
+            padding: 5rem 2rem;
+        }
+
+        .eligibility-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            color: #1a1a2e;
+        }
+
+        .eligibility-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .eligibility-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .eligibility-card.featured {
+            border-color: #10b981;
+        }
+
+        .eligibility-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .eligibility-card .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .eligibility-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+        }
+
+        .age-range {
+            color: #059669;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .eligibility-card ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .eligibility-card li {
+            padding: 0.5rem 0;
+            color: #555;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .eligibility-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        /* Themes Section */
         .themes-section {
-            background: #f9f9f9;
             padding: 5rem 2rem;
         }
 
         .themes-section h2 {
             font-size: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
             text-align: center;
             color: #1a1a2e;
         }
 
+        .themes-section > .container > p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2.5rem;
+        }
+
         .themes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .theme-card {
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .theme-card:hover {
+            border-color: #10b981;
+            transform: translateY(-5px);
+        }
+
+        .theme-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .theme-card h3 {
+            font-size: 1rem;
+            color: #1a1a2e;
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-card p {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 0;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            background: #f9fafb;
+            padding: 5rem 2rem;
+        }
+
+        .timeline-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #1a1a2e;
+        }
+
+        .timeline-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #10b981, #059669);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-marker {
+            width: 44px;
+            height: 44px;
+            background: white;
+            border: 3px solid #10b981;
+            border-radius: 50%;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-marker.active {
+            background: #10b981;
+        }
+
+        .timeline-marker.active::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            flex-grow: 1;
+        }
+
+        .timeline-date {
+            color: #059669;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.2rem;
+            margin: 0.3rem 0;
+            color: #1a1a2e;
+        }
+
+        .timeline-content p {
+            font-size: 0.95rem;
+            color: #666;
+            margin: 0;
+        }
+
+        /* Judging Section */
+        .judging-section {
+            padding: 5rem 2rem;
+        }
+
+        .judging-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            color: #1a1a2e;
+        }
+
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        .theme-item {
+        .criterion-card {
             background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            text-align: center;
-        }
-
-        .theme-item span {
-            font-weight: 500;
-            color: #333;
-        }
-
-        .details-section {
-            padding: 5rem 2rem;
-        }
-
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .detail-card {
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-            border-radius: 12px;
             padding: 2rem;
-            border-left: 4px solid #059669;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            border-top: 4px solid #10b981;
         }
 
-        .detail-card h3 {
-            font-size: 1.2rem;
-            color: #059669;
-            margin-bottom: 0.8rem;
+        .criterion-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
 
-        .detail-card p {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 0;
+        .criterion-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
         }
 
-        .prizes-section {
+        .criterion-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .criterion-weight {
+            display: inline-block;
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        /* Awards Section */
+        .awards-section {
             background: linear-gradient(135deg, #059669 0%, #10b981 100%);
             color: white;
             padding: 5rem 2rem;
         }
 
-        .prizes-section h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+        .awards-section h2 {
             text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
             color: white;
         }
 
-        .prizes-grid {
+        .awards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 900px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        .prize-card {
+        .award-card {
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.2);
             padding: 2rem;
-            border-radius: 12px;
+            border-radius: 16px;
             text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
 
-        .prize-card h3 {
-            font-size: 1.5rem;
+        .award-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .award-badge {
+            font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
-        .prize-card p {
-            font-size: 1.1rem;
-            margin-bottom: 0;
+        .award-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
         }
 
-        .cta-section {
-            background: #059669;
-            color: white;
-            text-align: center;
-            padding: 4rem 2rem;
-        }
-
-        .cta-section h2 {
+        .award-prize {
             font-size: 2rem;
-            margin-bottom: 1rem;
-            color: white;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
         }
 
-        .cta-section p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
+        .award-card ul {
+            list-style: none;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
 
-        .cta-btn {
-            display: inline-block;
-            background: white;
-            color: #059669;
-            padding: 1rem 2.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s;
+        .award-card li {
+            padding: 0.3rem 0;
         }
 
-        .cta-btn:hover {
-            transform: translateY(-2px);
+        /* Winners Section */
+        .winners-section {
+            padding: 5rem 2rem;
+            background: #f9fafb;
         }
 
-        footer {
-            background: #000;
-            color: white;
-            padding: 3rem 2rem;
+        .winners-section h2 {
             text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #1a1a2e;
         }
 
-        footer .links {
+        .year-tabs {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1rem;
             margin-bottom: 2rem;
-            flex-wrap: wrap;
         }
 
-        footer a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.95rem;
+        .year-tab-btn {
+            padding: 0.8rem 2rem;
+            border: 2px solid #10b981;
+            background: transparent;
+            color: #059669;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        footer a:hover {
-            color: #10b981;
+        .year-tab-btn.active, .year-tab-btn:hover {
+            background: #10b981;
+            color: white;
         }
 
-        footer p {
-            color: #999;
-            font-size: 0.9rem;
+        .category-title {
+            font-size: 1.4rem;
+            color: #059669;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #10b981;
         }
 
         .winner-card {
             background: white;
             border-radius: 12px;
             padding: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             border-left: 5px solid #059669;
             display: flex;
@@ -421,9 +772,9 @@
 
         .winner-image {
             flex-shrink: 0;
-            width: 140px;
-            height: 140px;
-            border-radius: 8px;
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
@@ -438,39 +789,195 @@
             flex-grow: 1;
         }
 
-        .avatar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 700;
-            color: white;
-            border-radius: 8px;
+        .winner-info h4 {
+            color: #059669;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
         }
 
-        .avatar-as { background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); }
-        .avatar-nat { background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); }
-        .avatar-as2 { background: linear-gradient(135deg, #dc2626 0%, #f87171 100%); }
-        .avatar-gst { background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%); }
-        .avatar-ry { background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); }
-        .avatar-sw { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
-        .avatar-jj { background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%); }
-        .avatar-jj2 { background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%); }
-        .avatar-xj { background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); }
-        .avatar-ak { background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%); }
-        .avatar-ec { background: linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%); }
-        .avatar-wz { background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%); }
-        .avatar-sh { background: linear-gradient(135deg, #a78bfa 0%, #c4b5fd 100%); }
+        .winner-location {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-name {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-desc {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 5rem 2rem;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            color: #1a1a2e;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            background: white;
+            border: none;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #f9fafb;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: #10b981;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            background: white;
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1rem 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .deadline-box {
+            background: rgba(255, 255, 255, 0.15);
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .deadline-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            display: block;
+        }
+
+        .deadline-date {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: #059669;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .themes-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .awards-grid, .criteria-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .impact-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
         @media (max-width: 768px) {
             nav {
                 padding: 0.8rem 1rem;
             }
-
             nav .logo img {
                 height: 50px;
             }
-
             nav ul {
                 display: none;
                 flex-direction: column;
@@ -482,91 +989,73 @@
                 gap: 0;
                 border-top: 1px solid #eee;
             }
-
             nav ul.active {
                 display: flex;
             }
-
-            nav li {
-                width: 100%;
-                position: relative;
-            }
-
             nav a {
                 display: block;
                 padding: 1rem 2rem;
-                font-size: 0.9rem;
-                text-transform: uppercase;
             }
-
+            .mobile-menu-btn {
+                display: flex;
+            }
             .dropdown-menu {
                 position: static;
                 display: none;
                 box-shadow: none;
                 background: #f5f5f5;
-                border-radius: 0;
-                min-width: auto;
             }
-
             .dropdown-menu.active {
                 display: block;
             }
-
-            .dropdown-menu a {
-                padding: 0.6rem 2rem 0.6rem 3rem;
-                font-size: 0.85rem;
-            }
-
             .dropdown:hover .dropdown-menu {
                 display: none;
             }
-
-            .mobile-menu-btn {
-                display: flex;
-            }
-
             .program-hero h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
-
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .eligibility-cards {
+                grid-template-columns: 1fr;
+            }
+            .themes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .awards-grid, .criteria-grid {
+                grid-template-columns: 1fr;
+            }
             .winner-card {
                 flex-direction: column;
-                align-items: center;
                 text-align: center;
-                gap: 1.5rem;
             }
-
             .winner-image {
-                width: 120px;
-                height: 120px;
+                margin: 0 auto;
             }
-
             .container {
                 padding: 0 1rem;
             }
         }
 
         @media (max-width: 480px) {
-            nav {
-                padding: 0.6rem 0.8rem;
-            }
-
             nav .logo img {
                 height: 40px;
             }
-
+            .program-hero {
+                padding: 3rem 1rem;
+            }
             .program-hero h1 {
-                font-size: 1.4rem;
+                font-size: 1.6rem;
             }
-
-            .winner-card {
-                padding: 1.5rem;
-                margin-bottom: 1.5rem;
+            .themes-grid {
+                grid-template-columns: 1fr;
             }
-
-            .winner-image {
-                width: 100px;
-                height: 100px;
+            .impact-stats {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -586,10 +1075,10 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/#what-we-do">What We Do</a></li>
                 <li class="dropdown">
-                    <a href="/#programs">Programs ▾</a>
+                    <a href="/#programs">Programs</a>
                     <div class="dropdown-menu" id="programsDropdown">
                         <a href="/programs/skill-development">Skill Development Courses</a>
-                        <a href="/programs/seminars">Seminars & Workships</a>
+                        <a href="/programs/seminars">Seminars & Workshops</a>
                         <a href="/programs/mentorship">Global Mentorship Network</a>
                         <a href="/programs/environmental-competition">Environmental Youth Competition</a>
                         <a href="/programs/youth-tech-lab">Youth Tech Lab</a>
@@ -604,191 +1093,431 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section class="program-hero">
         <div class="container">
-            <h1>🌍 International Youth Environmental Competition</h1>
-            <p>Inspire. Innovate. Impact. Submit your environmental solution and compete globally with young changemakers from around the world.</p>
+            <span class="hero-label">2025-2026 Competition Now Open</span>
+            <h1>International Youth Environmental Competition</h1>
+            <p class="hero-tagline">Inspire. Innovate. Impact.</p>
+            <p>Join thousands of young changemakers from around the world in addressing our planet's most pressing environmental challenges.</p>
+            <div class="hero-cta">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc487tftJjAfLNuFsVuFODGCr7ljV-8DFdXyx9Lb5Szlxv24w/viewform" target="_blank" class="btn btn-primary">Register Now</a>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
         </div>
     </section>
 
-    <section class="program-content">
+    <!-- Impact Stats -->
+    <section class="impact-section">
         <div class="container">
-            <h2>About the IYEC</h2>
-            <p>The International Youth Environmental Competition (IYEC) is an annual event dedicated to inspiring and empowering youth to take action on environmental and climate issues. This competition unites passionate young innovators from around the world to share ideas and projects addressing local environmental challenges with effective solutions.</p>
-
-            <div class="competition-grid">
-                <div class="competition-card">
-                    <div class="competition-icon">👥</div>
-                    <h3>For Youth under 18</h3>
-                    <p>Open to young advocates and researchers from all backgrounds and experience levels worldwide.</p>
+            <h2>Our Global Community</h2>
+            <p>Young leaders making real impact across the world</p>
+            <div class="impact-stats">
+                <div class="impact-stat">
+                    <div class="impact-number">120+</div>
+                    <div class="impact-label">Participants</div>
+                    <div class="impact-detail">Young innovators worldwide</div>
                 </div>
-                <div class="competition-card">
-                    <div class="competition-icon">📝</div>
-                    <h3>Multiple Formats</h3>
-                    <p>Submit research,videos,essays ,speeches, or other creative works.</p>
+                <div class="impact-stat">
+                    <div class="impact-number">40+</div>
+                    <div class="impact-label">Countries</div>
+                    <div class="impact-detail">Global representation</div>
                 </div>
-                <div class="competition-card">
-                    <div class="competition-icon">💰</div>
-                    <h3>Win Scholarships</h3>
-                    <p>1st place: $200 | 2nd place: $150 | Junior Award: $100</p>
+                <div class="impact-stat">
+                    <div class="impact-number">100+</div>
+                    <div class="impact-label">Projects</div>
+                    <div class="impact-detail">Environmental solutions</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-number">5</div>
+                    <div class="impact-label">Continents</div>
+                    <div class="impact-detail">Truly global reach</div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>Shaping Tomorrow's Environmental Leaders</h2>
+            <p>The International Youth Environmental Competition (IYEC) is an annual global event dedicated to empowering youth to address environmental and climate challenges through innovative solutions to local problems.</p>
+            <p>We believe that young people have the creativity, passion, and determination to make a real difference in their communities and beyond. IYEC provides a platform for students worldwide to showcase their ideas, learn from peers, and gain recognition for their environmental initiatives.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>No Experience Required</h3>
+                    <p>Open to all youth passionate about the environment, regardless of background or prior experience.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Global Participation</h3>
+                    <p>Connect with like-minded youth from 40+ countries and 5 continents worldwide.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Multiple Formats</h3>
+                    <p>Express your ideas through essays, videos, speeches, or creative media - your choice!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eligibility Section -->
+    <section class="eligibility-section">
+        <div class="container">
+            <h2>Who Can Participate</h2>
+            <div class="eligibility-cards">
+                <div class="eligibility-card">
+                    <div class="card-icon">👦</div>
+                    <h3>Junior Category</h3>
+                    <p class="age-range">Ages 13 and below</p>
+                    <ul>
+                        <li>Individual or team participation</li>
+                        <li>No prior experience needed</li>
+                        <li>Projects on any environmental theme</li>
+                        <li>Parental/guardian consent required</li>
+                    </ul>
+                </div>
+                <div class="eligibility-card featured">
+                    <div class="card-badge">Most Popular</div>
+                    <div class="card-icon">🧑‍🎓</div>
+                    <h3>Senior Category</h3>
+                    <p class="age-range">Ages 14-18</p>
+                    <ul>
+                        <li>Individual or team participation</li>
+                        <li>No prior experience needed</li>
+                        <li>Advanced project complexity welcome</li>
+                        <li>Mentorship opportunities available</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Themes Section -->
     <section class="themes-section">
         <div class="container">
-            <h2>Competition Themes</h2>
-            <p style="text-align: center; margin-bottom: 2rem; color: #666;">Pick a local issue related to one of these themes:</p>
+            <h2>Environmental Themes</h2>
+            <p>Select a local issue related to at least one of these theme areas</p>
             <div class="themes-grid">
-                <div class="theme-item">
-                    <span>🍃 Nature & Protection</span>
+                <div class="theme-card">
+                    <div class="theme-icon">🌳</div>
+                    <h3>Nature & Protection</h3>
+                    <p>Biodiversity, habitat restoration</p>
                 </div>
-                <div class="theme-item">
-                    <span>💨 Air Quality</span>
+                <div class="theme-card">
+                    <div class="theme-icon">💨</div>
+                    <h3>Air Quality</h3>
+                    <p>Emissions, air pollution solutions</p>
                 </div>
-                <div class="theme-item">
-                    <span>💧 Water & Ecosystems</span>
+                <div class="theme-card">
+                    <div class="theme-icon">💧</div>
+                    <h3>Water & Ecosystems</h3>
+                    <p>Water conservation, marine life</p>
                 </div>
-                <div class="theme-item">
-                    <span>♻️ Waste Management</span>
+                <div class="theme-card">
+                    <div class="theme-icon">♻️</div>
+                    <h3>Waste Management</h3>
+                    <p>Recycling, circular economy</p>
                 </div>
-                <div class="theme-item">
-                    <span>🌡️ Climate Change</span>
+                <div class="theme-card">
+                    <div class="theme-icon">🌡️</div>
+                    <h3>Climate Change</h3>
+                    <p>Mitigation, climate resilience</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="prizes-section">
+    <!-- Timeline Section -->
+    <section class="timeline-section">
         <div class="container">
-            <h2 style="color: white;">🏆 Awards</h2>
-            <div class="prizes-grid">
-                <div class="prize-card">
-                    <h3>🥇 1st Place</h3>
-                    <p>$200 Scholarship</p>
+            <h2>2025-2026 Competition Timeline</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-marker active"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">September 1, 2025</span>
+                        <h3>Portal Opens</h3>
+                        <p>Registration and submission portal officially opens</p>
+                    </div>
                 </div>
-                <div class="prize-card">
-                    <h3>🥈 2nd Place</h3>
-                    <p>$150 Scholarship</p>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">September - January</span>
+                        <h3>Project Development</h3>
+                        <p>Work on your project, gather research, and prepare your submission</p>
+                    </div>
                 </div>
-                <div class="prize-card">
-                    <h3>⭐ Ingenuity Award</h3>
-                    <p>$100 Scholarship</p>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">January 15, 2026</span>
+                        <h3>Submission Deadline</h3>
+                        <p>All projects must be submitted by 11:59 PM (your local time)</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">February 2026</span>
+                        <h3>Judging Period</h3>
+                        <p>Expert panel reviews and evaluates all submissions</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">March 2026</span>
+                        <h3>Winners Announced</h3>
+                        <p>Results published and winners notified via email</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="details-section">
+    <!-- Judging Criteria -->
+    <section class="judging-section">
         <div class="container">
-            <h2>How to Participate</h2>
-            <div class="details-grid">
-                <div class="detail-card">
-                    <h3>1️⃣ Prepare Your Project</h3>
-                    <p>Develop an innovative solution to a local environmental issue. No prior experience needed—focus on creativity and practical impact.</p>
+            <h2>How Projects Are Judged</h2>
+            <div class="criteria-grid">
+                <div class="criterion-card">
+                    <div class="criterion-icon">💡</div>
+                    <h3>Innovation</h3>
+                    <p>Originality and creativity of the proposed solution</p>
+                    <span class="criterion-weight">25%</span>
                 </div>
-                <div class="detail-card">
-                    <h3>2️⃣ Choose Your Format</h3>
-                    <p>Present as an essay, video, speech, or creative format. Make sure it's in English or has English subtitles.</p>
+                <div class="criterion-card">
+                    <div class="criterion-icon">🎯</div>
+                    <h3>Impact</h3>
+                    <p>Potential environmental and community benefits</p>
+                    <span class="criterion-weight">25%</span>
                 </div>
-                <div class="detail-card">
-                    <h3>3️⃣ Submit Online</h3>
-                    <p>Fill out the submission form with your project details. Submission deadline: January 15, 2026.</p>
+                <div class="criterion-card">
+                    <div class="criterion-icon">⚙️</div>
+                    <h3>Feasibility</h3>
+                    <p>Practicality and scalability of implementation</p>
+                    <span class="criterion-weight">25%</span>
+                </div>
+                <div class="criterion-card">
+                    <div class="criterion-icon">📊</div>
+                    <h3>Presentation</h3>
+                    <p>Clarity and effectiveness of communication</p>
+                    <span class="criterion-weight">25%</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="background: #f9f9f9; padding: 5rem 2rem;">
+    <!-- Awards Section -->
+    <section class="awards-section">
         <div class="container">
-            <h2 style="font-size: 2rem; margin-bottom: 2rem; color: #1a1a2e;">Past Award Winners</h2>
-            
-            <div style="margin-bottom: 4rem;">
-                <h3 style="font-size: 1.5rem; color: #059669; margin-bottom: 2rem; border-bottom: 3px solid #059669; padding-bottom: 1rem;">🏆 2024-2025 Senior Category Winners</h3>
-                
-                <div class="winner-card">
-                    <div class="winner-image">
-                        <img src="/static/winner_Amanullah Solangi.png" alt="Amanullah Solangi" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="winner-info">
-                        <h4 style="color: #059669; font-size: 1.3rem; margin-bottom: 0.5rem;">🥇 1st Place: Amanullah Solangi</h4>
-                        <p style="color: #888; font-size: 0.95rem; margin-bottom: 1rem;"><strong>Government Degree College, Matiari • Hyderabad, Sindh, Pakistan</strong></p>
-                        <p style="color: #333; font-size: 1rem; margin-bottom: 1rem;"><strong>Project: "Cool Hyderabad: A Green Initiative to Combat Urban Heat and Climate Change"</strong></p>
-                        <p style="color: #666; line-height: 1.8;">Cool Hyderabad is an eco-friendly initiative led by youth to address urban heat and climate change through mass tree plantations in Hyderabad. By planting 100,000 trees and involving the community, the project promotes sustainability, improves air quality, and raises environmental awareness among students, volunteers, and the general public.</p>
-                    </div>
+            <h2>Awards Structure</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-badge">🥇</div>
+                    <h3>1st Place</h3>
+                    <div class="award-prize">$200</div>
+                    <p>Scholarship Award</p>
+                    <ul>
+                        <li>Certificate of Excellence</li>
+                        <li>Website feature</li>
+                        <li>Social media recognition</li>
+                    </ul>
                 </div>
-
-                <div class="winner-card">
-                    <div class="winner-image" style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <img src="/static/winner_Ngô Anh Tuấn.png" alt="Ngô Anh Tuấn" style="width: 100%; height: auto; object-fit: cover;">
-                        <img src="/static/winner_Duong Hai Mien.png" alt="Duong Hai Mien" style="width: 100%; height: auto; object-fit: cover;">
-                    </div>
-                    <div class="winner-info">
-                        <h4 style="color: #059669; font-size: 1.3rem; margin-bottom: 0.5rem;">🥈 2nd Place: Ngô Anh Tuấn & Duong Hai Mien</h4>
-                        <p style="color: #888; font-size: 0.95rem; margin-bottom: 1rem;"><strong>Nguyen Trai High School & Quy Don High School for the Gifted • Da Nang, Vietnam</strong></p>
-                        <p style="color: #333; font-size: 1rem; margin-bottom: 1rem;"><strong>Project: "Turning the Tides: Restoring Coastal Paradise from Pollution's Grip"</strong></p>
-                        <p style="color: #666; line-height: 1.8;">Da Nang's breathtaking beaches face serious environmental threats such as plastic waste and marine pollution. Microplastics are devastating marine life and contaminating seafood. By adopting sound environmental practices, improving waste management, restoring original habitats, and rallying communities to action, the team is working to save Da Nang's natural beauty and its essence.</p>
-                    </div>
+                <div class="award-card">
+                    <div class="award-badge">🥈</div>
+                    <h3>2nd Place</h3>
+                    <div class="award-prize">$150</div>
+                    <p>Scholarship Award</p>
+                    <ul>
+                        <li>Certificate of Achievement</li>
+                        <li>Website feature</li>
+                        <li>Social media recognition</li>
+                    </ul>
                 </div>
-
-                <div class="winner-card">
-                    <div class="winner-image">
-                        <img src="/static/winner_Chun-Shan CHANG.png" alt="Chun-Shan CHANG" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="winner-info">
-                        <h4 style="color: #059669; font-size: 1.3rem; margin-bottom: 0.5rem;">⭐ Honorable Mention: Chun-Shan CHANG</h4>
-                        <p style="color: #888; font-size: 0.95rem; margin-bottom: 1rem;"><strong>Kang Chiao International School • New Taipei City, Taiwan</strong></p>
-                        <p style="color: #333; font-size: 1rem; margin-bottom: 1rem;"><strong>Project: "The Inconsistent Perception Between Travel Experience and Environmental Awareness: The Ban on Free Single-Use Toiletries in Taiwan"</strong></p>
-                        <p style="color: #666; line-height: 1.8;">In 2025, Taiwan implemented a tourism-related regulation banning disposable plastic amenities in hotels and B&Bs. This project explores public perceptions of environmental protection versus hospitality expectations, aiming to find a balance between sustainability and guest experience.</p>
-                    </div>
+                <div class="award-card">
+                    <div class="award-badge">🥉</div>
+                    <h3>Junior Award</h3>
+                    <div class="award-prize">$100</div>
+                    <p>Scholarship Award</p>
+                    <ul>
+                        <li>Certificate of Achievement</li>
+                        <li>Website feature</li>
+                        <li>Encouragement award</li>
+                    </ul>
                 </div>
-
-                <div class="winner-card">
-                    <div class="winner-image">
-                        <img src="/static/winner_William Zeng.png" alt="William Zeng" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="winner-info">
-                        <h4 style="color: #059669; font-size: 1.3rem; margin-bottom: 0.5rem;">⭐ Honorable Mention: William Zeng</h4>
-                        <p style="color: #888; font-size: 0.95rem; margin-bottom: 1rem;"><strong>St Stephens School • Rome, Italy</strong></p>
-                        <p style="color: #333; font-size: 1rem; margin-bottom: 1rem;"><strong>Project: "Rome's Waste Management Crisis"</strong></p>
-                        <p style="color: #666; line-height: 1.8;">Proposed solutions include anaerobic digestion for organic waste, circular economy initiatives, and localized waste-to-energy plants to reduce reliance on waste exports. These approaches aim to foster a sustainable system, preparing the city for the upcoming Jubilee Year.</p>
-                    </div>
-                </div>
-
-            <div style="margin-bottom: 4rem;">
-                <h3 style="font-size: 1.5rem; color: #059669; margin-bottom: 2rem; border-bottom: 3px solid #059669; padding-bottom: 1rem;">⭐ 2024-2025 IYEC Ingenuity Award</h3>
-                
-                <div class="winner-card">
-                    <div class="winner-image">
-                        <img src="/static/winner_2024_25IYEC Ingenuity Award.png" alt="2024-2025 IYEC Ingenuity Award" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="winner-info">
-                        <h4 style="color: #059669; font-size: 1.3rem; margin-bottom: 0.5rem;">🚀 Atharva Soni, Arav Kamat, Sadik Premjee & Aria Kamat</h4>
-                        <p style="color: #888; font-size: 0.95rem; margin-bottom: 1rem;"><strong>Northwood High School • Irvine, California, USA</strong></p>
-                        <p style="color: #333; font-size: 1rem; margin-bottom: 1rem;"><strong>Project: "Earth Z- Wildfire Solutions"</strong></p>
-                        <p style="color: #666; line-height: 1.8;">Earth Z develops an AI system backed by real past and current data to detect areas of high fire risk, using datasets from NOAA and other sources. The team collected their own machine learning data to train the model, ensuring accuracy by correlating inputs with confirmed fire incidents.</p>
-                    </div>
-                </div>
-                <p style="color: #666; font-size: 1.1rem; margin-bottom: 1rem; margin-top: 1.5rem; text-align: center;">Explore more details about IYEC and get inspired by past winners' success stories.</p>
-                <div style="text-align: center;">
-                    <a href="https://globalenvironmentchallenge.org/" target="_blank" style="display: inline-block; padding: 0.75rem 2rem; background-color: #059669; color: white; text-decoration: none; border-radius: 0.5rem; font-weight: bold;">Learn More</a>
+                <div class="award-card">
+                    <div class="award-badge">⭐</div>
+                    <h3>Ingenuity Award</h3>
+                    <div class="award-prize">Special</div>
+                    <p>Recognition Award</p>
+                    <ul>
+                        <li>Certificate of Ingenuity</li>
+                        <li>Prominent feature</li>
+                        <li>Innovation spotlight</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Winners Section -->
+    <section class="winners-section">
+        <div class="container">
+            <h2>Past Award Winners</h2>
+
+            <div class="year-tabs">
+                <button class="year-tab-btn active" data-year="2024-2025">2024-2025</button>
+                <button class="year-tab-btn" data-year="2023-2024">2023-2024</button>
+            </div>
+
+            <div class="year-content" id="content-2024-2025">
+                <h3 class="category-title">Senior Category Winners</h3>
+
+                <div class="winner-card">
+                    <div class="winner-image">
+                        <img src="/static/winner_Amanullah Solangi.png" alt="Amanullah Solangi">
+                    </div>
+                    <div class="winner-info">
+                        <h4>🥇 1st Place: Amanullah Solangi</h4>
+                        <p class="winner-location">Government Degree College, Matiari - Hyderabad, Sindh, Pakistan</p>
+                        <p class="project-name">"Cool Hyderabad: A Green Initiative to Combat Urban Heat and Climate Change"</p>
+                        <p class="project-desc">A comprehensive tree planting initiative aimed at combating urban heat islands and improving air quality by planting 100,000 trees and involving the community.</p>
+                    </div>
+                </div>
+
+                <div class="winner-card">
+                    <div class="winner-image">
+                        <img src="/static/winner_Ngô Anh Tuấn.png" alt="Ngô Anh Tuấn & Duong Hai Mien">
+                    </div>
+                    <div class="winner-info">
+                        <h4>🥈 2nd Place: Ngô Anh Tuấn & Duong Hai Mien</h4>
+                        <p class="winner-location">Nguyen Trai High School & Quy Don High School - Da Nang, Vietnam</p>
+                        <p class="project-name">"Turning the Tides: Restoring Coastal Paradise from Pollution's Grip"</p>
+                        <p class="project-desc">An innovative approach to addressing coastal pollution and protecting marine ecosystems through community action and waste management.</p>
+                    </div>
+                </div>
+
+                <h3 class="category-title" style="margin-top: 3rem;">Ingenuity Award</h3>
+
+                <div class="winner-card">
+                    <div class="winner-image">
+                        <img src="/static/winner_2024_25IYEC Ingenuity Award.png" alt="Earth Z Team">
+                    </div>
+                    <div class="winner-info">
+                        <h4>🚀 Atharva Soni, Arav Kamat, Sadik Premjee & Aria Kamat</h4>
+                        <p class="winner-location">Northwood High School - Irvine, California, USA</p>
+                        <p class="project-name">"Earth Z - Wildfire Solutions"</p>
+                        <p class="project-desc">An AI-powered fire detection system designed to identify and alert authorities to wildfires earlier using real-time data and machine learning.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="year-content" id="content-2023-2024" style="display: none;">
+                <h3 class="category-title">Senior Category Winners</h3>
+
+                <div class="winner-card">
+                    <div class="winner-info">
+                        <h4>🥇 1st Place: Julie Jin</h4>
+                        <p class="winner-location">Ottawa, Canada</p>
+                        <p class="project-name">"Become a Biodiversity Hero"</p>
+                        <p class="project-desc">An innovative project empowering individuals to protect biodiversity from the comfort of home and while traveling.</p>
+                    </div>
+                </div>
+
+                <div class="winner-card">
+                    <div class="winner-info">
+                        <h4>🥈 2nd Place: Jenny Jin</h4>
+                        <p class="winner-location">Ottawa, Canada</p>
+                        <p class="project-name">"From Waste to Well-being"</p>
+                        <p class="project-desc">Addressing the global waste crisis through innovative waste management solutions and community engagement.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://globalenvironmentchallenge.org/" target="_blank" class="btn btn-primary" style="background: #059669; color: white;">View All Winners</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do I need prior experience to participate?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No prior experience is required! IYEC welcomes all young people who are passionate about the environment. Whether you're just starting to learn about environmental issues or have been involved in projects before, your unique perspective is valuable.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I participate as a team?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! You can participate either individually or as a team. Team participation is encouraged as it allows for collaboration and combining different skills and perspectives to create more comprehensive solutions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What format should my submission be in?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You can submit essays (500-1000 words), videos (1-5 minutes), recorded speeches, or creative media like infographics or apps. All submissions must be in English or include English subtitles.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What are the benefits of participating?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Beyond scholarship prizes, participants gain valuable experience in research, project development, and presentation skills. You'll connect with a global community of like-minded youth, receive recognition for your work, and contribute to real environmental solutions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How will I know if my submission was received?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>You will receive a confirmation email after submitting your project through our portal. If you don't receive confirmation within 48 hours, please contact us at iyecteam@gmail.com.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
             <h2>Ready to Make a Difference?</h2>
-            <p>Submit your environmental solution and compete with innovators from around the world.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc487tftJjAfLNuFsVuFODGCr7ljV-8DFdXyx9Lb5Szlxv24w/viewform?usp=sf_link" target="_blank" class="cta-btn">Submit Your Project</a>
+            <p>Join hundreds of young environmental leaders from around the world. Submit your project and be part of the solution.</p>
+            <div class="deadline-box">
+                <span class="deadline-label">Submission Deadline</span>
+                <span class="deadline-date">January 15, 2026</span>
+            </div>
+            <br><br>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc487tftJjAfLNuFsVuFODGCr7ljV-8DFdXyx9Lb5Szlxv24w/viewform" target="_blank" class="cta-btn">Submit Your Project</a>
+            <p style="margin-top: 1.5rem; font-size: 0.95rem; opacity: 0.9;">Registration is free and open to all youth 18 and under</p>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
+            <p>&copy; 2025 NexYouth. All rights reserved. | Grow - Lead - Act</p>
         </div>
     </footer>
 
@@ -796,7 +1525,6 @@
         // Mobile menu functionality
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navMenu = document.getElementById('navMenu');
-        const programsDropdown = document.querySelector('.dropdown a');
         const dropdownMenu = document.getElementById('programsDropdown');
 
         mobileMenuBtn.addEventListener('click', () => {
@@ -804,35 +1532,38 @@
             navMenu.classList.toggle('active');
         });
 
-        // Close menu when clicking on a link
-        const navLinks = document.querySelectorAll('#navMenu a:not([href*="Programs"])');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuBtn.classList.remove('active');
-                navMenu.classList.remove('active');
+        // Handle programs dropdown on mobile
+        const dropdownTrigger = document.querySelector('.dropdown > a');
+        if (dropdownTrigger) {
+            dropdownTrigger.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdownMenu.classList.toggle('active');
+                }
+            });
+        }
+
+        // Year tabs functionality
+        const yearTabBtns = document.querySelectorAll('.year-tab-btn');
+        yearTabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                yearTabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const year = btn.dataset.year;
+                document.querySelectorAll('.year-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                document.getElementById('content-' + year).style.display = 'block';
             });
         });
 
-        // Handle programs dropdown on mobile
-        const dropdownTrigger = document.querySelector('.dropdown a');
-        dropdownTrigger.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                dropdownMenu.classList.toggle('active');
-            }
-        });
-
-        // Handle dropdown menu items click on mobile
-        const dropdownItems = document.querySelectorAll('.dropdown-menu a');
-        dropdownItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    // Close menu but allow navigation to proceed
-                    mobileMenuBtn.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    dropdownMenu.classList.remove('active');
-                    // Let the link navigate
-                }
+        // FAQ functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
             });
         });
 
@@ -841,7 +1572,7 @@
             if (!e.target.closest('nav')) {
                 mobileMenuBtn.classList.remove('active');
                 navMenu.classList.remove('active');
-                dropdownMenu.classList.remove('active');
+                if (dropdownMenu) dropdownMenu.classList.remove('active');
             }
         });
     </script>
