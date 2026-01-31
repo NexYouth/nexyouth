@@ -2782,14 +2782,14 @@ def youth_tech_lab():
 def debate_course():
     return render_template('debate.html')
 
-# Environmental Competition Template
+# Environmental Challenge Template
 ENVIRONMENTAL_COMPETITION_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>International Youth Environmental Competition - NexYouth</title>
+    <title>International Youth Environmental Challenge - NexYouth</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -3254,7 +3254,7 @@ ENVIRONMENTAL_COMPETITION_TEMPLATE = """
 
     <section class="program-hero">
         <div class="container">
-            <h1>🌍 International Youth Environmental Competition</h1>
+            <h1>🌍 International Youth Environmental Challenge</h1>
             <p>Inspire. Innovate. Impact. Submit your environmental solution and compete globally with young changemakers from around the world.</p>
         </div>
     </section>
@@ -3262,7 +3262,7 @@ ENVIRONMENTAL_COMPETITION_TEMPLATE = """
     <section class="program-content">
         <div class="container">
             <h2>About the IYEC</h2>
-            <p>The International Youth Environmental Competition (IYEC) is an annual event dedicated to inspiring and empowering youth to take action on environmental and climate issues. This competition unites passionate young innovators from around the world to share ideas and projects addressing local environmental challenges with effective solutions.</p>
+            <p>The International Youth Environmental Challenge (IYEC) is an annual event dedicated to inspiring and empowering youth to take action on environmental and climate issues. This competition unites passionate young innovators from around the world to share ideas and projects addressing local environmental challenges with effective solutions.</p>
 
             <div class="competition-grid">
                 <div class="competition-card">
