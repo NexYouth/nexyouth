@@ -519,10 +519,10 @@
         /* Impact Statistics */
         .impact-stats {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
             margin-bottom: 4rem;
-            max-width: 900px;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -1559,23 +1559,22 @@
 
         .register-deadline {
             display: inline-flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             background: rgba(255, 255, 255, 0.15);
-            padding: 1rem 2rem;
-            border-radius: var(--radius-lg);
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius);
             margin-bottom: 2rem;
+            font-size: 1.0625rem;
+            font-weight: 600;
+            gap: 0.5rem;
         }
 
         .deadline-label {
-            font-size: 0.8125rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            opacity: 0.8;
-            margin-bottom: 0.25rem;
+            opacity: 0.9;
         }
 
         .deadline-date {
-            font-size: 1.5rem;
             font-weight: 700;
         }
 
@@ -1993,7 +1992,7 @@
     <header class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            <span class="hero-label">2025-2026 Competition Now Open</span>
+            <span class="hero-label">2025-2026 Competition Closed</span>
             <h1 class="hero-title">International Youth<br>Environmental Challenge</h1>
             <p class="hero-tagline">Inspire. Innovate. Impact.</p>
 
@@ -2066,11 +2065,6 @@
                     <div class="impact-number" data-count="38">38</div>
                     <div class="impact-label">Countries</div>
                     <div class="impact-detail">Global representation</div>
-                </div>
-                <div class="impact-stat">
-                    <div class="impact-number" data-count="100">100</div>
-                    <div class="impact-label">Projects</div>
-                    <div class="impact-detail">Environmental solutions</div>
                 </div>
                 <div class="impact-stat">
                     <div class="impact-number no-plus" data-count="6">6</div>
@@ -2833,7 +2827,7 @@
         <div class="container">
             <div class="register-content">
                 <h2>Ready to Make a Difference?</h2>
-                <p>Join hundreds of young environmental leaders from around the world. Submit your project and be part of the solution.</p>
+                <p>Join young environmental leaders from around the world. Submit your project and be part of the solution.</p>
                 <div class="register-deadline">
                     <span class="deadline-label">Submission Deadline</span>
                     <span class="deadline-date">January 15, 2026</span>
