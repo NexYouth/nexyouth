@@ -1342,7 +1342,7 @@
         }
 
         .winners-content {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -1351,17 +1351,20 @@
         }
 
         .tab-content.active {
-            display: block;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
 
         .winner-card {
             display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1rem;
             background: var(--white);
-            padding: 1.5rem;
+            padding: 1.25rem;
             border-radius: var(--radius-lg);
-            margin-bottom: 1rem;
             box-shadow: var(--shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -1377,14 +1380,15 @@
         }
 
         .winner-card.honorable {
-            border-left: 4px solid var(--gray-400);
+            border-left: none;
+            border-top: 4px solid var(--gray-400);
         }
 
         .winner-photo {
             flex-shrink: 0;
-            width: 120px;
-            height: 120px;
-            border-radius: var(--radius-lg);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
@@ -1408,7 +1412,7 @@
             justify-content: center;
             background: var(--gradient-primary);
             color: var(--white);
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
         }
 
@@ -1437,38 +1441,39 @@
         }
 
         .winner-info h4 {
-            font-size: 1.125rem;
+            font-size: 1rem;
             font-weight: 600;
             color: var(--gray-900);
             margin-bottom: 0.25rem;
         }
 
         .winner-location {
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
             color: var(--gray-500);
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.25rem;
         }
 
         .winner-location::before {
             content: '\1F4CD';
-            font-size: 0.75rem;
+            font-size: 0.7rem;
         }
 
         .project-name {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.35rem;
         }
 
         .project-desc {
-            font-size: 0.9375rem;
+            font-size: 0.8125rem;
             color: var(--gray-600);
             margin: 0;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         /* FAQ Section */
@@ -1885,19 +1890,14 @@
                 padding: 1rem;
             }
 
-            .winner-card {
-                flex-direction: column;
-                text-align: center;
-                align-items: center;
-            }
-
             .winner-photo {
-                width: 100px;
-                height: 100px;
+                width: 70px;
+                height: 70px;
             }
 
-            .winner-location {
-                justify-content: center;
+            .tab-content.active {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
 
             .impact-stats {
