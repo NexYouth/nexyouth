@@ -1345,57 +1345,48 @@
         }
 
         .tab-content.active {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            display: block;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
         }
 
         .winner-card {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            text-align: center;
             gap: 1rem;
-            background: var(--white);
-            padding: 1.25rem;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-200);
         }
 
-        .winner-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        .winner-card:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
-        .winner-card.ingenuity {
-            border: 2px solid var(--primary);
-            background: linear-gradient(135deg, rgba(22, 163, 74, 0.03) 0%, rgba(255, 255, 255, 1) 100%);
+        .winner-card:first-child {
+            padding-top: 0;
         }
 
+        .winner-card.ingenuity,
         .winner-card.honorable {
-            border-left: none;
-            border-top: 4px solid var(--gray-400);
+            /* No special styling needed in list view */
         }
 
         .winner-photo {
             flex-shrink: 0;
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .winner-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .winner-card:hover .winner-photo img {
-            transform: scale(1.05);
         }
 
         .winner-avatar {
@@ -1406,68 +1397,75 @@
             justify-content: center;
             background: var(--gradient-primary);
             color: var(--white);
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
         }
 
         .winner-rank {
             flex-shrink: 0;
-            padding: 0.5rem 1rem;
+            padding: 0.25rem 0.75rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             background: var(--gradient-primary);
             color: var(--white);
-            font-size: 0.75rem;
+            font-size: 0.625rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             border-radius: 50px;
-            margin-bottom: 0.5rem;
         }
 
         .winner-card.honorable .winner-rank {
             background: var(--gray-500);
         }
 
+        .winner-card.ingenuity .winner-rank {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+        }
+
         .winner-info {
             flex: 1;
+            min-width: 0;
         }
 
         .winner-info h4 {
-            font-size: 1rem;
+            font-size: 0.9375rem;
             font-weight: 600;
             color: var(--gray-900);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.15rem;
         }
 
         .winner-location {
-            font-size: 0.8125rem;
+            font-size: 0.75rem;
             color: var(--gray-500);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 0.25rem;
         }
 
         .winner-location::before {
             content: '\1F4CD';
-            font-size: 0.7rem;
+            font-size: 0.65rem;
         }
 
         .project-name {
-            font-size: 0.9rem;
+            font-size: 0.8125rem;
             font-weight: 600;
             color: var(--primary);
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.15rem;
         }
 
         .project-desc {
-            font-size: 0.8125rem;
+            font-size: 0.75rem;
             color: var(--gray-600);
             margin: 0;
-            line-height: 1.5;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         /* FAQ Section */
@@ -1885,13 +1883,16 @@
             }
 
             .winner-photo {
-                width: 70px;
-                height: 70px;
+                width: 50px;
+                height: 50px;
             }
 
-            .tab-content.active {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
+            .winner-card {
+                gap: 0.75rem;
+            }
+
+            .project-desc {
+                display: none;
             }
 
             .impact-stats {
