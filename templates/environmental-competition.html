@@ -1398,9 +1398,9 @@
 
         .winner-photo {
             flex-shrink: 0;
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
+            width: 100px;
+            height: 75px;
+            border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
@@ -1451,11 +1451,19 @@
             min-width: 0;
         }
 
+        .winner-info .name-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
         .winner-info h4 {
             font-size: 1.125rem;
             font-weight: 600;
             color: var(--gray-900);
-            margin-bottom: 0.25rem;
+            margin: 0;
         }
 
         .winner-location {
@@ -1487,13 +1495,13 @@
         }
 
         .project-link {
-            display: inline-block;
-            margin-top: 0.5rem;
-            font-size: 0.875rem;
+            flex-shrink: 0;
+            font-size: 0.8125rem;
             color: var(--accent);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.2s ease;
+            white-space: nowrap;
         }
 
         .project-link:hover {
@@ -1503,7 +1511,7 @@
 
         .project-link i {
             margin-left: 0.25rem;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
         }
 
         /* FAQ Section */
@@ -2620,11 +2628,13 @@
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">1st Place</div>
-                                    <h4>Amanullah Solangi</h4>
+                                    <div class="name-row">
+                                        <h4>Amanullah Solangi</h4>
+                                        <a href="https://basicdf.org/initiatives/" target="_blank" class="project-link">View their work <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
                                     <p class="winner-location">Pakistan</p>
                                     <p class="project-name">"Cool Hyderabad"</p>
                                     <p class="project-desc">The Cool Hyderabad project by Amanullah focuses on combating urban heat islands by planting thousands of trees along main roads, in parks, and in neighborhoods. This ambitious initiative has already seen the planting of over 30,000 trees, creating cooler microclimates, reducing air pollution, and fostering a greener urban environment.</p>
-                                    <a href="https://basicdf.org/initiatives/" target="_blank" class="project-link">View their work here <i class="fas fa-external-link-alt"></i></a>
                                 </div>
                             </div>
                             <div class="winner-card">
@@ -2633,11 +2643,13 @@
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">2nd Place</div>
-                                    <h4>Ngo Anh Tuan & Duong Hai Mien</h4>
+                                    <div class="name-row">
+                                        <h4>Ngo Anh Tuan & Duong Hai Mien</h4>
+                                        <a href="https://drive.google.com/file/d/1W_lBvzFeXmL-BedyRraP5zQd-_B5RMTv/view" target="_blank" class="project-link">View their work <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
                                     <p class="winner-location">Vietnam</p>
                                     <p class="project-name">"Turning the Tides"</p>
                                     <p class="project-desc">The Turning the Tides project by Ngo Anh Tuan and Duong Hai Mien addresses the pressing issue of marine pollution in coastal Vietnam. By organizing community clean-ups, educational workshops, and sustainable fishing practices, they aim to protect and restore the local marine ecosystem while raising awareness about the importance of ocean conservation.</p>
-                                    <a href="https://drive.google.com/file/d/1W_lBvzFeXmL-BedyRraP5zQd-_B5RMTv/view" target="_blank" class="project-link">View their work here <i class="fas fa-external-link-alt"></i></a>
                                 </div>
                             </div>
                             <div class="winner-card">
@@ -2646,11 +2658,13 @@
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">Honorable</div>
-                                    <h4>Chun-Shan CHANG</h4>
+                                    <div class="name-row">
+                                        <h4>Chun-Shan CHANG</h4>
+                                        <a href="https://drive.google.com/file/d/1EQw1Z1AE5m7JPKgLvBjyZ3B1qM5b5u3x/view" target="_blank" class="project-link">View their work <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
                                     <p class="winner-location">Taiwan</p>
                                     <p class="project-name">"Travel & Environmental Perception"</p>
                                     <p class="project-desc">This research project by Chun-Shan explores how travel experiences influence individuals' perceptions of the environment. By examining the relationship between tourism and environmental awareness, the study provides valuable insights into how travel can be leveraged to foster a deeper connection with nature and promote sustainable practices.</p>
-                                    <a href="https://drive.google.com/file/d/1EQw1Z1AE5m7JPKgLvBjyZ3B1qM5b5u3x/view" target="_blank" class="project-link">View their work here <i class="fas fa-external-link-alt"></i></a>
                                 </div>
                             </div>
                             <div class="winner-card">
@@ -2659,11 +2673,13 @@
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">Honorable</div>
-                                    <h4>William Zeng</h4>
+                                    <div class="name-row">
+                                        <h4>William Zeng</h4>
+                                        <a href="https://drive.google.com/file/d/12Il06rl6_OhsXEUiuvOz5pnWMcVo4I24/view" target="_blank" class="project-link">View their work <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
                                     <p class="winner-location">USA</p>
                                     <p class="project-name">"Rome's Waste Management"</p>
                                     <p class="project-desc">William's research examines the historical and modern waste management practices in Rome, Italy. The project analyzes the city's challenges in dealing with urban waste and proposes innovative solutions inspired by both ancient Roman engineering and contemporary sustainable practices.</p>
-                                    <a href="https://drive.google.com/file/d/12Il06rl6_OhsXEUiuvOz5pnWMcVo4I24/view" target="_blank" class="project-link">View their work here <i class="fas fa-external-link-alt"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -2679,11 +2695,13 @@
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">1st Place</div>
-                                    <h4>Girl Scout Troop 436</h4>
+                                    <div class="name-row">
+                                        <h4>Girl Scout Troop 436</h4>
+                                        <a href="https://sites.google.com/view/the-bioglitter-initiative/home" target="_blank" class="project-link">View their work <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
                                     <p class="winner-location">Alaska, USA</p>
                                     <p class="project-name">"The BioGlitter Initiative"</p>
                                     <p class="project-desc">The BioGlitter Initiative by Girl Scout Troop 436 from Alaska addresses the environmental impact of traditional plastic glitter, which contributes to microplastic pollution in oceans and waterways. The troop promotes biodegradable glitter alternatives and educates communities about the importance of reducing microplastics through workshops and awareness campaigns.</p>
-                                    <a href="https://sites.google.com/view/the-bioglitter-initiative/home" target="_blank" class="project-link">View their work here <i class="fas fa-external-link-alt"></i></a>
                                 </div>
                             </div>
                             <div class="winner-card">
@@ -2692,11 +2710,13 @@
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">2nd Place</div>
-                                    <h4>Rui-Tong Yuan</h4>
+                                    <div class="name-row">
+                                        <h4>Rui-Tong Yuan</h4>
+                                        <a href="https://drive.google.com/file/d/1xfkEPlGxFdHaS1QZmIRvbjTzhCCvyXmM/view" target="_blank" class="project-link">View their work <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
                                     <p class="winner-location">Taiwan</p>
                                     <p class="project-name">"Building a Better Future"</p>
                                     <p class="project-desc">Rui-Tong's project explores innovative sustainable construction materials and methods that can reduce the environmental footprint of buildings. The research investigates eco-friendly alternatives to traditional building materials and proposes practical solutions for creating more environmentally responsible construction practices.</p>
-                                    <a href="https://drive.google.com/file/d/1xfkEPlGxFdHaS1QZmIRvbjTzhCCvyXmM/view" target="_blank" class="project-link">View their work here <i class="fas fa-external-link-alt"></i></a>
                                 </div>
                             </div>
                             <div class="winner-card">
@@ -2705,11 +2725,13 @@
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">Honorable</div>
-                                    <h4>Syuan-Hao HUANG</h4>
+                                    <div class="name-row">
+                                        <h4>Syuan-Hao HUANG</h4>
+                                        <a href="https://drive.google.com/file/d/1EFrZ0lr4asKZm0zVPSqehTKOAPOMuSik/view" target="_blank" class="project-link">View their work <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
                                     <p class="winner-location">Taiwan</p>
                                     <p class="project-name">"Environment vs Development"</p>
                                     <p class="project-desc">Syuan-Hao's project delves into the complex relationship between environmental conservation and economic development. The research examines case studies where development has impacted natural ecosystems and proposes balanced approaches that prioritize both ecological sustainability and human progress.</p>
-                                    <a href="https://drive.google.com/file/d/1EFrZ0lr4asKZm0zVPSqehTKOAPOMuSik/view" target="_blank" class="project-link">View their work here <i class="fas fa-external-link-alt"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -2725,11 +2747,13 @@
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">Ingenuity</div>
-                                    <h4>Atharva Soni, Arav Kamat & Team</h4>
+                                    <div class="name-row">
+                                        <h4>Atharva Soni, Arav Kamat & Team</h4>
+                                        <a href="https://drive.google.com/file/d/1NRpcJdgb7Ar5aL24CQyhIv96hFk49Dds/view" target="_blank" class="project-link">View their work <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
                                     <p class="winner-location">California, USA</p>
                                     <p class="project-name">"Earth Z-Wildfire Solutions"</p>
                                     <p class="project-desc">Earth Z is an innovative AI-powered fire detection system developed by a team of young technologists from California. The project uses artificial intelligence and drone technology to detect wildfires in their early stages, enabling faster response times and potentially saving both natural habitats and human lives in fire-prone regions.</p>
-                                    <a href="https://drive.google.com/file/d/1NRpcJdgb7Ar5aL24CQyhIv96hFk49Dds/view" target="_blank" class="project-link">View their work here <i class="fas fa-external-link-alt"></i></a>
                                 </div>
                             </div>
                         </div>
