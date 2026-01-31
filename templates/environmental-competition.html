@@ -1336,27 +1336,55 @@
         }
 
         .winners-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .tab-content {
             display: none;
         }
 
-        .tab-content.active {
-            display: block;
+        .winners-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-box {
             background: var(--white);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
-            padding: 1.5rem;
+            overflow: hidden;
+        }
+
+        .category-header {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 1rem 1.25rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .category-header.junior {
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+        }
+
+        .category-header.special {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+        }
+
+        .winners-grid.two-columns {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 800px;
+        }
+
+        .category-content {
+            padding: 1rem;
         }
 
         .winner-card {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem 0;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
             border-bottom: 1px solid var(--gray-200);
         }
 
@@ -1367,11 +1395,6 @@
 
         .winner-card:first-child {
             padding-top: 0;
-        }
-
-        .winner-card.ingenuity,
-        .winner-card.honorable {
-            /* No special styling needed in list view */
         }
 
         .winner-photo {
@@ -1882,6 +1905,14 @@
                 padding: 1rem;
             }
 
+            .winners-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .winners-grid.two-columns {
+                grid-template-columns: 1fr;
+            }
+
             .winner-photo {
                 width: 50px;
                 height: 50px;
@@ -1889,10 +1920,6 @@
 
             .winner-card {
                 gap: 0.75rem;
-            }
-
-            .project-desc {
-                display: none;
             }
 
             .impact-stats {
@@ -2574,111 +2601,112 @@
 
             <!-- 2024-2025 Winners -->
             <div class="year-content active" id="year-2024-2025">
-                <div class="winners-tabs">
-                    <button class="tab-btn active" data-tab="senior-2025">Senior Category</button>
-                    <button class="tab-btn" data-tab="junior-2025">Junior Category</button>
-                    <button class="tab-btn" data-tab="special-2025">Special Awards</button>
-                </div>
-                <div class="winners-content">
-                    <div class="tab-content active" id="senior-2025">
-                        <div class="winner-card">
-                            <div class="winner-photo">
-                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-10.png" alt="Amanullah Solangi">
+                <div class="winners-grid">
+                    <!-- Senior Category -->
+                    <div class="category-box">
+                        <div class="category-header">Senior Category</div>
+                        <div class="category-content">
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-10.png" alt="Amanullah Solangi">
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">1st Place</div>
+                                    <h4>Amanullah Solangi</h4>
+                                    <p class="winner-location">Pakistan</p>
+                                    <p class="project-name">"Cool Hyderabad"</p>
+                                </div>
                             </div>
-                            <div class="winner-info">
-                                <div class="winner-rank">1st Place</div>
-                                <h4>Amanullah Solangi</h4>
-                                <p class="winner-location">Pakistan</p>
-                                <p class="project-name">"Cool Hyderabad"</p>
-                                <p class="project-desc">A comprehensive tree planting initiative aimed at combating urban heat islands and improving air quality in Hyderabad.</p>
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-9.png" alt="Ngo Anh Tuan & Duong Hai Mien">
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">2nd Place</div>
+                                    <h4>Ngo Anh Tuan & Duong Hai Mien</h4>
+                                    <p class="winner-location">Vietnam</p>
+                                    <p class="project-name">"Turning the Tides"</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="winner-card">
-                            <div class="winner-photo">
-                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-9.png" alt="Ngo Anh Tuan & Duong Hai Mien">
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-11.png" alt="Chun-Shan CHANG">
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">Honorable</div>
+                                    <h4>Chun-Shan CHANG</h4>
+                                    <p class="winner-location">Taiwan</p>
+                                    <p class="project-name">"Travel & Environmental Perception"</p>
+                                </div>
                             </div>
-                            <div class="winner-info">
-                                <div class="winner-rank">2nd Place</div>
-                                <h4>Ngo Anh Tuan & Duong Hai Mien</h4>
-                                <p class="winner-location">Vietnam</p>
-                                <p class="project-name">"Turning the Tides"</p>
-                                <p class="project-desc">An innovative approach to addressing coastal pollution and protecting marine ecosystems.</p>
-                            </div>
-                        </div>
-                        <div class="winner-card honorable">
-                            <div class="winner-photo">
-                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-11.png" alt="Chun-Shan CHANG">
-                            </div>
-                            <div class="winner-info">
-                                <div class="winner-rank">Honorable Mention</div>
-                                <h4>Chun-Shan CHANG</h4>
-                                <p class="winner-location">Taiwan</p>
-                                <p class="project-name">"Travel Experience & Environmental Perception"</p>
-                                <p class="project-desc">Research exploring the relationship between travel experiences and environmental awareness.</p>
-                            </div>
-                        </div>
-                        <div class="winner-card honorable">
-                            <div class="winner-photo">
-                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-12.png" alt="William Zeng">
-                            </div>
-                            <div class="winner-info">
-                                <div class="winner-rank">Honorable Mention</div>
-                                <h4>William Zeng</h4>
-                                <p class="winner-location">USA</p>
-                                <p class="project-name">"Rome's Waste Management Crisis"</p>
-                                <p class="project-desc">Analysis and solutions for urban waste management challenges in major cities.</p>
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-12.png" alt="William Zeng">
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">Honorable</div>
+                                    <h4>William Zeng</h4>
+                                    <p class="winner-location">USA</p>
+                                    <p class="project-name">"Rome's Waste Management"</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-content" id="junior-2025">
-                        <div class="winner-card">
-                            <div class="winner-photo">
-                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-14.png" alt="Girl Scout Troop 436">
+
+                    <!-- Junior Category -->
+                    <div class="category-box">
+                        <div class="category-header junior">Junior Category</div>
+                        <div class="category-content">
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-14.png" alt="Girl Scout Troop 436">
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">1st Place</div>
+                                    <h4>Girl Scout Troop 436</h4>
+                                    <p class="winner-location">Alaska, USA</p>
+                                    <p class="project-name">"The BioGlitter Initiative"</p>
+                                </div>
                             </div>
-                            <div class="winner-info">
-                                <div class="winner-rank">1st Place</div>
-                                <h4>Girl Scout Troop 436</h4>
-                                <p class="winner-location">Alaska, USA</p>
-                                <p class="project-name">"The BioGlitter Initiative"</p>
-                                <p class="project-desc">Promoting biodegradable alternatives to traditional plastic glitter to reduce microplastic pollution.</p>
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-15.png" alt="Rui-Tong Yuan">
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">2nd Place</div>
+                                    <h4>Rui-Tong Yuan</h4>
+                                    <p class="winner-location">Taiwan</p>
+                                    <p class="project-name">"Building a Better Future"</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="winner-card">
-                            <div class="winner-photo">
-                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-15.png" alt="Rui-Tong Yuan">
-                            </div>
-                            <div class="winner-info">
-                                <div class="winner-rank">2nd Place</div>
-                                <h4>Rui-Tong Yuan</h4>
-                                <p class="winner-location">Taiwan</p>
-                                <p class="project-name">"Building a Better Future"</p>
-                                <p class="project-desc">Exploring sustainable construction materials and methods for environmentally-friendly building practices.</p>
-                            </div>
-                        </div>
-                        <div class="winner-card honorable">
-                            <div class="winner-photo">
-                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-16.png" alt="Syuan-Hao HUANG">
-                            </div>
-                            <div class="winner-info">
-                                <div class="winner-rank">Honorable Mention</div>
-                                <h4>Syuan-Hao HUANG</h4>
-                                <p class="winner-location">Taiwan</p>
-                                <p class="project-name">"Environmental Preservation vs Development"</p>
-                                <p class="project-desc">Examining the balance between environmental conservation and economic development.</p>
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-16.png" alt="Syuan-Hao HUANG">
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">Honorable</div>
+                                    <h4>Syuan-Hao HUANG</h4>
+                                    <p class="winner-location">Taiwan</p>
+                                    <p class="project-name">"Environment vs Development"</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-content" id="special-2025">
-                        <div class="winner-card ingenuity">
-                            <div class="winner-photo">
-                                <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-13.png" alt="Earth Z Team">
-                            </div>
-                            <div class="winner-info">
-                                <div class="winner-rank">Ingenuity Award</div>
-                                <h4>Atharva Soni, Arav Kamat, Sadik Premjee & Aria Kamat</h4>
-                                <p class="winner-location">California, USA</p>
-                                <p class="project-name">"Earth Z-Wildfire Solutions"</p>
-                                <p class="project-desc">An AI-powered fire detection system designed to identify and alert authorities to wildfires earlier, potentially saving forests and lives.</p>
+
+                    <!-- Special Awards -->
+                    <div class="category-box">
+                        <div class="category-header special">Special Awards</div>
+                        <div class="category-content">
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-13.png" alt="Earth Z Team">
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">Ingenuity</div>
+                                    <h4>Atharva Soni, Arav Kamat & Team</h4>
+                                    <p class="winner-location">California, USA</p>
+                                    <p class="project-name">"Earth Z-Wildfire Solutions"</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2687,60 +2715,61 @@
 
             <!-- 2023-2024 Winners -->
             <div class="year-content" id="year-2023-2024">
-                <div class="winners-tabs">
-                    <button class="tab-btn active" data-tab="senior-2024">Senior Category</button>
-                    <button class="tab-btn" data-tab="junior-2024">Junior Category</button>
-                </div>
-                <div class="winners-content">
-                    <div class="tab-content active" id="senior-2024">
-                        <div class="winner-card">
-                            <div class="winner-photo">
-                                <div class="winner-avatar">JJ</div>
+                <div class="winners-grid two-columns">
+                    <!-- Senior Category -->
+                    <div class="category-box">
+                        <div class="category-header">Senior Category</div>
+                        <div class="category-content">
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <div class="winner-avatar">JJ</div>
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">1st Place</div>
+                                    <h4>Julie Jin</h4>
+                                    <p class="winner-location">Ottawa, Canada</p>
+                                    <p class="project-name">"Become a Biodiversity Hero"</p>
+                                </div>
                             </div>
-                            <div class="winner-info">
-                                <div class="winner-rank">1st Place</div>
-                                <h4>Julie Jin</h4>
-                                <p class="winner-location">Ottawa, Canada</p>
-                                <p class="project-name">"Become a Biodiversity Hero"</p>
-                                <p class="project-desc">An innovative project empowering individuals to protect biodiversity from the comfort of home and while traveling.</p>
-                            </div>
-                        </div>
-                        <div class="winner-card">
-                            <div class="winner-photo">
-                                <div class="winner-avatar">JJ</div>
-                            </div>
-                            <div class="winner-info">
-                                <div class="winner-rank">2nd Place</div>
-                                <h4>Jenny Jin</h4>
-                                <p class="winner-location">Ottawa, Canada</p>
-                                <p class="project-name">"From Waste to Well-being"</p>
-                                <p class="project-desc">Addressing the global waste crisis through innovative waste management solutions and community engagement.</p>
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <div class="winner-avatar">JJ</div>
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">2nd Place</div>
+                                    <h4>Jenny Jin</h4>
+                                    <p class="winner-location">Ottawa, Canada</p>
+                                    <p class="project-name">"From Waste to Well-being"</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-content" id="junior-2024">
-                        <div class="winner-card">
-                            <div class="winner-photo">
-                                <div class="winner-avatar">AK</div>
+
+                    <!-- Junior Category -->
+                    <div class="category-box">
+                        <div class="category-header junior">Junior Category</div>
+                        <div class="category-content">
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <div class="winner-avatar">AK</div>
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">1st Place</div>
+                                    <h4>Alisa Jiang & Katherine Jiang</h4>
+                                    <p class="winner-location">Florida, USA</p>
+                                    <p class="project-name">"SW Florida Environment"</p>
+                                </div>
                             </div>
-                            <div class="winner-info">
-                                <div class="winner-rank">1st Place</div>
-                                <h4>Alisa Jiang & Katherine Jiang</h4>
-                                <p class="winner-location">Naples, Florida, USA</p>
-                                <p class="project-name">"Southwest Florida Environmental Issues"</p>
-                                <p class="project-desc">A comprehensive study of environmental challenges facing Southwest Florida and proposed solutions.</p>
-                            </div>
-                        </div>
-                        <div class="winner-card">
-                            <div class="winner-photo">
-                                <div class="winner-avatar">EC</div>
-                            </div>
-                            <div class="winner-info">
-                                <div class="winner-rank">2nd Place</div>
-                                <h4>Even Chen</h4>
-                                <p class="winner-location">Shanghai, China</p>
-                                <p class="project-name">"A Spotlight on Local Actions"</p>
-                                <p class="project-desc">Highlighting local environmental initiatives that are making a positive impact on the environment.</p>
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <div class="winner-avatar">EC</div>
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">2nd Place</div>
+                                    <h4>Even Chen</h4>
+                                    <p class="winner-location">Shanghai, China</p>
+                                    <p class="project-name">"Spotlight on Local Actions"</p>
+                                </div>
                             </div>
                         </div>
                     </div>
