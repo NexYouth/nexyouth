@@ -1266,6 +1266,36 @@
             background: var(--gray-50);
         }
 
+        /* Ceremony Video */
+        .ceremony-video {
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .ceremony-video .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .ceremony-video .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .ceremony-caption {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9375rem;
+            color: var(--gray-600);
+        }
+
         /* Year Tabs */
         .year-tabs {
             display: flex;
@@ -2610,6 +2640,20 @@
             <div class="section-header centered">
                 <span class="section-label">Past Champions</span>
                 <h2 class="section-title">Award Winners</h2>
+            </div>
+
+            <!-- 2024 Award Ceremony Video -->
+            <div class="ceremony-video">
+                <div class="video-wrapper">
+                    <iframe
+                        src="https://www.youtube.com/embed/7X12D5ADJi0"
+                        title="2024 IYEC Award Ceremony"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="ceremony-caption">Watch the 2024 International Youth Environmental Challenge Award Ceremony</p>
             </div>
 
             <!-- Year Tabs -->
