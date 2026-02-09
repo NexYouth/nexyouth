@@ -177,6 +177,31 @@
             color: #666;
         }
 
+        .class-preview {
+            padding: 3rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .class-preview h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+            text-align: center;
+        }
+
+        .preview-video {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .preview-video video {
+            width: 100%;
+            display: block;
+        }
+
         .courses-section {
             padding: 4rem 2rem;
         }
@@ -498,6 +523,18 @@
         <div class="container">
             <h1>2026 Spring Online Debate Course</h1>
             <p>Build confidence, critical thinking, and persuasive communication skills. Award-winning coaches from national and university debate competitions. Limited spots available - register now!</p>
+        </div>
+    </section>
+
+    <section class="class-preview">
+        <div class="container">
+            <h2>See Our Class in Action</h2>
+            <div class="preview-video">
+                <video controls preload="metadata">
+                    <source src="/static/2026DebatingClass.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
         </div>
     </section>
 
