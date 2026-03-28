@@ -1442,6 +1442,15 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
 
                 <div class="team-member">
                     <div class="team-member-image">
+                        <img src="https://nexyouth-eight.vercel.app/static/HaimJoshi.jpg" alt="Haim Joshi" onerror="this.src='/static/placeholder.jpg'">
+                    </div>
+                    <h3>Haim Joshi</h3>
+                    <span class="title">Debate Coach</span>
+                    <p>Haim Joshi is a grade nine at UCC, having been debating for 2 years. Achievements include: 1st Open Speaker and 1st Junior Speaker at UofT's HHWO, Octofinalist at Oxford's WSDC (one of the biggest debate tournaments in the world with over 350 debaters), and 4th ranking team at HHHS (the biggest debate tournament in Canada).</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-member-image">
                         <img src="https://nexyouth-eight.vercel.app/static/VincentPham.jpg" alt="Vincent Pham" onerror="this.src='/static/placeholder.jpg'">
                     </div>
                     <h3>Vincent Pham</h3>
