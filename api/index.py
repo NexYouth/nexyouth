@@ -3486,15 +3486,6 @@ ENVIRONMENTAL_COMPETITION_TEMPLATE = """
             <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center; color: #1a1a2e;">Meet Our Judges</h2>
             <p style="text-align: center; color: #666; margin-bottom: 3rem; font-size: 1.1rem;">Our judging panel consists of industry leaders, environmental experts, and accomplished innovators.</p>
             
-            <div style="max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-radius: 12px; padding: 2.5rem; text-align: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); margin-bottom: 3rem;">
-                <div style="width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); background: linear-gradient(135deg, #059669 0%, #10b981 100%); font-size: 2.5rem; font-weight: 700; color: white;">
-                    SW
-                </div>
-                <h3 style="font-size: 1.4rem; color: #059669; margin-bottom: 0.5rem;">Sigil Wen</h3>
-                <p style="color: #666; font-size: 1rem; margin-bottom: 0; line-height: 1.8;"><strong>Industry-leading innovator, investor, and Wharton alumni</strong></p>
-                <p style="color: #888; font-size: 0.95rem; margin-top: 1rem;">Our judges bring rich academic and industry backgrounds, ensuring fair evaluation of all submissions.</p>
-            </div>
-
             <div style="margin-top: 3rem; padding-top: 3rem; border-top: 2px solid #eee;">
                 <h3 style="font-size: 1.5rem; color: #059669; margin-bottom: 2rem; text-align: center;">Judging Criteria</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto 3rem;">
