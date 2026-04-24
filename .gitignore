@@ -6,3 +6,18 @@ __pycache__/
 .DS_Store
 .vercel
 .env*.local
+
+# Winner profile videos/docs - keep only photos
+static/winners/**/*.mp4
+static/winners/**/*.MOV
+static/winners/**/*.mov
+static/winners/**/*.docx
+static/winners/**/*.pdf
+2026_Winner_Profile/
+IYEC_2026_Results.html
+winners_profiles.json
+server.log
+server.pid
+.claude/
+templates/environmental-competition.html.bak
+templates/update_criteria.py

@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IYEC 2026 — Official Results</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#C9A84C;--silver:#8FA3B1;--bronze:#A0735A;--ingenuity:#7B3FA0;
+  --green:#1A6640;--gl:#2D9A5E;--gp:#EBF5F0;
+  --cream:#F8F5F0;--dark:#18182A;--white:#fff;
+  --border:#E5DDD4;--text:#26263A;--muted:#6B7280;
+  --red:#E05533;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+
+/* HEADER */
+header{background:var(--dark);color:#fff;padding:2.5rem 1.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+header::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 60%,rgba(201,168,76,.13) 0%,transparent 55%),radial-gradient(ellipse at 80% 40%,rgba(45,154,94,.1) 0%,transparent 55%);pointer-events:none}
+.badge{display:inline-block;background:var(--gold);color:var(--dark);font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;padding:.25rem .9rem;border-radius:2px;margin-bottom:1rem}
+header h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;letter-spacing:-.02em;line-height:1.1;margin-bottom:.4rem}
+header p{color:rgba(255,255,255,.55);font-size:.9rem;margin-bottom:1.8rem}
+.crit{display:inline-block;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:.7rem 1.2rem;margin-bottom:1.8rem;font-size:.78rem;color:rgba(255,255,255,.7);max-width:560px;text-align:left;line-height:1.6}
+.crit strong{color:var(--gold);display:block;margin-bottom:.3rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em}
+.stats{display:flex;justify-content:center;gap:1.8rem;flex-wrap:wrap}
+.stat .n{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold);display:block;line-height:1}
+.stat .l{font-size:.68rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.1em}
+
+/* TABS */
+.tabs{display:flex;justify-content:center;gap:.2rem;padding:1.4rem 1rem 0;flex-wrap:wrap}
+.tab{padding:.45rem 1.1rem;border:1.5px solid var(--border);background:#fff;border-radius:100px;font-size:.82rem;font-weight:500;cursor:pointer;color:var(--muted);transition:all .2s}
+.tab:hover{border-color:var(--green);color:var(--green)}
+.tab.on{background:var(--green);border-color:var(--green);color:#fff}
+
+/* SECTIONS */
+.sec{display:none;max-width:1080px;margin:0 auto;padding:2rem 1rem 3rem}
+.sec.on{display:block}
+.sec-h{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--dark);margin-bottom:.2rem}
+.sec-sub{color:var(--muted);font-size:.85rem;padding-bottom:.9rem;margin-bottom:1.8rem;border-bottom:1px solid var(--border)}
+.divider{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:400;margin:2rem 0 1rem;border-bottom:1px solid var(--border);padding-bottom:.4rem}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem}
+.g3{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1rem}
+
+/* CARDS */
+.card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:1.4rem;position:relative;overflow:hidden;transition:box-shadow .2s,border-color .2s}
+.card:hover{box-shadow:0 6px 20px rgba(0,0,0,.07);border-color:rgba(45,154,94,.25)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3.5px;border-radius:12px 12px 0 0}
+.card.gold::before{background:var(--gold)}
+.card.silver::before{background:var(--silver)}
+.card.bronze::before{background:var(--bronze)}
+.card.ingenuity::before{background:var(--ingenuity)}
+.card.regional::before{background:var(--gl)}
+.card.finalist::before{background:#B8CFBC}
+
+/* EVIDENCE BADGES */
+.ev{display:inline-flex;align-items:center;gap:.3rem;font-size:.67rem;font-weight:600;padding:.18rem .52rem;border-radius:4px;margin-right:.25rem;margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.05em}
+.ev.vid{background:rgba(224,85,51,.1);color:#c03a18}
+.ev.web{background:rgba(58,114,200,.1);color:#2a56a8}
+.ev.built{background:rgba(45,154,94,.12);color:var(--green)}
+.ev.deploy{background:rgba(201,168,76,.12);color:#8a6010}
+.ev.comm{background:rgba(160,100,200,.12);color:#7030a0}
+.ev.pub{background:rgba(40,130,180,.12);color:#1a5a80}
+
+/* RANK PILLS */
+.rank{display:inline-flex;align-items:center;gap:.35rem;font-family:'DM Mono',monospace;font-size:.7rem;font-weight:500;padding:.22rem .65rem;border-radius:100px;margin-bottom:.6rem;letter-spacing:.04em}
+.rank.gold{background:rgba(201,168,76,.12);color:#8a6010}
+.rank.silver{background:rgba(143,163,177,.18);color:#446070}
+.rank.bronze{background:rgba(160,115,90,.14);color:#6a3c24}
+.rank.ingenuity{background:rgba(123,63,160,.12);color:#5a1e88}
+.rank.regional{background:rgba(45,154,94,.12);color:var(--green)}
+.rank.finalist{background:rgba(26,102,64,.08);color:var(--green)}
+
+.card-name{font-family:'Playfair Display',serif;font-size:1.12rem;font-weight:700;color:var(--dark);margin-bottom:.28rem;line-height:1.25}
+.meta{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.65rem}
+.tag{font-size:.69rem;padding:.17rem .52rem;border-radius:4px;font-weight:500;background:var(--cream);color:var(--muted);border:1px solid var(--border)}
+.tag.c{background:rgba(26,102,64,.08);color:var(--green);border-color:rgba(26,102,64,.2)}
+.tag.j{background:rgba(80,120,220,.1);color:#3050a0;border-color:rgba(80,120,220,.18)}
+.tag.s{background:rgba(200,70,40,.08);color:#902018;border-color:rgba(200,70,40,.14)}
+
+.proj{font-size:.83rem;font-weight:600;color:var(--dark);font-style:italic;margin-bottom:.45rem;line-height:1.35}
+.desc{font-size:.79rem;color:var(--muted);line-height:1.55;margin-bottom:.7rem}
+.reason{font-size:.77rem;background:var(--gp);border-left:3px solid var(--gl);padding:.52rem .72rem;border-radius:0 6px 6px 0;margin-bottom:.7rem;line-height:1.5;color:#1a4a30}
+.reason strong{display:block;font-size:.65rem;text-transform:uppercase;letter-spacing:.09em;margin-bottom:.2rem;opacity:.65}
+.pnote{font-size:.74rem;color:var(--muted);background:#F8F5F0;border:1px solid var(--border);border-radius:6px;padding:.42rem .62rem;margin-bottom:.6rem;line-height:1.4}
+.pnote strong{color:var(--text);font-size:.71rem}
+a.lk{display:inline-flex;align-items:center;gap:.3rem;font-size:.75rem;color:var(--red);text-decoration:none;font-weight:500;margin-right:.5rem}
+a.lk:hover{text-decoration:underline}
+
+/* WINNER PHOTO */
+.wp{width:100%;height:210px;background:#fafafa;border-radius:8px;overflow:hidden;margin-bottom:1rem;display:flex;gap:2px}
+.wp img{flex:1 1 0;min-width:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.wp.empty{display:none}
+.wpf{background:#f7f5f0;border:1px solid var(--border);border-radius:6px;padding:.55rem .75rem;margin-bottom:.7rem;font-size:.78rem;line-height:1.55;color:var(--text)}
+.wpf-info{font-weight:600;color:var(--text)}
+.wpf-bio{margin-top:.5rem;color:var(--muted);font-weight:400;line-height:1.55}
+
+/* TABLE */
+.tw{overflow-x:auto;border-radius:10px;border:1.5px solid var(--border)}
+table{width:100%;border-collapse:collapse;background:#fff}
+thead{background:var(--dark);color:#fff}
+thead th{padding:.7rem .9rem;font-size:.71rem;text-transform:uppercase;letter-spacing:.08em;font-weight:500;text-align:left}
+tbody tr{border-bottom:1px solid var(--border)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:rgba(26,102,64,.02)}
+tbody td{padding:.6rem .9rem;font-size:.79rem;vertical-align:top}
+.aw{display:inline-block;font-size:.67rem;padding:.16rem .52rem;border-radius:100px;font-weight:600;white-space:nowrap;margin-bottom:2px;display:block;width:fit-content}
+.aw.go{background:rgba(201,168,76,.14);color:#7a5500}
+.aw.si{background:rgba(143,163,177,.18);color:#3d5a6a}
+.aw.br{background:rgba(160,115,90,.15);color:#6a3820}
+.aw.in{background:rgba(123,63,160,.12);color:#5a1e88}
+.aw.re{background:rgba(45,154,94,.12);color:var(--green)}
+.aw.fi{background:rgba(26,102,64,.08);color:var(--green)}
+.ep{font-size:.67rem;padding:.14rem .38rem;border-radius:3px;margin-right:2px}
+.ep.v{background:rgba(224,85,51,.1);color:#c03a18}
+.ep.b{background:rgba(45,154,94,.12);color:var(--green)}
+.ep.d{background:rgba(58,114,200,.1);color:#2a56a8}
+
+/* FILTER */
+.fb{display:flex;gap:.6rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.fi{flex:1;min-width:180px;padding:.42rem .85rem;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.82rem;background:#fff;outline:none}
+.fi:focus{border-color:var(--green)}
+
+/* LEGEND */
+.leg{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.3rem;padding:.7rem 1rem;background:#fff;border:1.5px solid var(--border);border-radius:8px}
+.li{display:flex;align-items:center;gap:.3rem;font-size:.72rem;color:var(--muted)}
+
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card{animation:up .35s ease both}
+.card:nth-child(2){animation-delay:.06s}.card:nth-child(3){animation-delay:.12s}
+footer{text-align:center;padding:1.8rem;font-size:.74rem;color:var(--muted);border-top:1px solid var(--border)}
+.home-link-wrap{text-align:center;padding:1.5rem 1rem .5rem}
+.home-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--green);text-decoration:none;font-size:.85rem;font-weight:600;padding:.55rem 1.3rem;border:1.5px solid var(--green);border-radius:100px;background:#fff;transition:all .2s}
+.home-link:hover{color:#fff;background:var(--green)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">IYEC 2026 · Official Shortlist Results</div>
+  <h1>International Youth<br>Environmental Competition</h1>
+  <p>Global Winners · Ingenuity Award · Regional Champions · IYEC Finalists</p>
+  <div class="crit">
+    <strong>📋 Evaluation Standards Applied</strong>
+    Awards require demonstrable evidence: ① working prototype / lab experiment ② video proof ③ deployed system ④ documented community impact ⑤ published research. Essays and proposals without evidence are eligible for Finalist only.
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab on" onclick="show('global',this)">🏆 Global Winners</button>
+  <button class="tab" onclick="show('ingenuity',this)">💡 Ingenuity Award</button>
+  <button class="tab" onclick="show('regional',this)">🌍 Regional Winners</button>
+  <button class="tab" onclick="show('finalists',this)">⭐ IYEC Finalists</button>
+  <button class="tab" onclick="show('summary',this)">📋 Full Summary</button>
+  <a href="/" class="tab" style="text-decoration:none;">🏠 Home</a>
+</div>
+
+<!-- ══════════ GLOBAL WINNERS ══════════ -->
+<div id="global" class="sec on">
+  <h2 class="sec-h">🏆 Global Winners</h2>
+  <p class="sec-sub">Top three in each category. Only projects with verifiable evidence of real-world impact, physical prototypes, video proof, or deployed systems qualify.</p>
+
+  <div class="divider">— Junior Category (Age ≤ 13) —</div>
+  <div class="g2">
+
+    <div class="card gold">
+      <div class="wp">
+        <img src="/static/winners/2026/Ji%20Wu/JI%20WU.jpg" alt="Ji Wu" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Ji Wu (Woody), Grade 6, Ci-Xin Waldorf School, Yilan County, Taiwan</div>
+        <div class="wpf-bio">Our project, 'Action for Clothes!', empowers kids in Taiwan to fight fast fashion. Through our E.A.R.T.H. plan, we recycle clothes, educate consumers, and even advocate in Taiwan's Parliament! We want to show the world that young citizens can lead real change for a sustainable planet together.</div>
+      </div>
+      <span class="rank gold">🥇 Global Junior 1st Place</span><br>
+      <div class="card-name">Ji Wu</div>
+      <div class="meta"><span class="tag c">🇹🇼 Taiwan</span><span class="tag">Age 12</span><span class="tag j">Junior</span></div>
+      <div class="proj">"Action for Clothes! Buy Smarter, Waste Less."</div>
+      <div class="desc">A youth-led fast fashion initiative using the E.A.R.T.H. strategy. Ji and her team went beyond research: volunteering at recycling facilities, running workshops for 1,800+ students, and taking their policy proposals directly to the National Legislature — making this one of the most fully realised and impactful projects in the Junior category globally.</div>
+      <a class="lk" href="https://youtu.be/Ku7zW-01WfI" target="_blank">▶ Watch Video</a>
+    </div>
+
+    <div class="card silver">
+      <div class="wp">
+        <img src="/static/winners/2026/Khoa%20Bach%20Duc%20Anh/image.png" alt="Nir Tzvigelski Team" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <span class="rank silver">🥈 Global Junior 2nd Place</span><br>
+      <div class="card-name">Nir Tzvigelski, Mia Simoni, Or Avigani, Ori Buskila, Alon Segal & Zohar Sapir</div>
+      <div class="meta"><span class="tag c">🇮🇱 Israel</span><span class="tag">Age 11</span><span class="tag j">Junior</span></div>
+      <div class="proj">"The Pine Cone Shading — Insuring Food Security During Global Warming"</div>
+      <div class="desc">While growing leafy vegetables at school, this six-person team discovered that UV overexposure was destroying their crops. Inspired by pine cone geometry, they engineered a biomimetic 20% shading solution designed to protect food crops on hot days, with a YouTube video documenting their process and findings — connecting a classroom experiment directly to global food security.</div>
+      <a class="lk" href="https://youtu.be/KTRsUrsl1zo" target="_blank">▶ Watch Video</a>
+    </div>
+
+
+
+  </div>
+
+  <div class="divider" style="margin-top:2.5rem">— Senior Category (Age 14–18) —</div>
+  <div class="g2">
+
+    <div class="card gold">
+      <div class="wp">
+        <img src="/static/winners/2026/FloraFly/FloraFly_1.jpg" alt="Praneel Mukherjee" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/FloraFly/FloraFly_2.jpg" alt="Sumedh Pendyala" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/FloraFly/FloraFly_3.jpg" alt="Jayesh Muktaparapu" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/FloraFly/FloraFly_4.jpg" alt="Anekan Naicker" onerror="this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Praneel Mukherjee, Sumedh Pendyala, Jayesh Reddy Muktaparapu, Anekan Naicker, Grade 11, Academies of Loudoun, Ashburn, Virginia, USA</div>
+        <div class="wpf-bio">FloraFly is an autonomous agricultural hexacopter drone designed to help small and mid-sized farmers optimize crop yields and detect invasive species. Utilizing computer vision, LiDAR, and environmental sensors, the drone identifies early warning signs of pest infestations. This affordable system provides real-time, actionable insights to local growers.</div>
+      </div>
+      <span class="rank gold">🥇 Global Senior 1st Place</span><br>
+      <div class="card-name">Praneel Mukherjee, Sumedh Pendyala, Jayesh Muktaparapu & Anekan Naicker</div>
+      <div class="meta"><span class="tag c">🇺🇸 USA</span><span class="tag">Age 16</span><span class="tag s">Senior</span></div>
+      <div class="proj">"FloraFly: Autonomous Drone for Crop Pest & Disease Detection"</div>
+      <div class="desc">FloraFly is an autonomous drone using Reinforcement Learning and LiDAR to navigate dense agricultural terrain and detect invasive species and crop disease early. Deployed across 850+ acres in three countries, it has helped preserve over 43,000 lbs of organic produce — demonstrating cross-border, real-farm deployment at a scale that few student projects anywhere in the world have reached.</div>
+      <a class="lk" href="https://vimeo.com/1154907615" target="_blank">▶ Watch Demo</a>
+    </div>
+
+    <div class="card silver">
+      <div class="wp">
+        <img src="/static/winners/2026/Thames%20Rochana%20Sirivadhanabhakdi/Thames%20Rochana%20Sirivadhanabhakdi.jpg" alt="Thames Rochana Sirivadhanabhakdi" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Thames Rochana Sirivadhanabhakdi, Year 11, Tanglin Trust School, Singapore</div>
+        <div class="wpf-bio">AquaSense is a solar-powered water quality monitor deployed in irrigation canals in Wang Noi County, Ayutthaya, Thailand. It detects salinity levels that fall within FAO safety thresholds but still cause measurable rice yield reduction — making invisible damage visible and actionable for smallholder farmers.</div>
+      </div>
+      <span class="rank silver">🥈 Global Senior 2nd Place</span><br>
+      <div class="card-name">Thames Rochana Sirivadhanabhakdi</div>
+      <div class="meta"><span class="tag c">🇸🇬 Singapore</span><span class="tag">Age 15</span><span class="tag s">Senior</span></div>
+      <div class="proj">"AquaSense: Real-Time Water Quality Monitoring and Early Warning System for Irrigation Canals"</div>
+      <div class="desc">Thames built an IoT water quality monitor, took it to Thailand, deployed it in real rice farmers' irrigation canals, and trained them to read and act on the data. Field readings uncovered irregular TDS levels threatening crop health — a real discovery, in a real farm, with real agricultural consequences. This is the complete arc from engineering to community impact.</div>
+      <a class="lk" href="https://drive.google.com/drive/folders/1UDey2VnvTAaXzjFO-D6iZpO2lzco52cN" target="_blank">📁 Open Project</a>
+    </div>
+
+    <div class="card bronze">
+      <div class="wp">
+        <img src="/static/winners/2026/IMARI/Hope%20Vanessa%20Zawadi.jpeg" alt="Hope Vanessa Zawadi" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/IMARI/Ingabire%20peace.jpg" alt="Ingabire Peace" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/IMARI/Muneza%20jules.png" alt="Jules Muneza" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/IMARI/Micomyiza%20Bonte.png" alt="Bonte Micomyiza" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/IMARI/Ganza%20Gloria%20Fides.png" alt="Gloria Fides Ganza" onerror="this.style.display='none'">
+      </div>
+      <span class="rank bronze">🥉 Global Senior 3rd Place</span><br>
+      <div class="card-name">Hope Vanessa Zawadi, INGABIRE Peace, Jules Eusebe Muneza, Bonte Micomyiza & Gloria Fides Ganza</div>
+      <div class="meta"><span class="tag c">🇷🇼 Rwanda</span><span class="tag">Age 15</span><span class="tag s">Senior</span></div>
+      <div class="proj">"IMARI — Smart Waste Sorting and Composting System"</div>
+      <div class="desc">IMARI is a smart waste-sorting system using sensors to automatically separate plastic, metal, and organic materials at source — removing the human error that causes most recycling systems to fail. Organic waste is composted and converted into manure for local farmers. A mobile and web dashboard enables community monitoring and participation. Designed specifically for communities in Rwanda and across Africa where waste management infrastructure is limited.</div>
+      <a class="lk" href="https://drive.google.com/drive/u/0/folders/1iAv1o7Hoz1l4VwEYARdwnk51xhLhL0mt" target="_blank">📁 Open Project</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════ INGENUITY AWARD ══════════ -->
+<div id="ingenuity" class="sec">
+  <h2 class="sec-h">💡 IYEC Ingenuity Award</h2>
+  <p class="sec-sub">Awarded to the project demonstrating the most creative, original, or unexpected approach to an environmental problem — where the ingenuity of the idea itself stands out.</p>
+
+  <div class="divider">— Senior Ingenuity Award —</div>
+  <div class="g2">
+    <div class="card ingenuity">
+      <span class="rank ingenuity">💡 IYEC Ingenuity Award · Senior</span><br>
+      <div class="card-name">Jayda Ramjattan</div>
+      <div class="meta"><span class="tag c">🇹🇹 Trinidad & Tobago</span><span class="tag">Age 16</span><span class="tag s">Senior</span></div>
+      <div class="proj">"SIDS Climate Action: Beat the Heat"</div>
+      <div class="desc">Jayda uses creative video performance and visual art to amplify the climate crisis facing Small Island Developing States (SIDS). Her work has been reposted by UNICEF Eastern Caribbean, the Parliament of Trinidad and Tobago, the Rotunda Gallery, and the Ministry of Labour — demonstrating that environmental storytelling, when done with conviction, can move institutions and reach audiences that technical papers never could.</div>
+      <a class="lk" href="https://www.facebook.com/watch/?v=1791458004927418" target="_blank">▶ Watch</a>
+    </div>
+  </div>
+
+  <div class="divider">— Junior Ingenuity Award —</div>
+  <div class="g2">
+    <div class="card ingenuity">
+      <span class="rank ingenuity">💡 IYEC Ingenuity Award · Junior</span><br>
+      <div class="card-name">Mersana Rahmani</div>
+      <div class="meta"><span class="tag c">🇮🇷 Iran</span><span class="tag">Age 9</span><span class="tag j">Junior</span></div>
+      <div class="proj">"Effective Forest Protection: From Research to Practice"</div>
+      <div class="desc">At age 9, Mersana collected seeds from native plants in the forests of northern Iran, had them scientifically identified by her parents, grew them through multiple stages from seedling to transplant, and planted them in suitable soil — demonstrating that effective forest protection can start with one child, two hands, and a deep care for the land she calls home.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1HSjMNjGBXQCGXhtYAgCHClbFadmL816a/view" target="_blank">📄 Open Project</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ REGIONAL WINNERS ══════════ -->
+<div id="regional" class="sec">
+  <h2 class="sec-h">🌍 Regional Winners</h2>
+  <p class="sec-sub">One winner selected per world region. Evidence of real-world action, built systems, or verified impact is required for regional recognition.</p>
+  <div class="g2">
+
+    <div class="card regional">
+      <div class="wp">
+        <img src="/static/winners/2026/%20FREDRICK%20NJOROGE%20KARIUKI/%20FREDRICK%20NJOROGE%20KARIUKI.png" alt="Fredrick Kariuki" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Fredrick Njoroge Kariuki, Grade 11, M-PESA Foundation Academy, Thika, Kiambu, Kenya<br>Miron Clifford Onsarigo, Grade 11, M-PESA Foundation Academy, Thika, Kiambu, Kenya</div>
+        <div class="wpf-bio">Our Hybrid Exhaust Purification and Carbon Capture System transforms urban air quality using agricultural waste filters and a Spirulina bioreactor. Our KES 16,288 prototype captures over 90% of particulates, cuts CO2 and CO emissions, and delivers an affordable, locally made clean-air solution for Africa’s transport sector.</div>
+      </div>
+      <span class="rank regional">🌍 Africa Regional Winner</span><br>
+      <div class="card-name">Fredrick Kariuki & Miron Onsarigo</div>
+      <div class="meta"><span class="tag c">🇰🇪 Kenya</span><span class="tag">Age 17</span></div>
+      <div class="proj">Hybrid Exhaust Purification & Carbon Capture System</div>
+      <div class="desc">5-stage physical system built from agricultural waste. 93% particulate reduction, sensor-validated. $125/unit, designed for Jua Kali local manufacturing. Addresses 21,000 annual deaths from vehicle emissions in Kenya.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1VUtpGDJeWPpFlvvUJwAatsvru31Dm-u8Z3fSCe9ba3w/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <div class="card regional">
+      <div class="wp">
+        <img src="/static/winners/2026/MUNIRH%20ALI%20JARAD/IMG_5304.jpg" alt="Munirh Ali Jarad" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Munirh Ali Jarad, Grade 11, Ibn Roshd International School, Jazan, Jizan, Saudi Arabia</div>
+        <div class="wpf-bio">Reliance on fossil fuels and freshwater scarcity hinder sustainable H₂ production. This study proposes a solar-powered hybrid system integrating capacitive deionization with seawater electrolysis using nanomaterials to mitigate corrosion and improve efficiency. The system enables clean H₂ generation, enhances durability, and provides a scalable sustainable solution for global energy challenges.</div>
+      </div>
+      <span class="rank regional">🕌 Middle East Regional Winner</span><br>
+      <div class="card-name">Munirh Ali Jarad</div>
+      <div class="meta"><span class="tag c">🇸🇦 Saudi Arabia (Jazan)</span><span class="tag">Age 16</span></div>
+      <div class="proj">Innovative Sustainable Hybrid System for Green H₂ Production from Seawater</div>
+      <div class="desc">This project integrates CDI pre-treatment with solar electrolysis to produce green hydrogen from seawater, solving the chloride corrosion problem that limits seawater electrolysis efficiency. The reduction from 250 to 160 µs/cm conductivity is specific and measurable — addressing Saudi Arabia's dual challenge of clean energy and desalination simultaneously.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1VAdyIOF2Qpzq05piRdXs7zqwoQ9y4IZP/view" target="_blank">📄 Open</a>
+    </div>
+
+    <div class="card regional">
+      <div class="wp">
+        <img src="/static/winners/2026/Seoha%20Han/Photo,%20Seoha%20Han.jpeg" alt="Seoha Han" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Seoha Han, Grade 11, North London Collegiate School Jeju, Seogwipo, Jeju, South Korea</div>
+        <div class="wpf-bio">#StopPaperRacism — The World's Sweetest Climate Movement — challenges the societal preference for white, tree-based paper, which perpetuates deforestation. The metaphor "paper racism" intends to make people realise the harm of judging paper by colour, not function. #StopPaperRacism guides institutions to transition towards tree-free paper, like sugarcane paper. Website: stoppaperracism.org.</div>
+      </div>
+      <span class="rank regional">🌏 Asia Pacific Regional Winner</span><br>
+      <div class="card-name">Seoha Han</div>
+      <div class="meta"><span class="tag c">🇰🇷 South Korea</span><span class="tag">Age 16</span></div>
+      <div class="proj">"#StopPaperRacism: The World's Sweetest Climate Campaign"</div>
+      <div class="desc">Starting at 13 on Jeju Island, Seoha coined "paper racism" to describe bias against tree-free sugarcane paper. Over three years she led her school to become the world's first institution to adopt it, supported 10+ government and corporate bodies in making the switch, and delivered the keynote at Korea's largest national environmental contest — invited by a government-affiliated body under the Ministry of Environment.</div>
+      <a class="lk" href="https://www.youtube.com/watch?v=JfGxBCJw5IY" target="_blank">▶ Watch Keynote</a>
+    </div>
+
+    <div class="card regional">
+      <span class="rank regional">🇪🇺 Europe Regional Winner</span><br>
+      <div class="card-name">Miras Zhumagaliyev</div>
+      <div class="meta"><span class="tag c">🇪🇸 Spain</span><span class="tag">Age 16</span></div>
+      <div class="proj">PhotoAir — Photocatalytic Indoor Air Purification System</div>
+      <div class="desc">PhotoAir uses titanium dioxide photocatalysis under UV light to purify indoor air — breaking down organic contaminants, allergens, bacteria, and viruses into water and CO₂. Designed to address Almaty's chronic winter air pollution crisis, the system uses real chemistry with a specific, validated mechanism rather than a conceptual proposal.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1DQVbPxT5RpAl2_lsnmq6HGqHaW5wiJQFikWfJ0xQ9lo/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <div class="card regional">
+      <div class="wp">
+        <img src="/static/winners/2026/FloraFly/FloraFly_1.jpg" alt="Praneel Mukherjee" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/FloraFly/FloraFly_2.jpg" alt="Sumedh Pendyala" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/FloraFly/FloraFly_3.jpg" alt="Jayesh Muktaparapu" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/FloraFly/FloraFly_4.jpg" alt="Anekan Naicker" onerror="this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Praneel Mukherjee, Sumedh Pendyala, Jayesh Reddy Muktaparapu, Anekan Naicker, Grade 11, Academies of Loudoun, Ashburn, Virginia, USA</div>
+        <div class="wpf-bio">FloraFly is an autonomous agricultural hexacopter drone designed to help small and mid-sized farmers optimize crop yields and detect invasive species. Utilizing computer vision, LiDAR, and environmental sensors, the drone identifies early warning signs of pest infestations. This affordable system provides real-time, actionable insights to local growers.</div>
+      </div>
+      <span class="rank regional">🌎 Americas Regional Winner</span><br>
+      <div class="card-name">Praneel Mukherjee, Sumedh Pendyala, Jayesh Muktaparapu & Anekan Naicker</div>
+      <div class="meta"><span class="tag c">🇺🇸 USA</span><span class="tag">Age 16</span></div>
+      <div class="proj">FloraFly: Autonomous Agricultural Pest Detection Drone</div>
+      <div class="desc">Vimeo demo video. Deployed 850+ acres, 3 countries. 43,000+ lbs organic produce preserved. RL + LiDAR navigation in real dense agricultural terrain.</div>
+      <a class="lk" href="https://vimeo.com/1154907615" target="_blank">▶ Watch</a>
+    </div>
+
+    <div class="card regional">
+      <div class="wp">
+        <img src="/static/winners/2026/Abdurashidov%20Rustambek%20Ravshan%20ogli/Abdurashidov%20Rustambek%20Ravshan%20ogli.png" alt="Abdurashidov Rustambek" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Abdurashidov Rustambek Ravshan ogli, 357-School, Chilanzar, Tashkent, Uzbekistan</div>
+        <div class="wpf-bio">My project analyzes the degradation of the Aral Sea ecosystem and proposes evidence-based strategies for biodiversity restoration. Published on Zenodo, this research provides vital scientific data for experts and policymakers, aiming to mitigate the impacts of this ecological tragedy and improve environmental sustainability in the region.</div>
+      </div>
+      <span class="rank regional">🏔 Central Asia Regional Winner</span><br>
+      <div class="card-name">Рустамбек</div>
+      <div class="meta"><span class="tag c">🇺🇿 Uzbekistan</span><span class="tag">Age 15</span></div>
+      <div class="proj">"Orol Dengizi Ekologik Muammolari va Ularning Yechimi" — Aral Sea Ecological Research</div>
+      <div class="desc">A research project analysing the ecological crisis of the Aral Sea (Orol Dengizi) — causes, consequences, and sustainable restoration solutions including water management reform, reforestation, and community programmes. Unusual for a 15-year-old, the research was published on Zenodo, CERN's open science repository, making it a citable academic contribution.</div>
+      <a class="lk" href="https://zenodo.org/records/17287214" target="_blank">📚 View on Zenodo</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════ FINALISTS ══════════ -->
+<div id="finalists" class="sec">
+  <h2 class="sec-h">⭐ IYEC Finalists</h2>
+  <p class="sec-sub">Selected finalists demonstrate verifiable products, videos, publications, deployments, or multi-year documented community impact. Best project(s) per country — countries with multiple strong submissions may have more than one finalist.</p>
+
+  <div class="g3">
+
+    <!-- South Korea -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Seoha%20Han/Photo,%20Seoha%20Han.jpeg" alt="Seoha Han" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Seoha Han, Grade 11, North London Collegiate School Jeju, Seogwipo, Jeju, South Korea</div>
+        <div class="wpf-bio">#StopPaperRacism — The World's Sweetest Climate Movement — challenges the societal preference for white, tree-based paper, which perpetuates deforestation. The metaphor "paper racism" intends to make people realise the harm of judging paper by colour, not function. #StopPaperRacism guides institutions to transition towards tree-free paper, like sugarcane paper. Website: stoppaperracism.org.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Seoha Han</div>
+      <div class="meta"><span class="tag c">🇰🇷 South Korea</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">#StopPaperRacism</div>
+      <div class="desc">3-year campaign; world's first school to adopt sugarcane paper; 10+ national government/corporate bodies adopted; national keynote speaker.</div>
+      <a class="lk" href="https://www.youtube.com/watch?v=JfGxBCJw5IY" target="_blank">▶ Video</a>
+    </div>
+
+    <!-- Sri Lanka -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Cojitha%20Senanayake/Cojitha%20Senanayake.jpg" alt="Cojitha Senanayake" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">D. Cojitha Senanayake, Grade 12, S. Thomas' College, Mount Lavinia, Western Province, Sri Lanka</div>
+        <div class="wpf-bio">Cee Green raises environmental awareness through creativity and encourages children to initiate climate action. To reach this audience, Coji (Cojitha) wrote two books, designed jigsaw puzzles, and created a game, all with climate awareness in mind, which was then distributed at no cost to over 10,000 children in Sri Lanka.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Cojitha Senanayake</div>
+      <div class="meta"><span class="tag c">🇱🇰 Sri Lanka</span><span class="tag">17</span><span class="tag s">Senior</span></div>
+      <div class="proj">Cee Green — Climate Education with Books, Games & Braille</div>
+      <div class="desc">Live website. Published books, puzzles, games. 10,000+ students reached. Braille editions donated to Ratmalana Deaf & Blind School and Sahanaya, Colombo.</div>
+      <a class="lk" href="https://youtu.be/BJdFKN5OAhU" target="_blank">▶ Video</a>&nbsp;<a class="lk" href="https://ceegreen.net" target="_blank">🌐 Site</a>
+    </div>
+
+    <!-- Taiwan (Junior x2) -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Ji%20Wu/JI%20WU.jpg" alt="Ji Wu" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Ji Wu (Woody), Grade 6, Ci-Xin Waldorf School, Yilan County, Taiwan</div>
+        <div class="wpf-bio">Our project, 'Action for Clothes!', empowers kids in Taiwan to fight fast fashion. Through our E.A.R.T.H. plan, we recycle clothes, educate consumers, and even advocate in Taiwan's Parliament! We want to show the world that young citizens can lead real change for a sustainable planet together.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Ji Wu</div>
+      <div class="meta"><span class="tag c">🇹🇼 Taiwan</span><span class="tag">12</span><span class="tag j">Junior</span></div>
+      <div class="proj">Action for Clothes — E.A.R.T.H. Strategy</div>
+      <div class="desc">YouTube video. Volunteered at recycling factories. Taught 1,800 students. Presented to National Legislature lawmakers.</div>
+      <a class="lk" href="https://youtu.be/Ku7zW-01WfI" target="_blank">▶ Video</a>
+    </div>
+
+    
+
+    
+
+    <!-- Israel (Junior) -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Khoa%20Bach%20Duc%20Anh/image.png" alt="Nir Tzvigelski" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Nir Tzvigelski, Mia Simoni & team</div>
+      <div class="meta"><span class="tag c">🇮🇱 Israel</span><span class="tag">11</span><span class="tag j">Junior</span></div>
+      <div class="proj">The Pine Cone Shading — Food Security During Global Warming</div>
+      <div class="desc">YouTube video. Real school growing experiment discovering UV overexposure damage. Biomimetic pine cone-inspired 20% shading solution for food crop protection.</div>
+      <a class="lk" href="https://youtu.be/KTRsUrsl1zo" target="_blank">▶ Video</a>
+    </div>
+
+    <!-- Singapore x2 -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Thames%20Rochana%20Sirivadhanabhakdi/Thames%20Rochana%20Sirivadhanabhakdi.jpg" alt="Thames Rochana Sirivadhanabhakdi" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Thames Rochana Sirivadhanabhakdi, Year 11, Tanglin Trust School, Singapore</div>
+        <div class="wpf-bio">AquaSense is a solar-powered water quality monitor deployed in irrigation canals in Wang Noi County, Ayutthaya, Thailand. It detects salinity levels that fall within FAO safety thresholds but still cause measurable rice yield reduction — making invisible damage visible and actionable for smallholder farmers.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Thames Rochana Sirivadhanabhakdi</div>
+      <div class="meta"><span class="tag c">🇸🇬 Singapore</span><span class="tag">15</span><span class="tag s">Senior</span></div>
+      <div class="proj">AquaSense IoT Water Monitor</div>
+      <div class="desc">Built real ESP32 device. Solar-powered. Deployed in Thai rice irrigation canals. Farmer workshops conducted. Real TDS irregularity data discovered.</div>
+      <a class="lk" href="https://drive.google.com/drive/folders/1UDey2VnvTAaXzjFO-D6iZpO2lzco52cN" target="_blank">📁 Open</a>
+    </div>
+
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Raju%20Narayanan%20Kamalika/Raju_Narayanan_Kamalika.jpg" alt="Raju Narayanan Kamalika" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Raju Narayanan Kamalika, Integrated Programme 2, Cedar Girls' Secondary School, Singapore</div>
+        <div class="wpf-bio">CoolWalk Singapore transforms hot urban walkways into cool green corridors using climbing plants and simple structures, reducing temperatures through low-cost solutions. Built and maintained by communities through the "Adopt-a-CoolWalk" program, it addresses urban heat while strengthening neighbourhood bonds and teaching environmental management.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Raju Narayanan Kamalika</div>
+      <div class="meta"><span class="tag c">🇸🇬 Singapore</span><span class="tag">13</span><span class="tag j">Junior</span></div>
+      <div class="proj">CoolWalk Singapore — Green Shaded Corridors</div>
+      <div class="desc">Designs continuous green corridors of native climbing plants on steel structures to cool urban walking routes by 5–7°C. "Adopt-a-CoolWalk" community maintenance model. Specific, scalable, community-embedded.</div>
+      <a class="lk" href="https://www.canva.com/design/DAG9oiUxBZU/d6ScGULZ-e0JeYtgtm4QEw/edit" target="_blank">🎨 View</a>
+    </div>
+
+    <!-- India x3 -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Srihari%20Muralikrishnan/Srihari%20M%20-%20ID%20Photo.jpg" alt="Srihari Muralikrishnan" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/Srihari%20Muralikrishnan/Rohn%20Jacob%20S%20-%20ID%20Photo.jpeg" alt="Rohn Jacob S" onerror="this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Srihari Muralikrishnan, Grade 12, Bhavan's Newsprint Vidyalaya, Velloor, Kottayam, Kerala, India<br>Rohn Jacob S, Grade 12, Bhavan's Newsprint Vidyalaya, Velloor, Kottayam, Kerala, India</div>
+        <div class="wpf-bio">Eutrophication silently suffocates freshwater ecosystems, turning lakes into dead-zones. Project SANA gives these waters a voice. Instead of expensive, delayed water testing, we built a swarm of ultra-low-cost, floating optical sensors. They act as a wireless early-warning system, detecting algal blooms before irreversible ecological collapse begins and saving the ecosystem.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Srihari Muralikrishnan & Rohn Jacob S</div>
+      <div class="meta"><span class="tag c">🇮🇳 India</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">SANA: Autonomous Edge-Based Optical Eutrophication Detection</div>
+      <div class="desc">ESP32-CAM nodes with RGB and NIR imaging. Fog-computing hub on Raspberry Pi. NDVI and SABI indices computed on-device. Autonomous surface aerator activation. Research-grade architecture in a student project.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1WWF8-vk1TRVYv_I6Oq9Ycn7PavARHuk8/view" target="_blank">📄 Open</a>
+    </div>
+
+
+
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Angad%20Singh/WhatsApp%20Image%202026-04-10%20at%209.43.56%20PM.jpeg" alt="Angad Singh" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Angad Singh, Grade 10, Sanskriti School, Pune, Maharashtra, India</div>
+        <div class="wpf-bio">ECO Pot is a biodegradable plant pot made from food waste and natural materials. It supports healthy plant growth with 100% germination and decomposes within 10 days, enriching soil nutrients. This low-cost solution reduces plastic waste and promotes sustainable gardening using locally available, eco-friendly resources.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Angad Singh</div>
+      <div class="meta"><span class="tag c">🇮🇳 India</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">ECO-pot — Biodegradable Nursery Pots from Fruit & Vegetable Waste</div>
+      <div class="desc">Eco-Pots made from locally available fruit and vegetable waste and natural binders. Germination tested with multiple plant species — all showed successful growth. Pots degraded naturally in soil, no removal needed.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1jPSfCNF1qUnPXBVA6mzPVrmWUHY4EofC/view" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Kenya x2 -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/%20FREDRICK%20NJOROGE%20KARIUKI/%20FREDRICK%20NJOROGE%20KARIUKI.png" alt="Fredrick Kariuki" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Fredrick Njoroge Kariuki, Grade 11, M-PESA Foundation Academy, Thika, Kiambu, Kenya<br>Miron Clifford Onsarigo, Grade 11, M-PESA Foundation Academy, Thika, Kiambu, Kenya</div>
+        <div class="wpf-bio">Our Hybrid Exhaust Purification and Carbon Capture System transforms urban air quality using agricultural waste filters and a Spirulina bioreactor. Our KES 16,288 prototype captures over 90% of particulates, cuts CO2 and CO emissions, and delivers an affordable, locally made clean-air solution for Africa’s transport sector.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Fredrick Kariuki & Miron Onsarigo</div>
+      <div class="meta"><span class="tag c">🇰🇪 Kenya</span><span class="tag">17</span><span class="tag s">Senior</span></div>
+      <div class="proj">Hybrid Exhaust Purification System</div>
+      <div class="desc">5-stage physical system. 93% particulate reduction. $125 cost. Sensor-validated. Designed for Jua Kali manufacturing.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1VUtpGDJeWPpFlvvUJwAatsvru31Dm-u8Z3fSCe9ba3w/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Peninah%20Esther/Peninah%20Esther.png" alt="Peninah Esther" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Peninah Esther, Grade 11, M-PESA Foundation Academy, Nairobi, Central, Kenya</div>
+        <div class="wpf-bio">Smog-eating paint is a paint made through the addition of titanium through a photocatalytic reaction. The paint reacts with harmful gases such as CO₂ binding to the applied walls. The paint works under the presence of sunlight through the capillarity method.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Peninah Esther</div>
+      <div class="meta"><span class="tag c">🇰🇪 Kenya</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">Voices for Climate Justice (V4CJ)</div>
+      <div class="desc">Youth-led climate action: tree planting, cleanups, school climate education, podcasts, and social media amplification of rural voices. Active community programme in Kenya.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1hN_l1ZH87SpX6CUzTZ4o-KZS5l6aL3NE/view" target="_blank">📄 Open</a>
+    </div>
+
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Swapnil%20Sarker-%20Team%20Aqualliance/Team%20Aqualliance%20Photo.jpg" alt="Team Aqualliance" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Swapnil Sarker (Team Lead), Prantique Roy, Abdullah Al Ujayer, Muhammad Abu Sayem, Grade 12, Rajuk Uttara Model College / Notre Dame College, Dhaka, Bangladesh</div>
+        <div class="wpf-bio">Team Aqualliance is a passionate group of four curious individuals united by our drive to solve real-world problems. Every year, data centers consume enough water to fill roughly 80,000 Olympic-sized swimming pools. Our breakthrough solution transforms rice husks into phase change materials. Combined with AI-optimized geothermal loops, our closed-loop system reduces water usage by 80% and energy requirements by nearly 50%.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Swapnil Sarker, Prantique Roy, Muhammad Abu Sayem & Abdullah Al Ujayer</div>
+      <div class="meta"><span class="tag c">🇧🇩 Bangladesh</span><span class="tag">17</span><span class="tag s">Senior</span></div>
+      <div class="proj">Aqualliance — Hybrid Data Center Cooling System</div>
+      <div class="desc">Rice husk phase-change materials + geothermal loops + AI monitoring. 70–90% freshwater reduction, 30–40% energy saving. Addresses Bangladesh's water stress and digital growth.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1OLQHR8CTJ0MUdxTox4AaRx2aUXzVrKM7/view" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- USA x3 -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/FloraFly/FloraFly_1.jpg" alt="Praneel Mukherjee" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/FloraFly/FloraFly_2.jpg" alt="Sumedh Pendyala" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/FloraFly/FloraFly_3.jpg" alt="Jayesh Muktaparapu" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/FloraFly/FloraFly_4.jpg" alt="Anekan Naicker" onerror="this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Praneel Mukherjee, Sumedh Pendyala, Jayesh Reddy Muktaparapu, Anekan Naicker, Grade 11, Academies of Loudoun, Ashburn, Virginia, USA</div>
+        <div class="wpf-bio">FloraFly is an autonomous agricultural hexacopter drone designed to help small and mid-sized farmers optimize crop yields and detect invasive species. Utilizing computer vision, LiDAR, and environmental sensors, the drone identifies early warning signs of pest infestations. This affordable system provides real-time, actionable insights to local growers.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Praneel Mukherjee, Sumedh Pendyala, Jayesh Muktaparapu & Anekan Naicker</div>
+      <div class="meta"><span class="tag c">🇺🇸 USA</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">FloraFly Drone</div>
+      <div class="desc">Vimeo demo. 850+ acres, 3 countries, 43,000+ lbs produce preserved.</div>
+      <a class="lk" href="https://vimeo.com/1154907615" target="_blank">▶ Video</a>
+    </div>
+
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Katherine%20Nicole%20Torres%20Haragutchi/Katherine%20Nicole%20Torres%20Haragutchi.png" alt="Nicole Haragutchi" style="object-fit:contain" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Katherine Nicole Torres Haragutchi, Grade 8, Switzerland Point Middle School, Saint Augustine, Florida, USA</div>
+        <div class="wpf-bio">The carbon sequestration engines today use technologies that are very expensive, but this project focuses on a natural process that rivals technology — based on phytoplankton and salp to reduce carbon dioxide in our atmosphere, consequently reducing the negative effects of climate change.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Nicole Haragutchi</div>
+      <div class="meta"><span class="tag c">🇺🇸 USA</span><span class="tag">14</span><span class="tag s">Senior</span></div>
+      <div class="proj">Carbon Sequestration Engine Using Phytoplankton and the Salp</div>
+      <div class="desc">YouTube video exploring natural carbon sequestration via phytoplankton-salp cycles as a cost-effective alternative to mechanical carbon capture technology.</div>
+      <a class="lk" href="https://www.youtube.com/watch?v=mvuRoVX0z2k" target="_blank">▶ Watch</a>
+    </div>
+
+    <!-- Brazil -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/%20Luiza%20Vieira%20Caleia/IMG_6286.jpeg" alt="Luiza Vieira Caleia" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Luiza Vieira Caleia, 12th Grade, Colégio Militar de Juiz de Fora, Juiz de Fora, Minas Gerais, Brasil</div>
+        <div class="wpf-bio">Biociclo (Biocycle) is a project to restore the Paraibuna River in Juiz de Fora, combining decentralized sewage treatment with community engagement. It proposes affordable systems — septic tanks, filters, and wetlands — implemented in urban parks to reduce pollution, enhance biodiversity, and transform the river into a symbol of sustainability and collective care.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Luiza Vieira Caleia</div>
+      <div class="meta"><span class="tag c">🇧🇷 Brazil</span><span class="tag">18</span><span class="tag s">Senior</span></div>
+      <div class="proj">The Biocycle System — Wastewater Treatment for Paraibuna River</div>
+      <div class="desc">Developed through AFS Global STEM Academies. Biological wastewater treatment proposal for Juiz de Fora's Paraibuna River — actively presented to public administrators. Rooted in Atlantic Forest ecology and Indigenous knowledge.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1dvJLqs2i-et6HqsfxjsbjglMM0TV6FaY/view" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Rwanda -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/IMARI/Hope%20Vanessa%20Zawadi.jpeg" alt="Hope Vanessa Zawadi" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/IMARI/Ingabire%20peace.jpg" alt="Ingabire Peace" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/IMARI/Muneza%20jules.png" alt="Jules Muneza" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/IMARI/Micomyiza%20Bonte.png" alt="Bonte Micomyiza" onerror="this.style.display='none'">
+        <img src="/static/winners/2026/IMARI/Ganza%20Gloria%20Fides.png" alt="Gloria Fides Ganza" onerror="this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Hope Vanessa Zawadi, Ingabire Peace, Jules Eusebe Muneza, Gloria Fides Ganza, Bonte Micomyiza, Grade 10, Rwanda Coding Academy, Western Province, Rwanda</div>
+        <div class="wpf-bio">IMARI is a smart waste management system that solves the problem of mixed waste, which makes recycling and composting nearly impossible. It uses sensors to automatically separate plastic, metal, and organic waste, converting organic waste into nutrient-rich manure while reducing pollution, lowering waste volume, and providing an affordable, sustainable solution.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Hope Vanessa Zawadi, INGABIRE Peace & team</div>
+      <div class="meta"><span class="tag c">🇷🇼 Rwanda</span><span class="tag">15</span><span class="tag s">Senior</span></div>
+      <div class="proj">IMARI — Smart Waste Sorting & Composting System</div>
+      <div class="desc">Sensor-based waste sorting separating plastic, metal, and organic materials. Mobile/web dashboard. Converts organic waste to farmer manure. Reduces methane emissions from mixed landfill waste.</div>
+      <a class="lk" href="https://drive.google.com/drive/u/0/folders/1iAv1o7Hoz1l4VwEYARdwnk51xhLhL0mt" target="_blank">📁 Open</a>
+    </div>
+
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Abdurashidov%20Rustambek%20Ravshan%20ogli/Abdurashidov%20Rustambek%20Ravshan%20ogli.png" alt="Abdurashidov Rustambek" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Abdurashidov Rustambek Ravshan ogli, 357-School, Chilanzar, Tashkent, Uzbekistan</div>
+        <div class="wpf-bio">My project analyzes the degradation of the Aral Sea ecosystem and proposes evidence-based strategies for biodiversity restoration. Published on Zenodo, this research provides vital scientific data for experts and policymakers, aiming to mitigate the impacts of this ecological tragedy and improve environmental sustainability in the region.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Рустамбек</div>
+      <div class="meta"><span class="tag c">🇺🇿 Uzbekistan</span><span class="tag">15</span><span class="tag s">Senior</span></div>
+      <div class="proj">Aral Sea Ecological Research</div>
+      <div class="desc">Research published on Zenodo (CERN open science platform) — a citable, permanent academic record on the Aral Sea crisis.</div>
+      <a class="lk" href="https://zenodo.org/records/17287214" target="_blank">📚 Zenodo</a>
+    </div>
+
+    <!-- Saudi Arabia -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/MUNIRH%20ALI%20JARAD/IMG_5304.jpg" alt="Munirh Ali Jarad" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Munirh Ali Jarad, Grade 11, Ibn Roshd International School, Jazan, Jizan, Saudi Arabia</div>
+        <div class="wpf-bio">Reliance on fossil fuels and freshwater scarcity hinder sustainable H₂ production. This study proposes a solar-powered hybrid system integrating capacitive deionization with seawater electrolysis using nanomaterials to mitigate corrosion and improve efficiency. The system enables clean H₂ generation, enhances durability, and provides a scalable sustainable solution for global energy challenges.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Munirh Ali Jarad</div>
+      <div class="meta"><span class="tag c">🇸🇦 Saudi Arabia</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">Green H₂ from Seawater via CDI + Solar Electrolysis</div>
+      <div class="desc">Specific conductivity measurements (250→160 µs/cm). Biomass carbon CDI electrodes. Nanofiber catalysts. Simultaneous H₂ production and desalination.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1VAdyIOF2Qpzq05piRdXs7zqwoQ9y4IZP/view" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Costa Rica -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Khoa%20Bach%20Duc%20Anh/image.png" alt="Khoa Bach Duc Anh" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Khoa Bach Duc Anh (Vietnam), Grade 12, United World College Costa Rica, San Jose, Costa Rica<br>Hsuan Hao Chang (Taiwan), Grade 11, United World College Costa Rica, San Jose, Costa Rica</div>
+        <div class="wpf-bio">CoFFuel Cleaner is a bioengineering project that cleans sewage water using C. vulgaris and coffee grounds as feeding stock while using spent coffee grounds to make biofuel — a sustainable solution to unsustainable habits of extracting palm oil and throwing coffee grounds into landfill.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Bach Duc Anh Khoa & Hsuan Hao Chang</div>
+      <div class="meta"><span class="tag c">🇨🇷 Costa Rica</span><span class="tag">17</span><span class="tag s">Senior</span></div>
+      <div class="proj">Coffuel Cleaner — Coffee-Fed Microalgae for Sewage + Biofuel</div>
+      <div class="desc">A bioengineering project using Chlorella vulgaris microalgae fed on spent coffee grounds to simultaneously purify sewage water and produce biofuel — replacing unsustainable palm oil extraction. Two waste streams (coffee grounds + wastewater) become two useful outputs (clean water + fuel).</div>
+      <a class="lk" href="https://drive.google.com/file/d/1YweZkkQ9Lwjgf8lwCn6wN8doDyYi41DA/view" target="_blank">📄 Open</a>
+    </div>
+
+
+    <!-- ─── NEW: Bahrain ─── -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/AHIS%20Impact%20Team/AHIS%20Impact%20Team1.jpg" alt="AHIS Impact Team" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Ganna Mohamed Abdulhameed Sallam, Grade 11, Al-Hekma International School, Sanad, Capital Governorate, Bahrain<br>Rodyana Deyaa Salama Hussein Metwaly, Grade 12, Al-Hekma International School, Sanad, Capital Governorate, Bahrain<br>Bader Jasim E. Alkuwaiti, Grade 12, Al-Hekma International School, Sanad, Capital Governorate, Bahrain<br>Mohamad Omar Ahmed Hachicho, Grade 12, Al-Hekma International School, Sanad, Capital Governorate, Bahrain</div>
+        <div class="wpf-bio">AHIS Impact Team is an embodiment of "Acquire to Return." With over 100 successful projects, the team bridges the gap between education and execution through mentorship and creativity. By ensuring accountability among all grade levels, the team has developed a standard of impact that ensures sustainability in Bahrain.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Ganna Mohammed Sallam & Rodayna Deyaa Metwaly</div>
+      <div class="meta"><span class="tag c">🇧🇭 Bahrain</span><span class="tag">16 & 17</span><span class="tag s">Senior</span></div>
+      <div class="proj">The Echo of Return: Action as a Standard — Al-Hekma Impact Team</div>
+      <div class="desc">Active since 2018, the Al-Hekma Impact Team has delivered 100+ sustainability and social responsibility initiatives across Bahrain — coastal cleanups, interactive workshops for elementary students, and youth entrepreneurship programs. Their philosophy of "Acquire to Return" translates education into consistent, documented community action.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1OWj_qQSvZT555QW6NmtkY6ObyfmIgRos/view" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- ─── NEW: China ─── -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Yinlin%20Wang/Yilin%20Wang_Portrait.jpeg" alt="Yilin Wang" style="object-fit:contain" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Yilin Wang, Grade 11, Beijing National Day School, Beijing, China</div>
+        <div class="wpf-bio">This intelligent mobile soil monitor patrols farmland autonomously, collects real-time soil data, uses AI analysis for precise fertilization, and supports food security and ecological sustainability.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Yilin Wang</div>
+      <div class="meta"><span class="tag c">🇨🇳 China</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">Guard Haba — Documentary Film on Haba Snow Mountain</div>
+      <div class="desc">A completed YouTube documentary exploring the human-mountain relationship at Haba Snow Mountain in Shangri-La, Yunnan — a glacial ecosystem supporting over a thousand households. The film documents how guides, muleteers, homestay owners, and elderly mountaineers quietly protect the mountain through everyday acts of environmental stewardship, presenting conservation as a living, community-embedded practice.</div>
+      <a class="lk" href="https://www.youtube.com/watch?v=2xR5y-1qIIY" target="_blank">▶ Watch Documentary</a>
+    </div>
+
+    <!-- ─── NEW: Ghana ─── -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Zerah%20Norvienyeku/ZerahNorvienyeku_Finalist%20_IYEC.jpg" alt="Zerah Bubune Norvienyeku" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Zerah Norvienyeku, Grade 9, Mother Care School, Accra, Greater Accra, Ghana</div>
+        <div class="wpf-bio">The "Green Loop" initiative tackles Ghana’s organic waste crisis by repurposing surplus "healthy leftovers" from markets into affordable, high-quality animal feed. By converting vegetable trimmings and grains into nutritious meals for livestock and pets, we reduce landfill methane, lower farming costs, and create a sustainable circular economy for our community.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Zerah Bubune Norvienyeku</div>
+      <div class="meta"><span class="tag c">🇬🇭 Ghana</span><span class="tag">14</span><span class="tag s">Senior</span></div>
+      <div class="proj">The Green Loop — Organic Waste to Animal Feed</div>
+      <div class="desc">The Green Loop addresses the dual crisis of urban organic waste and rising animal feed costs in Ghana. Markets and restaurants discard metric tons of healthy organic leftovers daily, while livestock farmers struggle with feed costs. The project proposes collecting this discarded food waste and converting it into affordable, nutritious animal feed — creating a circular loop that reduces landfill waste while supporting local food security.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1F8hPratFfP_JhuCvNaBLDbkKpH0wZrkA/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- ─── NEW: Indonesia ─── -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Indo%20Rahma%20Yanti/Indo%20Rahma%20Yanti.jpg" alt="Indo Rahma Yanti" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Indo Rahma Yanti, Grade 11, SMA Negeri 8 Surakarta, Surakarta, Central Java, Indonesia</div>
+        <div class="wpf-bio">Bunaken National Park, known for its rich marine biodiversity, faces increasing threats from plastic waste and microplastic pollution. Monitoring these pollutants in water and bioindicator species enables early detection and rapid response, reducing environmental damage, protecting ecosystems, and supporting the recovery of fisheries and local livelihoods.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Indo Rahma Yanti</div>
+      <div class="meta"><span class="tag c">🇮🇩 Indonesia</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">Intercepting Plastic Pollution Upstream: River–Estuary Monitoring to Protect Bunaken National Park</div>
+      <div class="desc">Bunaken National Park — one of Indonesia's most biodiverse marine areas — faces a microplastic crisis entering from upstream rivers. This project proposes a river-estuary monitoring system using filter-feeding bioindicator organisms to intercept plastic waste before it reaches the ocean, protecting both the reef ecosystem and the livelihoods of communities dependent on it.</div>
+      <a class="lk" href="https://drive.google.com/drive/folders/1zzprsK-WH9O-tujakTkPQ6y9rFo5PwT8" target="_blank">📁 Open</a>
+    </div>
+
+    <!-- ─── NEW: Kazakhstan x2 ─── -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Kosherbay%20Assylay/Kosherbay%20Assylay.png" alt="Kosherbay Assylay" style="object-fit:contain" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Kosherbay Assylay, Grade 11, Nazarbayev Intellectual School, Taraz, Zhambyl, Kazakhstan</div>
+        <div class="wpf-bio">My project explores converting agricultural waste into biodegradable materials using cellulose extraction. It investigates why cellulose is optimal compared to other plant components, evaluates yield efficiency, and measures environmental impact. The goal is reducing plastic pollution while promoting sustainable resource use through scalable, low-cost methods suitable for real-world ecological applications.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Kosherbay Assylay</div>
+      <div class="meta"><span class="tag c">🇰🇿 Kazakhstan</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">Environmentally Safe Packaging from Corn Stalk Cellulose</div>
+      <div class="desc">A real lab experiment: corn stalks and leaves processed through alkaline treatment, acid hydrolysis, and bleaching to extract cellulose, then combined with sodium alginate and natural plasticisers to produce a flexible, biodegradable packaging film. The material fully decomposes in soil without leaving microplastics — transforming agricultural waste into a practical substitute for single-use plastic.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1w9E9Em68is3GbuoNdnunRBEVWE48G_pv/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- ─── NEW: Nepal ─── -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Survhi%20Rajya%20Laxmi%20Rana/Survhi%20Rajya%20Laxmi%20Rana.png" alt="Survhi Rajya Laxmi Rana" style="object-fit:contain" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Survhi Rajya Laxmi Rana, Grade 12, Mayo College Girls' School, Ajmer, Rajasthan, India</div>
+        <div class="wpf-bio">This project aims to improve air quality in Kathmandu by tackling major pollution sources such as vehicle emissions, construction dust, and waste burning. Through sustainable transport, better regulations, and community awareness, it promotes practical, long-term solutions to create a cleaner, healthier environment and enhance the quality of life for residents.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Survhi Rajya Laxmi Rana</div>
+      <div class="meta"><span class="tag c">🇳🇵 Nepal</span><span class="tag">15</span><span class="tag s">Senior</span></div>
+      <div class="proj">Air Quality Improvement in Kathmandu</div>
+      <div class="desc">A comprehensive, data-driven plan addressing Kathmandu's most significant pollution sources: vehicular emissions, construction dust, industrial brick kiln smoke, and open waste burning. The project proposes public and electric vehicle promotion, construction dust control, brick kiln regulation, improved solid waste management, urban greening, and community engagement — emphasising that lasting solutions require both government action and citizen participation.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1w75BTcv_M5Lrwdtd5NnFFND5I7xLhbejCrL8qsLeIfQ/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- ─── NEW: Nigeria ─── -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Collins%20Blessing%20Sophia/Collins%20Blessing%20Sophia.png" alt="Collins Blessing Sophia" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Collins Blessing Sophia, Class SS2, Aguda Senior Grammar School, 38 Ola Street, Surulere, Lagos, Nigeria</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Collins Blessing Sophia</div>
+      <div class="meta"><span class="tag c">🇳🇬 Nigeria</span><span class="tag">15</span><span class="tag s">Senior</span></div>
+      <div class="proj">Reduce by Reuse — Plastic Bottle Recycling</div>
+      <div class="desc">A grassroots project tackling plastic bottle waste through direct collection and recycling. Focused on addressing plastic pollution at the community level, the project promotes the "reduce by reuse" philosophy as a practical, accessible response to Nigeria's plastic waste challenge.</div>
+    </div>
+
+    <!-- ─── NEW: South Africa ─── -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Chwayita%20Chloe%20Nozintaba/IMG-20260414-WA0008.jpg" alt="Chwayita Chloe Nozintaba" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Chwayita Chloe Nozintaba, Grade 12, Sir Pierre Van Ryneveld High School, Johannesburg, Gauteng, South Africa<br>Inganathi Siganagana, Grade 12, Sir Pierre Van Ryneveld High School, Johannesburg, Gauteng, South Africa</div>
+        <div class="wpf-bio">Green Reward is a smart recycling bin that encourages recycling by rewarding people for smart waste sorting. It consists of sections for plastic, glass, cans and cardboard. Sensors measure waste and reward the user with a voucher. This reduces pollution, encourages responsible habits, and supports communities by creating small jobs.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Chwayita Chloe Nozintaba & Inganathi Siganagana</div>
+      <div class="meta"><span class="tag c">🇿🇦 South Africa</span><span class="tag">16 & 17</span><span class="tag s">Senior</span></div>
+      <div class="proj">Green Reward — QR-Code Smart Recycling Bin</div>
+      <div class="desc">Green Reward is a smart bin system using QR codes to log responsible waste disposal, award redeemable points, and connect users to local shop vouchers. The system detects waste type, calculates points automatically, and links recycling to real economic rewards — making sustainable behaviour genuinely appealing to communities rather than just aspirational.</div>
+      <a class="lk" href="https://eu.docworkspace.com/d/sIIfVg9HBAqT6y8kG" target="_blank">📄 Open</a>
+    </div>
+
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Vanshika%20Himanshu%20Patel/Vanshika%20Patel%20-%20photo.jpeg" alt="Vanshika Patel" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Vanshika Himanshu Patel, Grade 12, Mayoor Private School, Corniche Street, Abu Dhabi, UAE</div>
+        <div class="wpf-bio">AtmosFlow proposes a solar-powered micro-vacuum system mounted on roadside barriers, using HEPA and activated carbon filters to capture particulate matter, VOCs, and emissions from vehicles. Pollutants are stored in a sealed chamber with stabilization and potential regeneration. The device emphasizes sustainability through recyclable materials, biodegradable components, and reduced e-waste.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Vanshika Patel, Anushka Kshirsagar & Rashi Agarwal</div>
+      <div class="meta"><span class="tag c">🇦🇪 UAE</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">AtmosFlow — Solar-Powered Roadside Micro Vacuum</div>
+      <div class="desc">AtmosFlow is a compact, solar-powered air cleaning device placed along roadside barriers to filter soot, toxins, and pollutants from the air around vehicles before they disperse into the environment. Targeting the most concentrated source of urban air pollution — the roadside — the system operates without external power, making it scalable and sustainable for deployment across UAE cities.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1PO2SRizArkzBQiikrmupY0kYoEz9WVzz/view" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- India additions -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Sai%20Vidhu%20Shree.%20R/Sai%20Vidhu%20Shree.%20R.jpeg" alt="R. Sai Vidhu Shree" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Sai Vidhu Shree R, Grade 12, Ela Green School, Chengalpattu, India</div>
+        <div class="wpf-bio">SustainaShe is a project that focuses on solving menstrual waste problems using simple, low-cost clay incinerators for rural areas. It helps reduce pollution and provides a safe way to dispose of sanitary waste. The project also spreads awareness and supports women by promoting better hygiene and sustainable practices.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">R. Sai Vidhu Shree</div>
+      <div class="meta"><span class="tag c">🇮🇳 India</span><span class="tag">17</span><span class="tag s">Senior</span></div>
+      <div class="proj">SustainaShe — Eco-Friendly Menstrual Waste Management</div>
+      <div class="desc">SustainaShe introduces clay-based eco-friendly menstrual waste incinerators for rural and underserved communities — biodegradable, low-cost alternatives to conventional metal or electric models. A digital platform connects users to nearby recycling and waste collection centres. By combining traditional craftsmanship with modern sustainability, SustainaShe creates a community-driven, scalable model for responsible menstrual waste disposal that empowers women artisans.</div>
+      <a class="lk" href="https://drive.google.com/drive/folders/1bWRLvxzgI2h0BXOHj64zr_Y1FsAAIT-D" target="_blank">📁 Open</a>
+    </div>
+
+    <!-- Egypt addition -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/Hanan%20Mohamed%20Alzeer/image_2026-04-17_00-03-44.png" alt="Hanan Mohamed Alzeer" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Hanan Mohamed Alzeer, Grade 11 (Second Secondary), Sidi Ghazi Secondary School, Kafr El-Dawar, El Beheira, Egypt</div>
+        <div class="wpf-bio">Urban heat islands are cooking us alive. EcoSkyRoof flips the script by suspending lightweight, edible green canopies directly above city streets. Acting as natural air conditioners, these aerial gardens cool neighborhoods by five degrees, absorb carbon, and feed communities. We cannot turn off the sun; let us plant the sky.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Hanan Muhammad El-zeer</div>
+      <div class="meta"><span class="tag c">🇪🇬 Egypt</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">EcoSkyRoof — Plant the Sky or Watch Us Fry</div>
+      <div class="desc">EcoSkyRoof transforms the empty space above urban streets into lightweight, plant-covered canopies. These living roofs reduce city temperatures by up to 5°C, absorb CO₂, reduce flood risks, support local food production, and reconnect city dwellers with nature — built from recycled materials and designed to be installed above rooftops and street corridors.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1uaBOoPrSow9I1NdrHskCQDK3tyvvrLhFAWtIeMtOARU/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Bangladesh addition -->
+    <div class="card finalist">
+      <div class="wp">
+        <img src="/static/winners/2026/SAMIA%20ISLAM%20USHA/SAMIA%20ISLAM%20USHA.jpg" alt="Samia Islam Usha" onerror="this.parentElement.classList.add('empty');this.style.display='none'">
+      </div>
+      <div class="wpf">
+        <div class="wpf-info">Samia Islam Usha, Higher Secondary (Science), Abu Bakar Biswas Moksed Ali College, Jhenaidah, Khulna, Bangladesh</div>
+        <div class="wpf-bio">My project addresses urban heat and environmental degradation through a youth-led model combining micro-forests, green shade corridors, and community climate clubs. By restoring native trees in small urban spaces, it creates cooling zones, improves air quality, and empowers young people to lead scalable, community-driven climate action.</div>
+      </div>
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Samia Islam Usha</div>
+      <div class="meta"><span class="tag c">🇧🇩 Bangladesh</span><span class="tag">18</span><span class="tag s">Senior</span></div>
+      <div class="proj">Roots of Hope — Youth-Led Micro-Forest Initiative to Re-Green Cities</div>
+      <div class="desc">Transforming small, unused urban spaces into dense micro-forests, establishing shaded walking corridors, and forming a youth-led Climate Action Club — creating a sustainable, low-cost, and scalable solution that improves air quality, provides natural cooling, and enhances biodiversity. The project demonstrates how meaningful climate action begins at the local level and can inspire similar efforts across urban areas.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1OLQHR8CTJ0MUdxTox4AaRx2aUXzVrKM7/view" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Bangladesh x3 -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Jarif Kabir, Ishraq Hasin Mozumder, Zaber Ahsan Nafi & Ishmam Ibn Kawser</div>
+      <div class="meta"><span class="tag c">🇧🇩 Bangladesh</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">OxyNova — Microalgae Photobioreactor</div>
+      <div class="desc">Graywater-fed bioreactor. 65–80% COD/BOD reduction. ~50kg CO₂ captured. 1.5–2.5mg O₂/L/hr produced. Solar + LED powered. Physical system with specific performance data.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1LY1OLTjTU2T0MmD9F1d6EADgtWWTgZAR/view" target="_blank">📄 Open</a>
+    </div>
+
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Preom Barman & Md. Niyaj Morshed Sayem</div>
+      <div class="meta"><span class="tag c">🇧🇩 Bangladesh</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">JIBONJOL — River Water Purification System</div>
+      <div class="desc">Using specific WHO-limit-exceeding contamination data from Dhaka's Buriganga River, this team designed and built a 5-chamber water filtration system from coconut husks, eggshells, banana peels, and rice husk biochar. The elegance: every material is local waste, and the problem is a documented public health crisis.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1eahDx5KbYOoEAVxM8NqfeLCa_ZxGOd3m/view" target="_blank">📄 Open</a>
+    </div>
+
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Matthew Yoon</div>
+      <div class="meta"><span class="tag c">🇺🇸 USA</span><span class="tag">18</span><span class="tag s">Senior</span></div>
+      <div class="proj">The Invisible Classroom — IAQ Monitoring in Korean Schools</div>
+      <div class="desc">Proposed and installed real-time air quality devices across 30 classrooms in a South Korean elementary school. School implemented "Active Ventilation Protocol" based on real sensor data. Documented behaviour change.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1VMqIN9H5qKDNOcOppbmDRIgUvs16g_nl/view" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Australia -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Veronica Tan</div>
+      <div class="meta"><span class="tag c">🇦🇺 Australia</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">SYNERA — Sustainability, Simplified</div>
+      <div class="desc">Digital decision support tool using AHP model to prioritise soil erosion interventions for hilly orchard farmers. No hardware. Minutes to use. Science-backed methodology.</div>
+      <a class="lk" href="https://www.canva.com/design/DAG9y82cj6o/W4J9aHcI-XFAFz4d_NE6ww/edit" target="_blank">🎨 View</a>
+    </div>
+
+    <!-- Kazakhstan x2 -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Miras Zhumagaliyev</div>
+      <div class="meta"><span class="tag c">🇪🇸 Spain / 🇰🇿 KZ</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">PhotoAir — UV Photocatalytic Air Purification</div>
+      <div class="desc">TiO₂ photocatalytic indoor purifier with UV light and fan mechanism. Targets Almaty's air pollution crisis with a real, proven chemistry mechanism.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1DQVbPxT5RpAl2_lsnmq6HGqHaW5wiJQFikWfJ0xQ9lo/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Pakistan -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Maryam Liaquat</div>
+      <div class="meta"><span class="tag c">🇵🇰 Pakistan</span><span class="tag">18</span><span class="tag s">Senior</span></div>
+      <div class="proj">Ecorise Straws — Reusable Water Filtration Straws</div>
+      <div class="desc">Reusable filtration straws designed to provide clean drinking water while eliminating plastic waste. Lab-tested, multi-year lifespan, with a specific and documented total of 46,500 litres purified. A simple, elegant product addressing water access and plastic pollution simultaneously.</div>
+      <a class="lk" href="https://drive.google.com/file/d/13TLfNEQtNfvQGLHwDS9vgJsTbgSHUC8x/view" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Philippines (Junior) -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">MA. Cattleya L. Revilla, Jamaica O. Sandayan, Prince Christian Alana & Joshua Delante</div>
+      <div class="meta"><span class="tag c">🇵🇭 Philippines</span><span class="tag">10</span><span class="tag j">Junior</span></div>
+      <div class="proj">Community-Led Oil Slick Removal in Philippine Urban Waterways</div>
+      <div class="desc">Egg white albumin coagulation method: 97–99% oil removal, under ₱5/litre. Recovered waste recycled into charcoal briquettes. Method from their own Regional Science Competition award.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1PulUbh5xhQ0lXRPQCNjlhBhaCCa0PD-r/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Iran (Junior) -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Mersana Rahmani</div>
+      <div class="meta"><span class="tag c">🇮🇷 Iran</span><span class="tag">9</span><span class="tag j">Junior</span></div>
+      <div class="proj">Effective Forest Protection: From Research to Practice</div>
+      <div class="desc">Collected native northern Iran forest seeds. Had them botanically identified. Grew through small pots → large pots → transplanted to suitable soil. Complete hands-on conservation cycle.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1HSjMNjGBXQCGXhtYAgCHClbFadmL816a/view" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Turkey (Junior) -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Yüsra Korkmaz & Zeynep Erva Oral</div>
+      <div class="meta"><span class="tag c">🇹🇷 Turkey</span><span class="tag">11</span><span class="tag j">Junior</span></div>
+      <div class="proj">Removing Oil from Water by Adsorption Using Corks</div>
+      <div class="desc">Real lab experiment testing natural cork as an oil adsorbent for maritime spills. Turkey's proximity to shipping routes makes oil water pollution a real local problem. Tested material, described mechanism, documented results.</div>
+      <a class="lk" href="https://docs.google.com/document/d/17ovlV8rHsjCx9uTQpj8AhKtWg9rShRNo/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Mexico -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Andres Mauricio Rendon Torres</div>
+      <div class="meta"><span class="tag c">🇲🇽 Mexico</span><span class="tag">18</span><span class="tag s">Senior</span></div>
+      <div class="proj">RenDroid — Preventive Storm Drain Waste Removal</div>
+      <div class="desc">Autonomous technology preventing solid waste accumulation in urban storm drains before flooding occurs. No water, no fossil fuels. Preventive rather than reactive — addressing the cause, not the flood.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1o2Gc6dUAOAUVtzU8vF_fleeFr8XuU3nY/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Trinidad -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Jayda Ramjattan</div>
+      <div class="meta"><span class="tag c">🇹🇹 Trinidad & Tobago</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">SIDS Climate Action Beat the Heat</div>
+      <div class="desc">Video monologue + eco-artwork. Reposted by UNICEF Eastern Caribbean, Parliament of Trinidad and Tobago, Rotunda Gallery, Ministry of Labour, Children's Authority.</div>
+      <a class="lk" href="https://www.facebook.com/watch/?v=1791458004927418" target="_blank">▶ Watch</a>
+    </div>
+
+    <!-- Qatar -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Ananya K Jinesh & Anaswara Anil</div>
+      <div class="meta"><span class="tag c">🇶🇦 Qatar</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">365 Desert Vegetation</div>
+      <div class="desc">Integrated desert agriculture: thermal wall + pipe composting + grow lights + subsurface drip irrigation + solar panels + Archimedes windmills. Multi-system approach suggesting a built prototype.</div>
+      <a class="lk" href="https://drive.google.com/drive/folders/1HO61Xa65Rqhr_e2JF4iqgIKKeQvGZN0C" target="_blank">📁 Open</a>
+    </div>
+
+    <!-- Greece -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Georgios Iraklis Michalopoulos</div>
+      <div class="meta"><span class="tag c">🇬🇷 Greece</span><span class="tag">17</span><span class="tag s">Senior</span></div>
+      <div class="proj">AI-Powered Maritime Performance Optimization System</div>
+      <div class="desc">Built AI chatbot analysing 6 months of shipping performance data to identify hidden fuel inefficiencies. Reduces maritime emissions through instant, actionable insights for ship operators.</div>
+      <a class="lk" href="https://drive.google.com/drive/folders/1mfiyifviSFSJnChGT9QH9gVAtpimg6FN" target="_blank">📁 Open</a>
+    </div>
+
+    <!-- New Zealand -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Aditya Venkat Gulla</div>
+      <div class="meta"><span class="tag c">🇳🇿 New Zealand</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">Developing a Flourishing Waikato — River Quality Solutions</div>
+      <div class="desc">Multi-approach framework addressing the Waikato River's declining water quality through specific cause-targeted solutions. The Waikato River is regionally critical for water, agriculture, and Māori culture.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1amMmBmO234a7DvGw8Em96xU64GcdpvzBzhvYkvgHbis/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Egypt -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">محمود أسامة حسين شعبان</div>
+      <div class="meta"><span class="tag c">🇪🇬 Egypt</span><span class="tag">18</span><span class="tag s">Senior</span></div>
+      <div class="proj">Monitoring and Risk Assessment of Sand Dune Migration via Geomatics</div>
+      <div class="desc">GIS, satellite image analysis, and remote sensing to monitor sand dune encroachment on villages in Western Minya, Egypt from 2000–2025. Real geospatial data, 25-year temporal analysis, documented residential hazard.</div>
+    </div>
+
+    <!-- Uganda -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">AINE KENAN</div>
+      <div class="meta"><span class="tag c">🇺🇬 Uganda</span><span class="tag">17</span><span class="tag s">Senior</span></div>
+      <div class="proj">ECOPACT — Environment Community Outreach for Promoting Adaptation and Climate Transformation</div>
+      <div class="desc">Active community initiative: large-scale tree planting, climate-smart farming training, carbon footprint reduction programmes. Local skills-building for environmental resilience across diverse communities.</div>
+      <a class="lk" href="https://drive.google.com/drive/folders/1L1qYM51YD3w6Unl20hOWABYIU4sShxiB" target="_blank">📁 Open</a>
+    </div>
+
+    <!-- ─── NEW: Barbados ─── -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Roshuna Clarke</div>
+      <div class="meta"><span class="tag c">🇧🇧 Barbados</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">Project Econnect — Global Platform for Grassroots SDG Innovation</div>
+      <div class="desc">Project Econnect is an interactive global platform designed to showcase grassroots projects, student-built robots, and technological innovations advancing the Sustainable Development Goals. It connects makers, researchers, NGOs, and communities by cataloguing scalable solutions, enabling direct collaboration, and providing tools for impact tracking and funding matchmaking.</div>
+      <a class="lk" href="https://link.com/en-ca" target="_blank">🌐 View Project</a>
+    </div>
+
+    <!-- ─── NEW: Canada x2 ─── -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Soley</div>
+      <div class="meta"><span class="tag c">🇨🇦 Canada</span><span class="tag">11</span><span class="tag j">Junior</span></div>
+      <div class="proj">How Much Waste Do You Think You Produce in School Every Day?</div>
+      <div class="desc">Motivated by classmates' environmental unawareness, Soley independently researched her school's waste problem — interviewing teachers who confirmed no waste audit had occurred in six years. A completed science fair project that revealed a real gap and made a real case for change.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1oyDTgJPJFY7EnUme4g9-AcXKWeMWIup_90ct5xauZY8/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Amna Zia</div>
+      <div class="meta"><span class="tag c">🇨🇦 Canada</span><span class="tag">15</span><span class="tag s">Senior</span></div>
+      <div class="proj">Protecting Edmonton's Treasure: How Edmonton's Law is Destroying the North Saskatchewan River Valley</div>
+      <div class="desc">A detailed policy and ecological analysis of how weak municipal legislation is putting Edmonton's River Valley — one of North America's largest urban green spaces — at risk. The project identifies specific legal shortcomings, ecological stakes, and balanced solutions that account for city needs, communities, and the environment.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1L3elbV8dVQ139KYwD9DOLP2javaiI-J0/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- ─── NEW: Ireland ─── -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Daniel J.B</div>
+      <div class="meta"><span class="tag c">🇮🇪 Ireland</span><span class="tag">15</span><span class="tag s">Senior</span></div>
+      <div class="proj">SeaVolt — AI-Powered Autonomous Ocean Plastic Removal System</div>
+      <div class="desc">SeaVolt is a self-operating, AI-powered marine system combining solar- and turbine-driven ships and submarines to remove plastic waste from oceans using electrostatic rods that attract debris without harming marine life. Equipped with sonar, radar, and AI navigation, the fleet is designed to operate in remote regions like Point Nemo — the most inaccessible areas of our oceans.</div>
+    </div>
+
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Angela Li Aleksandrovna</div>
+      <div class="meta"><span class="tag c">🇰🇿 Kazakhstan</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">City Air Purification Technology in Almaty: Converting Smog into Energy</div>
+      <div class="desc">A groundbreaking concept treating Almaty's toxic winter smog as a resource rather than waste. A modular installation captures CO₂ from thermal power plant flue gas, purifies it through multi-stage filtration, and converts it into eco-friendly fuel via Reverse Water Gas Shift (RWGS) and Fischer-Tropsch synthesis — processing the equivalent of 2,500 trees' annual CO₂ absorption per day, with by-products becoming construction materials, pigments, and fertilizers.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1T92YoBX_EMglcdmXskSCMvmoN2l4aLxz/view" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- ─── NEW: Malaysia ─── -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Uthara Vivek</div>
+      <div class="meta"><span class="tag c">🇲🇾 Malaysia</span><span class="tag">18</span><span class="tag s">Senior</span></div>
+      <div class="proj">Model Mangroves: A Scientific Model to Preserve Malaysia's Mangrove Forests</div>
+      <div class="desc">Malaysia's mangrove ecosystem — among the world's most extensive — faces severe degradation threatening coastal communities and biodiversity. This project proposes an Ecosystem-Based Management model integrating regulatory measures, citizen science, and tidal flow restoration to address the interconnected coastal system holistically. It advocates for regulating upstream human activities as the primary driver of mangrove decline.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1ezAI9Wjb4FBNwgFr3IrbquFkmsx4EWC3tepMAHjL69k/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- ─── NEW: Morocco ─── -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Alaa Ikbi</div>
+      <div class="meta"><span class="tag c">🇲🇦 Morocco</span><span class="tag">13</span><span class="tag j">Junior</span></div>
+      <div class="proj">La Pollution de l'Eau — Water Pollution Awareness</div>
+      <div class="desc">A Junior project raising awareness about the consequences of water pollution. The project aims to sensitise communities to the dangers of contaminated water and motivate practical action to protect water bodies in Morocco.</div>
+      <a class="lk" href="https://v0-new-project-ja8n4h7xsuh-ameur-s-projects.vercel.app/login" target="_blank">🌐 View Project</a>
+    </div>
+
+
+
+    <!-- ─── NEW: Russia ─── -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Elisaveta</div>
+      <div class="meta"><span class="tag c">🇷🇺 Russia</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">Bodies of Water and Associated Environmental Problems — Lake Baikal</div>
+      <div class="desc">A focused environmental study on the threats facing Lake Baikal — the world's deepest lake and largest freshwater reservoir by volume — examining pollution, industrial runoff, and climate-driven ecological change in one of the planet's most irreplaceable freshwater ecosystems.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1jNVTjJWlazzoTebXPjhMTvhBRHpgnSQY/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- ─── NEW: Sweden ─── -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Lukas Andreasson & Alice Aronsson</div>
+      <div class="meta"><span class="tag c">🇸🇪 Sweden</span><span class="tag">18</span><span class="tag s">Senior</span></div>
+      <div class="proj">Beet Litter — Sustainable Cat Litter from Sugar Beet Pulp</div>
+      <div class="desc">Sugar beet pulp — an industrial by-product of Swedish sugar production — mixed with potato starch and bio-coal to create cat litter that outperforms bentonite clay on odour control. The product was voluntarily chosen by their cats over commercial clay litter. Bentonite clay, the conventional alternative, is a non-renewable mined resource with significant environmental extraction costs.</div>
+      <a class="lk" href="https://drive.google.com/drive/u/0/folders/1v7kew2zMcVYQWEMEySixMNJB8ufgPiO5" target="_blank">📁 Open</a>
+    </div>
+
+    <!-- ─── NEW: Tunisia ─── -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Rouwaida Ben Belgacem</div>
+      <div class="meta"><span class="tag c">🇹🇳 Tunisia</span><span class="tag">15</span><span class="tag s">Senior</span></div>
+      <div class="proj">Youth as Change-Makers in Environmental Sustainability</div>
+      <div class="desc">A youth-led initiative focused on reducing environmental damage through community awareness campaigns, sustainable practices, and youth empowerment. The project positions young people not as future leaders but as current change-makers capable of driving immediate and tangible environmental improvement in their communities.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1kP1fNqmO0IvDJI8AbrHt1bTzLf55cXTeAoPHgy_vgy4/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- ─── NEW: UAE x2 ─── -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Evan Dennis Koshy</div>
+      <div class="meta"><span class="tag c">🇦🇪 UAE</span><span class="tag">14</span><span class="tag s">Senior</span></div>
+      <div class="proj">AquaWatch AI — Real-Time Marine Pollution Detection & Awareness App</div>
+      <div class="desc">AquaWatch AI combines artificial intelligence and citizen science to combat marine pollution. Users photograph waste, soil, or water near coastlines; the AI instantly identifies pollutants, analyses environmental quality, and offers personalised eco-friendly recommendations. Gamified cleanup missions, leaderboards, and an educational marine awareness hub motivate sustained participation — turning coastal communities into active environmental monitors.</div>
+      <a class="lk" href="https://drive.google.com/drive/folders/1rg9Ae9gA6nK4d8hT1D4N8WgQy5PyZrpS" target="_blank">📁 Open</a>
+    </div>
+
+
+
+    <!-- ─── ADDITIONS to already-covered countries ─── -->
+
+    <!-- Turkey additions -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Rüzgar Karaton, Duru Deniz Aslan & team</div>
+      <div class="meta"><span class="tag c">🇹🇷 Turkey</span><span class="tag">14</span><span class="tag s">Senior</span></div>
+      <div class="proj">Coffenergy — Coffee Grounds as Sustainable Battery Components</div>
+      <div class="desc">Spent coffee grounds — collected from local urban coffee shops and destined for landfill — are repurposed as carbon-based electrode materials for sustainable energy storage. The Coffenergy project applies circular economy principles to a waste stream that every city produces, transforming it into a component for the clean energy transition.</div>
+      <a class="lk" href="https://drive.google.com/drive/folders/162E_p2qauRwYftunV7fxbZdY0gOIlTux" target="_blank">📁 Open</a>
+    </div>
+
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Demirkan Ateş, Defne Ülker & Ahmet Ata</div>
+      <div class="meta"><span class="tag c">🇹🇷 Turkey</span><span class="tag">15 & 17</span><span class="tag s">Senior</span></div>
+      <div class="proj">Biodegradable Packaging from Tea Pulp — Plastic-Free Fruit Crates</div>
+      <div class="desc">Physical prototype fruit crates made from tea pulp — a by-product of Turkey's thriving tea industry — handed to a real asparagus producer for testing during harvest. Designed for EU Green Deal compliance, the product offers Turkish exporters a plastic-free, locally sourceable alternative to conventional plastic crates.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1IcnT9L3eSvDT9KAW42ieBtvRZzDYyhLlYLxg_BiPKkM/edit" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Spain addition -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Elena Calderon Lorente</div>
+      <div class="meta"><span class="tag c">🇪🇸 Spain</span><span class="tag">17</span><span class="tag s">Senior</span></div>
+      <div class="proj">The Street Shade Project — Young Voices for Change</div>
+      <div class="desc">A campaign to plant native trees along the hottest urban corridors — sidewalks, schools, and bus stops — to restore shade, cool the air, and reduce pollution in Spanish cities. The project makes the case that meaningful climate action can start at street level, tree by tree, with young people as the driving force.</div>
+      <a class="lk" href="https://drive.google.com/file/d/1IulWoRPzNpJdEpZ4AA-CRwkMX7JfhtHE/view" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Qatar addition -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Mohammad Nagy</div>
+      <div class="meta"><span class="tag c">🇶🇦 Qatar</span><span class="tag">16</span><span class="tag s">Senior</span></div>
+      <div class="proj">Addressing Urban Desertification in Qatar: A Policy and Ecological Framework for Land Recovery</div>
+      <div class="desc">A comprehensive "Green Recovery" strategy addressing urban desertification and associated environmental degradation in Doha. The project combines policy recommendations, ecological restoration approaches, and urban planning reform into an integrated framework for recovering desertified land in Qatar's rapidly expanding urban environment.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1Ai_pGV9tym4NQum-V1L_-zLnfjNzc9vWSad8uZddjTk/edit" target="_blank">📄 Open</a>
+    </div>
+
+
+
+    <!-- Kenya addition -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Joy Lorchima</div>
+      <div class="meta"><span class="tag c">🇰🇪 Kenya</span><span class="tag">15</span><span class="tag s">Senior</span></div>
+      <div class="proj">Trash Turns Tap — Plastic Bottle Water Filters</div>
+      <div class="desc">In a community facing both clean water scarcity and pervasive plastic pollution, Joy proposes collecting landfill-derived plastic bottles and converting them into affordable water filters — tackling two urgent local crises with one circular solution. The project promotes sustainability and community health locally by reducing plastic waste while expanding access to clean water.</div>
+      <a class="lk" href="https://docs.google.com/forms/d/e/1FAIpQLSc487tftJjAfLNuFsVuFODGCr7ljV-8DFdXyx9Lb5Szlxv24w/formResponse" target="_blank">📄 Open</a>
+    </div>
+
+    <!-- Singapore addition -->
+    <div class="card finalist">
+      <span class="rank finalist">⭐ IYEC Finalist</span><br>
+      <div class="card-name">Le Wei</div>
+      <div class="meta"><span class="tag c">🇸🇬 Singapore</span><span class="tag">17</span><span class="tag s">Senior</span></div>
+      <div class="proj">Autonomous Robotic System for Oil Spill Detection and Cleanup</div>
+      <div class="desc">A proposed autonomous four-wheel robot equipped with LiDAR, AI visual sensors, an oil detector, and a modular excavator to detect and clean oil spills on sandy shorelines — replacing expensive, labour-intensive manual cleanup. Designed specifically for Singapore's coastline vulnerability and the significant cost it incurs from shoreline oil contamination.</div>
+      <a class="lk" href="https://docs.google.com/document/d/1wzhkTKyqEzj_ZvJeZEdqlw7xJ7KZc8yo_62h9dZrX3U/edit" target="_blank">📄 Open</a>
+    </div>
+
+
+  </div>
+</div>
+
+<!-- ══════════ FULL SUMMARY ══════════ -->
+<div id="summary" class="sec">
+  <h2 class="sec-h">📋 Full Summary Table</h2>
+  <p class="sec-sub">Complete listing of all winners and finalists. Search and filter to find specific entries.</p>
+  <div class="fb">
+    <input class="fi" type="text" id="si" placeholder="🔍 Search name, country, project..." oninput="ft()">
+    <select class="fi" id="cf" onchange="ft()"><option value="">All Categories</option><option>Junior</option><option>Senior</option></select>
+    <select class="fi" id="af" onchange="ft()"><option value="">All Awards</option><option value="Global">Global</option><option value="Ingenuity">Ingenuity</option><option value="Regional">Regional</option><option value="Finalist">Finalist</option><option value="Participant">Participant</option></select>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Name</th><th>Country</th><th>Age</th><th>Category</th><th>Project</th><th>Evidence</th><th>Award</th><th>Link</th></tr></thead>
+      <tbody id="tb">
+        <tr data-c="Junior" data-a="Participant"><td><b>Katherine Jiang & Alisa Jiang</b></td><td>🇺🇸 USA</td><td>9</td><td><span class="tag j">Junior</span></td><td>Southwest Florida environmental issues</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/file/d/1eDAn4m-2sVYhastueo8C3W-jmVxS3knL/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Jenny Jin</b></td><td>🇨🇦 Canada</td><td>14</td><td><span class="tag s">Senior</span></td><td>From Waste to Well-being: Managing the Global Waste Crisis</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1aA1xiISOCK6HpZUuJ_0uYJl8bGeYm-Fk2J35CS4pf1Q/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Julie Jin</b></td><td>🇨🇦 Canada</td><td>14</td><td><span class="tag s">Senior</span></td><td>Become a biodiversity hero- from the comfort of home and on </td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1WIEY8y3bD0rr23uX88c0ePF-9Z8pNPVU3BUAUDhTxn0/edit?pli=1" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Amanullah Solangi</b></td><td>🌍 Sindh Pakistan</td><td>17</td><td><span class="tag s">Senior</span></td><td>Cool Hyderabad: A Green Initiative to Combat Urban Heat and </td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://basicdf.org/initiatives/" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Duong Hai Mien & Ngo Anh Tuan</b></td><td>🌍 Viet Nam</td><td>16</td><td><span class="tag s">Senior</span></td><td>Turning the Tides: Restoring Coastal Paradise from Pollution</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/16Ol_RojrhSndHPhGxh4Dh2khTBPWtbFqkBhB--jdHag/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Participant"><td><b>Emily Brubaker & Annabelle Slinker</b></td><td>🇺🇸 USA</td><td>13</td><td><span class="tag j">Junior</span></td><td>The BioGlitter Initiative</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://youtu.be/kInb9bVTb6c" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>William Zeng</b></td><td>🇮🇹 Italy</td><td>17</td><td><span class="tag s">Senior</span></td><td>The Waste Renaissance: Innovative Waste Management Solutions</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://1drv.ms/w/c/d11e0fae85083005/ETZr2FYSI4dJreutfprew3MBhQhhmg9zgjsnDvpEi5kgEQ?e=LMnXwD" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Participant"><td><b>Donna Rui-Tong Yuan</b></td><td>🇨🇳 China</td><td>12</td><td><span class="tag j">Junior</span></td><td>Building a Better Future for All Beings: Addressing Environm</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1vEN-wrKMo0k_t6VXA1h7DDWJFDzNJyYx/edit?usp=sharing&ouid=110799763402218618713&rtpof=true&sd=true" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Arav Kamat & Atharva Soni & Sadik Premjee & Aria Kamat</b></td><td>🌍 US</td><td>15</td><td><span class="tag s">Senior</span></td><td>Pre-emptive Wildfire Solution</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1LcH-3wkp8FVLMn71ljCNDf4EXaaaVxPGNQmwue9yZpE/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Participant"><td><b>Syuan-Hao Huang</b></td><td>🇹🇼 Taiwan</td><td>13</td><td><span class="tag j">Junior</span></td><td>The Tug-of-War Between Environmental Preservation and Local </td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1M5vVZw4GPsIU8enWxfgUW-zzeDqrACTrUunmKnrqsuM/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Chun-Shan Chang</b></td><td>🇹🇼 Taiwan</td><td>14</td><td><span class="tag s">Senior</span></td><td>The Inconsistent Perception Between Travel Experience and En</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/19HDxttOdtzB1czVEc6evHk9tEyWo58xf5XUwA_Bv2f4/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Ananya K Jinesh & Anaswara Anil</b></td><td>🇶🇦 Qatar</td><td>16</td><td><span class="tag s">Senior</span></td><td>365 Desert Vegetation</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/1HO61Xa65Rqhr_e2JF4iqgIKKeQvGZN0C?usp=share_link" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Kadirbekova Altynzhan</b></td><td>🇰🇿 Kazakhstan</td><td>15</td><td><span class="tag s">Senior</span></td><td>The Environmental Impact of Global Corporations</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/file/d/1RK2hcMXf6S95m5g9gIvRhxMj0OQ1h_hY/edit?usp=docslist_api&filetype=msword" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Cojitha Senanayake</b></td><td>🇱🇰 Sri Lanka</td><td>17</td><td><span class="tag s">Senior</span></td><td>Cee Green</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://youtu.be/BJdFKN5OAhU" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Joy Lorchima</b></td><td>🇰🇪 Kenya</td><td>15</td><td><span class="tag s">Senior</span></td><td>Trash Turns Tap</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/forms/d/e/1FAIpQLSc487tftJjAfLNuFsVuFODGCr7ljV-8DFdXyx9Lb5Szlxv24w/formResponse" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Survhi Rajya Laxmi Rana</b></td><td>🇳🇵 Nepal</td><td>15</td><td><span class="tag s">Senior</span></td><td>Air Quality Improvement in Kathmandu</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1w75BTcv_M5Lrwdtd5NnFFND5I7xLhbejCrL8qsLeIfQ/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Participant"><td><b>Parth Singla</b></td><td>🇮🇳 India</td><td>9</td><td><span class="tag j">Junior</span></td><td>Cycle for Change: Kids Breathing for a Better Tomorrow</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://www.instagram.com/reel/DKuM3amyX-A/?igsh=c3k5cXNqeDNpd20w" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Finalist"><td><b>Alaa ikbi</b></td><td>🇲🇦 Morocco</td><td>13</td><td><span class="tag j">Junior</span></td><td>La pollution de l'eau</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Collins Blessing Sophia</b></td><td>🇳🇬 Nigeria</td><td>15</td><td><span class="tag s">Senior</span></td><td>Reduce by reuse</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Maleeha fatima</b></td><td>🇵🇰 Pakistan</td><td>14</td><td><span class="tag s">Senior</span></td><td>Reducefoodwastage_78a1</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://www.instagram.com/reducefoodwastage_78a1?igsh=MXc5b2o0amhhejV6MQ==" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>siddharth sharan</b></td><td>🇮🇳 India</td><td>16</td><td><span class="tag s">Senior</span></td><td>bridging cultures through creativity: empowering youth via a</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1mCu6ZpoRttUtQhFWXC8UWZYbf3y-ipw0RE91SSBuEyM/edit?usp=drivesdk" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Jasmin Bölükbaş</b></td><td>🇹🇷 Turkey</td><td>17</td><td><span class="tag s">Senior</span></td><td>Protecting Nature in My Region: Preserving the Urban Forest</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/11Ddl-ShpEBdM61bYGRer2ZFC2m7ztkxKrYtrbF04QRY/edit?usp=drivesdk" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>AINE KENAN</b></td><td>🇺🇬 Uganda</td><td>17</td><td><span class="tag s">Senior</span></td><td>Environment Community Outreach for Promoting Adaptation and </td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/1L1qYM51YD3w6Unl20hOWABYIU4sShxiB?usp=drive_link" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Regional"><td><b>Miras Zhumagaliyev</b></td><td>🇪🇸 Spain</td><td>16</td><td><span class="tag s">Senior</span></td><td>PhotoAir - creating a solution for Almaty's air pollution</td><td class="award-col"><span class="aw re" style="margin-bottom:2px;display:block;width:fit-content">🇪🇺 Europe Regional</span><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1DQVbPxT5RpAl2_lsnmq6HGqHaW5wiJQFikWfJ0xQ9lo/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Daniel J.B</b></td><td>🇮🇪 Ireland</td><td>15</td><td><span class="tag s">Senior</span></td><td>SeaVolt</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td>—</td></tr>
+        <tr data-c="Junior" data-a="Participant"><td><b>dyaa kanawati</b></td><td>🇹🇷 Turkey</td><td>12</td><td><span class="tag j">Junior</span></td><td>AI ECOBIN</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/presentation/d/140iZrQt5lBOxigWo5ve971b10UYL_MU_5TeDvNG2zsg/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Hanan Muhammad El-zeer</b></td><td>🇪🇬 Egypt</td><td>16</td><td><span class="tag s">Senior</span></td><td>Plant the sky .. or watch us fry ?!</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1uaBOoPrSow9I1NdrHskCQDK3tyvvrLhFAWtIeMtOARU/edit?usp=drivesdk" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Rakhimova Mukhlisa</b></td><td>🇺🇿 Uzbekistan</td><td>14</td><td><span class="tag s">Senior</span></td><td>seeds of change</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/file/ d/1- nt5uGmLHg1a6gD7JsnnWUTSz9231- kP/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Regional"><td><b>Munirh Ali Jarad</b></td><td>🇸🇦 Saudi Arabia</td><td>16</td><td><span class="tag s">Senior</span></td><td>Innovative Sustainable Hybrid System for Green H2 Production</td><td class="award-col"><span class="aw re" style="margin-bottom:2px;display:block;width:fit-content">🕌 ME Regional</span><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1VAdyIOF2Qpzq05piRdXs7zqwoQ9y4IZP/view?usp=drivesdk" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Geetika Suri</b></td><td>🇮🇳 India</td><td>15</td><td><span class="tag s">Senior</span></td><td>FarmBliss</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/1YKhgeL2hUV2F3yWawNxOH0MkYbhPzdWI?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Raya Nawar Chowdhury</b></td><td>🇧🇩 Bangladesh</td><td>14</td><td><span class="tag s">Senior</span></td><td>WHEN THE ICE DIES</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1CxnghWbB1asGhyprhEksR1qZj8dIidxD-Q8zEBURnrc/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Shaikh Humaid Khalid Alqasimi & Salama Alhammadi</b></td><td>🇦🇪 UAE</td><td>15</td><td><span class="tag s">Senior</span></td><td>GAITH-Grounded Auotomation Intellegnt Technology Harvesting</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://www.canva.com/design/DAGxdnlLjnc/CUvieRLF8yROGPFBXrPWJA/view?utm_content=DAGxdnlLjnc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8339aee9c1" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Jana Ahmed Samir Mohamed</b></td><td>🇪🇬 Egypt</td><td>16</td><td><span class="tag s">Senior</span></td><td>Green under 18</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Noura AL Mannai & Ahmed Al Naimi & Roudha Al Abdulla & Khalid Al Kaabi</b></td><td>🇶🇦 Qatar</td><td>15</td><td><span class="tag s">Senior</span></td><td>Improving Recycling and Waste Management in Qatar</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1AhKUiE7Hg9euuEo53BBOK_qRhElNOwps/edit" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>MAROUA BENSFIA KHIYAT</b></td><td>🇪🇸 Spain</td><td>18</td><td><span class="tag s">Senior</span></td><td>Healing minds through caring for the environment</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://1drv.ms/w/c/9d4104fff082bf4c/EVXmlhr-qv9IiTuhZiDOtw4BIpfwLuNeo7zSkps4Qa3DqA" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>yaksh dharod</b></td><td>🇮🇳 India</td><td>18</td><td><span class="tag s">Senior</span></td><td>Low-density polyethylene (LDPE) found in milk packets is a h</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/file/d/101fR6rbdIyjiScVlrfbu563JGGdnZqD9/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Tanjot Singh</b></td><td>🇮🇳 India</td><td>16</td><td><span class="tag s">Senior</span></td><td>PranaVayu</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/1hKjD3_ZPK_p6Ni9EB-yFNkQXtpEOrLtC" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Finalist"><td><b>Yüsra Korkmaz & Zeynep Erva Oral</b></td><td>🇹🇷 Turkey</td><td>11</td><td><span class="tag j">Junior</span></td><td>Removing Oil from Water by Adsorption Using Corks</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/17ovlV8rHsjCx9uTQpj8AhKtWg9rShRNo/edit?usp=drive_link&ouid=115007392519678957017&rtpof=true&sd=true" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Afrah Mudassar Dingankar</b></td><td>🇮🇳 India</td><td>14</td><td><span class="tag s">Senior</span></td><td>Seakelp</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/file/d/1-QkGKFRna_b9l9L-TEMi--1rb7ULkIhS/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Elena Calderon Lorente</b></td><td>🇪🇸 Spain</td><td>17</td><td><span class="tag s">Senior</span></td><td>The Street Shade Project: Young Voices for Change</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1IulWoRPzNpJdEpZ4AA-CRwkMX7JfhtHE/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Regional"><td><b>Рустамбек</b></td><td>🇺🇿 Uzbekistan</td><td>15</td><td><span class="tag s">Senior</span></td><td>Orol dengizi ekologik muammolari va ularning yechimi</td><td class="award-col"><span class="aw re" style="margin-bottom:2px;display:block;width:fit-content">🏔 C.Asia Regional</span><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://zenodo.org/records/17287214" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Amin Marei</b></td><td>🇪🇬 Egypt</td><td>16</td><td><span class="tag s">Senior</span></td><td>BounceBack</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Jarif Kabir & Ishraq Hasin Mozumder & Zaber Ahsan Bhuiyean Nafi & Ishmam Ibn Kawser</b></td><td>🇧🇩 Bangladesh</td><td>16</td><td><span class="tag s">Senior</span></td><td>OxyNova: A Sustainable  Photobioreactor for Urban Air  Purif</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1LY1OLTjTU2T0MmD9F1d6EADgtWWTgZAR/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Global"><td><b>Nir Tzvigelski & Mia Simoni & Or Avigani & Ori Buskila & Alon SEGAL & Zohar Sapir</b></td><td>🇮🇱 Israel</td><td>11</td><td><span class="tag j">Junior</span></td><td>"THE PINE CONE SHADING"-INSURING FOOD SECURITY DURING GLOBAL</td><td class="award-col"><span class="aw si" style="margin-bottom:2px;display:block;width:fit-content">🥈 Global Jr 2nd</span><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://youtu.be/KTRsUrsl1zo" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>R.Sai Vidhu Shree</b></td><td>🇮🇳 India</td><td>17</td><td><span class="tag s">Senior</span></td><td>SustainaShe</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/1bWRLvxzgI2h0BXOHj64zr_Y1FsAAIT-D?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Shagun Banthia</b></td><td>🇶🇦 Qatar</td><td>15</td><td><span class="tag s">Senior</span></td><td>From Waste to Worth: Building a Circular Qatar</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1GM_RHwc6LG2GKSLq75l3p_xsYtk9rlT5BW4UMyn4GSs/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Roshuna Clarke</b></td><td>🇧🇧 Barbados</td><td>16</td><td><span class="tag s">Senior</span></td><td>Project Econnect</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://link.com" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Kosherbay Assylay</b></td><td>🇰🇿 Kazakhstan</td><td>16</td><td><span class="tag s">Senior</span></td><td>Environmentally Safe Packaging Materials: Innovative Approac</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1w9E9Em68is3GbuoNdnunRBEVWE48G_pv/edit?usp=drive_link&ouid=101693577470689671395&rtpof=true&sd=true" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Ahmed Eltayeb Sayed Rashiedy & Mohammed Eltayeb Sayed Rashiedy</b></td><td>🇪🇬 Egypt</td><td>14</td><td><span class="tag s">Senior</span></td><td>GH lighting System</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/1_jtXplF7ogCIH3sIeU4d933DmFJetMPL?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>ARDRA ELSA ANOOP & AAMINAH FATHIMA SAJU & AASIA FATHIMA SAJU</b></td><td>🇮🇳 India</td><td>14</td><td><span class="tag s">Senior</span></td><td>BIO SORT BIN</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://www.canva.com/design/DAG4OSTdKAc/h1Wx3ZecIemxgRmlh9ndoQ/edit?utm_content=DAG4OSTdKAc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>justine marlin</b></td><td>🇰🇪 Kenya</td><td>17</td><td><span class="tag s">Senior</span></td><td>eco-fertilizer</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Regional"><td><b>Seoha Han</b></td><td>🇰🇷 South Korea</td><td>16</td><td><span class="tag s">Senior</span></td><td>#StopPaperRacism: The World's Sweetest Climate Campaign</td><td class="award-col"><span class="aw re" style="margin-bottom:2px;display:block;width:fit-content">🌏 APAC Regional</span><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://www.youtube.com/watch?v=JfGxBCJw5IY" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Prisha Jindal & Maria Rizvi & Anbhuti Srivastava & Nayna Choudhary</b></td><td>🇮🇳 India</td><td>16</td><td><span class="tag s">Senior</span></td><td>GREEN PLASTIC</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://www.pdffiller.com/s/82gslHj0" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Rohan Sachin</b></td><td>🇮🇳 India</td><td>16</td><td><span class="tag s">Senior</span></td><td>The Sunless Oasis</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1MR27Zz1K-jvwRrYcoT9L0tVoK298Mo-i/edit?usp=sharing&ouid=110253304795639229651&rtpof=true&sd=true" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Samia Islam Usha</b></td><td>🇧🇩 Bangladesh</td><td>18</td><td><span class="tag s">Senior</span></td><td>“Roots of Hope: A Youth-Led Micro-Forest Initiative to Re-Gr</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1cLqgdMp_DbcolyjVMN4dZebJAy27Xupn/view?usp=drivesdk" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Dareen Rafei</b></td><td>🇧🇭 Bahrain</td><td>14</td><td><span class="tag s">Senior</span></td><td>Bahrain’s Waste Crisis: Building a Cleaner, Sustainable Futu</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/file/d/1A6suoukRq2oUswixroWD4luKNCeyflFI/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>AYSHA SHAHADHIYA NAJIMUDHEEN</b></td><td>🇦🇪 UAE</td><td>17</td><td><span class="tag s">Senior</span></td><td>Protecting the UAE'S Mangrove Forests: A Vital Ecosystem</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Peninah Esther</b></td><td>🇰🇪 Kenya</td><td>16</td><td><span class="tag s">Senior</span></td><td>Voices for Climate Justice: Youth-Led Climate Action in Keny</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1hN_l1ZH87SpX6CUzTZ4o-KZS5l6aL3NE/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Evan Dennis Koshy</b></td><td>🇦🇪 UAE</td><td>14</td><td><span class="tag s">Senior</span></td><td>AquaWatch AI: Real-Time Pollution Detection & Awareness App</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/1rg9Ae9gA6nK4d8hT1D4N8WgQy5PyZrpS?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Chwayita Chloe Nozintaba & Inganathi Siganagana</b></td><td>🇿🇦 South Africa</td><td>16</td><td><span class="tag s">Senior</span></td><td>Green Reward</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://eu.docworkspace.com/d/sIIfVg9HBAqT6y8kG?sa=601.1074" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Ingenuity"><td><b>Mersana Rahmani</b></td><td>🇮🇷 Iran</td><td>9</td><td><span class="tag j">Junior</span></td><td>Effective forest protection: from research to practice</td><td class="award-col"><span class="aw in" style="margin-bottom:2px;display:block;width:fit-content">💡 Jr Ingenuity</span><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1HSjMNjGBXQCGXhtYAgCHClbFadmL816a/view?usp=drive_link" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Georgios Iraklis Michalopoulos</b></td><td>🇬🇷 Greece</td><td>17</td><td><span class="tag s">Senior</span></td><td>AI-Powered Maritime Performance Optimization System</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/1mfiyifviSFSJnChGT9QH9gVAtpimg6FN" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Lavish Raj Singh</b></td><td>🇮🇳 India</td><td>15</td><td><span class="tag s">Senior</span></td><td>Waste reduction and management</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/presentation/d/1vv6GO5cXWOBPR6SCTD_4xEzYm5oPFHFn/edit?usp=drive_link&ouid=108118553484381306466&rtpof=true&sd=true" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Carla Monté Sihuro</b></td><td>🇪🇸 Spain</td><td>15</td><td><span class="tag s">Senior</span></td><td>Terra Verde 365</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/file/d/1Hyu-mty2I2JXPqSPcj7gYyqlClR8j4qL/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Luk Ka Wang</b></td><td>🇨🇳 China</td><td>14</td><td><span class="tag s">Senior</span></td><td>Active Bio‑Mining Hong Kong</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/18Rkf2mYDVXOI03EaXRJ6VyHze-acxYsf3Lljl0GtEQk/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Subhani Chaudhury</b></td><td>🇸🇬 Singapore</td><td>16</td><td><span class="tag s">Senior</span></td><td>Rethinking waste, redefining responsibility: A new way forwa</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/1yBmPnfUaCkYC4PKTn-dDsK-5K8Ll2wBz" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Global"><td><b>Thames Rochana Sirivadhanabhakdi</b></td><td>🇸🇬 Singapore</td><td>15</td><td><span class="tag s">Senior</span></td><td>AquaSense: Real-Time Water Quality Monitoring and Early Warn</td><td class="award-col"><span class="aw si" style="margin-bottom:2px;display:block;width:fit-content">🥈 Global Sr 2nd</span><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/1UDey2VnvTAaXzjFO-D6iZpO2lzco52cN" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Hana Abdelhamed Mustafa Ahmed</b></td><td>🇪🇬 Egypt</td><td>16</td><td><span class="tag s">Senior</span></td><td>NonSalty</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Nachiketh Velekkat Suraj</b></td><td>🇸🇦 Saudi Arabia</td><td>16</td><td><span class="tag s">Senior</span></td><td>Air quality in Jeddah: A local problem we can actually fix</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1oDmLPj88jHan9bXLomO74Bjq8fy7UowZ/edit?usp=drive_link&ouid=108507215209129950842&rtpof=true&sd=true" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Emlyn Joseph</b></td><td>🇸🇦 Saudi Arabia</td><td>17</td><td><span class="tag s">Senior</span></td><td>The Price of Tomorrow: Investing in Climate Action for Long-</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1OIpYufJXYtx4n-tpTPNQBu57fcW3srsi/edit?usp=sharing&ouid=115949622037956136622&rtpof=true&sd=true" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Maryam liaquat</b></td><td>🇵🇰 Pakistan</td><td>18</td><td><span class="tag s">Senior</span></td><td>Ecorise straws filter.</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/13TLfNEQtNfvQGLHwDS9vgJsTbgSHUC8x/view?usp=drivesdk" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Raya Nawar Chowdhury</b></td><td>🇧🇩 Bangladesh</td><td>14</td><td><span class="tag s">Senior</span></td><td>While The Ice Dies</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1rISVNs9Jc9fThoVRRw7f3TN6ql_BrvGQxU5tqgbthVE/edit?usp=drivesdk" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Regional"><td><b>Fredrick Kariuki & Miron Onsarigo</b></td><td>🇰🇪 Kenya</td><td>17</td><td><span class="tag s">Senior</span></td><td>HYBRID EXHAUST PURIFICATION AND CARBON CAPTURE SYSTEM FOR AF</td><td class="award-col"><span class="aw re" style="margin-bottom:2px;display:block;width:fit-content">🌍 Africa Regional</span><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1VUtpGDJeWPpFlvvUJwAatsvru31Dm-u8Z3fSCe9ba3w/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Ganna Mohammed Sallam & Rodayna Deyaa Salama Hussien Metwaly & Bader Jasim Alkuwaiti & Mohamad Omar Ahmed Hachicho</b></td><td>🇧🇭 Bahrain</td><td>16</td><td><span class="tag s">Senior</span></td><td>The Echo of Return: Action as a Standard</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1OWj_qQSvZT555QW6NmtkY6ObyfmIgRos/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Maksutkhan Zhanayim</b></td><td>🇰🇿 Kazakhstan</td><td>15</td><td><span class="tag s">Senior</span></td><td>When the Air Becomes Invisible: Simple Actions Against Urban</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/file/d/1PxeHZ9hsiPcLQDhW1oDijSiZ4nz8GWCz/view?usp=drivesdk" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Finalist"><td><b>Soley</b></td><td>🇨🇦 Canada</td><td>11</td><td><span class="tag j">Junior</span></td><td>How  much waste do you think that you produce in school ever</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1oyDTgJPJFY7EnUme4g9-AcXKWeMWIup_90ct5xauZY8/edit?tab=t.0" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Hith jain</b></td><td>🇮🇳 India</td><td>14</td><td><span class="tag s">Senior</span></td><td>(Eco-Fert Packaging)-A Biodegradable Algae-Based Solution Ag</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/presentation/d/1Unw3fcmgYte5SZ8MHqBTywj891qogmk_/edit?usp=drivesdk&ouid=100255752407427804529&rtpof=true&sd=true" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Anannya Agrawal & Ista Deepak</b></td><td>🇮🇳 India</td><td>15</td><td><span class="tag s">Senior</span></td><td>LocateBlue</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/11KhPsIq9OdmSeciVyW-0RHw82DOti9Bx?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Shrenika Singhal</b></td><td>🇮🇳 India</td><td>16</td><td><span class="tag s">Senior</span></td><td>Biogent</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://1drv.ms/w/c/213C7B94FF202A54/IQD35JAZCTfPSL0T8QFgzH8oAcLtGsI8fImGeUviJLXiujM?e=ueYvp1" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Global"><td><b>Ji Wu</b></td><td>🇹🇼 Taiwan</td><td>12</td><td><span class="tag j">Junior</span></td><td>Action for clothes!  Buy smarter, waste less.</td><td class="award-col"><span class="aw go" style="margin-bottom:2px;display:block;width:fit-content">🥇 Global Jr 1st</span><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://youtu.be/Ku7zW-01WfI" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Elisaveta</b></td><td>🇷🇺 Russia</td><td>16</td><td><span class="tag s">Senior</span></td><td>Bodies of water and associated environmental problems</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1jNVTjJWlazzoTebXPjhMTvhBRHpgnSQY/edit?usp=sharing&ouid=109911151980079104710&rtpof=true&sd=true" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Dhruv Umrani</b></td><td>🇶🇦 Qatar</td><td>16</td><td><span class="tag s">Senior</span></td><td>Waste Management & Reduction</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1qXXYGwxJJPLbU2Ky1QpQPvX0QJEWLwCkIyc-AeN_xG4/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Finalist"><td><b>Hao-han Wu</b></td><td>🇹🇼 Taiwan</td><td>13</td><td><span class="tag j">Junior</span></td><td>No Butts, Just Blue</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/1nolvUu9T9dnbwwGbuzg2l3s6Vw17I6lx?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>yassin islam ismail</b></td><td>🇸🇦 Saudi Arabia</td><td>16</td><td><span class="tag s">Senior</span></td><td>waste reduction and management</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1XWy8CfEYH3uF1QMt98CxqDoRtyC76zBxFjXcVptIpSU/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Matthew Yoon</b></td><td>🇺🇸 USA</td><td>18</td><td><span class="tag s">Senior</span></td><td>The Invisible Classroom: Assessing the Impact of Indoor Air </td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1VMqIN9H5qKDNOcOppbmDRIgUvs16g_nl/view?usp=drive_link" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Aditya Venkat Gulla</b></td><td>🇳🇿 New Zealand</td><td>16</td><td><span class="tag s">Senior</span></td><td>Developing a flourishing Waikato: Solving the environmental </td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1amMmBmO234a7DvGw8Em96xU64GcdpvzBzhvYkvgHbis/edit?tab=t.0" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Amna Zia</b></td><td>🇨🇦 Canada</td><td>15</td><td><span class="tag s">Senior</span></td><td>Protecting Edmonton’s Treasure: How Edmonton’s Law is Destro</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1L3elbV8dVQ139KYwD9DOLP2javaiI-J0/edit" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Veronica Tan</b></td><td>🇦🇺 Australia</td><td>16</td><td><span class="tag s">Senior</span></td><td>SYNERA: sustainability, simplified</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://www.canva.com/design/DAG9y82cj6o/W4J9aHcI-XFAFz4d_NE6ww/edit?utm_content=DAG9y82cj6o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Pragya Prakash</b></td><td>🇦🇪 UAE</td><td>16</td><td><span class="tag s">Senior</span></td><td>Coral Gardens: Reviving the Reef Before Coral Becomes a Memo</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1Ai_pGV9tym4NQum-V1L_-zLnfjNzc9vWSad8uZddjTk/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Swapnil Sarker & Prantique Roy & Muhammad Abu Sayem & Abdullah Al Ujayer</b></td><td>🇧🇩 Bangladesh</td><td>17</td><td><span class="tag s">Senior</span></td><td>Innovative and Sustainable ,Hybrid Data Center Cooling Syste</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Nicole Haragutchi</b></td><td>🇺🇸 USA</td><td>14</td><td><span class="tag s">Senior</span></td><td>Carbon Sequestration Engine Using Phytoplankton and the Salp</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://www.youtube.com/watch?v=mvuRoVX0z2k" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Global"><td><b>Hope Vanessa Zawadi & INGABIRE Peace & Jules Eusebe MUNEZA & Bonte MICOMYIZA & Gloria Fides GANZA</b></td><td>🇷🇼 Rwanda</td><td>15</td><td><span class="tag s">Senior</span></td><td>IMARI</td><td class="award-col"><span class="aw br" style="margin-bottom:2px;display:block;width:fit-content">🥉 Global Sr 3rd</span><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/drive/u/0/folders/1iAv1o7Hoz1l4VwEYARdwnk51xhLhL0mt" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Mishthi Shyam</b></td><td>🇦🇪 UAE</td><td>16</td><td><span class="tag s">Senior</span></td><td>From Waste to Worth: Rethinking Waste Management in the UAE</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/19JSX-OtCbICiGwFSlMZqfhKpuQbV_FIEEPTSzUFD7ok/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Finalist"><td><b>Raju Narayanan Kamalika</b></td><td>🇸🇬 Singapore</td><td>13</td><td><span class="tag j">Junior</span></td><td>CoolWalk Singapore</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://www.canva.com/design/DAG9oiUxBZU/d6ScGULZ-e0JeYtgtm4QEw/edit?utm_content=DAG9oiUxBZU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Indo Rahma Yanti</b></td><td>🇮🇩 Indonesia</td><td>16</td><td><span class="tag s">Senior</span></td><td>Intercepting Plastic Pollution Upstream: River–Estuary Monit</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/1zzprsK-WH9O-tujakTkPQ6y9rFo5PwT8" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Mohammad Nagy</b></td><td>🇶🇦 Qatar</td><td>16</td><td><span class="tag s">Senior</span></td><td>Addressing Urban Desertification in Qatar A Policy and Ecolo</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1ZnUgM7uDctbRS9pwaaMbICzn5fJbl6ue/edit?usp=sharing&ouid=100204323811813115780&rtpof=true&sd=true" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Uthara Vivek</b></td><td>🇲🇾 Malaysia</td><td>18</td><td><span class="tag s">Senior</span></td><td>Model Mangroves: A scientific model to preserve Malaysia's m</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1ezAI9Wjb4FBNwgFr3IrbquFkmsx4EWC3tepMAHjL69k/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Sanaa Agrawal</b></td><td>🇮🇳 India</td><td>17</td><td><span class="tag s">Senior</span></td><td>Sustainable Investing and Green Finance as a tool for Climat</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/file/d/1-mKlkUbNYHTpyluiqfTqu4FI7ATi5-u7/view?usp=share_link" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Aamy Antony Konnoth</b></td><td>🇦🇪 UAE</td><td>15</td><td><span class="tag s">Senior</span></td><td>Nature and its protection</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://www.canva.com/design/DAG8u6G7SWU/aXRyIfnoCTQTQwVRGMCgqg/watch?utm_content=DAG8u6G7SWU&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h5d645a307e" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>RÜZGAR KARATON & DURU DENİZ ASLAN & BETÜL ÇALIŞKAN & GÜLAY SU KORKMAZ & EYLÜL NAZ UYSALER & ADA DOĞAN</b></td><td>🇹🇷 Turkey</td><td>14</td><td><span class="tag s">Senior</span></td><td>Environmental Protection, climate change, renewable energy</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/162E_p2qauRwYftunV7fxbZdY0gOIlTux" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Aryan Manglani</b></td><td>🇦🇪 UAE</td><td>16</td><td><span class="tag s">Senior</span></td><td>Bodies of Water and Associated Environmental Problems</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://1drv.ms/w/c/b036d8fd88df020e/IQASgIDZzHBuSr8YBAq_vIpUAR1tJ4-x_MC1nf4sVeVOZ7I?e=s8fa5b" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Lukas Andreasson & Alice Aronsson & Alma Lindvall</b></td><td>🇸🇪 Sweden</td><td>18</td><td><span class="tag s">Senior</span></td><td>Making kitty litter from beet pulp instead of non-renewable </td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/drive/u/0/folders/1v7kew2zMcVYQWEMEySixMNJB8ufgPiO5" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Pascale Hanna</b></td><td>🇺🇸 USA</td><td>16</td><td><span class="tag s">Senior</span></td><td>Poison Without a Taste: PFAS and the Silent Contamination of</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1R838QYa3y3Kd4NdoMptwzQ7489rhYL-M81jC0A-hsYE/edit?tab=t.0" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Finalist"><td><b>MA. CATTLEYA L. REVILLA & JAMAICA O. SANDAYAN & PRINCE CHRISTIAN A. ALANA & JOSHUA C. DELANTE</b></td><td>🇵🇭 Philippines</td><td>10</td><td><span class="tag j">Junior</span></td><td>Community-Led Solutions for the Removal of Persistent Oil Sl</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1PulUbh5xhQ0lXRPQCNjlhBhaCCa0PD-r/edit?usp=sharing&ouid=116000912396626867132&rtpof=true&sd=true" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Tejas Karusala & Harivighnesh Nagaraj</b></td><td>🇺🇸 USA</td><td>16</td><td><span class="tag s">Senior</span></td><td>The Iron Intercept Initiative: Community Solutions for Resto</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1cObdYg2r1XzxZyDPsUfr0UYmw_1-Yp4xRBaEPDDBXok/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Andres Mauricio Rendon Torres</b></td><td>🇲🇽 Mexico</td><td>18</td><td><span class="tag s">Senior</span></td><td>RenDroid: Sustainable Technology to Prevent Urban Flooding a</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1o2Gc6dUAOAUVtzU8vF_fleeFr8XuU3nY/edit?usp=sharing&ouid=109045929393597609493&rtpof=true&sd=true" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Le Wei</b></td><td>🇸🇬 Singapore</td><td>17</td><td><span class="tag s">Senior</span></td><td>An Autonomous Robotic System for Oil Spill Detection and Cle</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1wzhkTKyqEzj_ZvJeZEdqlw7xJ7KZc8yo_62h9dZrX3U/edit?tab=t.wgppyy1t2330" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Vanshika Patel & Anushka Kshirsagar & Rashi Sheth & Esha Biresh & Raainika Dutta</b></td><td>🇦🇪 UAE</td><td>16</td><td><span class="tag s">Senior</span></td><td>AtmosFlow</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1PO2SRizArkzBQiikrmupY0kYoEz9WVzz/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Pranav Aadithya</b></td><td>🇶🇦 Qatar</td><td>15</td><td><span class="tag s">Senior</span></td><td>The Breathless Metropolis:  Delhi’s Air Quality Crisis</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1NjoCwg7n_1wOm6PxbY1NMuiYHwia3NNk44yZNMBA-6g/edit?tab=t.0#heading=h.50wos43hv1ly" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Participant"><td><b>Aishwarya Haresh Shukla</b></td><td>🇧🇭 Bahrain</td><td>12</td><td><span class="tag j">Junior</span></td><td>Climate change and its mitigation</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/file/d/1Y80X51Ft0AIA3WggCEez6KVaz-kaYErT/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Beliz Topala & Leyla Kenaroğlu & Furkan Velioğlu & Yaprak Durmuşoğlu</b></td><td>🇹🇷 Turkey</td><td>15</td><td><span class="tag s">Senior</span></td><td>Food Waste The Rising Issue Worldwide</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/10W0ySmZyH9IekkvGbTWtWfYqTvp4M68Q74yxx1mFvR8/edit?usp=drivesdk" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Soham Mutneja</b></td><td>🇦🇪 UAE</td><td>14</td><td><span class="tag s">Senior</span></td><td>Trash Problems</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/17LMVI83btuKIgdlp0yFwpMFth3kKZvbK" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Advay Bajaj</b></td><td>🇦🇪 UAE</td><td>14</td><td><span class="tag s">Senior</span></td><td>AQI Improvement - Delhi</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1yYV-i3deTNj9S1jM15T6vhFAPQEzKVDU/edit?usp=sharing&ouid=101438087213088797120&rtpof=true&sd=true" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Luiza Vieira Caleia</b></td><td>🇧🇷 Brazil</td><td>18</td><td><span class="tag s">Senior</span></td><td>The Biocycle System</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1dvJLqs2i-et6HqsfxjsbjglMM0TV6FaY/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Sofia Emma Hernandez</b></td><td>🇺🇸 USA</td><td>15</td><td><span class="tag s">Senior</span></td><td>The Hydrological Shield: Rehydrating Ecosystems to Combat Ca</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1ov3mVpinUS7RaB5uFMNzB5rzPMv-jopBWwpn1SXqvZ8/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Global"><td><b>Praneel Mukherjee & Sumedh Pendyala & Jayesh Muktaparapu & Anekan Naicker</b></td><td>🇺🇸 USA</td><td>16</td><td><span class="tag s">Senior</span></td><td>FloraFly: An Affordable, Autonomous Drone for Plant Pest and</td><td class="award-col"><span class="aw go" style="margin-bottom:2px;display:block;width:fit-content">🥇 Global Sr 1st</span><span class="aw re" style="margin-bottom:2px;display:block;width:fit-content">🌎 Americas Regional</span><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://vimeo.com/1154907615" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Mohammad Subhan Ahmed</b></td><td>🇸🇦 Saudi Arabia</td><td>16</td><td><span class="tag s">Senior</span></td><td>Nature and Protection: Securing the Future of Our Regional N</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://1drv.ms/w/c/428a3e1053093e8a/IQDUbS-yVjdLSbjj32t_Phs5AYzO-Rr0rMwMybkpXPc7mO8" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Beckham Williams</b></td><td>🇺🇸 USA</td><td>16</td><td><span class="tag s">Senior</span></td><td>Vintage Locker</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/drive/u/0/folders/1s8vAkut6RKXvYBPwz8-s8LRN9o3JljxY" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Angad Singh</b></td><td>🇮🇳 India</td><td>16</td><td><span class="tag s">Senior</span></td><td>ECO-pot A Biodegradable pot using Fruit and vegetable waste </td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1jPSfCNF1qUnPXBVA6mzPVrmWUHY4EofC/view?usp=drivesdk" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>deren ateş & ece yasemin akseki & beril dağal</b></td><td>🇹🇷 Turkey</td><td>15</td><td><span class="tag s">Senior</span></td><td>PETRA: Recycling Waste Plastics for Use as Construction Mate</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/file/d/1YUQVRmTzSMge1fWvZvgGr9o217qG6cnx/view?usp=drive_link" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Arnav Ghai</b></td><td>🇮🇳 India</td><td>17</td><td><span class="tag s">Senior</span></td><td>Brown Bin Buddies</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/file/d/1jM8HT-VfZTEs2zYxJ8ADsbIKjExIf0mN/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Kate (Chih-Jou) Lin</b></td><td>🇹🇼 Taiwan</td><td>17</td><td><span class="tag s">Senior</span></td><td>Nera Protector: A US-Taiwan Cross-Border ESG Initiative for </td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/drive/folders/1Sp5Qn1tcLNXMS18S0aE7PvogbTIRnNAu?usp=drive_link" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Bagaya Kristena Samuel</b></td><td>🇺🇸 USA</td><td>15</td><td><span class="tag s">Senior</span></td><td>Small Seeds: Big Impact</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://www.canva.com/design/DAHAfos44xE/Sn5wbM2sDqrdUwv8FIW5-Q/edit?utm_content=DAHAfos44xE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Preom Barman & Md.Niyaj Morshed Sayem</b></td><td>🇧🇩 Bangladesh</td><td>16</td><td><span class="tag s">Senior</span></td><td>JIBONJOL</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1eahDx5KbYOoEAVxM8NqfeLCa_ZxGOd3m/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Pranav Singh Neta</b></td><td>🇮🇳 India</td><td>14</td><td><span class="tag s">Senior</span></td><td>⭐ AeroGuard: Smart Drones for Cleaner Skies</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/file/d/17Od3QUg34sb-9u9ETNA66bvdBEaoc3F_/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Sara ahmed Albayoumi</b></td><td>🇵🇸 Palestine</td><td>16</td><td><span class="tag s">Senior</span></td><td>SmartCreteX</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Rouwaida Ben Belgacem</b></td><td>🇹🇳 Tunisia</td><td>15</td><td><span class="tag s">Senior</span></td><td>Youth as Change-Makers in Environmental Sustainability</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1kP1fNqmO0IvDJI8AbrHt1bTzLf55cXTeAoPHgy_vgy4/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Demirkan Ateş & Defne Ülker & Ahmet Ata Güvenel & Kuzey Demirci & Alev Ece İkiz & İpek Durak</b></td><td>🇹🇷 Turkey</td><td>15</td><td><span class="tag s">Senior</span></td><td>BIODEGRADABLE PACKAGING PRODUCTION FROM TEA PULP</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1IcnT9L3eSvDT9KAW42ieBtvRZzDYyhLlYLxg_BiPKkM/edit?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Sserugga Ibraheem</b></td><td>🇺🇬 Uganda</td><td>17</td><td><span class="tag s">Senior</span></td><td>POSTIVE SOCIAL IMPACTS ON ENVIRONMENT THROUGH RECYCLING</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Yilin Wang</b></td><td>🇨🇳 China</td><td>16</td><td><span class="tag s">Senior</span></td><td>Guard Haba</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://www.youtube.com/watch?v=2xR5y-1qIIY" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Vansh Gupta</b></td><td>🇮🇳 India</td><td>16</td><td><span class="tag s">Senior</span></td><td>Walk The Summit</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Yunay Shaimerdenova</b></td><td>🇰🇿 Kazakhstan</td><td>15</td><td><span class="tag s">Senior</span></td><td>Powering a Growing Pavlodar</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://drive.google.com/file/d/15WvYgHsfrChGbSbFmWryqfORHEk-LeWD/view?usp=drivesdk" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Srihari Muralikrishnan & Rohn Jacob S</b></td><td>🇮🇳 India</td><td>16</td><td><span class="tag s">Senior</span></td><td>SANA: Autonomous Edge-Based Optical Detection of Eutrophicat</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1WWF8-vk1TRVYv_I6Oq9Ycn7PavARHuk8/view?usp=sharing" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>محمود أسامه حسين شعبان</b></td><td>🇪🇬 Egypt</td><td>18</td><td><span class="tag s">Senior</span></td><td>Monitoring and Risk Assessment of Sand Dune Migration via Ge</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/drive/my-drive" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Participant"><td><b>JISHNU  ROSHAN BONDADA</b></td><td>🇮🇳 India</td><td>10</td><td><span class="tag j">Junior</span></td><td>Arunachal pradesh climatic conditions</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Angela Li Aleksandrovna</b></td><td>🇰🇿 Kazakhstan</td><td>16</td><td><span class="tag s">Senior</span></td><td>City Air Purification Technology in Almaty: Converting Smog </td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1T92YoBX_EMglcdmXskSCMvmoN2l4aLxz/view?usp=drivesdk" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Zoya Hasan Tariq</b></td><td>🇵🇰 Pakistan</td><td>17</td><td><span class="tag s">Senior</span></td><td>j</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Zerah Bubune Norvienyeku</b></td><td>🌍 Ghana.</td><td>14</td><td><span class="tag s">Senior</span></td><td>The Geen Loop</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://docs.google.com/document/d/1F8hPratFfP_JhuCvNaBLDbkKpH0wZrkA/edit?usp=sharing&ouid=111970342715153313825&rtpof=true&sd=true" target="_blank">🔗</a></td></tr>
+        <tr data-c="Junior" data-a="Participant"><td><b>NICOL CAROLINA SERRANO LOPEZ & ALINA URIAS LOPEZ & JESUS FERNANDO VALDEZ LUQUE</b></td><td>🇲🇽 Mexico</td><td>12</td><td><span class="tag j">Junior</span></td><td>PROYECTO ESCUDO VERDE:  REFORESTACIÓN ESTRATÉGICA CON ESPECI</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://docs.google.com/document/d/1QGvVN6648T8vlfBbkFDE9peEb_KKIeyl/edit" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>LAMA MOHAMMED AIJUHANI</b></td><td>🇸🇦 Saudi Arabia</td><td>15</td><td><span class="tag s">Senior</span></td><td>EcoVision Nexus – Autonomous Urban Intelligence Platform</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Finalist"><td><b>Bach Duc Anh Khoa & Hsuan Hao Chang</b></td><td>🇨🇷 Costa Rica</td><td>17</td><td><span class="tag s">Senior</span></td><td>Coffuel Cleaner</td><td class="award-col"><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://drive.google.com/file/d/1YweZkkQ9Lwjgf8lwCn6wN8doDyYi41DA/view?usp=drive_link" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Muhammad Hassam</b></td><td>🇵🇰 Pakistan</td><td>15</td><td><span class="tag s">Senior</span></td><td>A comprehensive examination of greenhouse gas reduction via </td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td>—</td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Nichole sanyu</b></td><td>🇰🇪 Kenya</td><td>14</td><td><span class="tag s">Senior</span></td><td>Waste to gold</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td><a class="lk" href="https://www.canva.com/design/DAHDvOr8KTY/-oDDDIRBsTFCXe21LCFZaQ/edit?utm_content=DAHDvOr8KTY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Ingenuity"><td><b>JAYDA RAMJATTAN</b></td><td>🇹🇹 Trinidad & Tobago</td><td>16</td><td><span class="tag s">Senior</span></td><td>SIDS Climate Action Beat the Heat</td><td class="award-col"><span class="aw in" style="margin-bottom:2px;display:block;width:fit-content">💡 Sr Ingenuity</span><span class="aw fi" style="margin-bottom:2px;display:block;width:fit-content">⭐ Finalist</span></td><td><a class="lk" href="https://www.facebook.com/watch/?v=1791458004927418" target="_blank">🔗</a></td></tr>
+        <tr data-c="Senior" data-a="Participant"><td><b>Ananya Sharma</b></td><td>🇹🇿 Tanzania</td><td>16</td><td><span class="tag s">Senior</span></td><td>Ecotide</td><td class="award-col"><span style="color:var(--muted);font-size:.75rem">Participant</span></td><td>—</td></tr>
+      
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer>IYEC 2026 Shortlist Results · Evidence-based evaluation · 85 entries · 40+ countries · Email notification reasons included in each award card</footer>
+
+<script>
+function show(id,el){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  el.classList.add('on');
+}
+function ft(){
+  const s=document.getElementById('si').value.toLowerCase();
+  const c=document.getElementById('cf').value;
+  const a=document.getElementById('af').value;
+  document.querySelectorAll('#tb tr').forEach(r=>{
+    const t=r.textContent.toLowerCase();
+    r.style.display=(!s||t.includes(s))&&(!c||r.dataset.c===c)&&(!a||r.dataset.a===a)?'':'none';
+  });
+}
+</script>
+</body>
+</html>
