@@ -2764,6 +2764,10 @@ def environmental_competition():
 def youth_tech_lab():
     return render_template('youth-tech-lab.html')
 
+@app.route('/programs/iyec-2026-results')
+def iyec_2026_results():
+    return render_template('iyec-2026-results.html')
+
 # Environmental Competition Template
 ENVIRONMENTAL_COMPETITION_TEMPLATE = """
 <!DOCTYPE html>
