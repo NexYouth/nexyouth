@@ -18,10 +18,6 @@ def index():
 def about():
     return render_template('about.html')
 
-@app.route('/chapters')
-def chapters():
-    return render_template('chapters.html')
-
 # Program Routes
 @app.route('/programs/skill-development')
 def skill_development():
@@ -39,14 +35,13 @@ def mentorship():
 def environmental_competition():
     return render_template('environmental-competition.html')
 
+@app.route('/programs/iyec-2026-results')
+def iyec_2026_results():
+    return render_template('iyec-2026-results.html')
+
 @app.route('/programs/youth-tech-lab')
 def youth_tech_lab():
     return render_template('youth-tech-lab.html')
-
-# Course Routes
-@app.route('/courses/debate')
-def debate_course():
-    return render_template('debate.html')
 
 # Partner Routes
 @app.route('/partner')
@@ -67,11 +62,15 @@ def contact():
 def success():
     return render_template('success.html')
 
-# 404 Error Handler
-@app.errorhandler(404)
-def page_not_found(e):
-    """Handle 404 errors with custom error page"""
-    return render_template('404.html'), 404
+# Catch-all route for client-side routing
+@app.route('/<path:path>')
+def catch_all(path):
+    """Catch all routes and return the main page for client-side routing"""
+    if path == 'about':
+        return render_template('about.html')
+    if path == 'contact':
+        return render_template('contact.html')
+    return render_template('home.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)

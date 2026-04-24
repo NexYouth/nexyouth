@@ -2050,7 +2050,18 @@
                 <li><a href="#themes">Themes</a></li>
                 <li><a href="#global-impact">Global Impact</a></li>
                 <li><a href="#awards">Awards</a></li>
-                <li><a href="#winners">Winners</a></li>
+                <li style="position: relative;">
+                    <a href="#winners">Winners</a>
+                    <ul style="position: absolute; top: 100%; left: 0; background: white; list-style: none; padding: 0.5rem 0; border-radius: 4px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); min-width: 180px; display: none; z-index: 100;">
+                        <li style="padding: 0;"><a href="#winners" style="display: block; padding: 0.75rem 1rem; text-decoration: none; color: inherit; border: none;">Past Winners</a></li>
+                        <li style="padding: 0;"><a href="/programs/iyec-2026-results" style="display: block; padding: 0.75rem 1rem; text-decoration: none; color: inherit; border: none;">IYEC 2026 Results</a></li>
+                    </ul>
+                </li>
+                <style>
+                    li:has(> a[href="#winners"]):hover ul {
+                        display: block !important;
+                    }
+                </style>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -2648,6 +2659,7 @@
             <div class="section-header centered">
                 <span class="section-label">Past Champions</span>
                 <h2 class="section-title">Award Winners</h2>
+                <p style="margin-top: 1rem;"><a href="/programs/iyec-2026-results" style="display: inline-block; background: var(--primary); color: white; padding: 0.75rem 1.5rem; border-radius: var(--radius-lg); text-decoration: none; font-weight: 600; transition: var(--transition);" onhover="this.style.background='var(--primary-dark)'">View Complete 2026 Results</a></p>
             </div>
 
             <!-- 2024 Award Ceremony Video -->
@@ -2666,12 +2678,123 @@
 
             <!-- Year Tabs -->
             <div class="year-tabs">
-                <button class="year-tab-btn active" data-year="2024-2025">2024-2025</button>
+                <button class="year-tab-btn active" data-year="2025-2026">2025-2026</button>
+                <button class="year-tab-btn" data-year="2024-2025">2024-2025</button>
                 <button class="year-tab-btn" data-year="2023-2024">2023-2024</button>
             </div>
 
+            <!-- 2025-2026 Winners -->
+            <div class="year-content active" id="year-2025-2026">
+                <div class="winners-grid">
+                    <!-- Senior Category -->
+                    <div class="category-box">
+                        <div class="category-header">Senior Category</div>
+                        <div class="category-content">
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <div class="winner-avatar">PM</div>
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">1st Place</div>
+                                    <div class="name-row">
+                                        <span class="name-location"><h4>Praneel Mukherjee, Sumedh Pendyala, Jayesh Muktaparapu & Anekan Naicker</h4><span class="winner-location">USA</span></span>
+                                        <a href="https://drive.google.com/drive/u/0/folders/1j2EFafIJtqLNitF8m532oUSioa3RTiOu" target="_blank" class="project-link">View their work <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
+                                    <p class="project-name">"FloraFly: Autonomous Drone for Crop Pest & Disease Detection"</p>
+                                    <p class="project-desc">FloraFly is an autonomous drone using Reinforcement Learning and LiDAR to navigate dense agricultural terrain and detect invasive species and crop disease early. Deployed across 850+ acres in three countries, it has helped preserve over 43,000 lbs of organic produce.</p>
+                                </div>
+                            </div>
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <div class="winner-avatar">TR</div>
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">2nd Place</div>
+                                    <div class="name-row">
+                                        <span class="name-location"><h4>Thames Rochana Sirivadhanabhakdi</h4><span class="winner-location">Singapore</span></span>
+                                        <a href="https://drive.google.com/drive/folders/1UDey2VnvTAaXzjFO-D6iZpO2lzco52cN" target="_blank" class="project-link">View their work <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
+                                    <p class="project-name">"AquaSense: Real-Time Water Quality Monitoring System"</p>
+                                    <p class="project-desc">Thames built an IoT water quality monitor with solar power and ESP32 technology. Deployed in real rice farmers' irrigation canals in Thailand, trained farmers on the system, and discovered critical data irregularities affecting crop health.</p>
+                                </div>
+                            </div>
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="/static/winners/Swapnil%20Sarker-%20Team%20Aqualliance/Team%20Aqualliance%20Photo.jpg" alt="IMARI Team" onerror="this.style.display='none'">
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">3rd Place</div>
+                                    <div class="name-row">
+                                        <span class="name-location"><h4>Hope Vanessa Zawadi, INGABIRE Peace & Team</h4><span class="winner-location">Rwanda</span></span>
+                                        <a href="https://drive.google.com/drive/u/0/folders/1iAv1o7Hoz1l4VwEYARdwnk51xhLhL0mt" target="_blank" class="project-link">View their work <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
+                                    <p class="project-name">"IMARI — Smart Waste Sorting and Composting System"</p>
+                                    <p class="project-desc">IMARI is a smart waste-sorting system using sensors to automatically separate plastic, metal, and organic materials at source. Organic waste is composted and converted into manure for local farmers with a mobile and web dashboard for community monitoring.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Junior Category -->
+                    <div class="category-box">
+                        <div class="category-header junior">Junior Category</div>
+                        <div class="category-content">
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="/static/winners/365%20Desert%20Vegetation%20-%20Qatar/365 Desert Vegetation.jpg" alt="Ji Wu" onerror="this.style.display='none'">
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">1st Place</div>
+                                    <div class="name-row">
+                                        <span class="name-location"><h4>Ji Wu</h4><span class="winner-location">Taiwan</span></span>
+                                        <a href="https://youtu.be/Ku7zW-01WfI" target="_blank" class="project-link">View their work <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
+                                    <p class="project-name">"Action for Clothes! Buy Smarter, Waste Less."</p>
+                                    <p class="project-desc">A youth-led fast fashion initiative using the E.A.R.T.H. strategy. Ji and her team volunteered at recycling facilities, ran workshops for 1,800+ students, and took their policy proposals directly to the National Legislature.</p>
+                                </div>
+                            </div>
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="/static/winners/Khoa%20Bach%20Duc%20Anh/image.png" alt="Nir Tzvigelski Team" onerror="this.style.display='none'">
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">2nd Place</div>
+                                    <div class="name-row">
+                                        <span class="name-location"><h4>Nir Tzvigelski, Mia Simoni, Or Avigani & Team</h4><span class="winner-location">Israel</span></span>
+                                        <a href="https://youtu.be/KTRsUrsl1zo" target="_blank" class="project-link">View their work <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
+                                    <p class="project-name">"The Pine Cone Shading — Food Security During Global Warming"</p>
+                                    <p class="project-desc">This team discovered that UV overexposure was destroying crops in their school experiment. Inspired by pine cone geometry, they engineered a biomimetic 20% shading solution designed to protect food crops on hot days.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Special Awards -->
+                    <div class="category-box">
+                        <div class="category-header special">Ingenuity Award</div>
+                        <div class="category-content">
+                            <div class="winner-card">
+                                <div class="winner-photo">
+                                    <img src="/static/winners/Seoha%20Han/Photo,%20Seoha%20Han.jpeg" alt="Ingenuity Award" onerror="this.style.display='none'">
+                                </div>
+                                <div class="winner-info">
+                                    <div class="winner-rank">Ingenuity</div>
+                                    <div class="name-row">
+                                        <span class="name-location"><h4>Jayda Ramjattan</h4><span class="winner-location">Trinidad & Tobago</span></span>
+                                        <a href="https://www.facebook.com/watch/?v=1791458004927418" target="_blank" class="project-link">View their work <i class="fas fa-external-link-alt"></i></a>
+                                    </div>
+                                    <p class="project-name">"SIDS Climate Action: Beat the Heat"</p>
+                                    <p class="project-desc">Jayda uses creative video performance and visual art to amplify the climate crisis facing Small Island Developing States. Her work was reposted by UNICEF, the Parliament of Trinidad and Tobago, and the Ministry of Labour.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- 2024-2025 Winners -->
-            <div class="year-content active" id="year-2024-2025">
+            <div class="year-content" id="year-2024-2025">
                 <div class="winners-grid">
                     <!-- Senior Category -->
                     <div class="category-box">

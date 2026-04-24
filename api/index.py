@@ -127,18 +127,15 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
         /* Hero Section */
         .hero {
-            min-height: 80vh;
-            max-width: 66.67%;
-            margin: 0 auto;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             text-align: center;
-            padding: 1.5rem 2rem;
+            padding: 4rem 2rem;
             position: relative;
             overflow: hidden;
-            background: #0f0f1a;
         }
 
         .hero::before {
@@ -148,21 +145,17 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 1;
         }
 
         .hero video {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            object-position: center center;
             z-index: 0;
         }
 
@@ -358,18 +351,16 @@ HTML_TEMPLATE = """<!DOCTYPE html>
             }
 
             .hero {
-                min-height: 35vh;
-                max-width: 100%;
-                padding: 1rem 1rem;
+                min-height: 100vh;
+                padding: 2rem 1rem;
             }
 
             .hero video {
                 object-fit: cover;
-                object-position: center center;
             }
 
             .hero::before {
-                background: rgba(0, 0, 0, 0.4);
+                background: rgba(0, 0, 0, 0.5);
             }
         }
 
@@ -1442,15 +1433,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
 
                 <div class="team-member">
                     <div class="team-member-image">
-                        <img src="https://nexyouth-eight.vercel.app/static/HaimJoshi.jpg" alt="Haim Joshi" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Haim Joshi</h3>
-                    <span class="title">Debate Coach</span>
-                    <p>Haim Joshi is a grade nine at UCC, having been debating for 2 years. Achievements include: 1st Open Speaker and 1st Junior Speaker at UofT's HHWO, Octofinalist at Oxford's WSDC (one of the biggest debate tournaments in the world with over 350 debaters), and 4th ranking team at HHHS (the biggest debate tournament in Canada).</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
                         <img src="https://nexyouth-eight.vercel.app/static/VincentPham.jpg" alt="Vincent Pham" onerror="this.src='/static/placeholder.jpg'">
                     </div>
                     <h3>Vincent Pham</h3>
@@ -1493,10 +1475,6 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
 @app.route('/about')
 def about():
     return render_template('about.html')
-
-@app.route('/chapters')
-def chapters():
-    return render_template('chapters.html')
 
 # Program Page Templates
 SKILL_DEVELOPMENT_TEMPLATE = """
@@ -2786,19 +2764,14 @@ def environmental_competition():
 def youth_tech_lab():
     return render_template('youth-tech-lab.html')
 
-# Course Routes
-@app.route('/courses/debate')
-def debate_course():
-    return render_template('debate.html')
-
-# Environmental Challenge Template
+# Environmental Competition Template
 ENVIRONMENTAL_COMPETITION_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>International Youth Environmental Challenge - NexYouth</title>
+    <title>International Youth Environmental Competition - NexYouth</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -3263,7 +3236,7 @@ ENVIRONMENTAL_COMPETITION_TEMPLATE = """
 
     <section class="program-hero">
         <div class="container">
-            <h1>🌍 International Youth Environmental Challenge</h1>
+            <h1>🌍 International Youth Environmental Competition</h1>
             <p>Inspire. Innovate. Impact. Submit your environmental solution and compete globally with young changemakers from around the world.</p>
         </div>
     </section>
@@ -3271,7 +3244,7 @@ ENVIRONMENTAL_COMPETITION_TEMPLATE = """
     <section class="program-content">
         <div class="container">
             <h2>About the IYEC</h2>
-            <p>The International Youth Environmental Challenge (IYEC) is an annual event dedicated to inspiring and empowering youth to take action on environmental and climate issues. This competition unites passionate young innovators from around the world to share ideas and projects addressing local environmental challenges with effective solutions.</p>
+            <p>The International Youth Environmental Competition (IYEC) is an annual event dedicated to inspiring and empowering youth to take action on environmental and climate issues. This competition unites passionate young innovators from around the world to share ideas and projects addressing local environmental challenges with effective solutions.</p>
 
             <div class="competition-grid">
                 <div class="competition-card">
