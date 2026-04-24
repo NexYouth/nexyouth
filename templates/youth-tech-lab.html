@@ -1,1 +1,699 @@
-Redirecting...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youth Tech Lab - NexYouth</title>
+    <meta name="description" content="NexYouth Tech Lab - Connecting talented youth creators with organizations needing professional websites and apps.">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Youth Tech Lab - NexYouth">
+    <meta property="og:description" content="Connecting talented youth creators with organizations needing professional websites and apps.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nexyouth.org/programs/youth-tech-lab">
+    <meta property="og:image" content="/static/logo.svg">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+    <link rel="apple-touch-icon" href="/static/logo.svg">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        nav {
+            background: white;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 0.8rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        nav .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #333;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5;
+            color: #00d4ff;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .program-hero {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .program-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .program-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .program-hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+            letter-spacing: -1.5px;
+            line-height: 1.2;
+        }
+
+        .program-hero-subtitle {
+            font-size: 1.4rem;
+            color: #00d4ff;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .program-hero p {
+            font-size: 1.15rem;
+            max-width: 750px;
+            margin: 0 auto;
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-feature-item {
+            text-align: center;
+            flex: 0 1 auto;
+        }
+
+        .hero-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-feature-text {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .program-content {
+            padding: 3rem 2rem 6rem 2rem;
+            background: white;
+        }
+
+        .program-content > .container {
+            max-width: 1100px;
+        }
+
+        .program-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+            text-align: center;
+            line-height: 1.3;
+            font-weight: 800;
+        }
+
+        .program-intro-text {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 2rem;
+        }
+
+        .program-intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .program-content h3 {
+            font-size: 1.8rem;
+            margin-top: 0.5rem;
+            margin-bottom: 2rem;
+            color: #00d4ff;
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+        }
+
+        .program-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid #00d4ff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
+            border-radius: 0 0 0 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(0, 212, 255, 0.15);
+        }
+
+        .service-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            color: #1a1a2e;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .service-card li {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 0.7rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-card li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e0f2ff 100%);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border-top: 4px solid #00d4ff;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 212, 255, 0.12);
+        }
+
+        .benefit-card h4 {
+            font-size: 1.15rem;
+            margin-bottom: 0.8rem;
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        .divider {
+            margin: 2rem 0 1rem 0;
+            border-top: 2px solid #e8f4ff;
+        }
+
+        .cta-section {
+            background: #00d4ff;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: #00d4ff;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        footer a:hover {
+            color: #00d4ff;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                border-bottom: 1px solid #eee;
+                z-index: 99;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            nav ul li {
+                border-bottom: 1px solid #eee;
+            }
+            nav ul a {
+                display: block;
+                padding: 1rem 2rem;
+            }
+            .dropdown-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: #f9f9f9;
+            }
+            #programsDropdown.active {
+                display: block;
+            }
+            .dropdown-menu a {
+                padding-left: 3rem;
+            }
+            nav .container {
+                flex-wrap: wrap;
+            }
+            .program-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/static/logo.svg" alt="NexYouth">
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#what-we-do">What We Do</a></li>
+                <li class="dropdown">
+                    <a href="/#programs">Programs ▾</a>
+                    <div class="dropdown-menu" id="programsDropdown">
+                        <a href="/programs/skill-development">Skill Development Courses</a>
+                        <a href="/programs/seminars">Seminars & Workships</a>
+                        <a href="/programs/mentorship">Global Mentorship Network</a>
+                        <a href="/programs/environmental-competition">Youth Environmental Challenge</a>
+                        <a href="/programs/youth-tech-lab">Youth Tech Lab</a>
+                    </div>
+                </li>
+                <li><a href="/chapters">Chapters</a></li>
+                <li><a href="/#community">Community</a></li>
+                <li><a href="/partner">Partner</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="program-hero">
+        <div class="container">
+            <h1>Youth Tech Lab</h1>
+            <div class="program-hero-subtitle">Where Young Innovators Build Real Solutions</div>
+            <p>NexYouth's Youth Tech Lab connects talented student developers with organizations that need professional digital products. Our teams design and build custom websites and mobile apps, with all proceeds supporting NexYouth's mission.</p>
+            <div class="hero-features">
+                <div class="hero-feature-item">
+                    <div class="hero-feature-icon">💻</div>
+                    <div class="hero-feature-text">Professional Design</div>
+                </div>
+                <div class="hero-feature-item">
+                    <div class="hero-feature-icon">⚡</div>
+                    <div class="hero-feature-text">Fast Delivery</div>
+                </div>
+                <div class="hero-feature-item">
+                    <div class="hero-feature-icon">🌍</div>
+                    <div class="hero-feature-text">Global Impact</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program-content">
+        <div class="container">
+            <h3>Our Services</h3>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>🌐 Website Development</h4>
+                    <ul>
+                        <li>Custom website design & development</li>
+                        <li>Landing pages for campaigns & events</li>
+                        <li>E-commerce & online stores</li>
+                        <li>Portfolio & personal branding sites</li>
+                        <li>Website redesign & modernization</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h4>📱 App Development</h4>
+                    <ul>
+                        <li>iOS & Android mobile apps</li>
+                        <li>Cross-platform applications</li>
+                        <li>MVP / prototype development</li>
+                        <li>UI/UX design</li>
+                        <li>App maintenance & updates</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <h3>Why Choose Youth Tech Lab</h3>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h4>💰 Affordable Rates</h4>
+                    <p>Special pricing for nonprofits & small businesses</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>🎨 Modern Designs</h4>
+                    <p>Fresh, creative solutions from digital-native creators</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>🤝 Social Impact</h4>
+                    <p>100% of proceeds fund youth education</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>👨‍💼 Expert Mentorship</h4>
+                    <p>Guided by industry professionals</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>🎓 Real-World Experience</h4>
+                    <p>Hands-on learning for student developers</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>⚡ Quality Assured</h4>
+                    <p>Professional standards & best practices</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Build With Us?</h2>
+            <p>Whether you need a website, app, or digital solution, let's turn your vision into reality.</p>
+            <a href="/contact" class="cta-btn">Get Started</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
+        </div>
+    </footer>
+
+<script>
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+    const programsDropdown = document.querySelector('.dropdown a');
+    const dropdownMenu = document.getElementById('programsDropdown');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link
+    const navLinks = document.querySelectorAll('#navMenu a:not([href*="Programs"])');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // Handle programs dropdown on mobile
+    const dropdownTrigger = document.querySelector('.dropdown a');
+    dropdownTrigger.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('active');
+        }
+    });
+
+    // Handle dropdown menu items click on mobile
+    const dropdownItems = document.querySelectorAll('.dropdown-menu a');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                // Close menu but allow navigation to proceed
+                mobileMenuBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+                dropdownMenu.classList.remove('active');
+                // Let the link navigate
+            }
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('nav')) {
+            mobileMenuBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+            dropdownMenu.classList.remove('active');
+        }
+    });
+</script>
+</body>
+</html>
