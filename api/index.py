@@ -1443,9 +1443,9 @@ ABOUT_TEMPLATE = """<!DOCTYPE html>
 
                 <div class="team-member">
                     <div class="team-member-image">
-                        <img src="https://nexyouth-eight.vercel.app/static/WilliamWang.jpg" alt="William Wang" onerror="this.src='/static/placeholder.jpg'">
+                        <img src="https://nexyouth-eight.vercel.app/static/WilliamWang.jpg" alt="William Wu" onerror="this.src='/static/placeholder.jpg'">
                     </div>
-                    <h3>William Wang</h3>
+                    <h3>William Wu</h3>
                     <span class="title">Team Member</span>
                     <p>William is an enthusiastic member of the NexYouth community committed to fostering growth and leadership among young people.</p>
                     <a href="https://linkedin.com" class="social-link" target="_blank">LinkedIn</a>
