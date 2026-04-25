@@ -1488,16 +1488,24 @@
 
         .winner-info .name-row {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            gap: 0.5rem;
+            gap: 1rem;
             margin-bottom: 0.25rem;
-            flex-wrap: wrap;
         }
 
         .winner-info .name-location {
             display: flex;
             align-items: center;
+            flex: 1 1 auto;
+            min-width: 0;
+            flex-wrap: wrap;
+        }
+
+        .winner-info .name-row .project-link {
+            flex-shrink: 0;
+            white-space: nowrap;
+            margin-top: 0.3rem;
         }
 
         .winner-info h4 {
