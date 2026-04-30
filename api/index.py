@@ -5281,6 +5281,72 @@ def success():
 
 ECO_ADMIN_EMAIL = os.environ.get('ADMIN_CC_EMAIL', 'nexyouth.master@gmail.com')
 
+JOTFORM_FORM_ID = os.environ.get('JOTFORM_FORM_ID', '261196877713065')
+
+@app.route('/api/eco-classroom/login', methods=['POST'])
+def eco_classroom_login():
+    """Verify student email against JotForm submissions and unlock Classwork."""
+    data = request.get_json(silent=True) or {}
+    email = str(data.get('student_email') or '').strip().lower()
+    if not re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', email):
+        return jsonify({'ok': False, 'error': 'Please enter a valid email address.'}), 400
+
+    api_key = os.environ.get('JOTFORM_API_KEY')
+    if not api_key:
+        return jsonify({'ok': False,
+                        'error': 'Sign-in is temporarily unavailable. Please email nexyouth.master@gmail.com.'}), 503
+
+    try:
+        import urllib.request, urllib.parse, json as _json
+        url = (f'https://api.jotform.com/form/{JOTFORM_FORM_ID}/submissions'
+               f'?apiKey={urllib.parse.quote(api_key)}&limit=1000')
+        req = urllib.request.Request(url, headers={'Accept': 'application/json'})
+        with urllib.request.urlopen(req, timeout=12) as resp:
+            payload = _json.loads(resp.read().decode('utf-8'))
+
+        submissions = payload.get('content', []) or []
+        for sub in submissions:
+            answers = sub.get('answers', {}) or {}
+            # Search all answers for an email match (works regardless of field IDs)
+            email_found = False
+            student_name = ''
+            for _, field in answers.items():
+                ans = field.get('answer')
+                if isinstance(ans, str):
+                    if ans.strip().lower() == email:
+                        email_found = True
+                elif isinstance(ans, dict):
+                    # email subfield
+                    sub_email = (ans.get('email') or '').strip().lower()
+                    if sub_email == email:
+                        email_found = True
+                    # name fields
+                    if 'first' in ans or 'last' in ans:
+                        candidate = ' '.join(filter(None, [
+                            (ans.get('prefix') or '').strip(),
+                            (ans.get('first') or '').strip(),
+                            (ans.get('last') or '').strip(),
+                        ])).strip()
+                        if candidate and not student_name:
+                            student_name = candidate
+            if email_found:
+                return jsonify({
+                    'ok': True,
+                    'student': {
+                        'email': email,
+                        'name': student_name or email.split('@')[0],
+                    },
+                })
+
+        return jsonify({'ok': False,
+                        'error': 'No registration found for this email. Please register first or check the email you used.'}), 404
+    except Exception as e:
+        import sys, traceback
+        print(f"[ECO LOGIN ERROR] {type(e).__name__}: {e}\n{traceback.format_exc()}", file=sys.stderr)
+        return jsonify({'ok': False,
+                        'error': 'Could not verify registration. Please try again in a moment.'}), 500
+
+
 @app.route('/api/eco-classroom/register', methods=['POST'])
 def eco_classroom_register():
     data = request.get_json(silent=True) or {}
