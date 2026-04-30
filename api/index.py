@@ -1,5 +1,7 @@
-from flask import Flask, render_template, render_template_string, send_from_directory, request
+from flask import Flask, render_template, render_template_string, send_from_directory, request, jsonify
 import os
+import re
+from datetime import datetime, timezone
 
 # Configure template folder for Vercel deployment
 template_dir = os.path.join(os.path.dirname(__file__), '..', 'templates')
@@ -5271,6 +5273,89 @@ def success():
     </html>
     """
     return success_html
+
+# ============== ECO CLASSROOM REGISTRATION (email-based, Vercel-friendly) ==============
+# Vercel's filesystem is read-only, so we can't write to CSVs here.
+# Instead, the registration form posts here and we email the data to the admin.
+# SMTP credentials must be set in Vercel project env vars.
+
+ECO_ADMIN_EMAIL = os.environ.get('ADMIN_CC_EMAIL', 'nexyouth.master@gmail.com')
+
+@app.route('/api/eco-classroom/register', methods=['POST'])
+def eco_classroom_register():
+    data = request.get_json(silent=True) or {}
+
+    required = ['student_name', 'city', 'country', 'student_email',
+                'parent_name', 'parent_email', 'consent']
+    missing = [k for k in required if not str(data.get(k, '')).strip()]
+    if missing:
+        return jsonify({'ok': False, 'error': f"Missing required fields: {', '.join(missing)}"}), 400
+
+    email = str(data.get('student_email', '')).strip()
+    if not re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', email):
+        return jsonify({'ok': False, 'error': 'Please enter a valid student email.'}), 400
+    parent_email = str(data.get('parent_email', '')).strip()
+    if not re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', parent_email):
+        return jsonify({'ok': False, 'error': 'Please enter a valid parent/guardian email.'}), 400
+
+    # Build registration email
+    name = str(data.get('student_name', '')).strip()
+    submitted = datetime.now(timezone.utc).isoformat(timespec='seconds')
+
+    subject = f"New EcoClassroom registration: {name} ({email})"
+    text = (
+        f"A new student has registered for the NexYouth Eco Literacy course.\n\n"
+        f"Submitted at: {submitted} UTC\n\n"
+        f"=== STUDENT ===\n"
+        f"Name:    {name}\n"
+        f"Email:   {email}\n"
+        f"Grade:   {data.get('grade') or '(not provided)'}\n"
+        f"School:  {data.get('school') or '(not provided)'}\n"
+        f"City:    {data.get('city') or ''}\n"
+        f"Country: {data.get('country') or ''}\n\n"
+        f"=== PARENT / GUARDIAN ===\n"
+        f"Name:  {data.get('parent_name') or ''}\n"
+        f"Email: {parent_email}\n"
+        f"Phone: {data.get('parent_phone') or '(not provided)'}\n\n"
+        f"=== BACKGROUND ===\n"
+        f"Source:     {data.get('source') or '(not provided)'}\n"
+        f"Motivation: {data.get('motivation') or '(not provided)'}\n\n"
+        f"Consent confirmed: {data.get('consent') or 'no'}\n"
+    )
+
+    smtp_host = os.environ.get('SMTP_HOST')
+    if not smtp_host:
+        # No SMTP configured — log to stderr (Vercel captures this) and return success
+        # so the user gets a friendly response rather than a hard error.
+        import sys
+        print(f"[ECO REGISTRATION — SMTP not configured]\n{text}", file=sys.stderr)
+        return jsonify({'ok': True, 'note': 'Registration recorded in server log. SMTP not configured in Vercel env vars.'})
+
+    try:
+        import smtplib
+        from email.message import EmailMessage as _EmailMessage
+        msg = _EmailMessage()
+        msg['Subject'] = subject
+        msg['From'] = os.environ.get('EMAIL_FROM', 'noreply@nexyouth.org')
+        msg['To'] = ECO_ADMIN_EMAIL
+        msg.set_content(text)
+        port = int(os.environ.get('SMTP_PORT', '465'))
+        use_ssl = os.environ.get('SMTP_SSL', '').lower() in ('1', 'true', 'yes') or port == 465
+        timeout = int(os.environ.get('SMTP_TIMEOUT', '15'))
+        smtp_cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
+        with smtp_cls(smtp_host, port, timeout=timeout) as s:
+            if not use_ssl and os.environ.get('SMTP_TLS', '1') == '1':
+                s.starttls()
+            u, p = os.environ.get('SMTP_USER'), os.environ.get('SMTP_PASS')
+            if u and p:
+                s.login(u, p)
+            s.send_message(msg)
+        return jsonify({'ok': True})
+    except Exception as e:
+        import sys, traceback
+        print(f"[ECO REGISTRATION SMTP ERROR] {type(e).__name__}: {e}\n{traceback.format_exc()}", file=sys.stderr)
+        return jsonify({'ok': False, 'error': 'Could not deliver registration email. Please email NexYouth directly at nexyouth.master@gmail.com'}), 500
+
 
 @app.route('/<path:path>')
 def catch_all(path):

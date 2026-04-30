@@ -26,7 +26,7 @@ def _ensure_eco_csv():
 @app.route('/api/eco-classroom/register', methods=['POST'])
 def eco_classroom_register():
     data = request.get_json(silent=True) or {}
-    required = ['student_name', 'age', 'city', 'country', 'student_email',
+    required = ['student_name', 'city', 'country', 'student_email',
                 'parent_name', 'parent_email', 'consent']
     missing = [k for k in required if not str(data.get(k, '')).strip()]
     if missing:
@@ -38,13 +38,6 @@ def eco_classroom_register():
     parent_email = str(data.get('parent_email', '')).strip()
     if not re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', parent_email):
         return jsonify({'ok': False, 'error': 'Please enter a valid parent/guardian email.'}), 400
-
-    try:
-        age = int(str(data.get('age', '')).strip())
-        if age < 6 or age > 22:
-            raise ValueError
-    except (ValueError, TypeError):
-        return jsonify({'ok': False, 'error': 'Age must be a number between 6 and 22.'}), 400
 
     row = {k: str(data.get(k, '')).strip()[:500] for k in ECO_REG_FIELDS}
     row['submitted_at'] = datetime.now(timezone.utc).isoformat(timespec='seconds')
@@ -232,15 +225,21 @@ def _generate_certificate(name, completion_date=None):
                         "9 Lessons   |   2 Quizzes Passed (60%+)   |   Youth Eco Action Plan Submitted")
 
     sig_y = 1.4 * inch
+
+    # LEFT — Director signature (italic name above line, label below)
+    c.setFillColor(DARK); c.setFont("Times-Italic", 16)
+    c.drawCentredString(2.5 * inch, sig_y + 6, "Justin Huang & Max Wen")
     c.setStrokeColor(DARK); c.setLineWidth(0.5)
     c.line(1.5 * inch, sig_y, 3.5 * inch, sig_y)
-    c.setFillColor(DARK); c.setFont("Helvetica", 10)
+    c.setFont("Helvetica", 10)
     c.drawCentredString(2.5 * inch, sig_y - 15, "NexYouth Program Director")
 
+    # RIGHT — Date (italic date above line, label below)
+    c.setFont("Times-Italic", 16)
+    c.drawCentredString(W - 2.5 * inch, sig_y + 6, completion_date)
     c.line(W - 3.5 * inch, sig_y, W - 1.5 * inch, sig_y)
+    c.setFont("Helvetica", 10)
     c.drawCentredString(W - 2.5 * inch, sig_y - 15, "Date Issued")
-    c.setFont("Helvetica-Bold", 11)
-    c.drawCentredString(W - 2.5 * inch, sig_y - 30, completion_date)
 
     # Bottom strip (between the two borders) — cert id + brand
     c.setFont("Helvetica", 8); c.setFillColor(DARK)
