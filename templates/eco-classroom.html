@@ -114,6 +114,14 @@ main{max-width:1180px;margin:0 auto;padding:3rem 1.5rem 4rem}
 
 footer{background:#fff;border-top:1px solid var(--border);padding:1.6rem 1.5rem;text-align:center;color:var(--text-2);font-size:.82rem}
 
+
+.hero-features{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;margin-top:1.6rem}
+.hero-feat{background:rgba(255,255,255,.13);backdrop-filter:blur(8px);color:#fff;padding:.45rem 1rem;border-radius:100px;font-size:.83rem;font-weight:500;border:1px solid rgba(255,255,255,.22);letter-spacing:.01em}
+.hero h1{font-family:'Google Sans','Playfair Display',serif;font-size:clamp(2.4rem,5.5vw,3.8rem);font-weight:700;letter-spacing:-.02em;line-height:1.05;margin-bottom:1rem}
+.hero p.lede{font-size:clamp(1rem,1.5vw,1.15rem);color:rgba(255,255,255,.92);max-width:640px;margin:0 auto 1.4rem;line-height:1.55}
+.hero .badge{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);padding:.42rem 1.15rem;border-radius:100px;font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.5rem;border:1px solid rgba(255,255,255,.25)}
+.hero h1 .accent{background:linear-gradient(90deg,#FFD27D 0%,#FFE5A8 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic;font-weight:800}
+
 @media(max-width:600px){
   .hero{padding:3rem 1rem 2.5rem}
   .hero-stats{gap:1.4rem}
@@ -138,9 +146,15 @@ footer{background:#fff;border-top:1px solid var(--border);padding:1.6rem 1.5rem;
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <span class="badge">🌍 Free for All Youth</span>
-    <h1>Choose Your <span class="accent">Course</span></h1>
-    <p class="lede">Self-paced courses designed for young environmental leaders. Each course earns you a NexYouth EcoHero Certificate and a completion award.</p>
+    <span class="badge">🌍 Free for All Youth · Built on Real Science</span>
+    <h1>Become a <span class="accent">NexYouth EcoHero</span></h1>
+    <p class="lede">Real environmental science. Real student action. Real recognition.<br>Pick any course below — completely free, evidence-based, and yours to keep.</p>
+    <div class="hero-features">
+      <span class="hero-feat">✓ 100% Free</span>
+      <span class="hero-feat">📜 EcoHero Certificate</span>
+      <span class="hero-feat">🔬 Backed by Real Science</span>
+      <span class="hero-feat">🚀 Build Your Action Plan</span>
+    </div>
   </div>
 </section>
 
