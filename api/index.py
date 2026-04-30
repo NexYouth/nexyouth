@@ -5368,6 +5368,42 @@ def eco_classroom_register():
     name = str(data.get('student_name', '')).strip()
     submitted = datetime.now(timezone.utc).isoformat(timespec='seconds')
 
+    # Best-effort DB persistence (so submit/progress endpoints can look up the
+    # student's name later). If Postgres isn't configured we silently continue.
+    _conn = _db_connect()
+    if _conn is not None:
+        try:
+            _db_ensure_schema(_conn)
+            ip = (request.headers.get('X-Forwarded-For') or request.remote_addr or '').split(',')[0].strip()
+            with _conn.cursor() as cur:
+                cur.execute(
+                    "INSERT INTO eco_registrations "
+                    "(student_email, student_name, age, grade, school, city, country, "
+                    " parent_name, parent_email, parent_phone, source, motivation, consent, ip) "
+                    "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                    (
+                        email, name,
+                        str(data.get('age', '')).strip(),
+                        str(data.get('grade', '')).strip(),
+                        str(data.get('school', '')).strip(),
+                        str(data.get('city', '')).strip(),
+                        str(data.get('country', '')).strip(),
+                        str(data.get('parent_name', '')).strip(),
+                        parent_email,
+                        str(data.get('parent_phone', '')).strip(),
+                        str(data.get('source', '')).strip(),
+                        str(data.get('motivation', '')).strip(),
+                        str(data.get('consent', '')).strip(),
+                        ip,
+                    ),
+                )
+        except Exception as _e:
+            import sys
+            print(f"[ECO REG DB] insert failed: {type(_e).__name__}: {_e}", file=sys.stderr)
+        finally:
+            try: _conn.close()
+            except Exception: pass
+
     subject = f"New EcoClassroom registration: {name} ({email})"
     text = (
         f"A new student has registered for the NexYouth Eco Literacy course.\n\n"
@@ -5421,6 +5457,290 @@ def eco_classroom_register():
         import sys, traceback
         print(f"[ECO REGISTRATION SMTP ERROR] {type(e).__name__}: {e}\n{traceback.format_exc()}", file=sys.stderr)
         return jsonify({'ok': False, 'error': 'Could not deliver registration email. Please email NexYouth directly at nexyouth.master@gmail.com'}), 500
+
+
+# ============== ECO CLASSROOM DB (Vercel Postgres) ==============
+# Persists student submissions, progress, and completion status so the
+# course works on Vercel's read-only filesystem.
+#
+# Required Vercel env var:
+#   POSTGRES_URL  (auto-injected when you create a Vercel Postgres database)
+#
+# Tables are created on demand. All operations are wrapped in try/except
+# so that if the DB is not configured the user gets a clear error rather
+# than a 500 crash.
+
+QUIZ_ANSWERS = {
+    'quiz1': ['A','B','B','A','B','D','D','D','A','D'],
+    'quiz2': ['A','A','A','B','D','C','A','D','D','D'],
+}
+QUIZ_PASS = 6
+FINAL_MIN_WORDS = 100
+
+_DB_SCHEMA_READY = False
+
+def _db_url():
+    return os.environ.get('POSTGRES_URL') or os.environ.get('DATABASE_URL')
+
+def _db_connect():
+    """Open a new psycopg connection. Returns None if Postgres isn't configured."""
+    url = _db_url()
+    if not url:
+        return None
+    try:
+        import psycopg
+        # Vercel Postgres URLs sometimes include `?sslmode=require` already.
+        # If it's missing we still default to require.
+        if 'sslmode' not in url:
+            sep = '&' if '?' in url else '?'
+            url = f"{url}{sep}sslmode=require"
+        return psycopg.connect(url, autocommit=True)
+    except Exception as e:
+        import sys
+        print(f"[ECO DB] connect failed: {type(e).__name__}: {e}", file=sys.stderr)
+        return None
+
+def _db_ensure_schema(conn):
+    global _DB_SCHEMA_READY
+    if _DB_SCHEMA_READY:
+        return
+    with conn.cursor() as cur:
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS eco_registrations (
+                id SERIAL PRIMARY KEY,
+                submitted_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+                student_email TEXT NOT NULL,
+                student_name TEXT,
+                age TEXT, grade TEXT, school TEXT,
+                city TEXT, country TEXT,
+                parent_name TEXT, parent_email TEXT, parent_phone TEXT,
+                source TEXT, motivation TEXT, consent TEXT,
+                ip TEXT
+            );
+            CREATE INDEX IF NOT EXISTS eco_reg_email_idx ON eco_registrations (LOWER(student_email));
+
+            CREATE TABLE IF NOT EXISTS eco_submissions (
+                id SERIAL PRIMARY KEY,
+                submitted_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+                student_email TEXT NOT NULL,
+                type TEXT NOT NULL,
+                lesson_id TEXT,
+                content TEXT,
+                score INT,
+                max_score INT,
+                passed BOOLEAN,
+                ip TEXT
+            );
+            CREATE INDEX IF NOT EXISTS eco_sub_email_idx ON eco_submissions (LOWER(student_email));
+
+            CREATE TABLE IF NOT EXISTS eco_completions (
+                id SERIAL PRIMARY KEY,
+                completed_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+                student_email TEXT NOT NULL UNIQUE,
+                student_name TEXT
+            );
+        """)
+    _DB_SCHEMA_READY = True
+
+def _db_read_progress(conn, email):
+    email = (email or '').strip().lower()
+    tasks, q1, q2, fw = set(), None, None, 0
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT type, lesson_id, score FROM eco_submissions WHERE LOWER(student_email)=%s",
+            (email,),
+        )
+        for t, lid, score in cur.fetchall():
+            if t == 'task' and lid:
+                tasks.add(str(lid))
+            elif t == 'quiz1':
+                try: q1 = max(q1 or 0, int(score or 0))
+                except (TypeError, ValueError): pass
+            elif t == 'quiz2':
+                try: q2 = max(q2 or 0, int(score or 0))
+                except (TypeError, ValueError): pass
+            elif t == 'final':
+                try: fw = max(fw, int(score or 0))
+                except (TypeError, ValueError): pass
+    return {
+        'tasks_done': sorted(tasks, key=lambda x: int(x) if x.isdigit() else 99),
+        'quiz1': q1, 'quiz2': q2, 'final_words': fw,
+    }
+
+def _db_is_completed(p):
+    return (len(p['tasks_done']) >= 9
+            and (p['quiz1'] or 0) >= QUIZ_PASS
+            and (p['quiz2'] or 0) >= QUIZ_PASS
+            and p['final_words'] >= FINAL_MIN_WORDS)
+
+def _db_already_completed(conn, email):
+    email = (email or '').strip().lower()
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT 1 FROM eco_completions WHERE LOWER(student_email)=%s LIMIT 1",
+            (email,),
+        )
+        return cur.fetchone() is not None
+
+def _db_student_name(conn, email):
+    email = (email or '').strip().lower()
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT student_name FROM eco_registrations WHERE LOWER(student_email)=%s "
+            "ORDER BY submitted_at DESC LIMIT 1",
+            (email,),
+        )
+        row = cur.fetchone()
+        return (row[0] if row else '') or ''
+
+def _db_completion_info(conn, email):
+    email = (email or '').strip().lower()
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT completed_at, student_name FROM eco_completions WHERE LOWER(student_email)=%s",
+            (email,),
+        )
+        row = cur.fetchone()
+        if not row:
+            return None
+        return {
+            'completed_at': row[0].isoformat(timespec='seconds') if row[0] else '',
+            'name': row[1] or _db_student_name(conn, email),
+        }
+
+def _db_unavailable_response():
+    return jsonify({
+        'ok': False,
+        'error': 'Course storage is not configured yet. Please contact nexyouth.master@gmail.com.',
+    }), 503
+
+
+@app.route('/api/eco-classroom/submit', methods=['POST'])
+def eco_classroom_submit():
+    data = request.get_json(silent=True) or {}
+    email = str(data.get('student_email') or '').strip().lower()
+    sub_type = str(data.get('type') or '').strip()
+
+    if not re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', email):
+        return jsonify({'ok': False, 'error': 'Please register first or enter a valid email.'}), 400
+    if sub_type not in ('task', 'quiz1', 'quiz2', 'final'):
+        return jsonify({'ok': False, 'error': 'Invalid submission type.'}), 400
+
+    score = max_score = None
+    passed = False
+    content = ''
+    lesson_id = ''
+
+    if sub_type == 'task':
+        lesson_id = str(data.get('lesson_id') or '').strip()
+        if lesson_id not in [str(i) for i in range(1, 10)]:
+            return jsonify({'ok': False, 'error': 'Invalid lesson id.'}), 400
+        passed = True
+
+    elif sub_type in ('quiz1', 'quiz2'):
+        answers = data.get('answers')
+        if not isinstance(answers, list) or len(answers) != 10:
+            return jsonify({'ok': False, 'error': 'Please answer all 10 questions.'}), 400
+        key = QUIZ_ANSWERS[sub_type]
+        s = sum(1 for i, a in enumerate(answers) if str(a).strip().upper() == key[i])
+        score, max_score = s, 10
+        passed = s >= QUIZ_PASS
+        content = ','.join(str(a).strip().upper()[:1] for a in answers)
+        lesson_id = sub_type
+
+    else:  # final
+        content = str(data.get('content') or '').strip()[:8000]
+        words = len(re.findall(r"[A-Za-z\u4e00-\u9fff]+", content))
+        score, max_score = words, FINAL_MIN_WORDS
+        if words < FINAL_MIN_WORDS:
+            return jsonify({
+                'ok': False,
+                'error': f'Your action plan is {words} words. Please write at least {FINAL_MIN_WORDS} words.'
+            }), 400
+        passed = True
+        lesson_id = 'final'
+
+    ip = (request.headers.get('X-Forwarded-For') or request.remote_addr or '').split(',')[0].strip()
+
+    conn = _db_connect()
+    if conn is None:
+        return _db_unavailable_response()
+    try:
+        _db_ensure_schema(conn)
+        with conn.cursor() as cur:
+            cur.execute(
+                "INSERT INTO eco_submissions (student_email, type, lesson_id, content, score, max_score, passed, ip) "
+                "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+                (email, sub_type, lesson_id, content, score, max_score, passed, ip),
+            )
+
+        progress = _db_read_progress(conn, email)
+        completed_now = False
+        if _db_is_completed(progress) and not _db_already_completed(conn, email):
+            name = _db_student_name(conn, email)
+            with conn.cursor() as cur:
+                cur.execute(
+                    "INSERT INTO eco_completions (student_email, student_name) VALUES (%s, %s) "
+                    "ON CONFLICT (student_email) DO NOTHING",
+                    (email, name),
+                )
+            completed_now = True
+
+        return jsonify({
+            'ok': True,
+            'score': str(score) if score is not None else '',
+            'max_score': str(max_score) if max_score is not None else '',
+            'passed': bool(passed),
+            'progress': progress,
+            'completed': _db_is_completed(progress),
+            'completed_now': completed_now,
+            'email_status': None,
+        })
+    except Exception as e:
+        import sys, traceback
+        print(f"[ECO SUBMIT ERROR] {type(e).__name__}: {e}\n{traceback.format_exc()}", file=sys.stderr)
+        return jsonify({'ok': False, 'error': 'Could not save submission. Please try again in a moment.'}), 500
+    finally:
+        try: conn.close()
+        except Exception: pass
+
+
+@app.route('/api/eco-classroom/progress', methods=['GET'])
+def eco_classroom_progress():
+    email = (request.args.get('email') or '').strip().lower()
+    if not re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', email):
+        return jsonify({'ok': False, 'error': 'Valid email required.'}), 400
+
+    conn = _db_connect()
+    if conn is None:
+        return _db_unavailable_response()
+    try:
+        _db_ensure_schema(conn)
+        progress = _db_read_progress(conn, email)
+        return jsonify({
+            'ok': True,
+            'progress': progress,
+            'completed': _db_is_completed(progress),
+            'completion_info': _db_completion_info(conn, email),
+        })
+    except Exception as e:
+        import sys, traceback
+        print(f"[ECO PROGRESS ERROR] {type(e).__name__}: {e}\n{traceback.format_exc()}", file=sys.stderr)
+        return jsonify({'ok': False, 'error': 'Could not load progress.'}), 500
+    finally:
+        try: conn.close()
+        except Exception: pass
+
+
+@app.route('/api/eco-classroom/resend-cert', methods=['POST'])
+def eco_classroom_resend_cert():
+    """Stub: certificate generation requires reportlab + writable storage,
+    neither of which run on Vercel. Return a friendly message."""
+    return jsonify({
+        'ok': False,
+        'error': 'Certificate emails are sent automatically when you finish all lessons. '
+                 'If you didn\'t receive yours, please email nexyouth.master@gmail.com.',
+    }), 501
 
 
 @app.route('/<path:path>')
