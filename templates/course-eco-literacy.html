@@ -73,6 +73,8 @@ button{font-family:inherit}
 .tab{padding:.95rem 1.4rem;border:none;background:transparent;font-size:.88rem;font-weight:500;color:var(--text-2);cursor:pointer;border-bottom:3px solid transparent;transition:all .15s;font-family:inherit;letter-spacing:.01em}
 .tab:hover{color:var(--gc-green);background:rgba(26,102,64,.04)}
 .tab.on{color:var(--gc-green);border-bottom-color:var(--gc-green)}
+.tab.locked{color:var(--muted);font-weight:500}
+.tab.locked:hover{color:var(--gc-coral);background:rgba(224,85,51,.05)}
 
 /* ── MAIN ── */
 main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-template-columns:280px 1fr;gap:1.5rem}
@@ -556,7 +558,7 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 <!-- ── TAB BAR ── -->
 <div class="tabbar">
   <button class="tab on" onclick="goto('stream',this)">Stream</button>
-  <button class="tab" onclick="goto('classwork',this)">Classwork</button>
+  <button class="tab" id="tabClasswork" onclick="goto('classwork',this)">Classwork</button>
   <button class="tab" onclick="goto('about',this)">About</button>
 </div>
 
@@ -582,322 +584,119 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 </div>
 
 <!-- ── STREAM PAGE ── -->
-<main id="stream" class="page on landing">
+<main id="stream" class="page on">
 
-  <!-- ════════════ HERO ════════════ -->
-  <section class="lp-hero">
-    <div class="lp-hero-inner">
-      <div class="lp-breadcrumb"><a href="/programs/eco-classroom">EcoClassroom</a> &nbsp;›&nbsp; Environmental Science</div>
-      <div class="lp-pills">
-        <span class="lp-pill gold">★ Free for All Youth</span>
-        <span class="lp-pill">Self-Paced</span>
-        <span class="lp-pill">Earn a Certificate</span>
-      </div>
-      <h1>Eco Literacy: From Environmental Systems to Youth Action</h1>
-      <p class="lp-lede">Build the science fluency to read climate evidence, decode pollution chains, and design real environmental action — in roughly 5 hours of self-paced study.</p>
-      <p class="lp-by">Offered by <strong>NexYouth</strong> &nbsp;·&nbsp; Program Directors: <strong>Justin Huang</strong> &amp; <strong>Max Wen</strong></p>
-      <div class="lp-cta-row">
-        <button class="lp-cta-primary" onclick="openRegister()">Enroll Now — Free &nbsp;→</button>
-        <button class="lp-cta-secondary" onclick="openLogin()">I'm already registered → Sign In</button>
+  <!-- Sidebar -->
+  <aside class="side">
+    <div class="side-card">
+      <h3>📌 Upcoming</h3>
+      <div class="upcoming"><span class="ic">📝</span><span>Final: Youth Eco Action Plan</span></div>
+      <div class="upcoming"><span class="ic quiz">🧪</span><span>Course Quiz 1 — Modules 1–5</span></div>
+      <div class="upcoming"><span class="ic quiz">🧪</span><span>Course Quiz 2 — Modules 6–9</span></div>
+    </div>
+    <div class="side-card">
+      <h3>🎓 Earn the Certificate</h3>
+      <div class="stat-row"><span>Pass Quiz 1</span><span class="v">≥ 60%</span></div>
+      <div class="stat-row"><span>Pass Quiz 2</span><span class="v">≥ 60%</span></div>
+      <div class="stat-row"><span>Action Plan</span><span class="v">Submitted</span></div>
+      <div class="stat-row"><span>Reward</span><span class="v">Eco Hero Certificate</span></div>
+    </div>
+  </aside>
+
+  <!-- Feed -->
+  <div class="feed">
+    <!-- Register CTA at top -->
+    <div class="cta-hero">
+      <span class="cta-tag">🌍 Now Enrolling</span>
+      <h3>Join the Eco Literacy Course</h3>
+      <p>Free for all youth. Register to unlock the Classwork tab — lessons, quizzes, and the final project. Earn an Eco Hero Certificate when you complete the program.</p>
+      <div class="btn-row">
+        <button class="btn-primary" onclick="openRegister()">Register Now &nbsp;→</button>
+        <button class="btn-secondary" onclick="openLogin()">I'm already registered → Sign In</button>
       </div>
     </div>
-  </section>
 
-  <!-- ════════════ QUICK FACTS ════════════ -->
-  <div class="lp-stats-strip">
-    <div class="lp-stats-grid">
-      <div class="lp-stat"><div class="num">9</div><div class="label">Lessons</div></div>
-      <div class="lp-stat"><div class="num">~5h</div><div class="label">Total time</div></div>
-      <div class="lp-stat"><div class="num">2</div><div class="label">Quizzes</div></div>
-      <div class="lp-stat"><div class="num">1</div><div class="label">Action Plan</div></div>
-      <div class="lp-stat"><div class="num">$15</div><div class="label">Award</div></div>
-      <div class="lp-stat"><div class="num">EN</div><div class="label">Language</div></div>
+    <h2 class="section-h">Welcome to your course <span class="count">Posted by NexYouth</span></h2>
+
+    <!-- Card 1: About This Course -->
+    <div class="announce">
+      <div class="announce-head">
+        <div class="announce-avatar">N</div>
+        <div class="announce-info">
+          <div class="a">NexYouth · Eco Literacy</div>
+          <div class="d">About This Course</div>
+        </div>
+      </div>
+      <p><strong>NexYouth Eco Literacy: From Environmental Systems to Youth Action</strong> is a structured online learning program for students who want to understand environmental issues beyond basic awareness.</p>
+      <p>Environmental problems are often described through simple messages: recycle more, use less plastic, save the planet. This program goes deeper. Students explore how climate change, biodiversity loss, water pollution, air pollution, plastic packaging, fast fashion, and environmental justice are connected through larger systems of human behaviour, technology, policy, economics, and ecological change.</p>
+      <p>Through this course, students learn how environmental problems develop, who they affect, and what realistic youth-led action can look like.</p>
+      <p>By the end of the program, students will be able to <strong>explain key environmental systems, analyze causes and impacts, recognize unequal environmental burdens, and design a practical action plan</strong> grounded in course concepts.</p>
+    </div>
+
+    <!-- Card 2: Course Curriculum -->
+    <div class="announce">
+      <div class="announce-head">
+        <div class="announce-avatar" style="background:linear-gradient(135deg,#1A73E8 0%,#4A90E2 100%)">📚</div>
+        <div class="announce-info">
+          <div class="a">Course Curriculum</div>
+          <div class="d">9 modules + 1 final project</div>
+        </div>
+      </div>
+      <p>Explore the connections between environmental systems, human activity, and youth action as you work through the modules of this online program.</p>
+      <ol style="margin:.6rem 0 .5rem 1.4rem;line-height:1.75;font-size:.93rem">
+        <li><strong>Environmental Systems, Not Just "Being Green"</strong> — Understand why environmental problems are connected and why systems thinking matters.</li>
+        <li><strong>Climate Change — Evidence, Not Slogans</strong> — Examine the evidence behind climate change, including rising temperatures, ocean warming, ice loss, and sea-level rise.</li>
+        <li><strong>Biodiversity and Ecosystem Services</strong> — Learn how biodiversity supports food, clean water, pollination, soil health, flood protection, and climate stability.</li>
+        <li><strong>Eutrophication, Dead Zones, and Harmful Algal Blooms</strong> — Study how nutrient pollution can trigger algal blooms, oxygen loss, and water quality problems.</li>
+        <li><strong>Air Pollution and Human Health</strong> — Explore how air pollution affects the lungs, heart, brain, and vulnerable populations.</li>
+        <li><strong>Plastic Packaging and Material Systems</strong> — Analyze plastic packaging as a system involving production, convenience, waste, recycling limits, and pollution.</li>
+        <li><strong>Fast Fashion and Consumption Footprints</strong> — Investigate the hidden environmental costs of clothing, including water pollution, textile waste, and microplastic fibres.</li>
+        <li><strong>Environmental Justice</strong> — Consider who is most exposed to environmental harm, who has less control, and what fair decision-making requires.</li>
+        <li><strong>Environmental Action Without Fake Activism</strong> — Design a realistic Youth Eco Action Plan with a specific problem, evidence, action, measurement, and limitation.</li>
+      </ol>
+      <p style="margin-top:.5rem;padding:.7rem .9rem;background:rgba(201,168,76,.1);border-left:3px solid var(--gc-gold);border-radius:0 6px 6px 0;font-size:.92rem"><strong>⚑ Final Project: Youth Eco Action Plan</strong> — Apply what you have learned to design a real environmental project grounded in course concepts.</p>
+    </div>
+
+    <!-- Card 3: Why This Subject Matters -->
+    <div class="announce">
+      <div class="announce-head">
+        <div class="announce-avatar" style="background:linear-gradient(135deg,#C9A84C 0%,#E5C46A 100%)">📊</div>
+        <div class="announce-info">
+          <div class="a">Why This Subject Matters</div>
+          <div class="d">The numbers behind the urgency</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.85rem;margin-top:.5rem">
+        <div style="padding:.95rem 1rem;background:#fff;border:1px solid var(--border);border-radius:8px;border-top:3px solid var(--gc-leaf)">
+          <div style="font-family:'Google Sans',serif;font-size:1.6rem;font-weight:700;color:var(--gc-green-d);line-height:1;margin-bottom:.35rem">6 of 9</div>
+          <div style="font-size:.84rem;color:var(--text);line-height:1.55">Planetary boundaries are now transgressed, suggesting Earth is outside the safe operating space for humanity.</div>
+        </div>
+        <div style="padding:.95rem 1rem;background:#fff;border:1px solid var(--border);border-radius:8px;border-top:3px solid var(--gc-coral)">
+          <div style="font-family:'Google Sans',serif;font-size:1.6rem;font-weight:700;color:#902a18;line-height:1;margin-bottom:.35rem">9 million</div>
+          <div style="font-size:.84rem;color:var(--text);line-height:1.55">Pollution is responsible for approximately 9 million premature deaths each year, affecting human health through air, freshwater, ocean, soil, and food-chain contamination.</div>
+        </div>
+        <div style="padding:.95rem 1rem;background:#fff;border:1px solid var(--border);border-radius:8px;border-top:3px solid var(--gc-purple)">
+          <div style="font-family:'Google Sans',serif;font-size:1.6rem;font-weight:700;color:#5a1e88;line-height:1;margin-bottom:.35rem">1 million</div>
+          <div style="font-size:.84rem;color:var(--text);line-height:1.55">Animal and plant species are estimated to be threatened with extinction, many within decades.</div>
+        </div>
+        <div style="padding:.95rem 1rem;background:#fff;border:1px solid var(--border);border-radius:8px;border-top:3px solid var(--gc-sky)">
+          <div style="font-family:'Google Sans',serif;font-size:1.6rem;font-weight:700;color:#0369A1;line-height:1;margin-bottom:.35rem">19–23M tonnes</div>
+          <div style="font-size:.84rem;color:var(--text);line-height:1.55">Plastic waste estimated to leak into aquatic ecosystems every year, polluting lakes, rivers, and seas.</div>
+        </div>
+        <div style="padding:.95rem 1rem;background:#fff;border:1px solid var(--border);border-radius:8px;border-top:3px solid var(--gc-gold)">
+          <div style="font-family:'Google Sans',serif;font-size:1.6rem;font-weight:700;color:#7a5500;line-height:1;margin-bottom:.35rem">20%</div>
+          <div style="font-size:.84rem;color:var(--text);line-height:1.55">Estimated share of global clean water pollution linked to textile production, mainly from dyeing and finishing processes.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4: Final Get Started CTA -->
+    <div class="announce" style="background:linear-gradient(135deg,#1A6640 0%,#2D9A5E 100%);color:#fff;border:none;text-align:center;padding:1.6rem 1.4rem">
+      <div style="font-family:'Google Sans',serif;font-size:1.4rem;font-weight:700;margin-bottom:.4rem;line-height:1.25">Ready to begin?</div>
+      <p style="color:rgba(255,255,255,.88);font-size:.94rem;margin-bottom:1rem;max-width:500px;margin-left:auto;margin-right:auto">Register to unlock the Classwork tab and start with Module 1 — Environmental Systems.</p>
+      <button onclick="openRegister()" style="background:#fff;color:var(--gc-green);font-weight:700;font-size:.95rem;padding:.85rem 2rem;border-radius:100px;border:none;cursor:pointer;font-family:inherit;box-shadow:0 4px 14px rgba(0,0,0,.18);transition:transform .15s" onmouseover="this.style.transform=&apos;translateY(-1px)&apos;" onmouseout="this.style.transform=&apos;translateY(0)&apos;">🚀 &nbsp; Register to Start &nbsp;→</button>
     </div>
   </div>
-
-  <!-- ════════════ ABOUT ════════════ -->
-  <section class="lp-section">
-    <div class="lp-wrap">
-      <h2>About This Course</h2>
-      <p class="lp-section-sub">Beyond basic awareness — a structured online program for students who want to truly understand environmental issues.</p>
-      <div class="lp-about-grid">
-        <div class="lp-about-text">
-          <p><strong>NexYouth Eco Literacy: From Environmental Systems to Youth Action</strong> is a structured online learning program for students who want to understand environmental issues beyond basic awareness.</p>
-          <p>Environmental problems are often described through simple messages: recycle more, use less plastic, save the planet. This program goes deeper. Students explore how <em>climate change, biodiversity loss, water pollution, air pollution, plastic packaging, fast fashion, and environmental justice</em> are connected through larger systems of human behaviour, technology, policy, economics, and ecological change.</p>
-          <p>Through this course, students learn how environmental problems develop, who they affect, and what realistic youth-led action can look like.</p>
-          <p>By the end of the program, students will be able to <strong>explain key environmental systems, analyze causes and impacts, recognize unequal environmental burdens, and design a practical action plan</strong> grounded in course concepts.</p>
-        </div>
-        <div class="lp-about-card">
-          <h3>Who is this for?</h3>
-          <ul>
-            <li>Students aged 12–22</li>
-            <li>Future scientists, advocates &amp; community leaders</li>
-            <li>Anyone tired of "raise awareness" being the only answer</li>
-          </ul>
-          <h3>What you'll need</h3>
-          <ul>
-            <li>~30 minutes per lesson, your own pace</li>
-            <li>An email + parental consent (if under 18)</li>
-            <li>Curiosity and an open mind</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ WHY THIS SUBJECT MATTERS ════════════ -->
-  <section class="lp-section alt">
-    <div class="lp-wrap">
-      <h2>Why This Subject Matters</h2>
-      <p class="lp-section-sub">The numbers behind the urgency — sourced from peer-reviewed and intergovernmental science.</p>
-      <div class="lp-stat-cards">
-        <div class="lp-stat-card">
-          <span class="lp-big-num">6 of 9</span>
-          <p class="lp-big-desc"><strong>Planetary boundaries</strong> are now transgressed, suggesting that Earth is outside the safe operating space for humanity.</p>
-        </div>
-        <div class="lp-stat-card">
-          <span class="lp-big-num">9 million</span>
-          <p class="lp-big-desc">Pollution is responsible for approximately <strong>9 million premature deaths each year</strong>, affecting human health through air, freshwater, ocean, soil, and food-chain contamination.</p>
-        </div>
-        <div class="lp-stat-card">
-          <span class="lp-big-num">1 million</span>
-          <p class="lp-big-desc"><strong>Animal and plant species</strong> are estimated to be threatened with extinction, many within decades.</p>
-        </div>
-        <div class="lp-stat-card">
-          <span class="lp-big-num">19–23M tonnes</span>
-          <p class="lp-big-desc">The amount of <strong>plastic waste</strong> estimated to leak into aquatic ecosystems every year, polluting lakes, rivers, and seas.</p>
-        </div>
-        <div class="lp-stat-card">
-          <span class="lp-big-num">20%</span>
-          <p class="lp-big-desc">The estimated share of <strong>global clean water pollution</strong> linked to textile production, mainly from dyeing and finishing processes.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ WHAT YOU'LL LEARN ════════════ -->
-  <section class="lp-section">
-    <div class="lp-wrap">
-      <h2>What you'll learn</h2>
-      <p class="lp-section-sub">Six concrete skills you'll walk away with — not trivia, not slogans</p>
-      <div class="lp-learn-grid">
-        <div class="lp-learn-item"><span class="check">✓</span><span><strong>Read climate evidence like a scientist</strong> — global temperature, ocean warming, ice loss, sea-level rise</span></div>
-        <div class="lp-learn-item"><span class="check">✓</span><span><strong>Trace pollution end-to-end</strong> — from a backyard storm drain to ocean dead zones, and identify where prevention works best</span></div>
-        <div class="lp-learn-item"><span class="check">✓</span><span><strong>Decode hidden environmental costs</strong> in plastic packaging, fast fashion, and the daily products you use</span></div>
-        <div class="lp-learn-item"><span class="check">✓</span><span><strong>Spot greenwashing &amp; "fake activism"</strong> and identify which solutions are actually backed by data</span></div>
-        <div class="lp-learn-item"><span class="check">✓</span><span><strong>Apply the framework of environmental justice</strong> — exposure, power, and access to evidence</span></div>
-        <div class="lp-learn-item"><span class="check">✓</span><span><strong>Design a realistic action plan</strong> you could pitch in your school, family, or community</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ CURRICULUM ════════════ -->
-  <section class="lp-section">
-    <div class="lp-wrap">
-      <h2>Course Curriculum</h2>
-      <p class="lp-section-sub">Explore the connections between environmental systems, human activity, and youth action as you work through the modules of this online program.</p>
-      <div class="lp-modules">
-
-        <div class="lp-module" onclick="lpToggleModule(this)">
-          <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">1</span><div><div class="lp-module-name">Module 1 — Environmental Systems, Not Just "Being Green"</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
-            <span class="lp-arrow-toggle">▼</span>
-          </div>
-          <div class="lp-module-body">Understand why environmental problems are connected and why systems thinking matters.</div>
-        </div>
-
-        <div class="lp-module" onclick="lpToggleModule(this)">
-          <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">2</span><div><div class="lp-module-name">Module 2 — Climate Change: Evidence, Not Slogans</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
-            <span class="lp-arrow-toggle">▼</span>
-          </div>
-          <div class="lp-module-body">Examine the evidence behind climate change, including rising temperatures, ocean warming, ice loss, and sea-level rise.</div>
-        </div>
-
-        <div class="lp-module" onclick="lpToggleModule(this)">
-          <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">3</span><div><div class="lp-module-name">Module 3 — Biodiversity and Ecosystem Services</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
-            <span class="lp-arrow-toggle">▼</span>
-          </div>
-          <div class="lp-module-body">Learn how biodiversity supports food, clean water, pollination, soil health, flood protection, and climate stability.</div>
-        </div>
-
-        <div class="lp-module" onclick="lpToggleModule(this)">
-          <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">4</span><div><div class="lp-module-name">Module 4 — Eutrophication, Dead Zones, and Harmful Algal Blooms</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
-            <span class="lp-arrow-toggle">▼</span>
-          </div>
-          <div class="lp-module-body">Study how nutrient pollution can trigger algal blooms, oxygen loss, and water quality problems.</div>
-        </div>
-
-        <div class="lp-module" onclick="lpToggleModule(this)">
-          <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">5</span><div><div class="lp-module-name">Module 5 — Air Pollution and Human Health</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
-            <span class="lp-arrow-toggle">▼</span>
-          </div>
-          <div class="lp-module-body">Explore how air pollution affects the lungs, heart, brain, and vulnerable populations.</div>
-        </div>
-
-        <div class="lp-module quiz" onclick="lpToggleModule(this)">
-          <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">★</span><div><div class="lp-module-name">Course Quiz 1 — Modules 1–5</div><div class="lp-module-meta">10 questions · 60% to pass · Retakeable</div></div></div>
-            <span class="lp-arrow-toggle">▼</span>
-          </div>
-          <div class="lp-module-body">A 10-question multiple-choice check covering planetary boundaries, climate evidence, biodiversity, eutrophication, and air pollution. Score 60% (6/10) to pass — retakeable.</div>
-        </div>
-
-        <div class="lp-module" onclick="lpToggleModule(this)">
-          <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">6</span><div><div class="lp-module-name">Module 6 — Plastic Packaging and Material Systems</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
-            <span class="lp-arrow-toggle">▼</span>
-          </div>
-          <div class="lp-module-body">Analyze plastic packaging as a system involving production, convenience, waste, recycling limits, and pollution.</div>
-        </div>
-
-        <div class="lp-module" onclick="lpToggleModule(this)">
-          <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">7</span><div><div class="lp-module-name">Module 7 — Fast Fashion and Consumption Footprints</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
-            <span class="lp-arrow-toggle">▼</span>
-          </div>
-          <div class="lp-module-body">Investigate the hidden environmental costs of clothing, including water pollution, textile waste, and microplastic fibres.</div>
-        </div>
-
-        <div class="lp-module" onclick="lpToggleModule(this)">
-          <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">8</span><div><div class="lp-module-name">Module 8 — Environmental Justice</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
-            <span class="lp-arrow-toggle">▼</span>
-          </div>
-          <div class="lp-module-body">Consider who is most exposed to environmental harm, who has less control, and what fair decision-making requires.</div>
-        </div>
-
-        <div class="lp-module" onclick="lpToggleModule(this)">
-          <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">9</span><div><div class="lp-module-name">Module 9 — Environmental Action Without Fake Activism</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
-            <span class="lp-arrow-toggle">▼</span>
-          </div>
-          <div class="lp-module-body">Design a realistic Youth Eco Action Plan with a specific problem, evidence, action, measurement, and limitation.</div>
-        </div>
-
-        <div class="lp-module quiz" onclick="lpToggleModule(this)">
-          <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">★</span><div><div class="lp-module-name">Course Quiz 2 — Modules 6–9</div><div class="lp-module-meta">10 questions · 60% to pass · Retakeable</div></div></div>
-            <span class="lp-arrow-toggle">▼</span>
-          </div>
-          <div class="lp-module-body">A 10-question check covering plastic systems, fast fashion, environmental justice, and action design. Score 60% (6/10) to pass — retakeable.</div>
-        </div>
-
-        <div class="lp-module final" onclick="lpToggleModule(this)">
-          <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">⚑</span><div><div class="lp-module-name">Final Project: Youth Eco Action Plan</div><div class="lp-module-meta">Submit one realistic plan grounded in course concepts</div></div></div>
-            <span class="lp-arrow-toggle">▼</span>
-          </div>
-          <div class="lp-module-body">Apply what you have learned to a real environmental issue. Your plan should explain a specific problem, the evidence supporting it, who is affected, the realistic action you would take, how you would measure impact, and an honest limitation. This is the cornerstone of your EcoHero Certificate.</div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ INSTRUCTORS ════════════ -->
-  <section class="lp-section alt">
-    <div class="lp-wrap">
-      <h2>Meet your program directors</h2>
-      <p class="lp-section-sub">Designed and led by NexYouth's youth-empowerment team</p>
-      <div class="lp-inst-grid">
-        <div class="lp-inst">
-          <div class="lp-inst-photo">JH</div>
-          <div class="lp-inst-info">
-            <h3>Justin Huang</h3>
-            <div class="lp-inst-title">Co-Director, NexYouth</div>
-            <p class="lp-inst-bio">NexYouth Program Director. Designs and runs youth-led environmental and skill-development programs that connect students with mentors, scientists, and real-world projects.</p>
-          </div>
-        </div>
-        <div class="lp-inst">
-          <div class="lp-inst-photo">MW</div>
-          <div class="lp-inst-info">
-            <h3>Max Wen</h3>
-            <div class="lp-inst-title">Co-Director, NexYouth</div>
-            <p class="lp-inst-bio">NexYouth Program Director. Founder of the International Youth Environmental Challenge (IYEC). Focused on giving youth around the world structured pathways into environmental science and action.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ CERTIFICATE SHOWCASE ════════════ -->
-  <section class="lp-section">
-    <div class="lp-wrap">
-      <h2>Earn your EcoHero Certificate</h2>
-      <p class="lp-section-sub">A verifiable record of your environmental literacy — plus a real award</p>
-      <div class="lp-cert-grid">
-        <div class="lp-cert-preview">
-          <div class="lp-cert-brand">N E X Y O U T H</div>
-          <div style="font-size:.65rem;color:var(--gc-gold);font-style:italic;letter-spacing:.05em">— CREATING SPACE FOR YOUTH —</div>
-          <div class="lp-cert-divider"></div>
-          <div class="lp-cert-title">Certificate of Completion</div>
-          <div class="lp-cert-sub">EcoHero</div>
-          <div style="font-size:.78rem;color:var(--text-2);margin:.4rem 0">This certificate is proudly presented to</div>
-          <div class="lp-cert-name">Your Name</div>
-          <div style="font-size:.75rem;color:var(--text-2);margin-top:.55rem">for successfully completing</div>
-          <div class="lp-cert-course">Eco Literacy: From Environmental Systems to Youth Action</div>
-          <div class="lp-cert-stats">9 Lessons &nbsp;|&nbsp; 2 Quizzes Passed (60%+) &nbsp;|&nbsp; Action Plan Submitted</div>
-        </div>
-        <div class="lp-cert-perks">
-          <h3>What you receive when you finish:</h3>
-          <ul>
-            <li><span class="ico">🏆</span><span><strong>Personalised PDF Certificate</strong> signed by Justin Huang &amp; Max Wen — yours to share, print, or add to your portfolio</span></li>
-            <li><span class="ico">💵</span><span><strong>$15 Completion Award</strong> sent by Interac e-Transfer once you confirm your e-Transfer email</span></li>
-            <li><span class="ico">📄</span><span><strong>Your own Youth Eco Action Plan</strong> — a real proposal you can use anywhere, anytime</span></li>
-          </ul>
-          <p style="font-size:.83rem;color:var(--text-2);margin-top:.85rem"><strong>To qualify:</strong> mark all 9 lessons complete, score ≥ 60% on both quizzes, and submit a satisfactory Youth Eco Action Plan.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ FAQ ════════════ -->
-  <section class="lp-section alt">
-    <div class="lp-wrap">
-      <h2>Frequently asked questions</h2>
-      <p class="lp-section-sub">Click any question to see the answer</p>
-      <div>
-        <div class="lp-faq-item" onclick="lpToggleFaq(this)">
-          <div class="lp-faq-q">Is the course really free?<span class="lp-faq-icon">+</span></div>
-          <div class="lp-faq-a">Yes — 100% free. NexYouth is a youth-led nonprofit. There are no fees, hidden charges, or paid upgrades. The $15 completion award is funded by NexYouth and our partners.</div>
-        </div>
-        <div class="lp-faq-item" onclick="lpToggleFaq(this)">
-          <div class="lp-faq-q">How long does the course take?<span class="lp-faq-icon">+</span></div>
-          <div class="lp-faq-a">About 5 hours total — 9 lessons at roughly 30 minutes each, plus two short quizzes and one final action plan. The course is fully self-paced; you can finish over a weekend or stretch it across a few weeks.</div>
-        </div>
-        <div class="lp-faq-item" onclick="lpToggleFaq(this)">
-          <div class="lp-faq-q">Do I need parental permission?<span class="lp-faq-icon">+</span></div>
-          <div class="lp-faq-a">If you are under 18, yes. The registration form asks for a parent or guardian's name, email, and consent before you can enroll.</div>
-        </div>
-        <div class="lp-faq-item" onclick="lpToggleFaq(this)">
-          <div class="lp-faq-q">Can I retake the quizzes?<span class="lp-faq-icon">+</span></div>
-          <div class="lp-faq-a">Yes. Both quizzes are unlimited retakes. Your highest score is saved automatically and used toward your certificate eligibility.</div>
-        </div>
-        <div class="lp-faq-item" onclick="lpToggleFaq(this)">
-          <div class="lp-faq-q">When do I get my certificate and award?<span class="lp-faq-icon">+</span></div>
-          <div class="lp-faq-a">As soon as you submit your Youth Eco Action Plan and meet all completion criteria, the system automatically generates your EcoHero Certificate (PDF) and emails it to you. The $15 e-Transfer is sent within 3–5 business days after you confirm your e-Transfer email.</div>
-        </div>
-        <div class="lp-faq-item" onclick="lpToggleFaq(this)">
-          <div class="lp-faq-q">What happens to my information?<span class="lp-faq-icon">+</span></div>
-          <div class="lp-faq-a">Your registration data is used only by NexYouth to manage course participation and award delivery. We do not sell or share student data. Submissions are stored privately and visible only to the NexYouth program team.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════ FINAL CTA ════════════ -->
-  <section class="lp-final">
-    <div class="lp-final-inner">
-      <h2>Ready to begin?</h2>
-      <p>Enroll in 60 seconds. Open Lesson 1 today.</p>
-      <button class="lp-cta-primary" onclick="openRegister()">🚀 &nbsp; Enroll Now — Free &nbsp;→</button>
-    </div>
-  </section>
-
 </main>
 
 <!-- ── CLASSWORK PAGE ── -->
@@ -1648,6 +1447,14 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 <script>
 // ───────────────────────── NAVIGATION ─────────────────────────
 function goto(id, btn){
+  // Classwork is gated — only registered/signed-in students can view it.
+  if (id === 'classwork' && !localStorage.getItem('eco_email')) {
+    if (typeof openLogin === 'function') openLogin();
+    return;
+  }
+  _navigate(id, btn);
+}
+function _navigate(id, btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
   document.getElementById(id).classList.add('on');
@@ -1676,6 +1483,11 @@ function setStudent(email, name){
 function clearStudent(){
   localStorage.removeItem(KEY_EMAIL);
   localStorage.removeItem(KEY_NAME);
+  // If currently on Classwork (now gated), bounce back to Stream
+  const cw = document.getElementById('classwork');
+  if (cw && cw.classList.contains('on')) {
+    _navigate('stream', document.querySelectorAll('.tab')[0]);
+  }
   applyAuthState();
   // reset progress UI
   document.getElementById('pbFill').style.width='0%';
@@ -1694,6 +1506,7 @@ function applyAuthState(){
   const inn = document.getElementById('authIn');
   const fab = document.getElementById('fab');
   const pb = document.getElementById('progressBar');
+  const cwTab = document.getElementById('tabClasswork');
   if (email) {
     out.style.display='none';
     inn.style.display='flex';
@@ -1703,11 +1516,13 @@ function applyAuthState(){
     document.getElementById('userAvatar').textContent = (name || email)[0].toUpperCase();
     document.getElementById('pbName').textContent = name || email.split('@')[0];
     pb.classList.add('on');
+    if (cwTab) { cwTab.classList.remove('locked'); cwTab.textContent = 'Classwork'; }
   } else {
     out.style.display='flex';
     inn.style.display='none';
     fab.style.display='inline-flex';
     pb.classList.remove('on');
+    if (cwTab) { cwTab.classList.add('locked'); cwTab.innerHTML = 'Classwork &nbsp;🔒'; }
   }
 }
 
