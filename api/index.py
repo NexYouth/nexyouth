@@ -5636,6 +5636,98 @@ def _db_unavailable_response():
     }), 503
 
 
+def _send_completion_email(email, name):
+    """Send the EcoHero certificate email via SMTP.
+    Returns one of: 'sent', 'logged' (no SMTP), 'error'.
+    Best-effort — failures are logged to stderr and never bubble up to user."""
+    full_name = (name or '').strip() or 'Student'
+    first_name = full_name.split()[0] if full_name != 'Student' else 'there'
+    admin_cc = os.environ.get('ADMIN_CC_EMAIL', 'nexyouth.master@gmail.com')
+
+    subject = f"NexYouth EcoHero Certificate - {full_name} (Course Complete)"
+    text_body = (
+        f"Hi {first_name},\n\n"
+        "Congratulations on completing the NexYouth Eco Literacy course!\n\n"
+        "You have successfully:\n"
+        "  - Completed all 9 lessons\n"
+        "  - Passed both course quizzes with 60% or higher\n"
+        "  - Submitted your Youth Eco Action Plan\n\n"
+        "You have earned a $15 completion award.\n\n"
+        "ACTION REQUIRED: e-Transfer Email\n\n"
+        "We will send your $15 award by Interac e-Transfer.\n\n"
+        f"The email we have on file for you is:\n   {email}\n\n"
+        "Please REPLY to this email to confirm:\n"
+        "  1) That this address can receive Interac e-Transfers, OR\n"
+        "  2) The correct e-Transfer email you would like us to use.\n\n"
+        "We will process your payment within 3-5 business days of receiving your confirmation.\n"
+        "Your printable EcoHero certificate will follow once we process your award.\n\n"
+        "Thank you for taking real action on the environment.\n\n"
+        "- The NexYouth Team\n"
+    )
+    html_body = (
+        '<!DOCTYPE html><html><body style="font-family:Arial,Helvetica,sans-serif;'
+        'font-size:14px;color:#202124;max-width:640px;margin:0 auto;padding:18px;line-height:1.55">'
+        f'<p>Hi <strong>{first_name}</strong>,</p>'
+        '<p>Congratulations on completing the <strong>NexYouth Eco Literacy course</strong>!</p>'
+        '<p>You have successfully:</p>'
+        '<ul style="padding-left:22px;margin:8px 0">'
+        '<li>Completed all 9 lessons</li>'
+        '<li>Passed both course quizzes with 60% or higher</li>'
+        '<li>Submitted your Youth Eco Action Plan</li>'
+        '</ul>'
+        '<p>You have earned a <strong>$15 completion award</strong>.</p>'
+        '<p style="margin-top:22px;font-size:16px"><strong style="color:#1A73E8">'
+        'ACTION REQUIRED: e-Transfer Email</strong></p>'
+        '<p>We will send your $15 award by Interac e-Transfer.</p>'
+        '<p>The email we have on file for you is:<br>'
+        f'&nbsp;&nbsp;&nbsp;<a href="mailto:{email}" style="color:#1A73E8">{email}</a></p>'
+        '<p>Please <strong>REPLY</strong> to this email to confirm:</p>'
+        '<ol style="padding-left:22px;margin:8px 0">'
+        '<li>That this address can receive Interac e-Transfers, OR</li>'
+        '<li>The correct e-Transfer email you would like us to use.</li>'
+        '</ol>'
+        '<p>We will process your payment within 3-5 business days of receiving your confirmation.<br>'
+        'Your printable EcoHero certificate will follow once we process your award.</p>'
+        '<p style="margin-top:22px">Thank you for taking real action on the environment.</p>'
+        '<p style="color:#5F6368;margin-top:18px">— The NexYouth Team</p>'
+        '</body></html>'
+    )
+
+    smtp_host = os.environ.get('SMTP_HOST')
+    if not smtp_host:
+        import sys
+        print(f"[ECO COMPLETION — SMTP not configured]\nTo: {email}\nCc: {admin_cc}\nSubject: {subject}\n\n{text_body}", file=sys.stderr)
+        return 'logged'
+
+    try:
+        import smtplib
+        from email.message import EmailMessage as _EmailMessage
+        msg = _EmailMessage()
+        msg['Subject'] = subject
+        msg['From'] = os.environ.get('EMAIL_FROM', 'noreply@nexyouth.org')
+        msg['To'] = email
+        msg['Cc'] = admin_cc
+        msg.set_content(text_body)
+        msg.add_alternative(html_body, subtype='html')
+
+        port = int(os.environ.get('SMTP_PORT', '587'))
+        use_ssl = os.environ.get('SMTP_SSL', '').lower() in ('1', 'true', 'yes') or port == 465
+        timeout = int(os.environ.get('SMTP_TIMEOUT', '15'))
+        smtp_cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
+        with smtp_cls(smtp_host, port, timeout=timeout) as s:
+            if not use_ssl and os.environ.get('SMTP_TLS', '1') == '1':
+                s.starttls()
+            u, p = os.environ.get('SMTP_USER'), os.environ.get('SMTP_PASS')
+            if u and p:
+                s.login(u, p)
+            s.send_message(msg, to_addrs=[email, admin_cc])
+        return 'sent'
+    except Exception as e:
+        import sys, traceback
+        print(f"[ECO COMPLETION SMTP ERROR] {type(e).__name__}: {e}\n{traceback.format_exc()}", file=sys.stderr)
+        return 'error'
+
+
 @app.route('/api/eco-classroom/submit', methods=['POST'])
 def eco_classroom_submit():
     data = request.get_json(silent=True) or {}
@@ -5697,6 +5789,7 @@ def eco_classroom_submit():
 
         progress = _db_read_progress(conn, email)
         completed_now = False
+        email_status = None
         if _db_is_completed(progress) and not _db_already_completed(conn, email):
             name = _db_student_name(conn, email)
             with conn.cursor() as cur:
@@ -5706,6 +5799,7 @@ def eco_classroom_submit():
                     (email, name),
                 )
             completed_now = True
+            email_status = _send_completion_email(email, name)
 
         return jsonify({
             'ok': True,
@@ -5715,7 +5809,7 @@ def eco_classroom_submit():
             'progress': progress,
             'completed': _db_is_completed(progress),
             'completed_now': completed_now,
-            'email_status': None,
+            'email_status': email_status,
         })
     except Exception as e:
         import sys, traceback
@@ -5755,13 +5849,36 @@ def eco_classroom_progress():
 
 @app.route('/api/eco-classroom/resend-cert', methods=['POST'])
 def eco_classroom_resend_cert():
-    """Stub: certificate generation requires reportlab + writable storage,
-    neither of which run on Vercel. Return a friendly message."""
-    return jsonify({
-        'ok': False,
-        'error': 'Certificate emails are sent automatically when you finish all lessons. '
-                 'If you didn\'t receive yours, please email nexyouth.master@gmail.com.',
-    }), 501
+    data = request.get_json(silent=True) or {}
+    email = str(data.get('student_email') or '').strip().lower()
+    if not re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', email):
+        return jsonify({'ok': False, 'error': 'Valid email required.'}), 400
+
+    conn = _db_connect()
+    if conn is None:
+        return _db_unavailable_response()
+    try:
+        _db_ensure_schema(conn)
+        if not _db_already_completed(conn, email):
+            return jsonify({
+                'ok': False,
+                'error': 'No completion record found for this email. Finish all lessons first.',
+            }), 404
+        name = _db_student_name(conn, email)
+        status = _send_completion_email(email, name)
+        if status == 'sent':
+            return jsonify({'ok': True, 'email_status': 'sent'})
+        if status == 'logged':
+            return jsonify({'ok': False,
+                            'error': 'Email service is not configured. Please contact nexyouth.master@gmail.com.'}), 503
+        return jsonify({'ok': False, 'error': 'Could not send email. Please try again later.'}), 500
+    except Exception as e:
+        import sys, traceback
+        print(f"[ECO RESEND ERROR] {type(e).__name__}: {e}\n{traceback.format_exc()}", file=sys.stderr)
+        return jsonify({'ok': False, 'error': 'Could not resend certificate.'}), 500
+    finally:
+        try: conn.close()
+        except Exception: pass
 
 
 @app.route('/<path:path>')
