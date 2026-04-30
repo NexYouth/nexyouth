@@ -1689,17 +1689,23 @@ document.querySelectorAll('#quizzes .item.quiz').forEach((quizItem, qIdx) => {
     });
   });
 
-  // Replace "Show answers" button with "Submit Quiz" + score display + retake button
+  // Remove "Show answers" toggle and append "Submit Quiz" / Retake / Score
+  // AFTER the last question (Question 10).
   const showBtn = quizItem.querySelector('.show-toggle');
-  if (showBtn) {
-    const wrap = document.createElement('div');
-    wrap.className = 'quiz-actions';
-    wrap.innerHTML = `
-      <button class="quiz-submit-btn" data-quiz-action="${quizId}" onclick="submitQuiz('${quizId}', this)">📤 Submit Quiz</button>
-      <button class="quiz-submit-btn retake" data-quiz-retake="${quizId}" onclick="retakeQuiz('${quizId}', this)" style="display:none;background:linear-gradient(135deg,#5F6368 0%,#80868B 100%)">🔁 Retake Quiz</button>
-      <span class="quiz-score" data-quiz-score="${quizId}"></span>
-    `;
-    showBtn.replaceWith(wrap);
+  if (showBtn) showBtn.remove();
+  const wrap = document.createElement('div');
+  wrap.className = 'quiz-actions';
+  wrap.style.marginTop = '1.2rem';
+  wrap.innerHTML = `
+    <button class="quiz-submit-btn" data-quiz-action="${quizId}" onclick="submitQuiz('${quizId}', this)">📤 Submit Quiz</button>
+    <button class="quiz-submit-btn retake" data-quiz-retake="${quizId}" onclick="retakeQuiz('${quizId}', this)" style="display:none;background:linear-gradient(135deg,#5F6368 0%,#80868B 100%)">🔁 Retake Quiz</button>
+    <span class="quiz-score" data-quiz-score="${quizId}"></span>
+  `;
+  const questions = quizItem.querySelectorAll('.q');
+  if (questions.length) {
+    questions[questions.length - 1].after(wrap);
+  } else {
+    quizItem.querySelector('.item-body').appendChild(wrap);
   }
 });
 
