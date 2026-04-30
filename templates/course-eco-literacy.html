@@ -347,6 +347,135 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 .celebrate-card .c-btn{background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;padding:.85rem 1.8rem;border-radius:100px;border:none;font-weight:600;font-size:.95rem;cursor:pointer;font-family:inherit;position:relative;z-index:2;transition:all .2s}
 .celebrate-card .c-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(45,154,94,.4)}
 
+/* ── EDX-STYLE LANDING PAGE ── */
+.page.landing{display:block;max-width:none;margin:0;padding:0;grid-template-columns:none;gap:0}
+.lp-wrap{max-width:1140px;margin:0 auto;padding:0 1.8rem}
+
+/* Hero */
+.lp-hero{background:linear-gradient(135deg,#0d3a23 0%,#1A6640 45%,#2D9A5E 100%);color:#fff;padding:4rem 0 3.5rem;position:relative;overflow:hidden}
+.lp-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 700px 350px at 80% 20%,rgba(63,181,114,.4) 0%,transparent 60%),radial-gradient(ellipse 500px 250px at 20% 80%,rgba(201,168,76,.18) 0%,transparent 65%);pointer-events:none}
+.lp-hero::after{content:'🌍';position:absolute;right:6%;top:25%;font-size:9rem;opacity:.07;transform:rotate(-12deg)}
+.lp-hero-inner{max-width:1140px;margin:0 auto;padding:0 1.8rem;position:relative;z-index:2}
+.lp-breadcrumb{font-size:.78rem;color:rgba(255,255,255,.7);letter-spacing:.04em;margin-bottom:1.4rem;font-weight:500}
+.lp-breadcrumb a{color:rgba(255,255,255,.85);text-decoration:none}
+.lp-breadcrumb a:hover{color:#fff}
+.lp-pills{display:flex;gap:.55rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.lp-pill{background:rgba(255,255,255,.16);backdrop-filter:blur(8px);padding:.32rem .85rem;border-radius:100px;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(255,255,255,.2)}
+.lp-pill.gold{background:rgba(201,168,76,.3);border-color:rgba(201,168,76,.45);color:#fff5d6}
+.lp-hero h1{font-family:'Google Sans',serif;font-size:clamp(2rem,4.4vw,3.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:.85rem;max-width:820px}
+.lp-hero .lp-lede{font-size:clamp(1rem,1.6vw,1.18rem);color:rgba(255,255,255,.9);max-width:680px;line-height:1.55;margin-bottom:1.4rem}
+.lp-by{font-size:.86rem;color:rgba(255,255,255,.78);margin-bottom:1.7rem;line-height:1.5}
+.lp-by strong{color:#fff;font-weight:600}
+.lp-cta-row{display:flex;gap:.85rem;flex-wrap:wrap;align-items:center}
+.lp-cta-primary{background:#fff;color:var(--gc-green-d);padding:.95rem 1.9rem;border-radius:100px;font-weight:700;font-size:1rem;cursor:pointer;border:none;font-family:inherit;transition:all .2s;box-shadow:0 4px 14px rgba(0,0,0,.18);display:inline-flex;align-items:center;gap:.4rem}
+.lp-cta-primary:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,0,0,.28)}
+.lp-cta-secondary{background:transparent;color:#fff;padding:.92rem 1.5rem;border-radius:100px;font-weight:600;font-size:.95rem;cursor:pointer;font-family:inherit;border:1.5px solid rgba(255,255,255,.5);transition:all .15s}
+.lp-cta-secondary:hover{background:rgba(255,255,255,.12);border-color:#fff}
+
+/* Quick facts strip */
+.lp-stats-strip{background:#fff;border-bottom:1px solid var(--border);padding:0}
+.lp-stats-grid{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));align-items:stretch}
+.lp-stat{padding:1.4rem 1.2rem;text-align:center;border-right:1px solid #f0f0f0}
+.lp-stat:last-child{border-right:none}
+.lp-stat .num{font-family:'Google Sans',serif;font-size:1.6rem;font-weight:700;color:var(--gc-green);line-height:1;margin-bottom:.25rem}
+.lp-stat .label{font-size:.72rem;color:var(--text-2);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+
+/* Sections */
+.lp-section{background:#fff;padding:3.2rem 0;border-bottom:1px solid var(--border)}
+.lp-section.alt{background:#FAFBFC}
+.lp-section h2{font-family:'Google Sans',serif;font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:700;color:var(--text);margin-bottom:.6rem;letter-spacing:-.01em}
+.lp-section .lp-section-sub{color:var(--text-2);font-size:1rem;margin-bottom:1.8rem;max-width:680px;line-height:1.55}
+
+/* About 2-column */
+.lp-about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:2.5rem;align-items:start}
+@media(max-width:780px){.lp-about-grid{grid-template-columns:1fr;gap:1.5rem}}
+.lp-about-text p{font-size:.97rem;color:var(--text);line-height:1.75;margin-bottom:1rem}
+.lp-about-text p em{color:var(--gc-green);font-style:italic;font-weight:500}
+.lp-about-card{background:#F8FAFB;border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.5rem}
+.lp-about-card h3{font-family:'Google Sans',sans-serif;font-size:.92rem;color:var(--gc-green);font-weight:600;margin-bottom:.55rem;text-transform:uppercase;letter-spacing:.06em}
+.lp-about-card h3:not(:first-child){margin-top:1.2rem}
+.lp-about-card ul{margin-left:1.1rem;font-size:.9rem;color:var(--text);line-height:1.7}
+.lp-about-card ul li{margin-bottom:.25rem}
+
+/* What you'll learn grid */
+.lp-learn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem}
+.lp-learn-item{display:flex;gap:.85rem;padding:1.05rem 1.2rem;background:#F8FAFB;border-radius:10px;border-left:3px solid var(--gc-leaf);font-size:.93rem;line-height:1.55;color:var(--text)}
+.lp-learn-item .check{color:var(--gc-green);font-size:1.2rem;font-weight:700;flex-shrink:0;line-height:1.5}
+
+/* Curriculum modules */
+.lp-modules{margin-top:.4rem}
+.lp-module{background:#fff;border:1px solid var(--border);border-radius:10px;margin-bottom:.6rem;overflow:hidden;transition:box-shadow .15s}
+.lp-module:hover{box-shadow:0 2px 8px rgba(60,64,67,.08)}
+.lp-module-h{padding:1rem 1.4rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:1rem}
+.lp-module-title{display:flex;align-items:center;gap:.95rem;flex:1;min-width:0}
+.lp-module-num{background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;font-family:'Google Sans',serif;flex-shrink:0}
+.lp-module.quiz .lp-module-num{background:linear-gradient(135deg,var(--gc-blue) 0%,#4A90E2 100%)}
+.lp-module.final .lp-module-num{background:linear-gradient(135deg,var(--gc-gold) 0%,#E5C46A 100%)}
+.lp-module-name{font-weight:600;font-size:.96rem;color:var(--text);line-height:1.35}
+.lp-module-meta{font-size:.78rem;color:var(--text-2);margin-top:.18rem}
+.lp-arrow-toggle{color:var(--text-2);font-size:.85rem;transition:transform .2s;flex-shrink:0}
+.lp-module.open .lp-arrow-toggle{transform:rotate(180deg)}
+.lp-module-body{display:none;padding:0 1.4rem 1.2rem 4.4rem;color:var(--text-2);font-size:.9rem;line-height:1.65;border-top:1px solid #f0f0f0}
+.lp-module.open .lp-module-body{display:block;padding-top:.9rem}
+
+/* Instructors */
+.lp-inst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem}
+.lp-inst{display:flex;gap:1.1rem;padding:1.4rem;background:#fff;border:1px solid var(--border);border-radius:12px}
+.lp-inst-photo{width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.7rem;font-weight:700;font-family:'Google Sans',serif;flex-shrink:0;box-shadow:0 4px 14px rgba(26,102,64,.2)}
+.lp-inst-info h3{font-family:'Google Sans',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.15rem}
+.lp-inst-title{font-size:.83rem;color:var(--gc-green);font-weight:600;margin-bottom:.45rem}
+.lp-inst-bio{font-size:.86rem;color:var(--text-2);line-height:1.6}
+
+/* Certificate showcase */
+.lp-cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+@media(max-width:780px){.lp-cert-grid{grid-template-columns:1fr}}
+.lp-cert-preview{background:linear-gradient(135deg,#F8F5F0 0%,#fff 100%);border:2px solid var(--gc-gold);border-radius:14px;padding:1.4rem 1.6rem;text-align:center;position:relative;overflow:hidden;box-shadow:0 8px 28px rgba(60,64,67,.1)}
+.lp-cert-preview .lp-cert-brand{font-family:'Google Sans',sans-serif;font-size:.7rem;letter-spacing:.18em;color:var(--gc-green);font-weight:700;margin-bottom:.3rem}
+.lp-cert-preview .lp-cert-divider{width:60%;height:1px;background:var(--gc-gold);margin:.4rem auto .7rem}
+.lp-cert-preview .lp-cert-title{font-family:Times,serif;font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
+.lp-cert-preview .lp-cert-sub{font-style:italic;color:var(--gc-leaf);font-size:.92rem;margin-bottom:.7rem}
+.lp-cert-preview .lp-cert-name{font-family:Times,serif;font-style:italic;font-size:1.6rem;font-weight:700;color:var(--gc-green);margin:.6rem 0;border-bottom:1.5px solid var(--gc-gold);padding-bottom:.35rem;display:inline-block}
+.lp-cert-preview .lp-cert-course{font-family:Times,serif;font-style:italic;font-weight:600;color:var(--gc-green);font-size:.95rem;margin-bottom:.5rem}
+.lp-cert-preview .lp-cert-stats{font-style:italic;color:var(--text-2);font-size:.78rem}
+.lp-cert-perks h3{font-family:'Google Sans',sans-serif;font-size:1.1rem;color:var(--text);margin-bottom:.7rem;font-weight:600}
+.lp-cert-perks ul{margin:0;padding:0;list-style:none}
+.lp-cert-perks ul li{padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.93rem;color:var(--text);display:flex;gap:.65rem;align-items:flex-start}
+.lp-cert-perks ul li:last-child{border-bottom:none}
+.lp-cert-perks ul li .ico{font-size:1.2rem;flex-shrink:0;line-height:1.4}
+
+/* FAQ */
+.lp-faq-item{border-bottom:1px solid var(--border);padding:0}
+.lp-faq-q{padding:1.05rem 0;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-size:.96rem}
+.lp-faq-q:hover{color:var(--gc-green)}
+.lp-faq-q .lp-faq-icon{color:var(--gc-green);font-size:1.4rem;transition:transform .2s;flex-shrink:0;line-height:1;font-weight:300}
+.lp-faq-item.open .lp-faq-icon{transform:rotate(45deg)}
+.lp-faq-a{display:none;padding:0 0 1.1rem;color:var(--text-2);font-size:.92rem;line-height:1.7;max-width:780px}
+.lp-faq-item.open .lp-faq-a{display:block}
+
+/* Final CTA */
+.lp-final{background:linear-gradient(135deg,#0d3a23 0%,#1A6640 60%,#2D9A5E 100%);color:#fff;padding:4rem 0;text-align:center;position:relative;overflow:hidden}
+.lp-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(63,181,114,.25) 0%,transparent 65%);pointer-events:none}
+.lp-final-inner{max-width:680px;margin:0 auto;padding:0 1.8rem;position:relative;z-index:2}
+.lp-final h2{font-family:'Google Sans',serif;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:700;color:#fff;margin-bottom:.6rem;line-height:1.15}
+.lp-final p{color:rgba(255,255,255,.88);font-size:1.05rem;margin-bottom:1.6rem;line-height:1.55}
+.lp-final .lp-cta-primary{font-size:1.08rem;padding:1.05rem 2.4rem}
+
+/* mobile tweaks */
+@media(max-width:680px){
+  .lp-hero{padding:3rem 0 2.5rem}
+  .lp-section{padding:2.5rem 0}
+  .lp-stats-grid{grid-template-columns:repeat(3,1fr)}
+  .lp-stat{padding:1.1rem .6rem;font-size:.92rem}
+  .lp-stat .num{font-size:1.3rem}
+  .lp-stat .label{font-size:.65rem}
+  .lp-hero::after{display:none}
+  .lp-cta-row{flex-direction:column;align-items:stretch}
+  .lp-cta-row button{width:100%;justify-content:center}
+  .lp-module-h{padding:.85rem 1rem}
+  .lp-module-name{font-size:.9rem}
+  .lp-module-body{padding-left:1rem}
+}
+
 /* mobile */
 @media(max-width:600px){
   .appbar{padding:.5rem .9rem}
@@ -438,111 +567,291 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 </div>
 
 <!-- ── STREAM PAGE ── -->
-<main id="stream" class="page on">
+<main id="stream" class="page on landing">
 
-  <!-- Sidebar -->
-  <aside class="side">
-    <div class="side-card">
-      <h3>📌 Upcoming</h3>
-      <div class="upcoming"><span class="ic">📝</span><span>Final: Youth Eco Action Plan</span></div>
-      <div class="upcoming"><span class="ic quiz">🧪</span><span>Course Quiz 1 — Lessons 1–5</span></div>
-      <div class="upcoming"><span class="ic quiz">🧪</span><span>Course Quiz 2 — Lessons 6–9</span></div>
-    </div>
-    <div class="side-card">
-      <h3>🎓 Earn the Certificate</h3>
-      <div class="stat-row"><span>Pass Quiz 1</span><span class="v">≥ 60%</span></div>
-      <div class="stat-row"><span>Pass Quiz 2</span><span class="v">≥ 60%</span></div>
-      <div class="stat-row"><span>Action Plan</span><span class="v">Submitted</span></div>
-      <div class="stat-row"><span>Reward</span><span class="v">Eco Hero Certificate</span></div>
-    </div>
-  </aside>
-
-  <!-- Feed -->
-  <div class="feed">
-    <!-- ── REGISTER CTA HERO ── -->
-    <div class="cta-hero">
-      <span class="cta-tag">🌍 Now Enrolling</span>
-      <h3>Join the Eco Literacy Course</h3>
-      <p>Free for all youth. Earn a NexYouth certificate and a $15 award when you complete the program. Spots are limited — sign up to reserve yours.</p>
-      <div class="btn-row">
-        <button class="btn-primary" onclick="openRegister()">Register Now &nbsp;→</button>
-        <button class="btn-secondary" onclick="goto('classwork',document.querySelectorAll('.tab')[1])">Browse Lessons</button>
+  <!-- ════════════ HERO ════════════ -->
+  <section class="lp-hero">
+    <div class="lp-hero-inner">
+      <div class="lp-breadcrumb"><a href="/programs/eco-classroom">EcoClassroom</a> &nbsp;›&nbsp; Environmental Science</div>
+      <div class="lp-pills">
+        <span class="lp-pill gold">★ Free for All Youth</span>
+        <span class="lp-pill">Self-Paced</span>
+        <span class="lp-pill">Earn a Certificate</span>
+      </div>
+      <h1>Eco Literacy: From Environmental Systems to Youth Action</h1>
+      <p class="lp-lede">Build the science fluency to read climate evidence, decode pollution chains, and design real environmental action — in roughly 5 hours of self-paced study.</p>
+      <p class="lp-by">Offered by <strong>NexYouth</strong> &nbsp;·&nbsp; Program Directors: <strong>Justin Huang</strong> &amp; <strong>Max Wen</strong></p>
+      <div class="lp-cta-row">
+        <button class="lp-cta-primary" onclick="openRegister()">Enroll Now — Free &nbsp;→</button>
+        <button class="lp-cta-secondary" onclick="openLogin()">I'm already registered → Sign In</button>
       </div>
     </div>
+  </section>
 
-    <h2 class="section-h">Welcome, future EcoHero <span class="count">Posted by NexYouth</span></h2>
-
-    <!-- HERO PITCH -->
-    <div class="announce" style="background:linear-gradient(135deg,#F1F8F4 0%,#fff 60%);border-color:rgba(45,154,94,.3);position:relative;overflow:hidden">
-      <div style="position:absolute;top:-30%;right:-10%;font-size:9rem;opacity:.06;transform:rotate(-12deg);pointer-events:none">🌍</div>
-      <div class="announce-head">
-        <div class="announce-avatar" style="background:linear-gradient(135deg,#1A6640 0%,#3FB572 100%)">🌍</div>
-        <div class="announce-info">
-          <div class="a" style="font-size:1.05rem;font-weight:700">You don't have to wait until you're an adult to lead.</div>
-          <div class="d">A 5-hour journey from understanding the planet → to changing it</div>
-        </div>
-      </div>
-      <p style="font-size:.97rem;line-height:1.7">Climate change isn't a slogan. Pollution isn't just litter. Biodiversity loss isn't only about animals. <strong>They're connected systems</strong> — and the next generation of leaders has to actually understand them.</p>
-      <p style="font-size:.97rem;line-height:1.7">This course is built for youth who want to <strong>think clearly</strong> about the environment, <strong>spot fake activism</strong>, and <strong>design one real action</strong> they can take in their own school or community.</p>
-      <p style="margin-top:.9rem;padding:.8rem 1rem;background:rgba(45,154,94,.08);border-left:3px solid var(--gc-leaf);border-radius:0 6px 6px 0;font-size:.92rem;color:var(--gc-green-d);line-height:1.6">
-        <strong>The honest truth:</strong> 6 of 9 of Earth's life-support systems have already crossed safety limits. If you're under 22, this is <em>your</em> problem to solve. We believe you can — and this course gives you the tools.
-      </p>
-    </div>
-
-    <!-- WHAT YOU'LL DO -->
-    <div class="announce">
-      <div class="announce-head">
-        <div class="announce-avatar" style="background:linear-gradient(135deg,#1A73E8 0%,#4A90E2 100%)">🧭</div>
-        <div class="announce-info">
-          <div class="a">By the end, you'll be able to…</div>
-          <div class="d">Real skills, not just trivia</div>
-        </div>
-      </div>
-      <ul style="margin:.4rem 0 .2rem 1.4rem;line-height:1.85">
-        <li><strong>Read climate evidence like a scientist</strong> — temperature, ocean warming, ice loss, sea-level rise</li>
-        <li><strong>Trace pollution end-to-end</strong> — from a backyard storm drain to an ocean dead zone</li>
-        <li><strong>Decode hidden impacts</strong> in plastic packaging, fast fashion, and your daily choices</li>
-        <li><strong>Spot greenwashing &amp; "fake activism"</strong> — and tell which solutions are actually backed by data</li>
-        <li><strong>Design one realistic action plan</strong> you could pitch to your school, family, or town</li>
-      </ul>
-    </div>
-
-    <!-- WHAT YOU GET -->
-    <div class="announce" style="background:linear-gradient(135deg,#FFFBEF 0%,#fff 60%);border-color:rgba(201,168,76,.4)">
-      <div class="announce-head">
-        <div class="announce-avatar" style="background:linear-gradient(135deg,#C9A84C 0%,#E5C46A 100%)">🎓</div>
-        <div class="announce-info">
-          <div class="a">What you walk away with</div>
-          <div class="d">Recognition for the work you put in</div>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.85rem;margin-top:.4rem">
-        <div style="padding:.85rem 1rem;background:#fff;border-radius:8px;border:1px solid var(--border)">
-          <div style="font-size:1.7rem;line-height:1;margin-bottom:.3rem">🏆</div>
-          <div style="font-weight:600;color:var(--text)">EcoHero Certificate</div>
-          <div style="font-size:.82rem;color:var(--text-2);margin-top:.15rem">Personalised PDF, signed by the NexYouth Program Directors. Add it to your portfolio.</div>
-        </div>
-        <div style="padding:.85rem 1rem;background:#fff;border-radius:8px;border:1px solid var(--border)">
-          <div style="font-size:1.7rem;line-height:1;margin-bottom:.3rem">💵</div>
-          <div style="font-weight:600;color:var(--text)">$15 Completion Prize</div>
-          <div style="font-size:.82rem;color:var(--text-2);margin-top:.15rem">Sent by Interac e-Transfer once you've finished all requirements.</div>
-        </div>
-        <div style="padding:.85rem 1rem;background:#fff;border-radius:8px;border:1px solid var(--border)">
-          <div style="font-size:1.7rem;line-height:1;margin-bottom:.3rem">🌱</div>
-          <div style="font-weight:600;color:var(--text)">A real action plan</div>
-          <div style="font-size:.82rem;color:var(--text-2);margin-top:.15rem">Your own Youth Eco Action Plan — yours to use anywhere, anytime.</div>
-        </div>
-      </div>
-      <p style="margin-top:.95rem;font-size:.83rem;color:var(--text-2)"><strong>To qualify:</strong> finish all 9 lessons, score ≥ 60% on both quizzes, and submit a satisfactory Action Plan.</p>
-    </div>
-
-    <!-- CTA -->
-    <div class="announce" style="background:linear-gradient(135deg,#1A6640 0%,#2D9A5E 100%);color:#fff;border:none;text-align:center;padding:1.6rem 1.4rem">
-      <div style="font-family:'Google Sans',serif;font-size:1.45rem;font-weight:700;margin-bottom:.4rem;line-height:1.25">Ready to begin?</div>
-      <p style="color:rgba(255,255,255,.88);font-size:.95rem;margin-bottom:1.1rem;max-width:500px;margin-left:auto;margin-right:auto">9 lessons. About 30 minutes each. Self-paced. Start with Lesson 1 — Environmental Systems.</p>
-      <button onclick="goto('classwork',document.querySelectorAll('.tab')[1])" style="background:#fff;color:var(--gc-green);font-weight:700;font-size:.95rem;padding:.85rem 2rem;border-radius:100px;border:none;cursor:pointer;font-family:inherit;box-shadow:0 4px 14px rgba(0,0,0,.18);transition:transform .15s" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='translateY(0)'">🚀 &nbsp; Start Lesson 1 &nbsp; →</button>
+  <!-- ════════════ QUICK FACTS ════════════ -->
+  <div class="lp-stats-strip">
+    <div class="lp-stats-grid">
+      <div class="lp-stat"><div class="num">9</div><div class="label">Lessons</div></div>
+      <div class="lp-stat"><div class="num">~5h</div><div class="label">Total time</div></div>
+      <div class="lp-stat"><div class="num">2</div><div class="label">Quizzes</div></div>
+      <div class="lp-stat"><div class="num">1</div><div class="label">Action Plan</div></div>
+      <div class="lp-stat"><div class="num">$15</div><div class="label">Award</div></div>
+      <div class="lp-stat"><div class="num">EN</div><div class="label">Language</div></div>
     </div>
   </div>
+
+  <!-- ════════════ ABOUT ════════════ -->
+  <section class="lp-section">
+    <div class="lp-wrap">
+      <h2>About this course</h2>
+      <p class="lp-section-sub">Why Eco Literacy is different from a typical climate course</p>
+      <div class="lp-about-grid">
+        <div class="lp-about-text">
+          <p>Climate change. Plastic pollution. Biodiversity loss. Today's environmental challenges are urgent, complex, and deeply <em>connected</em> — but most courses for youth still teach them as isolated trivia or vague slogans.</p>
+          <p>Eco Literacy is built on the same scientific frameworks that researchers and policymakers actually use: <strong>planetary boundaries, ecosystem services, end-to-end pollution chains, environmental justice</strong>. It teaches youth to think the way scientists do — and to design realistic action grounded in evidence, not hype.</p>
+          <p>By the end, you won't just <em>know</em> more. You'll have written your own <strong>Youth Eco Action Plan</strong> — a realistic, evidence-based proposal you could actually pitch to your school, family, or community.</p>
+        </div>
+        <div class="lp-about-card">
+          <h3>Who is this for?</h3>
+          <ul>
+            <li>Students aged 12–22</li>
+            <li>Future scientists, advocates &amp; community leaders</li>
+            <li>Anyone tired of "raise awareness" being the only answer</li>
+          </ul>
+          <h3>What you'll need</h3>
+          <ul>
+            <li>~30 minutes per lesson, your own pace</li>
+            <li>An email + parental consent (if under 18)</li>
+            <li>Curiosity and an open mind</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT YOU'LL LEARN ════════════ -->
+  <section class="lp-section alt">
+    <div class="lp-wrap">
+      <h2>What you'll learn</h2>
+      <p class="lp-section-sub">Six concrete skills you'll walk away with — not trivia, not slogans</p>
+      <div class="lp-learn-grid">
+        <div class="lp-learn-item"><span class="check">✓</span><span><strong>Read climate evidence like a scientist</strong> — global temperature, ocean warming, ice loss, sea-level rise</span></div>
+        <div class="lp-learn-item"><span class="check">✓</span><span><strong>Trace pollution end-to-end</strong> — from a backyard storm drain to ocean dead zones, and identify where prevention works best</span></div>
+        <div class="lp-learn-item"><span class="check">✓</span><span><strong>Decode hidden environmental costs</strong> in plastic packaging, fast fashion, and the daily products you use</span></div>
+        <div class="lp-learn-item"><span class="check">✓</span><span><strong>Spot greenwashing &amp; "fake activism"</strong> and identify which solutions are actually backed by data</span></div>
+        <div class="lp-learn-item"><span class="check">✓</span><span><strong>Apply the framework of environmental justice</strong> — exposure, power, and access to evidence</span></div>
+        <div class="lp-learn-item"><span class="check">✓</span><span><strong>Design a realistic action plan</strong> you could pitch in your school, family, or community</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ CURRICULUM ════════════ -->
+  <section class="lp-section">
+    <div class="lp-wrap">
+      <h2>Course curriculum</h2>
+      <p class="lp-section-sub">9 lessons · 2 quizzes · 1 final project. Click any item to see what's covered.</p>
+      <div class="lp-modules">
+
+        <div class="lp-module" onclick="lpToggleModule(this)">
+          <div class="lp-module-h">
+            <div class="lp-module-title"><span class="lp-module-num">1</span><div><div class="lp-module-name">Environmental Systems, Not Just "Being Green"</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <span class="lp-arrow-toggle">▼</span>
+          </div>
+          <div class="lp-module-body">Introduction to the framework of <strong>planetary boundaries</strong> — the nine global processes that regulate Earth's stability. Why "saving the planet" is really about understanding interconnected systems, not single issues.</div>
+        </div>
+
+        <div class="lp-module" onclick="lpToggleModule(this)">
+          <div class="lp-module-h">
+            <div class="lp-module-title"><span class="lp-module-num">2</span><div><div class="lp-module-name">Climate Change: Evidence, Not Slogans</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <span class="lp-arrow-toggle">▼</span>
+          </div>
+          <div class="lp-module-body">How scientists actually <em>know</em> the climate is changing: temperature records, ocean warming, shrinking ice sheets, and rising sea levels. Build a four-line evidence chain you could explain to anyone.</div>
+        </div>
+
+        <div class="lp-module" onclick="lpToggleModule(this)">
+          <div class="lp-module-h">
+            <div class="lp-module-title"><span class="lp-module-num">3</span><div><div class="lp-module-name">Biodiversity and Ecosystem Services</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <span class="lp-arrow-toggle">▼</span>
+          </div>
+          <div class="lp-module-body">Why biodiversity matters beyond saving cute animals — pollination, clean water, soil health, flood protection, carbon storage. What happens when an ecosystem service breaks down.</div>
+        </div>
+
+        <div class="lp-module" onclick="lpToggleModule(this)">
+          <div class="lp-module-h">
+            <div class="lp-module-title"><span class="lp-module-num">4</span><div><div class="lp-module-name">Eutrophication, Dead Zones &amp; Algal Blooms</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <span class="lp-arrow-toggle">▼</span>
+          </div>
+          <div class="lp-module-body">Trace the cause-and-effect chain: runoff → excess nutrients → algal blooms → oxygen loss → ecosystem collapse. Find the points where prevention or monitoring is most effective.</div>
+        </div>
+
+        <div class="lp-module" onclick="lpToggleModule(this)">
+          <div class="lp-module-h">
+            <div class="lp-module-title"><span class="lp-module-num">5</span><div><div class="lp-module-name">Air Pollution and Human Health</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <span class="lp-arrow-toggle">▼</span>
+          </div>
+          <div class="lp-module-body">How air pollution actually affects the human body — lungs, heart, brain. Identify three sources, three vulnerable groups, and one realistic action to reduce exposure.</div>
+        </div>
+
+        <div class="lp-module quiz" onclick="lpToggleModule(this)">
+          <div class="lp-module-h">
+            <div class="lp-module-title"><span class="lp-module-num">★</span><div><div class="lp-module-name">Course Quiz 1 — Lessons 1–5</div><div class="lp-module-meta">Quiz · 10 questions · 60% to pass · Retakeable</div></div></div>
+            <span class="lp-arrow-toggle">▼</span>
+          </div>
+          <div class="lp-module-body">A 10-question multiple-choice check covering planetary boundaries, climate evidence, biodiversity, eutrophication, and air pollution. Score 60% (6/10) to pass — you can retake it as many times as you'd like.</div>
+        </div>
+
+        <div class="lp-module" onclick="lpToggleModule(this)">
+          <div class="lp-module-h">
+            <div class="lp-module-title"><span class="lp-module-num">6</span><div><div class="lp-module-name">Plastic Packaging &amp; Material Systems</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <span class="lp-arrow-toggle">▼</span>
+          </div>
+          <div class="lp-module-body">Why plastic packaging is everywhere — and why <em>recycling alone cannot fix the system</em>. Use one packaged product you used today as a case study and propose a better design.</div>
+        </div>
+
+        <div class="lp-module" onclick="lpToggleModule(this)">
+          <div class="lp-module-h">
+            <div class="lp-module-title"><span class="lp-module-num">7</span><div><div class="lp-module-name">Fast Fashion and Consumption Footprints</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <span class="lp-arrow-toggle">▼</span>
+          </div>
+          <div class="lp-module-body">The hidden impacts of clothing — textile production, dyeing, microplastic fibres, transport, landfill waste. Write a short lifecycle analysis for one item in your closet.</div>
+        </div>
+
+        <div class="lp-module" onclick="lpToggleModule(this)">
+          <div class="lp-module-h">
+            <div class="lp-module-title"><span class="lp-module-num">8</span><div><div class="lp-module-name">Environmental Justice</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <span class="lp-arrow-toggle">▼</span>
+          </div>
+          <div class="lp-module-body">Environmental harm is not distributed evenly. Apply the framework of exposure, power, evidence, and decision-making to one local environmental burden you can identify in your community.</div>
+        </div>
+
+        <div class="lp-module" onclick="lpToggleModule(this)">
+          <div class="lp-module-h">
+            <div class="lp-module-title"><span class="lp-module-num">9</span><div><div class="lp-module-name">Environmental Action Without Fake Activism</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <span class="lp-arrow-toggle">▼</span>
+          </div>
+          <div class="lp-module-body">A strong action plan isn't just "raise awareness." Learn to evaluate any environmental project on six dimensions: specificity, evidence, who's affected, realistic action, measurement, and limitations.</div>
+        </div>
+
+        <div class="lp-module quiz" onclick="lpToggleModule(this)">
+          <div class="lp-module-h">
+            <div class="lp-module-title"><span class="lp-module-num">★</span><div><div class="lp-module-name">Course Quiz 2 — Lessons 6–9</div><div class="lp-module-meta">Quiz · 10 questions · 60% to pass · Retakeable</div></div></div>
+            <span class="lp-arrow-toggle">▼</span>
+          </div>
+          <div class="lp-module-body">A 10-question check covering plastic systems, fast fashion, environmental justice, and action design. Score 60% (6/10) to pass — retakeable.</div>
+        </div>
+
+        <div class="lp-module final" onclick="lpToggleModule(this)">
+          <div class="lp-module-h">
+            <div class="lp-module-title"><span class="lp-module-num">⚑</span><div><div class="lp-module-name">Final Project: Youth Eco Action Plan</div><div class="lp-module-meta">Final · Choose one issue from the course · Submitted via the course platform</div></div></div>
+            <span class="lp-arrow-toggle">▼</span>
+          </div>
+          <div class="lp-module-body">Write a realistic action plan covering six required parts: <strong>Problem · Evidence · Who Is Affected · Action · Measurement · Limit</strong>. Choose any topic from the course (single-use plastic, water pollution, fast fashion, air pollution, environmental justice, etc.). This is the cornerstone of your certificate.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ INSTRUCTORS ════════════ -->
+  <section class="lp-section alt">
+    <div class="lp-wrap">
+      <h2>Meet your program directors</h2>
+      <p class="lp-section-sub">Designed and led by NexYouth's youth-empowerment team</p>
+      <div class="lp-inst-grid">
+        <div class="lp-inst">
+          <div class="lp-inst-photo">JH</div>
+          <div class="lp-inst-info">
+            <h3>Justin Huang</h3>
+            <div class="lp-inst-title">Co-Director, NexYouth</div>
+            <p class="lp-inst-bio">NexYouth Program Director. Designs and runs youth-led environmental and skill-development programs that connect students with mentors, scientists, and real-world projects.</p>
+          </div>
+        </div>
+        <div class="lp-inst">
+          <div class="lp-inst-photo">MW</div>
+          <div class="lp-inst-info">
+            <h3>Max Wen</h3>
+            <div class="lp-inst-title">Co-Director, NexYouth</div>
+            <p class="lp-inst-bio">NexYouth Program Director. Founder of the International Youth Environmental Challenge (IYEC). Focused on giving youth around the world structured pathways into environmental science and action.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ CERTIFICATE SHOWCASE ════════════ -->
+  <section class="lp-section">
+    <div class="lp-wrap">
+      <h2>Earn your EcoHero Certificate</h2>
+      <p class="lp-section-sub">A verifiable record of your environmental literacy — plus a real award</p>
+      <div class="lp-cert-grid">
+        <div class="lp-cert-preview">
+          <div class="lp-cert-brand">N E X Y O U T H</div>
+          <div style="font-size:.65rem;color:var(--gc-gold);font-style:italic;letter-spacing:.05em">— CREATING SPACE FOR YOUTH —</div>
+          <div class="lp-cert-divider"></div>
+          <div class="lp-cert-title">Certificate of Completion</div>
+          <div class="lp-cert-sub">EcoHero</div>
+          <div style="font-size:.78rem;color:var(--text-2);margin:.4rem 0">This certificate is proudly presented to</div>
+          <div class="lp-cert-name">Your Name</div>
+          <div style="font-size:.75rem;color:var(--text-2);margin-top:.55rem">for successfully completing</div>
+          <div class="lp-cert-course">Eco Literacy: From Environmental Systems to Youth Action</div>
+          <div class="lp-cert-stats">9 Lessons &nbsp;|&nbsp; 2 Quizzes Passed (60%+) &nbsp;|&nbsp; Action Plan Submitted</div>
+        </div>
+        <div class="lp-cert-perks">
+          <h3>What you receive when you finish:</h3>
+          <ul>
+            <li><span class="ico">🏆</span><span><strong>Personalised PDF Certificate</strong> signed by Justin Huang &amp; Max Wen — yours to share, print, or add to your portfolio</span></li>
+            <li><span class="ico">💵</span><span><strong>$15 Completion Award</strong> sent by Interac e-Transfer once you confirm your e-Transfer email</span></li>
+            <li><span class="ico">📄</span><span><strong>Your own Youth Eco Action Plan</strong> — a real proposal you can use anywhere, anytime</span></li>
+          </ul>
+          <p style="font-size:.83rem;color:var(--text-2);margin-top:.85rem"><strong>To qualify:</strong> mark all 9 lessons complete, score ≥ 60% on both quizzes, and submit a satisfactory Youth Eco Action Plan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FAQ ════════════ -->
+  <section class="lp-section alt">
+    <div class="lp-wrap">
+      <h2>Frequently asked questions</h2>
+      <p class="lp-section-sub">Click any question to see the answer</p>
+      <div>
+        <div class="lp-faq-item" onclick="lpToggleFaq(this)">
+          <div class="lp-faq-q">Is the course really free?<span class="lp-faq-icon">+</span></div>
+          <div class="lp-faq-a">Yes — 100% free. NexYouth is a youth-led nonprofit. There are no fees, hidden charges, or paid upgrades. The $15 completion award is funded by NexYouth and our partners.</div>
+        </div>
+        <div class="lp-faq-item" onclick="lpToggleFaq(this)">
+          <div class="lp-faq-q">How long does the course take?<span class="lp-faq-icon">+</span></div>
+          <div class="lp-faq-a">About 5 hours total — 9 lessons at roughly 30 minutes each, plus two short quizzes and one final action plan. The course is fully self-paced; you can finish over a weekend or stretch it across a few weeks.</div>
+        </div>
+        <div class="lp-faq-item" onclick="lpToggleFaq(this)">
+          <div class="lp-faq-q">Do I need parental permission?<span class="lp-faq-icon">+</span></div>
+          <div class="lp-faq-a">If you are under 18, yes. The registration form asks for a parent or guardian's name, email, and consent before you can enroll.</div>
+        </div>
+        <div class="lp-faq-item" onclick="lpToggleFaq(this)">
+          <div class="lp-faq-q">Can I retake the quizzes?<span class="lp-faq-icon">+</span></div>
+          <div class="lp-faq-a">Yes. Both quizzes are unlimited retakes. Your highest score is saved automatically and used toward your certificate eligibility.</div>
+        </div>
+        <div class="lp-faq-item" onclick="lpToggleFaq(this)">
+          <div class="lp-faq-q">When do I get my certificate and award?<span class="lp-faq-icon">+</span></div>
+          <div class="lp-faq-a">As soon as you submit your Youth Eco Action Plan and meet all completion criteria, the system automatically generates your EcoHero Certificate (PDF) and emails it to you. The $15 e-Transfer is sent within 3–5 business days after you confirm your e-Transfer email.</div>
+        </div>
+        <div class="lp-faq-item" onclick="lpToggleFaq(this)">
+          <div class="lp-faq-q">What happens to my information?<span class="lp-faq-icon">+</span></div>
+          <div class="lp-faq-a">Your registration data is used only by NexYouth to manage course participation and award delivery. We do not sell or share student data. Submissions are stored privately and visible only to the NexYouth program team.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FINAL CTA ════════════ -->
+  <section class="lp-final">
+    <div class="lp-final-inner">
+      <h2>Ready to begin?</h2>
+      <p>Enroll in 60 seconds. Open Lesson 1 today.</p>
+      <button class="lp-cta-primary" onclick="openRegister()">🚀 &nbsp; Enroll Now — Free &nbsp;→</button>
+    </div>
+  </section>
+
 </main>
 
 <!-- ── CLASSWORK PAGE ── -->
@@ -1572,6 +1881,14 @@ function startCourse(){
   closeRegister();
   const classworkTab = document.querySelectorAll('.tab')[1];
   goto('classwork', classworkTab);
+}
+
+// ───────────────────────── EDX-STYLE LANDING PAGE TOGGLES ─────────────────────────
+function lpToggleModule(el){
+  el.classList.toggle('open');
+}
+function lpToggleFaq(el){
+  el.classList.toggle('open');
 }
 
 // ───────────────────────── QUIZ INTERACTIVE ─────────────────────────
