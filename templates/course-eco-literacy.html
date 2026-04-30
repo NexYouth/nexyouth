@@ -397,6 +397,21 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 .lp-about-card ul{margin-left:1.1rem;font-size:.9rem;color:var(--text);line-height:1.7}
 .lp-about-card ul li{margin-bottom:.25rem}
 
+/* Why This Subject Matters — stat cards */
+.lp-stat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem}
+.lp-stat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.3rem;text-align:left;transition:box-shadow .2s,transform .2s;border-top:3px solid var(--gc-leaf);position:relative;overflow:hidden}
+.lp-stat-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(60,64,67,.1)}
+.lp-stat-card:nth-child(2){border-top-color:var(--gc-coral)}
+.lp-stat-card:nth-child(3){border-top-color:var(--gc-purple)}
+.lp-stat-card:nth-child(4){border-top-color:var(--gc-sky)}
+.lp-stat-card:nth-child(5){border-top-color:var(--gc-gold)}
+.lp-stat-card .lp-big-num{font-family:'Google Sans',serif;font-size:clamp(2rem,3.5vw,2.6rem);font-weight:700;color:var(--gc-green-d);line-height:1.05;letter-spacing:-.02em;margin-bottom:.55rem;display:block}
+.lp-stat-card:nth-child(2) .lp-big-num{color:#902a18}
+.lp-stat-card:nth-child(3) .lp-big-num{color:#5a1e88}
+.lp-stat-card:nth-child(4) .lp-big-num{color:#0369A1}
+.lp-stat-card:nth-child(5) .lp-big-num{color:#7a5500}
+.lp-stat-card .lp-big-desc{font-size:.88rem;color:var(--text);line-height:1.55}
+
 /* What you'll learn grid */
 .lp-learn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem}
 .lp-learn-item{display:flex;gap:.85rem;padding:1.05rem 1.2rem;background:#F8FAFB;border-radius:10px;border-left:3px solid var(--gc-leaf);font-size:.93rem;line-height:1.55;color:var(--text)}
@@ -603,13 +618,14 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
   <!-- ════════════ ABOUT ════════════ -->
   <section class="lp-section">
     <div class="lp-wrap">
-      <h2>About this course</h2>
-      <p class="lp-section-sub">Why Eco Literacy is different from a typical climate course</p>
+      <h2>About This Course</h2>
+      <p class="lp-section-sub">Beyond basic awareness — a structured online program for students who want to truly understand environmental issues.</p>
       <div class="lp-about-grid">
         <div class="lp-about-text">
-          <p>Climate change. Plastic pollution. Biodiversity loss. Today's environmental challenges are urgent, complex, and deeply <em>connected</em> — but most courses for youth still teach them as isolated trivia or vague slogans.</p>
-          <p>Eco Literacy is built on the same scientific frameworks that researchers and policymakers actually use: <strong>planetary boundaries, ecosystem services, end-to-end pollution chains, environmental justice</strong>. It teaches youth to think the way scientists do — and to design realistic action grounded in evidence, not hype.</p>
-          <p>By the end, you won't just <em>know</em> more. You'll have written your own <strong>Youth Eco Action Plan</strong> — a realistic, evidence-based proposal you could actually pitch to your school, family, or community.</p>
+          <p><strong>NexYouth Eco Literacy: From Environmental Systems to Youth Action</strong> is a structured online learning program for students who want to understand environmental issues beyond basic awareness.</p>
+          <p>Environmental problems are often described through simple messages: recycle more, use less plastic, save the planet. This program goes deeper. Students explore how <em>climate change, biodiversity loss, water pollution, air pollution, plastic packaging, fast fashion, and environmental justice</em> are connected through larger systems of human behaviour, technology, policy, economics, and ecological change.</p>
+          <p>Through this course, students learn how environmental problems develop, who they affect, and what realistic youth-led action can look like.</p>
+          <p>By the end of the program, students will be able to <strong>explain key environmental systems, analyze causes and impacts, recognize unequal environmental burdens, and design a practical action plan</strong> grounded in course concepts.</p>
         </div>
         <div class="lp-about-card">
           <h3>Who is this for?</h3>
@@ -629,8 +645,38 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
     </div>
   </section>
 
-  <!-- ════════════ WHAT YOU'LL LEARN ════════════ -->
+  <!-- ════════════ WHY THIS SUBJECT MATTERS ════════════ -->
   <section class="lp-section alt">
+    <div class="lp-wrap">
+      <h2>Why This Subject Matters</h2>
+      <p class="lp-section-sub">The numbers behind the urgency — sourced from peer-reviewed and intergovernmental science.</p>
+      <div class="lp-stat-cards">
+        <div class="lp-stat-card">
+          <span class="lp-big-num">6 of 9</span>
+          <p class="lp-big-desc"><strong>Planetary boundaries</strong> are now transgressed, suggesting that Earth is outside the safe operating space for humanity.</p>
+        </div>
+        <div class="lp-stat-card">
+          <span class="lp-big-num">9 million</span>
+          <p class="lp-big-desc">Pollution is responsible for approximately <strong>9 million premature deaths each year</strong>, affecting human health through air, freshwater, ocean, soil, and food-chain contamination.</p>
+        </div>
+        <div class="lp-stat-card">
+          <span class="lp-big-num">1 million</span>
+          <p class="lp-big-desc"><strong>Animal and plant species</strong> are estimated to be threatened with extinction, many within decades.</p>
+        </div>
+        <div class="lp-stat-card">
+          <span class="lp-big-num">19–23M tonnes</span>
+          <p class="lp-big-desc">The amount of <strong>plastic waste</strong> estimated to leak into aquatic ecosystems every year, polluting lakes, rivers, and seas.</p>
+        </div>
+        <div class="lp-stat-card">
+          <span class="lp-big-num">20%</span>
+          <p class="lp-big-desc">The estimated share of <strong>global clean water pollution</strong> linked to textile production, mainly from dyeing and finishing processes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ WHAT YOU'LL LEARN ════════════ -->
+  <section class="lp-section">
     <div class="lp-wrap">
       <h2>What you'll learn</h2>
       <p class="lp-section-sub">Six concrete skills you'll walk away with — not trivia, not slogans</p>
@@ -648,93 +694,93 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
   <!-- ════════════ CURRICULUM ════════════ -->
   <section class="lp-section">
     <div class="lp-wrap">
-      <h2>Course curriculum</h2>
-      <p class="lp-section-sub">9 lessons · 2 quizzes · 1 final project. Click any item to see what's covered.</p>
+      <h2>Course Curriculum</h2>
+      <p class="lp-section-sub">Explore the connections between environmental systems, human activity, and youth action as you work through the modules of this online program.</p>
       <div class="lp-modules">
 
         <div class="lp-module" onclick="lpToggleModule(this)">
           <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">1</span><div><div class="lp-module-name">Environmental Systems, Not Just "Being Green"</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <div class="lp-module-title"><span class="lp-module-num">1</span><div><div class="lp-module-name">Module 1 — Environmental Systems, Not Just "Being Green"</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
             <span class="lp-arrow-toggle">▼</span>
           </div>
-          <div class="lp-module-body">Introduction to the framework of <strong>planetary boundaries</strong> — the nine global processes that regulate Earth's stability. Why "saving the planet" is really about understanding interconnected systems, not single issues.</div>
+          <div class="lp-module-body">Understand why environmental problems are connected and why systems thinking matters.</div>
         </div>
 
         <div class="lp-module" onclick="lpToggleModule(this)">
           <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">2</span><div><div class="lp-module-name">Climate Change: Evidence, Not Slogans</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <div class="lp-module-title"><span class="lp-module-num">2</span><div><div class="lp-module-name">Module 2 — Climate Change: Evidence, Not Slogans</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
             <span class="lp-arrow-toggle">▼</span>
           </div>
-          <div class="lp-module-body">How scientists actually <em>know</em> the climate is changing: temperature records, ocean warming, shrinking ice sheets, and rising sea levels. Build a four-line evidence chain you could explain to anyone.</div>
+          <div class="lp-module-body">Examine the evidence behind climate change, including rising temperatures, ocean warming, ice loss, and sea-level rise.</div>
         </div>
 
         <div class="lp-module" onclick="lpToggleModule(this)">
           <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">3</span><div><div class="lp-module-name">Biodiversity and Ecosystem Services</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <div class="lp-module-title"><span class="lp-module-num">3</span><div><div class="lp-module-name">Module 3 — Biodiversity and Ecosystem Services</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
             <span class="lp-arrow-toggle">▼</span>
           </div>
-          <div class="lp-module-body">Why biodiversity matters beyond saving cute animals — pollination, clean water, soil health, flood protection, carbon storage. What happens when an ecosystem service breaks down.</div>
+          <div class="lp-module-body">Learn how biodiversity supports food, clean water, pollination, soil health, flood protection, and climate stability.</div>
         </div>
 
         <div class="lp-module" onclick="lpToggleModule(this)">
           <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">4</span><div><div class="lp-module-name">Eutrophication, Dead Zones &amp; Algal Blooms</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <div class="lp-module-title"><span class="lp-module-num">4</span><div><div class="lp-module-name">Module 4 — Eutrophication, Dead Zones, and Harmful Algal Blooms</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
             <span class="lp-arrow-toggle">▼</span>
           </div>
-          <div class="lp-module-body">Trace the cause-and-effect chain: runoff → excess nutrients → algal blooms → oxygen loss → ecosystem collapse. Find the points where prevention or monitoring is most effective.</div>
+          <div class="lp-module-body">Study how nutrient pollution can trigger algal blooms, oxygen loss, and water quality problems.</div>
         </div>
 
         <div class="lp-module" onclick="lpToggleModule(this)">
           <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">5</span><div><div class="lp-module-name">Air Pollution and Human Health</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <div class="lp-module-title"><span class="lp-module-num">5</span><div><div class="lp-module-name">Module 5 — Air Pollution and Human Health</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
             <span class="lp-arrow-toggle">▼</span>
           </div>
-          <div class="lp-module-body">How air pollution actually affects the human body — lungs, heart, brain. Identify three sources, three vulnerable groups, and one realistic action to reduce exposure.</div>
+          <div class="lp-module-body">Explore how air pollution affects the lungs, heart, brain, and vulnerable populations.</div>
         </div>
 
         <div class="lp-module quiz" onclick="lpToggleModule(this)">
           <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">★</span><div><div class="lp-module-name">Course Quiz 1 — Lessons 1–5</div><div class="lp-module-meta">Quiz · 10 questions · 60% to pass · Retakeable</div></div></div>
+            <div class="lp-module-title"><span class="lp-module-num">★</span><div><div class="lp-module-name">Course Quiz 1 — Modules 1–5</div><div class="lp-module-meta">10 questions · 60% to pass · Retakeable</div></div></div>
             <span class="lp-arrow-toggle">▼</span>
           </div>
-          <div class="lp-module-body">A 10-question multiple-choice check covering planetary boundaries, climate evidence, biodiversity, eutrophication, and air pollution. Score 60% (6/10) to pass — you can retake it as many times as you'd like.</div>
+          <div class="lp-module-body">A 10-question multiple-choice check covering planetary boundaries, climate evidence, biodiversity, eutrophication, and air pollution. Score 60% (6/10) to pass — retakeable.</div>
         </div>
 
         <div class="lp-module" onclick="lpToggleModule(this)">
           <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">6</span><div><div class="lp-module-name">Plastic Packaging &amp; Material Systems</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <div class="lp-module-title"><span class="lp-module-num">6</span><div><div class="lp-module-name">Module 6 — Plastic Packaging and Material Systems</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
             <span class="lp-arrow-toggle">▼</span>
           </div>
-          <div class="lp-module-body">Why plastic packaging is everywhere — and why <em>recycling alone cannot fix the system</em>. Use one packaged product you used today as a case study and propose a better design.</div>
+          <div class="lp-module-body">Analyze plastic packaging as a system involving production, convenience, waste, recycling limits, and pollution.</div>
         </div>
 
         <div class="lp-module" onclick="lpToggleModule(this)">
           <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">7</span><div><div class="lp-module-name">Fast Fashion and Consumption Footprints</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <div class="lp-module-title"><span class="lp-module-num">7</span><div><div class="lp-module-name">Module 7 — Fast Fashion and Consumption Footprints</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
             <span class="lp-arrow-toggle">▼</span>
           </div>
-          <div class="lp-module-body">The hidden impacts of clothing — textile production, dyeing, microplastic fibres, transport, landfill waste. Write a short lifecycle analysis for one item in your closet.</div>
+          <div class="lp-module-body">Investigate the hidden environmental costs of clothing, including water pollution, textile waste, and microplastic fibres.</div>
         </div>
 
         <div class="lp-module" onclick="lpToggleModule(this)">
           <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">8</span><div><div class="lp-module-name">Environmental Justice</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <div class="lp-module-title"><span class="lp-module-num">8</span><div><div class="lp-module-name">Module 8 — Environmental Justice</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
             <span class="lp-arrow-toggle">▼</span>
           </div>
-          <div class="lp-module-body">Environmental harm is not distributed evenly. Apply the framework of exposure, power, evidence, and decision-making to one local environmental burden you can identify in your community.</div>
+          <div class="lp-module-body">Consider who is most exposed to environmental harm, who has less control, and what fair decision-making requires.</div>
         </div>
 
         <div class="lp-module" onclick="lpToggleModule(this)">
           <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">9</span><div><div class="lp-module-name">Environmental Action Without Fake Activism</div><div class="lp-module-meta">Lesson · Reading + Video + Reflection</div></div></div>
+            <div class="lp-module-title"><span class="lp-module-num">9</span><div><div class="lp-module-name">Module 9 — Environmental Action Without Fake Activism</div><div class="lp-module-meta">Reading + Video + Reflection</div></div></div>
             <span class="lp-arrow-toggle">▼</span>
           </div>
-          <div class="lp-module-body">A strong action plan isn't just "raise awareness." Learn to evaluate any environmental project on six dimensions: specificity, evidence, who's affected, realistic action, measurement, and limitations.</div>
+          <div class="lp-module-body">Design a realistic Youth Eco Action Plan with a specific problem, evidence, action, measurement, and limitation.</div>
         </div>
 
         <div class="lp-module quiz" onclick="lpToggleModule(this)">
           <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">★</span><div><div class="lp-module-name">Course Quiz 2 — Lessons 6–9</div><div class="lp-module-meta">Quiz · 10 questions · 60% to pass · Retakeable</div></div></div>
+            <div class="lp-module-title"><span class="lp-module-num">★</span><div><div class="lp-module-name">Course Quiz 2 — Modules 6–9</div><div class="lp-module-meta">10 questions · 60% to pass · Retakeable</div></div></div>
             <span class="lp-arrow-toggle">▼</span>
           </div>
           <div class="lp-module-body">A 10-question check covering plastic systems, fast fashion, environmental justice, and action design. Score 60% (6/10) to pass — retakeable.</div>
@@ -742,10 +788,10 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 
         <div class="lp-module final" onclick="lpToggleModule(this)">
           <div class="lp-module-h">
-            <div class="lp-module-title"><span class="lp-module-num">⚑</span><div><div class="lp-module-name">Final Project: Youth Eco Action Plan</div><div class="lp-module-meta">Final · Choose one issue from the course · Submitted via the course platform</div></div></div>
+            <div class="lp-module-title"><span class="lp-module-num">⚑</span><div><div class="lp-module-name">Final Project: Youth Eco Action Plan</div><div class="lp-module-meta">Submit one realistic plan grounded in course concepts</div></div></div>
             <span class="lp-arrow-toggle">▼</span>
           </div>
-          <div class="lp-module-body">Write a realistic action plan covering six required parts: <strong>Problem · Evidence · Who Is Affected · Action · Measurement · Limit</strong>. Choose any topic from the course (single-use plastic, water pollution, fast fashion, air pollution, environmental justice, etc.). This is the cornerstone of your certificate.</div>
+          <div class="lp-module-body">Apply what you have learned to a real environmental issue. Your plan should explain a specific problem, the evidence supporting it, who is affected, the realistic action you would take, how you would measure impact, and an honest limitation. This is the cornerstone of your EcoHero Certificate.</div>
         </div>
 
       </div>
