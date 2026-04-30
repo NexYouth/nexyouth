@@ -5425,33 +5425,30 @@ def eco_classroom_register():
         f"Consent confirmed: {data.get('consent') or 'no'}\n"
     )
 
-    smtp_host = os.environ.get('SMTP_HOST')
-    if not smtp_host:
+    creds = _smtp_creds()
+    if not creds:
         # No SMTP configured — log to stderr (Vercel captures this) and return success
         # so the user gets a friendly response rather than a hard error.
         import sys
         print(f"[ECO REGISTRATION — SMTP not configured]\n{text}", file=sys.stderr)
         return jsonify({'ok': True, 'note': 'Registration recorded in server log. SMTP not configured in Vercel env vars.'})
 
+    host, port, use_ssl, user, pwd, email_from = creds
     try:
         import smtplib
         from email.message import EmailMessage as _EmailMessage
         msg = _EmailMessage()
         msg['Subject'] = subject
-        msg['From'] = os.environ.get('EMAIL_FROM', 'noreply@nexyouth.org')
+        msg['From'] = email_from
         msg['To'] = ECO_ADMIN_EMAIL
         msg.set_content(text)
-        port = int(os.environ.get('SMTP_PORT', '465'))
-        use_ssl = os.environ.get('SMTP_SSL', '').lower() in ('1', 'true', 'yes') or port == 465
         timeout = int(os.environ.get('SMTP_TIMEOUT', '15'))
         smtp_cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
-        with smtp_cls(smtp_host, port, timeout=timeout) as s:
+        with smtp_cls(host, port, timeout=timeout) as srv:
             if not use_ssl and os.environ.get('SMTP_TLS', '1') == '1':
-                s.starttls()
-            u, p = os.environ.get('SMTP_USER'), os.environ.get('SMTP_PASS')
-            if u and p:
-                s.login(u, p)
-            s.send_message(msg)
+                srv.starttls()
+            srv.login(user, pwd)
+            srv.send_message(msg)
         return jsonify({'ok': True})
     except Exception as e:
         import sys, traceback
@@ -5636,6 +5633,24 @@ def _db_unavailable_response():
     }), 503
 
 
+def _smtp_creds():
+    """Resolve SMTP credentials from any of the supported env var names.
+    Falls back to Gmail SMTP defaults when only a Gmail user/pass pair is set.
+    Returns (host, port, use_ssl, user, password, email_from) or None if no creds."""
+    user = (os.environ.get('SMTP_USER') or os.environ.get('GMAIL_USER')
+            or os.environ.get('Gmail_user') or os.environ.get('gmail_user') or '')
+    pwd  = (os.environ.get('SMTP_PASS') or os.environ.get('SMTP_PASSWORD')
+            or os.environ.get('GMAIL_PASSWORD') or os.environ.get('Gmail_password')
+            or os.environ.get('gmail_password') or '')
+    if not (user and pwd):
+        return None
+    host = os.environ.get('SMTP_HOST') or 'smtp.gmail.com'
+    port = int(os.environ.get('SMTP_PORT') or ('465' if 'gmail' in host else '587'))
+    use_ssl = (os.environ.get('SMTP_SSL', '').lower() in ('1','true','yes')) or port == 465
+    email_from = os.environ.get('EMAIL_FROM') or user
+    return host, port, use_ssl, user, pwd, email_from
+
+
 def _send_completion_email(email, name):
     """Send the EcoHero certificate email via SMTP.
     Returns one of: 'sent', 'logged' (no SMTP), 'error'.
@@ -5693,34 +5708,31 @@ def _send_completion_email(email, name):
         '</body></html>'
     )
 
-    smtp_host = os.environ.get('SMTP_HOST')
-    if not smtp_host:
+    creds = _smtp_creds()
+    if not creds:
         import sys
         print(f"[ECO COMPLETION — SMTP not configured]\nTo: {email}\nCc: {admin_cc}\nSubject: {subject}\n\n{text_body}", file=sys.stderr)
         return 'logged'
 
+    host, port, use_ssl, user, pwd, email_from = creds
     try:
         import smtplib
         from email.message import EmailMessage as _EmailMessage
         msg = _EmailMessage()
         msg['Subject'] = subject
-        msg['From'] = os.environ.get('EMAIL_FROM', 'noreply@nexyouth.org')
+        msg['From'] = email_from
         msg['To'] = email
         msg['Cc'] = admin_cc
         msg.set_content(text_body)
         msg.add_alternative(html_body, subtype='html')
 
-        port = int(os.environ.get('SMTP_PORT', '587'))
-        use_ssl = os.environ.get('SMTP_SSL', '').lower() in ('1', 'true', 'yes') or port == 465
         timeout = int(os.environ.get('SMTP_TIMEOUT', '15'))
         smtp_cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
-        with smtp_cls(smtp_host, port, timeout=timeout) as s:
+        with smtp_cls(host, port, timeout=timeout) as srv:
             if not use_ssl and os.environ.get('SMTP_TLS', '1') == '1':
-                s.starttls()
-            u, p = os.environ.get('SMTP_USER'), os.environ.get('SMTP_PASS')
-            if u and p:
-                s.login(u, p)
-            s.send_message(msg, to_addrs=[email, admin_cc])
+                srv.starttls()
+            srv.login(user, pwd)
+            srv.send_message(msg, to_addrs=[email, admin_cc])
         return 'sent'
     except Exception as e:
         import sys, traceback
