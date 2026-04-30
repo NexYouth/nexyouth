@@ -1,4 +1,7 @@
 Flask==3.1.2
 Werkzeug==3.1.4
 Flask-Mail==0.9.1
-reportlab>=4.0
+# reportlab is only used by local certificate generation. Install it locally
+# with `pip install reportlab` — keeping it out of requirements.txt avoids
+# potential Vercel build issues since the cert feature doesn't work on Vercel
+# anyway (read-only filesystem). Cert generator gracefully no-ops without it.
