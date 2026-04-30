@@ -1327,104 +1327,29 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
       <p>Fill out the form below to register. When you're done, click <strong>Sign In</strong> below to start the course.</p>
     </div>
 
-    <!-- Custom Eco Literacy registration form -->
-    <div class="modal-body" id="formView">
-      <form id="regForm" novalidate>
-        <div class="form-section">
-          <h4>👤 Student Information</h4>
-          <div class="field-grid">
-            <div class="field full">
-              <label>Full Name <span class="req">*</span></label>
-              <input type="text" name="student_name" required maxlength="100" placeholder="e.g. Alex Chen">
-            </div>
-            <div class="field full">
-              <label>Grade Level</label>
-              <select name="grade">
-                <option value="">Select grade...</option>
-                <option>Grade 5 or below</option>
-                <option>Grade 6</option><option>Grade 7</option><option>Grade 8</option>
-                <option>Grade 9</option><option>Grade 10</option><option>Grade 11</option>
-                <option>Grade 12</option><option>University / Post-secondary</option>
-              </select>
-            </div>
-            <div class="field full">
-              <label>School Name</label>
-              <input type="text" name="school" maxlength="120" placeholder="Your school's name">
-            </div>
-            <div class="field">
-              <label>City <span class="req">*</span></label>
-              <input type="text" name="city" required maxlength="80" placeholder="e.g. Toronto">
-            </div>
-            <div class="field">
-              <label>Country <span class="req">*</span></label>
-              <input type="text" name="country" required maxlength="80" placeholder="e.g. Canada">
-            </div>
-            <div class="field full">
-              <label>Student Email <span class="req">*</span></label>
-              <input type="email" name="student_email" required maxlength="120" placeholder="you@example.com">
-            </div>
-          </div>
-        </div>
+    <!-- JotForm embed — Eco Literacy Registration -->
+    <div class="modal-body" id="formView" style="padding:0;background:#fff">
+      <iframe
+        id="JotFormIFrame-261197091935060"
+        title="NexYouth Eco Literacy Registration"
+        src="https://form.jotform.com/261197091935060"
+        frameborder="0"
+        style="width:100%;height:640px;border:0;display:block"
+        scrolling="auto"
+        allow="geolocation; microphone; camera"
+        allowfullscreen></iframe>
 
-        <div class="form-section">
-          <h4>👨‍👩‍👧 Parent / Guardian</h4>
-          <div class="field-grid">
-            <div class="field">
-              <label>Parent / Guardian Name <span class="req">*</span></label>
-              <input type="text" name="parent_name" required maxlength="100" placeholder="Full name">
-            </div>
-            <div class="field">
-              <label>Parent / Guardian Phone</label>
-              <input type="tel" name="parent_phone" maxlength="30" placeholder="Optional">
-            </div>
-            <div class="field full">
-              <label>Parent / Guardian Email <span class="req">*</span></label>
-              <input type="email" name="parent_email" required maxlength="120" placeholder="parent@example.com">
-            </div>
-          </div>
-        </div>
-
-        <div class="form-section">
-          <h4>🌱 Background</h4>
-          <div class="field-grid">
-            <div class="field full">
-              <label>How did you hear about this course?</label>
-              <select name="source">
-                <option value="">Select one...</option>
-                <option>NexYouth website</option>
-                <option>School / Teacher</option>
-                <option>Friend or family</option>
-                <option>Social media</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="field full">
-              <label>Why do you want to take this course?</label>
-              <textarea name="motivation" maxlength="500" placeholder="A few sentences about your interest in environmental issues..."></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div class="checkbox-field">
-          <input type="checkbox" name="consent" id="consent" required>
-          <label for="consent">I confirm that the information above is accurate and that the parent/guardian has given permission for the student to participate in this course. <span class="req">*</span></label>
-        </div>
-
-        <button type="submit" class="form-submit" id="submitBtn">
-          <span id="submitText">Submit Registration</span>
-        </button>
-        <div class="form-msg" id="formMsg"></div>
-
-        <p style="text-align:center;font-size:.83rem;color:var(--text-2);margin-top:1rem;border-top:1px solid var(--border);padding-top:.85rem">
-          Already registered?
-          <a href="#" onclick="closeRegister();setTimeout(openLogin,200);return false;" style="color:var(--gc-green);font-weight:600">Sign In →</a>
+      <div style="padding:1rem 1.5rem;border-top:1px solid var(--border);background:#F8F9FA;display:flex;gap:.85rem;justify-content:space-between;align-items:center;flex-wrap:wrap">
+        <p style="font-size:.85rem;color:var(--text-2);margin:0;line-height:1.5">
+          Already submitted the registration?<br>
+          <span style="font-size:.78rem;color:var(--muted)">Sign in with your student email to start the course.</span>
         </p>
-      </form>
+        <button class="form-submit" style="margin:0;width:auto;padding:.65rem 1.4rem;font-size:.92rem" onclick="closeRegister();setTimeout(openLogin,200)">Sign In &nbsp;→</button>
+      </div>
     </div>
 
-    <!-- Success view shown after submission -->
-    <div class="success-view" id="successView">
-      <div class="check">✓</div>
+    <!-- Legacy success view kept hidden (not reached via JotForm flow) -->
+    <div class="success-view" id="successView" style="display:none"></div>
       <h3>You're registered!</h3>
       <p>Welcome to the NexYouth Eco Literacy course. Your registration has been recorded — you can now sign in and start with Module 1.</p>
       <button class="btn-primary" style="background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;font-size:1rem;padding:.95rem 1.8rem" onclick="startCourse()">🚀 Start the Course &nbsp;→</button>
@@ -1544,7 +1469,9 @@ document.addEventListener('keydown', e => {
 });
 
 // ───────────────────────── REGISTER SUBMIT (legacy — replaced by JotForm) ─────────────────────────
-document.getElementById('regForm').addEventListener('submit', async (e) => {
+// Guarded — when JotForm iframe is in use, regForm doesn't exist
+const _regForm = document.getElementById('regForm');
+if (_regForm) _regForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const form = e.target;
     const msg = document.getElementById('formMsg');
