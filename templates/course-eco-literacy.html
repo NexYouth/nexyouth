@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EcoClassroom — Eco Literacy Course | NexYouth</title>
-<meta name="description" content="NexYouth Eco Literacy Course: From Environmental Systems to Youth Action. 9 lessons, 2 quizzes, and a Youth Eco Action Plan. Earn a certificate and $15 completion incentive.">
+<meta name="description" content="NexYouth Eco Literacy Course: From Environmental Systems to Youth Action. 9 lessons, 2 quizzes, and a Youth Eco Action Plan. Earn an Eco Hero Certificate.">
 <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -550,16 +550,15 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
       <span>📚 9 Lessons</span>
       <span>🧪 2 Quizzes</span>
       <span>📝 1 Action Plan</span>
-      <span>🎓 Certificate + $15 Award</span>
+      <span>🎓 Eco Hero Certificate</span>
     </div>
   </div>
 </div>
 
 <!-- ── TAB BAR ── -->
 <div class="tabbar">
-  <button class="tab on" onclick="goto('stream',this)">Stream</button>
+  <button class="tab on" onclick="goto('stream',this)">About</button>
   <button class="tab" id="tabClasswork" onclick="goto('classwork',this)">Classwork</button>
-  <button class="tab" onclick="goto('about',this)">About</button>
 </div>
 
 <!-- ── PROGRESS BAR (visible after registration) ── -->
@@ -599,25 +598,36 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
       </div>
     </div>
 
-    <h2 class="section-h">Welcome to your course <span class="count">Posted by NexYouth</span></h2>
-
-    <!-- Card 1: About This Course -->
+    <!-- ▍ About This Course -->
     <div class="announce">
-      <p><strong>NexYouth Eco Literacy: From Environmental Systems to Youth Action</strong> is a structured online learning program for students who want to understand environmental issues beyond basic awareness.</p>
-      <p>Environmental problems are often described through simple messages: recycle more, use less plastic, save the planet. This program goes deeper. Students explore how climate change, biodiversity loss, water pollution, air pollution, plastic packaging, fast fashion, and environmental justice are connected through larger systems of human behaviour, technology, policy, economics, and ecological change.</p>
-      <p>Through this course, students learn how environmental problems develop, who they affect, and what realistic youth-led action can look like.</p>
-      <p>By the end of the program, students will be able to <strong>explain key environmental systems, analyze causes and impacts, recognize unequal environmental burdens, and design a practical action plan</strong> grounded in course concepts.</p>
+      <h2 style="font-family:'Google Sans',serif;font-size:1.85rem;font-weight:800;color:var(--gc-green-d);margin-bottom:.85rem;letter-spacing:-.01em;line-height:1.2">About This Course</h2>
+      <p style="margin-bottom:.95rem;line-height:1.7"><strong>NexYouth Eco Literacy: From Environmental Systems to Youth Action</strong> is a structured online learning program for students who want to understand environmental issues beyond basic awareness.</p>
+      <p style="margin-bottom:.95rem;line-height:1.7">Environmental problems are often described through simple messages: recycle more, use less plastic, save the planet. This program goes deeper. Students explore how climate change, biodiversity loss, water pollution, air pollution, plastic packaging, fast fashion, and environmental justice are connected through larger systems of human behaviour, technology, policy, economics, and ecological change.</p>
+      <p style="margin-bottom:.95rem;line-height:1.7">Through this course, students learn how environmental problems develop, who they affect, and what realistic youth-led action can look like.</p>
+      <p style="line-height:1.7">By the end of the program, students will be able to <strong>explain key environmental systems, analyze causes and impacts, recognize unequal environmental burdens, and design a practical action plan</strong> grounded in course concepts.</p>
     </div>
 
-    <!-- Card: Why This Subject Matters -->
+    <!-- ▍ Course Curriculum -->
     <div class="announce">
-      <div class="announce-head">
-        <div class="announce-avatar" style="background:linear-gradient(135deg,#C9A84C 0%,#E5C46A 100%)">📊</div>
-        <div class="announce-info">
-          <div class="a">Why This Subject Matters</div>
-          <div class="d">The numbers behind the urgency</div>
-        </div>
+      <h2 style="font-family:'Google Sans',serif;font-size:1.85rem;font-weight:800;color:var(--gc-green-d);margin-bottom:.6rem;letter-spacing:-.01em;line-height:1.2">Course Curriculum</h2>
+      <p style="margin-bottom:.85rem;line-height:1.65;color:var(--text-2)">Explore the connections between environmental systems, human activity, and youth action as you work through the modules of this online program.</p>
+      <div style="display:flex;flex-direction:column;gap:.55rem;margin-top:.6rem">
+        <div style="padding:.75rem .95rem;background:#F8FAFB;border-left:3px solid var(--gc-leaf);border-radius:0 6px 6px 0"><strong style="color:var(--gc-green-d)">Module 1: Environmental Systems, Not Just "Being Green"</strong><br><span style="font-size:.9rem;color:var(--text-2)">Understand why environmental problems are connected and why systems thinking matters.</span></div>
+        <div style="padding:.75rem .95rem;background:#F8FAFB;border-left:3px solid var(--gc-leaf);border-radius:0 6px 6px 0"><strong style="color:var(--gc-green-d)">Module 2: Climate Change — Evidence, Not Slogans</strong><br><span style="font-size:.9rem;color:var(--text-2)">Examine the evidence behind climate change, including rising temperatures, ocean warming, ice loss, and sea-level rise.</span></div>
+        <div style="padding:.75rem .95rem;background:#F8FAFB;border-left:3px solid var(--gc-leaf);border-radius:0 6px 6px 0"><strong style="color:var(--gc-green-d)">Module 3: Biodiversity and Ecosystem Services</strong><br><span style="font-size:.9rem;color:var(--text-2)">Learn how biodiversity supports food, clean water, pollination, soil health, flood protection, and climate stability.</span></div>
+        <div style="padding:.75rem .95rem;background:#F8FAFB;border-left:3px solid var(--gc-leaf);border-radius:0 6px 6px 0"><strong style="color:var(--gc-green-d)">Module 4: Eutrophication, Dead Zones, and Harmful Algal Blooms</strong><br><span style="font-size:.9rem;color:var(--text-2)">Study how nutrient pollution can trigger algal blooms, oxygen loss, and water quality problems.</span></div>
+        <div style="padding:.75rem .95rem;background:#F8FAFB;border-left:3px solid var(--gc-leaf);border-radius:0 6px 6px 0"><strong style="color:var(--gc-green-d)">Module 5: Air Pollution and Human Health</strong><br><span style="font-size:.9rem;color:var(--text-2)">Explore how air pollution affects the lungs, heart, brain, and vulnerable populations.</span></div>
+        <div style="padding:.75rem .95rem;background:#F8FAFB;border-left:3px solid var(--gc-leaf);border-radius:0 6px 6px 0"><strong style="color:var(--gc-green-d)">Module 6: Plastic Packaging and Material Systems</strong><br><span style="font-size:.9rem;color:var(--text-2)">Analyze plastic packaging as a system involving production, convenience, waste, recycling limits, and pollution.</span></div>
+        <div style="padding:.75rem .95rem;background:#F8FAFB;border-left:3px solid var(--gc-leaf);border-radius:0 6px 6px 0"><strong style="color:var(--gc-green-d)">Module 7: Fast Fashion and Consumption Footprints</strong><br><span style="font-size:.9rem;color:var(--text-2)">Investigate the hidden environmental costs of clothing, including water pollution, textile waste, and microplastic fibres.</span></div>
+        <div style="padding:.75rem .95rem;background:#F8FAFB;border-left:3px solid var(--gc-leaf);border-radius:0 6px 6px 0"><strong style="color:var(--gc-green-d)">Module 8: Environmental Justice</strong><br><span style="font-size:.9rem;color:var(--text-2)">Consider who is most exposed to environmental harm, who has less control, and what fair decision-making requires.</span></div>
+        <div style="padding:.75rem .95rem;background:#F8FAFB;border-left:3px solid var(--gc-leaf);border-radius:0 6px 6px 0"><strong style="color:var(--gc-green-d)">Module 9: Environmental Action Without Fake Activism</strong><br><span style="font-size:.9rem;color:var(--text-2)">Design a realistic Youth Eco Action Plan with a specific problem, evidence, action, measurement, and limitation.</span></div>
+        <div style="padding:.85rem 1rem;background:linear-gradient(135deg,rgba(201,168,76,.12) 0%,rgba(201,168,76,.04) 100%);border-left:3px solid var(--gc-gold);border-radius:0 6px 6px 0"><strong style="color:var(--gc-green-d)">⚑ Module 10: Final Project — Youth Eco Action Plan</strong><br><span style="font-size:.9rem;color:var(--text-2)">Apply what you have learned to design a real environmental project grounded in course concepts.</span></div>
       </div>
+    </div>
+
+    <!-- ▍ Why This Subject Matters -->
+    <div class="announce">
+      <h2 style="font-family:'Google Sans',serif;font-size:1.85rem;font-weight:800;color:var(--gc-green-d);margin-bottom:.85rem;letter-spacing:-.01em;line-height:1.2">Why This Subject Matters</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.85rem;margin-top:.5rem">
         <div style="padding:.95rem 1rem;background:#fff;border:1px solid var(--border);border-radius:8px;border-top:3px solid var(--gc-leaf)">
           <div style="font-family:'Google Sans',serif;font-size:1.6rem;font-weight:700;color:var(--gc-green-d);line-height:1;margin-bottom:.35rem">6 of 9</div>
@@ -642,11 +652,11 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
       </div>
     </div>
 
-    <!-- Card 4: Final Get Started CTA -->
+    <!-- ▍ Final CTA -->
     <div class="announce" style="background:linear-gradient(135deg,#1A6640 0%,#2D9A5E 100%);color:#fff;border:none;text-align:center;padding:1.6rem 1.4rem">
       <div style="font-family:'Google Sans',serif;font-size:1.4rem;font-weight:700;margin-bottom:.4rem;line-height:1.25">Ready to begin?</div>
       <p style="color:rgba(255,255,255,.88);font-size:.94rem;margin-bottom:1rem;max-width:500px;margin-left:auto;margin-right:auto">Register to unlock the Classwork tab and start with Module 1 — Environmental Systems.</p>
-      <button onclick="openRegister()" style="background:#fff;color:var(--gc-green);font-weight:700;font-size:.95rem;padding:.85rem 2rem;border-radius:100px;border:none;cursor:pointer;font-family:inherit;box-shadow:0 4px 14px rgba(0,0,0,.18);transition:transform .15s" onmouseover="this.style.transform=&apos;translateY(-1px)&apos;" onmouseout="this.style.transform=&apos;translateY(0)&apos;">🚀 &nbsp; Register to Start &nbsp;→</button>
+      <button onclick="openRegister()" style="background:#fff;color:var(--gc-green);font-weight:700;font-size:.95rem;padding:.85rem 2rem;border-radius:100px;border:none;cursor:pointer;font-family:inherit;box-shadow:0 4px 14px rgba(0,0,0,.18);transition:transform .15s" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='translateY(0)'">🚀 &nbsp; Register to Start &nbsp;→</button>
     </div>
   </div>
 </main>
@@ -1273,52 +1283,6 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
   </div>
 </main>
 
-<!-- ── ABOUT PAGE ── -->
-<main id="about" class="page">
-  <aside class="side">
-    <div class="side-card">
-      <h3>📩 Questions?</h3>
-      <p style="font-size:.86rem;color:var(--text-2);line-height:1.55">Contact NexYouth via the <a href="/contact" style="color:var(--gc-green);font-weight:500">Contact page</a> or visit the <a href="/" style="color:var(--gc-green);font-weight:500">main site</a>.</p>
-    </div>
-  </aside>
-
-  <div class="feed">
-    <h2 class="section-h">About the Course</h2>
-
-    <div class="info-grid">
-      <div class="info-tile"><div class="lbl">Lessons</div><div class="val">9</div><div class="desc">Reading + video + task each</div></div>
-      <div class="info-tile"><div class="lbl">Time per lesson</div><div class="val">~30 min</div><div class="desc">Self-paced</div></div>
-      <div class="info-tile"><div class="lbl">Quizzes</div><div class="val">2</div><div class="desc">10 questions each, multiple choice</div></div>
-      <div class="info-tile"><div class="lbl">Final Project</div><div class="val">100 words</div><div class="desc">Youth Eco Action Plan</div></div>
-      <div class="info-tile"><div class="lbl">Pass Threshold</div><div class="val">60%</div><div class="desc">Per quiz (6 out of 10)</div></div>
-      <div class="info-tile"><div class="lbl">Award</div><div class="val">Eco Hero Certificate</div><div class="desc">For students who complete all requirements</div></div>
-    </div>
-
-    <div class="announce">
-      <div class="announce-head">
-        <div class="announce-avatar">N</div>
-        <div class="announce-info"><div class="a">Course Description</div><div class="d">NexYouth · Eco Literacy</div></div>
-      </div>
-      <p>In this course, students will learn how environmental systems are connected, how pollution spreads, how human choices create hidden impacts, and how youth can design realistic environmental action.</p>
-      <p><strong>Topics:</strong> planetary boundaries, climate science, biodiversity, eutrophication, air pollution and health, plastic packaging, fast fashion, environmental justice, and action design.</p>
-    </div>
-
-    <div class="announce">
-      <div class="announce-head">
-        <div class="announce-avatar" style="background:linear-gradient(135deg,#C9A84C 0%,#E5C46A 100%)">🎓</div>
-        <div class="announce-info"><div class="a">How to Earn the Certificate</div><div class="d">Complete all four steps</div></div>
-      </div>
-      <ol style="margin-left:1.4rem">
-        <li>Submit Course Quiz 1</li>
-        <li>Submit Course Quiz 2</li>
-        <li>Score at least 60% (6/10) on each quiz</li>
-        <li>Submit a satisfactory Youth Eco Action Plan</li>
-      </ol>
-      <p style="margin-top:.6rem">Students who complete all four steps will receive a <strong>NexYouth Eco Literacy Course Certificate</strong> and a <strong>$15 completion prize</strong>.</p>
-    </div>
-  </div>
-</main>
-
 <!-- ── FLOATING REGISTER BUTTON (only when logged out) ── -->
 <button class="fab" id="fab" onclick="openRegister()">
   <span class="ico">✨</span> Register for Course
@@ -1356,7 +1320,7 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
   <div class="celebrate-card">
     <div class="emoji">🎉</div>
     <h3>You're an EcoHero!</h3>
-    <p>Amazing work, <strong id="celebrateName">friend</strong>! You've completed all 9 lessons, both quizzes, and the Youth Eco Action Plan. Your <strong>NexYouth EcoHero Certificate</strong> has been emailed to you, along with details for your <strong>$15 award</strong>. Don't forget to reply with the email you'd like to receive the e-transfer at!</p>
+    <p>Amazing work, <strong id="celebrateName">friend</strong>! You've completed all 9 lessons, both quizzes, and the Youth Eco Action Plan. Your <strong>NexYouth EcoHero Certificate</strong> has been emailed to you. Welcome to the EcoHero community!</p>
     <button class="c-btn" onclick="closeCelebrate()">🌱 Keep going</button>
   </div>
 </div>
