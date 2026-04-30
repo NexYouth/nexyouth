@@ -5480,7 +5480,28 @@ FINAL_MIN_WORDS = 100
 _DB_SCHEMA_READY = False
 
 def _db_url():
-    return os.environ.get('POSTGRES_URL') or os.environ.get('DATABASE_URL')
+    # Try every common Vercel/Neon env var name, including custom-prefixed
+    # ones (Vercel's Postgres integration adds a prefix per project).
+    candidates = [
+        'POSTGRES_URL', 'DATABASE_URL',
+        'POSTGRES_PRISMA_URL', 'POSTGRES_URL_NON_POOLING',
+    ]
+    # Pull in any env var ending in DATABASE_URL or POSTGRES_URL,
+    # preferring pooled (no _UNPOOLED suffix) over unpooled.
+    pooled, unpooled = [], []
+    for name in os.environ.keys():
+        if name in candidates:
+            continue
+        upper = name.upper()
+        if upper.endswith('DATABASE_URL') or upper.endswith('POSTGRES_URL') or upper.endswith('PRISMA_URL'):
+            pooled.append(name)
+        elif upper.endswith('DATABASE_URL_UNPOOLED') or upper.endswith('POSTGRES_URL_NON_POOLING'):
+            unpooled.append(name)
+    for name in candidates + pooled + unpooled:
+        val = os.environ.get(name)
+        if val:
+            return val
+    return None
 
 def _db_connect():
     """Open a new psycopg connection. Returns None if Postgres isn't configured."""
