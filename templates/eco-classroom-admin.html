@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoClassroom Admin — NexYouth</title>
+<link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gc-green:#1A6640;--gc-green-d:#0d3a23;--gc-leaf:#3FB572;--gc-cream:#F8F5F0;
+  --gc-gold:#C9A84C;--gc-blue:#1A73E8;--gc-coral:#E05533;
+  --bg:#F8F9FA;--surface:#fff;--border:#E0E0E0;--border-d:#DADCE0;
+  --text:#202124;--text-2:#5F6368;--muted:#80868B;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Roboto','Google Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:14px;-webkit-font-smoothing:antialiased}
+a{color:var(--gc-green);text-decoration:none}
+
+/* APP BAR */
+.appbar{background:#fff;border-bottom:1px solid var(--border);padding:.55rem 1.5rem;display:flex;align-items:center;gap:1rem;height:56px;position:sticky;top:0;z-index:100}
+.appbar .brand{display:flex;align-items:center;gap:.65rem;font-weight:500;font-size:1.05rem}
+.appbar .brand .logo{width:30px;height:30px;background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+.appbar .badge{font-size:.66rem;background:rgba(224,85,51,.12);color:var(--gc-coral);font-weight:700;padding:.22rem .55rem;border-radius:4px;letter-spacing:.08em;text-transform:uppercase}
+.appbar .spacer{flex:1}
+.appbar .user{font-size:.82rem;color:var(--text-2);display:flex;align-items:center;gap:.4rem}
+.appbar .user strong{color:var(--text)}
+.appbar a.back{font-size:.84rem;color:var(--gc-green);font-weight:500;padding:.45rem .9rem;border-radius:100px;border:1px solid var(--border-d)}
+.appbar a.back:hover{background:var(--gc-cream);border-color:var(--gc-green)}
+
+/* HEADER */
+.head{padding:1.6rem 1.8rem .8rem;background:#fff;border-bottom:1px solid var(--border)}
+.head h1{font-family:'Google Sans',serif;font-size:1.5rem;font-weight:700;color:var(--text)}
+.head p{color:var(--text-2);font-size:.88rem;margin-top:.15rem}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.85rem;padding:1.2rem 1.8rem;background:#fff;border-bottom:1px solid var(--border)}
+.stat-card{background:#F8F9FA;border:1px solid var(--border);border-radius:10px;padding:.95rem 1.1rem}
+.stat-card .label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:.25rem}
+.stat-card .value{font-family:'Google Sans',sans-serif;font-size:1.7rem;font-weight:700;color:var(--text);line-height:1}
+.stat-card.green .value{color:var(--gc-green)}
+.stat-card.blue .value{color:var(--gc-blue)}
+.stat-card.gold .value{color:#9a7800}
+.stat-card.gray .value{color:var(--text-2)}
+
+/* TOOLBAR */
+.toolbar{padding:.85rem 1.8rem;display:flex;gap:.7rem;align-items:center;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--border);position:sticky;top:56px;z-index:90}
+.toolbar input{flex:1;min-width:220px;max-width:360px;padding:.55rem .9rem;border:1.5px solid var(--border-d);border-radius:8px;font-size:.88rem;font-family:inherit;background:#fff;outline:none;transition:border-color .15s}
+.toolbar input:focus{border-color:var(--gc-green);box-shadow:0 0 0 3px rgba(26,102,64,.1)}
+.toolbar select{padding:.55rem .8rem;border:1.5px solid var(--border-d);border-radius:8px;font-size:.86rem;font-family:inherit;background:#fff;outline:none;cursor:pointer}
+.toolbar .actions{margin-left:auto;display:flex;gap:.5rem}
+.btn{padding:.55rem 1.05rem;border-radius:8px;font-size:.85rem;font-weight:500;cursor:pointer;font-family:inherit;border:1.5px solid var(--border-d);background:#fff;color:var(--text);transition:all .15s;display:inline-flex;align-items:center;gap:.35rem;text-decoration:none}
+.btn:hover{border-color:var(--gc-green);background:var(--gc-cream)}
+.btn.primary{background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;border-color:transparent}
+.btn.primary:hover{box-shadow:0 3px 10px rgba(26,102,64,.3)}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto;background:#fff;margin:0 0 2rem 0}
+table.tbl{width:100%;border-collapse:collapse;font-size:.85rem;min-width:1100px}
+.tbl thead{position:sticky;top:0;background:#fff;z-index:10}
+.tbl th{text-align:left;padding:.7rem .85rem;font-weight:600;color:var(--text-2);text-transform:uppercase;font-size:.7rem;letter-spacing:.06em;background:#F8F9FA;border-bottom:2px solid var(--border)}
+.tbl td{padding:.7rem .85rem;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text)}
+.tbl tbody tr:hover{background:#FAFBFC}
+.tbl tbody tr.orphan{background:rgba(224,85,51,.04)}
+.tbl tbody tr.orphan:hover{background:rgba(224,85,51,.08)}
+
+.tbl .name{font-weight:600;color:var(--text)}
+.tbl .email{color:var(--gc-blue);font-size:.82rem;font-family:'DM Mono',monospace}
+.tbl .meta{color:var(--text-2);font-size:.78rem;line-height:1.4}
+.tbl .progress-cell{min-width:200px}
+.pb-mini{height:6px;background:#E8EAED;border-radius:100px;overflow:hidden;margin-bottom:.3rem}
+.pb-mini .fill{height:100%;background:linear-gradient(90deg,var(--gc-green) 0%,var(--gc-leaf) 100%);border-radius:100px;transition:width .3s}
+.progress-text{font-size:.75rem;color:var(--text-2);font-family:'DM Mono',monospace}
+
+.status{display:inline-flex;align-items:center;gap:.3rem;font-size:.7rem;font-weight:600;padding:.18rem .55rem;border-radius:100px;letter-spacing:.04em;text-transform:uppercase}
+.status.done{background:rgba(45,154,94,.14);color:var(--gc-green-d)}
+.status.progress{background:rgba(26,115,232,.12);color:#1557B0}
+.status.notstart{background:#F1F3F4;color:var(--muted)}
+.status.orphan{background:rgba(224,85,51,.12);color:#902a18}
+
+.score-pill{display:inline-block;font-size:.74rem;font-weight:600;padding:.12rem .5rem;border-radius:4px;font-family:'DM Mono',monospace}
+.score-pill.pass{background:rgba(45,154,94,.12);color:var(--gc-green-d)}
+.score-pill.fail{background:rgba(224,85,51,.12);color:#902a18}
+.score-pill.none{background:#F1F3F4;color:var(--muted)}
+
+.cert-link{font-size:.75rem;color:var(--gc-gold);font-weight:500;display:inline-flex;align-items:center;gap:.2rem}
+.cert-link:hover{text-decoration:underline}
+
+.action-btn{font-size:.74rem;padding:.32rem .7rem;border-radius:100px;border:1px solid var(--border-d);background:#fff;color:var(--text-2);cursor:pointer;font-family:inherit;transition:all .15s;margin-right:.3rem}
+.action-btn:hover{border-color:var(--gc-blue);color:var(--gc-blue)}
+.action-btn.resend{color:var(--gc-coral);border-color:rgba(224,85,51,.3)}
+.action-btn.resend:hover{background:rgba(224,85,51,.08);border-color:var(--gc-coral)}
+
+.empty{padding:3rem 1.5rem;text-align:center;color:var(--text-2);font-size:.95rem}
+.empty p{margin-bottom:.6rem}
+
+footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border);background:#fff}
+
+@media(max-width:780px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .head,.stats,.toolbar,.tbl-wrap{padding-left:1rem;padding-right:1rem}
+}
+</style>
+</head>
+<body>
+
+<div class="appbar">
+  <div class="brand">
+    <div class="logo">N</div>
+    <span>EcoClassroom</span>
+    <span class="badge">Admin</span>
+  </div>
+  <div class="spacer"></div>
+  <div class="user">Signed in as <strong>{{ admin_user }}</strong></div>
+  <a href="/programs/eco-classroom" class="back">← Back to Catalog</a>
+</div>
+
+<div class="head">
+  <h1>Eco Literacy — Student Registry</h1>
+  <p>All students who have registered for the course, plus their progress and completion status.</p>
+</div>
+
+<div class="stats">
+  <div class="stat-card blue">
+    <div class="label">Total Registrations</div>
+    <div class="value">{{ stats.total }}</div>
+  </div>
+  <div class="stat-card green">
+    <div class="label">Completed</div>
+    <div class="value">{{ stats.completed }}</div>
+  </div>
+  <div class="stat-card gold">
+    <div class="label">In Progress</div>
+    <div class="value">{{ stats.in_progress }}</div>
+  </div>
+  <div class="stat-card gray">
+    <div class="label">Not Started</div>
+    <div class="value">{{ stats.not_started }}</div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <input type="text" id="search" placeholder="🔍 Search by name, email, school, city..." oninput="filterRows()">
+  <select id="statusFilter" onchange="filterRows()">
+    <option value="all">All statuses</option>
+    <option value="done">✓ Completed</option>
+    <option value="progress">In progress</option>
+    <option value="notstart">Not started</option>
+  </select>
+  <div class="actions">
+    <a href="/programs/eco-classroom/admin/export.csv" class="btn">⬇ Export CSV</a>
+  </div>
+</div>
+
+<div class="tbl-wrap">
+  {% if registrations %}
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Age / Grade</th>
+        <th>School / Location</th>
+        <th>Parent / Guardian</th>
+        <th>Registered</th>
+        <th>Progress</th>
+        <th>Quizzes</th>
+        <th>Final</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+      {% for r in registrations %}
+      {% set status = 'done' if r._completed else ('progress' if r._milestones > 0 else 'notstart') %}
+      <tr class="row {% if r._orphan %}orphan{% endif %}"
+          data-status="{{ status }}"
+          data-search="{{ (r.student_name + ' ' + r.student_email + ' ' + r.school + ' ' + r.city + ' ' + r.country)|lower }}">
+        <td>
+          <div class="name">{{ r.student_name or '(no name)' }}{% if r._orphan %} <span class="status orphan">No registration</span>{% endif %}</div>
+          <div class="email">{{ r.student_email }}</div>
+        </td>
+        <td>
+          <div>{{ r.age or '—' }}{% if r.grade %} · {{ r.grade }}{% endif %}</div>
+        </td>
+        <td>
+          <div class="meta">
+            {% if r.school %}{{ r.school }}<br>{% endif %}
+            {% if r.city or r.country %}{{ r.city }}{% if r.city and r.country %}, {% endif %}{{ r.country }}{% endif %}
+          </div>
+        </td>
+        <td>
+          <div class="meta">
+            {% if r.parent_name %}{{ r.parent_name }}<br>{% endif %}
+            {% if r.parent_email %}<a href="mailto:{{ r.parent_email }}" style="color:var(--gc-blue)">{{ r.parent_email }}</a><br>{% endif %}
+            {% if r.parent_phone %}{{ r.parent_phone }}{% endif %}
+          </div>
+        </td>
+        <td>
+          <div class="meta">
+            {% if r.submitted_at %}{{ r.submitted_at[:10] }}{% else %}—{% endif %}
+            {% if r.source %}<br><span style="color:var(--muted)">via {{ r.source }}</span>{% endif %}
+          </div>
+        </td>
+        <td class="progress-cell">
+          {% set pct = ((r._milestones / 12) * 100)|round|int %}
+          <div class="pb-mini"><div class="fill" style="width:{{ pct }}%"></div></div>
+          <div class="progress-text">{{ r._tasks_done }}/9 lessons · {{ r._milestones }}/12 total</div>
+        </td>
+        <td>
+          {% if r._quiz1 is not none %}
+            <span class="score-pill {{ 'pass' if r._quiz1 >= 6 else 'fail' }}">Q1: {{ r._quiz1 }}/10</span>
+          {% else %}
+            <span class="score-pill none">Q1: —</span>
+          {% endif %}
+          <br>
+          {% if r._quiz2 is not none %}
+            <span class="score-pill {{ 'pass' if r._quiz2 >= 6 else 'fail' }}">Q2: {{ r._quiz2 }}/10</span>
+          {% else %}
+            <span class="score-pill none">Q2: —</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if r._final_words >= 100 %}
+            <span class="score-pill pass">{{ r._final_words }} words</span>
+          {% elif r._final_words > 0 %}
+            <span class="score-pill fail">{{ r._final_words }}/100</span>
+          {% else %}
+            <span class="score-pill none">—</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if r._completed %}
+            <span class="status done">✓ Complete</span>
+            {% if r._completed_at %}<div class="meta" style="margin-top:.25rem">{{ r._completed_at[:10] }}</div>{% endif %}
+            {% if r._cert_file %}<a href="/programs/eco-classroom/admin/cert/{{ r._cert_file }}" class="cert-link" target="_blank">📄 View Cert</a>{% endif %}
+          {% elif r._milestones > 0 %}
+            <span class="status progress">In progress</span>
+          {% else %}
+            <span class="status notstart">Not started</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if r._completed %}
+            <button class="action-btn resend" onclick="resendCert('{{ r.student_email }}', this)">📧 Resend</button>
+          {% endif %}
+          <a href="mailto:{{ r.student_email }}" class="action-btn">✉ Email</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty">
+    <p>📭 No registrations yet.</p>
+    <p style="font-size:.85rem">When students register through the EcoClassroom course pages, they will appear here.</p>
+  </div>
+  {% endif %}
+</div>
+
+<footer>
+  NexYouth EcoClassroom Admin · Data lives in <code>data/eco-registrations.csv</code>, <code>data/eco-submissions.csv</code>, <code>data/eco-completed.csv</code>
+</footer>
+
+<script>
+function filterRows(){
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const statusFilter = document.getElementById('statusFilter').value;
+  document.querySelectorAll('#tbody .row').forEach(row => {
+    const matchSearch = !q || row.dataset.search.includes(q);
+    const matchStatus = statusFilter === 'all' || row.dataset.status === statusFilter;
+    row.style.display = (matchSearch && matchStatus) ? '' : 'none';
+  });
+}
+
+async function resendCert(email, btn){
+  if (!confirm(`Resend certificate email to ${email}?`)) return;
+  const orig = btn.textContent;
+  btn.disabled = true; btn.textContent = '⏳ Sending...';
+  try {
+    const r = await fetch('/api/eco-classroom/resend-cert', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({student_email: email})
+    });
+    const j = await r.json();
+    if (r.ok && j.ok) {
+      const status = j.email_status;
+      btn.textContent = status === 'sent' ? '✓ Sent' : (status === 'logged' ? '⚠ Logged only' : '✗ Failed');
+      let msg = '';
+      if (status === 'sent') msg = `Email re-sent to ${email}\nCC: ${j.cc}`;
+      else if (status === 'logged') msg = 'Certificate generated and email logged on the server, but SMTP is not configured. Set SMTP_HOST etc. in .env to actually deliver email.';
+      else msg = 'SMTP error — check data/sent-emails.log for details.';
+      alert(msg);
+    } else {
+      btn.textContent = '✗ Error';
+      alert(j.error || 'Could not resend.');
+    }
+  } catch(e) {
+    btn.textContent = '✗ Error';
+    alert('Network error.');
+  } finally {
+    setTimeout(()=>{ btn.disabled=false; btn.textContent=orig; }, 4000);
+  }
+}
+</script>
+</body>
+</html>

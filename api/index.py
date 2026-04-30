@@ -1792,10 +1792,10 @@ SKILL_DEVELOPMENT_TEMPLATE = """
                     <h3>Public Speaking & Debate</h3>
                     <p>Build confidence and communication skills through structured debate training and public speaking exercises. Perfect for future leaders and advocates.</p>
                 </div>
-                <div class="course-card">
+                <a href="/programs/eco-classroom" class="course-card" style="text-decoration: none; color: inherit; cursor: pointer;">
                     <h3>Environmental Science</h3>
                     <p>Explore the science behind climate change, ecosystems, and sustainability. Learn how to analyze environmental data and propose solutions.</p>
-                </div>
+                </a>
                 <div class="course-card">
                     <h3>Leadership & Team Building</h3>
                     <p>Develop essential leadership skills through hands-on activities and real-world projects. Learn to inspire and motivate teams effectively.</p>
@@ -2767,6 +2767,16 @@ def youth_tech_lab():
 @app.route('/programs/iyec-2026-results')
 def iyec_2026_results():
     return render_template('iyec-2026-results.html')
+
+@app.route('/programs/eco-classroom')
+def eco_classroom():
+    """EcoClassroom course catalog."""
+    return render_template('eco-classroom.html')
+
+@app.route('/programs/eco-classroom/eco-literacy')
+def eco_classroom_eco_literacy():
+    """Eco Literacy course page."""
+    return render_template('course-eco-literacy.html')
 
 @app.route('/chapters')
 def chapters():

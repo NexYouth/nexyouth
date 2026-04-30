@@ -21,3 +21,8 @@ server.pid
 .claude/
 templates/environmental-competition.html.bak
 templates/update_criteria.py
+
+# EcoClassroom student data — PII, never commit
+data/
+*.bak
+

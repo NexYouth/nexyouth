@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoClassroom — Eco Literacy Course | NexYouth</title>
+<meta name="description" content="NexYouth Eco Literacy Course: From Environmental Systems to Youth Action. 9 lessons, 2 quizzes, and a Youth Eco Action Plan. Earn a certificate and $15 completion incentive.">
+<link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gc-green:#1A6640;--gc-green-d:#0d3a23;--gc-green-l:#2D9A5E;
+  --gc-leaf:#3FB572;--gc-cream:#F8F5F0;--gc-gold:#C9A84C;
+  --gc-blue:#1A73E8;--gc-coral:#E05533;
+  --bg:#F8F9FA;--surface:#fff;--border:#E0E0E0;--border-d:#DADCE0;
+  --text:#202124;--text-2:#5F6368;--muted:#80868B;
+  --shadow-1:0 1px 2px rgba(60,64,67,.08),0 1px 3px rgba(60,64,67,.12);
+  --shadow-2:0 1px 3px rgba(60,64,67,.12),0 4px 8px rgba(60,64,67,.10);
+  --shadow-3:0 2px 6px rgba(60,64,67,.15),0 6px 14px rgba(60,64,67,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Roboto','Google Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+
+/* ── TOP APP BAR ── */
+.appbar{background:#fff;border-bottom:1px solid var(--border);padding:.55rem 1.2rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:100;height:56px}
+.appbar .brand{display:flex;align-items:center;gap:.65rem;font-weight:500;font-size:1.05rem;color:var(--text)}
+.appbar .brand .logo{width:30px;height:30px;background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem}
+.appbar .spacer{flex:1}
+.appbar .home-btn{font-size:.85rem;color:var(--gc-green);font-weight:500;padding:.5rem .9rem;border-radius:100px;border:1px solid var(--border-d);transition:all .15s;background:#fff;cursor:pointer}
+.appbar .home-btn:hover{background:var(--gc-cream);border-color:var(--gc-green)}
+
+/* ── AUTH (logged-out / logged-in) ── */
+.auth-out{display:flex;gap:.5rem;align-items:center}
+.auth-btn{font-size:.85rem;font-weight:500;padding:.5rem 1rem;border-radius:100px;cursor:pointer;font-family:inherit;transition:all .15s;border:1px solid var(--border-d);background:#fff;color:var(--text)}
+.auth-btn.login{color:var(--gc-green);border-color:var(--gc-green)}
+.auth-btn.login:hover{background:var(--gc-cream)}
+.auth-btn.register{background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;border-color:transparent}
+.auth-btn.register:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(26,102,64,.3)}
+.auth-btn.signout-btn{padding:.45rem .65rem;color:var(--text-2);font-size:1.05rem;line-height:1}
+.auth-btn.signout-btn:hover{color:var(--gc-coral);border-color:var(--gc-coral);background:rgba(224,85,51,.06)}
+
+.auth-in{display:flex;align-items:center;gap:.6rem}
+.user-chip{display:flex;align-items:center;gap:.6rem;padding:.35rem .85rem .35rem .35rem;background:#F1F8F4;border:1px solid rgba(45,154,94,.25);border-radius:100px}
+.user-chip .avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0}
+.user-chip .user-info{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.user-chip .user-name{font-size:.84rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px}
+.user-chip .user-mail{font-size:.7rem;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px}
+
+@media(max-width:680px){
+  .user-chip .user-mail{display:none}
+  .user-chip .user-name{max-width:100px}
+  .auth-btn.register{display:none}
+}
+
+/* ── HERO BANNER (Google Classroom style) ── */
+.banner{position:relative;height:240px;background:linear-gradient(120deg,#0d3a23 0%,#1A6640 45%,#2D9A5E 100%);overflow:hidden}
+.banner::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse 600px 300px at 80% 20%,rgba(63,181,114,.4) 0%,transparent 60%),
+  radial-gradient(ellipse 400px 200px at 20% 80%,rgba(201,168,76,.25) 0%,transparent 65%);}
+.banner::after{content:'🌿';position:absolute;right:3rem;bottom:1rem;font-size:8rem;opacity:.12;transform:rotate(-12deg)}
+.banner-inner{position:relative;height:100%;max-width:1100px;margin:0 auto;padding:1.6rem 2rem;display:flex;flex-direction:column;justify-content:flex-end;color:#fff}
+.banner h1{font-family:'Google Sans','Playfair Display',serif;font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:700;letter-spacing:-.01em;line-height:1.15;margin-bottom:.3rem;max-width:700px}
+.banner .subtitle{font-size:1.05rem;color:rgba(255,255,255,.85);font-weight:400;margin-bottom:.4rem}
+.banner .meta-row{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;font-size:.84rem;color:rgba(255,255,255,.78)}
+.banner .meta-row span{display:flex;align-items:center;gap:.35rem}
+
+/* ── TAB BAR ── */
+.tabbar{background:#fff;border-bottom:1px solid var(--border);padding:0 2rem;display:flex;gap:.2rem;position:sticky;top:56px;z-index:90}
+.tab{padding:.95rem 1.4rem;border:none;background:transparent;font-size:.88rem;font-weight:500;color:var(--text-2);cursor:pointer;border-bottom:3px solid transparent;transition:all .15s;font-family:inherit;letter-spacing:.01em}
+.tab:hover{color:var(--gc-green);background:rgba(26,102,64,.04)}
+.tab.on{color:var(--gc-green);border-bottom-color:var(--gc-green)}
+
+/* ── MAIN ── */
+main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-template-columns:280px 1fr;gap:1.5rem}
+@media(max-width:880px){main{grid-template-columns:1fr;padding:1rem}}
+
+/* ── SIDEBAR (Stream view) ── */
+.side{display:flex;flex-direction:column;gap:1rem}
+.side-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem;box-shadow:var(--shadow-1)}
+.side-card h3{font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:500;color:var(--text);margin-bottom:.7rem;display:flex;align-items:center;gap:.4rem}
+.side-card .upcoming{font-size:.83rem;color:var(--text-2);line-height:1.5;margin-bottom:.45rem;padding:.45rem 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:.55rem}
+.side-card .upcoming:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.side-card .upcoming .ic{width:18px;flex-shrink:0;color:var(--gc-coral);font-size:.95rem;line-height:1.3}
+.side-card .upcoming .ic.book{color:var(--gc-blue)}
+.side-card .upcoming .ic.quiz{color:var(--gc-green)}
+.side-card .stat-row{display:flex;justify-content:space-between;padding:.4rem 0;font-size:.84rem;color:var(--text-2);border-bottom:1px solid var(--border)}
+.side-card .stat-row:last-child{border-bottom:none}
+.side-card .stat-row .v{color:var(--text);font-weight:500}
+
+/* ── FEED ── */
+.feed{display:flex;flex-direction:column;gap:1rem}
+.section-h{font-family:'Google Sans',sans-serif;font-size:1.6rem;font-weight:400;color:var(--gc-green);padding:.4rem 0 .8rem;border-bottom:2px solid var(--border);margin-bottom:.4rem;display:flex;align-items:center;justify-content:space-between}
+.section-h .count{font-size:.78rem;color:var(--muted);font-weight:400}
+
+/* ── CLASSWORK TOPIC ── */
+.topic{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:var(--shadow-1)}
+.topic-h{padding:1rem 1.4rem;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+.topic-h h2{font-family:'Google Sans',sans-serif;font-size:1.3rem;font-weight:500;color:var(--gc-green);letter-spacing:0}
+.topic-h .arrow{font-size:1.3rem;color:var(--text-2);transition:transform .2s}
+.topic.collapsed .arrow{transform:rotate(-90deg)}
+.topic.collapsed .topic-body{display:none}
+
+/* ── ITEM (assignment / material / quiz card row) ── */
+.item{border-top:1px solid var(--border);padding:0;background:#fff}
+.item:first-child{border-top:none}
+.item-h{display:flex;align-items:center;gap:1rem;padding:.95rem 1.4rem;cursor:pointer;transition:background .15s}
+.item-h:hover{background:#F8F9FA}
+.item.open .item-h{background:#F1F8F4}
+.item-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:rgba(26,102,64,.1);color:var(--gc-green)}
+.item.assignment .item-icon{background:rgba(224,85,51,.1);color:var(--gc-coral)}
+.item.quiz .item-icon{background:rgba(26,115,232,.1);color:var(--gc-blue)}
+.item.final .item-icon{background:rgba(201,168,76,.16);color:#8a6010}
+.item-meta{flex:1;min-width:0}
+.item-title{font-size:.96rem;color:var(--text);font-weight:500;line-height:1.4;margin-bottom:.1rem}
+.item-sub{font-size:.78rem;color:var(--text-2);display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.item-sub .pill{font-size:.7rem;font-weight:600;padding:.12rem .55rem;border-radius:100px;background:rgba(26,102,64,.1);color:var(--gc-green);text-transform:uppercase;letter-spacing:.04em}
+.item.assignment .item-sub .pill{background:rgba(224,85,51,.1);color:#b03318}
+.item.quiz .item-sub .pill{background:rgba(26,115,232,.1);color:#1557B0}
+.item.final .item-sub .pill{background:rgba(201,168,76,.18);color:#7a5500}
+.item-arrow{color:var(--text-2);font-size:1rem;transition:transform .2s}
+.item.open .item-arrow{transform:rotate(180deg)}
+
+/* ── ITEM BODY (expandable detail) ── */
+.item-body{display:none;padding:.5rem 1.4rem 1.4rem;border-top:1px solid var(--border);background:#FAFBFC}
+.item.open .item-body{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.item-body h4{font-family:'Google Sans',sans-serif;font-size:.85rem;font-weight:500;color:var(--gc-green);text-transform:uppercase;letter-spacing:.06em;margin:1rem 0 .4rem;padding-bottom:.25rem;border-bottom:1px solid var(--border)}
+.item-body h4:first-child{margin-top:.6rem}
+.item-body p{font-size:.92rem;color:var(--text);line-height:1.65;margin-bottom:.6rem}
+.item-body ul,.item-body ol{margin:.4rem 0 .7rem 1.4rem}
+.item-body li{font-size:.9rem;color:var(--text);line-height:1.6;margin-bottom:.25rem}
+.item-body li::marker{color:var(--gc-green)}
+
+.resource{display:flex;align-items:center;gap:.75rem;padding:.7rem .95rem;background:#fff;border:1px solid var(--border);border-radius:6px;margin-bottom:.5rem;transition:all .15s}
+.resource:hover{box-shadow:var(--shadow-1);border-color:var(--gc-green)}
+.resource .r-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;background:rgba(26,115,232,.1);color:var(--gc-blue)}
+.resource.read .r-icon{background:rgba(45,154,94,.12);color:var(--gc-green)}
+.resource.video .r-icon{background:rgba(224,85,51,.1);color:var(--gc-coral)}
+.resource .r-meta{flex:1;min-width:0}
+.resource .r-type{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:500;margin-bottom:.05rem}
+.resource .r-title{font-size:.88rem;color:var(--text);line-height:1.4;font-weight:500}
+
+.task-box{background:#fff;border:1px solid var(--border);border-left:4px solid var(--gc-green);border-radius:0 6px 6px 0;padding:.85rem 1.05rem;margin-top:.6rem}
+.task-box .lbl{font-size:.7rem;font-weight:600;color:var(--gc-green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem}
+
+/* ── QUIZ ── */
+.q{background:#fff;border:1px solid var(--border);border-radius:8px;padding:.95rem 1.15rem;margin-bottom:.6rem}
+.q-num{font-family:'Google Sans',sans-serif;font-size:.78rem;color:var(--gc-blue);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.3rem}
+.q-text{font-size:.94rem;color:var(--text);font-weight:500;line-height:1.5;margin-bottom:.6rem}
+.q-opts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.3rem}
+.q-opts li{padding:.5rem .75rem;background:#F8F9FA;border:1px solid var(--border);border-radius:6px;font-size:.86rem;color:var(--text);cursor:pointer;transition:all .15s}
+.q-opts li:hover{border-color:var(--gc-blue);background:#fff}
+.q-opts li.correct{background:rgba(45,154,94,.08);border-color:var(--gc-leaf);color:var(--gc-green-d);font-weight:500}
+.q-opts li.correct::before{content:'✓ ';font-weight:700;color:var(--gc-green)}
+.q-ans{margin-top:.45rem;font-size:.78rem;color:var(--text-2);padding:.35rem .55rem;background:rgba(45,154,94,.06);border-radius:4px;display:none}
+.q.show-ans .q-ans{display:block}
+.show-toggle{display:inline-block;font-size:.78rem;color:var(--gc-blue);cursor:pointer;padding:.3rem .55rem;border-radius:4px;margin-bottom:1rem;background:rgba(26,115,232,.06);border:none;font-family:inherit;font-weight:500}
+.show-toggle:hover{background:rgba(26,115,232,.12)}
+
+/* ── RUBRIC TABLE ── */
+.rubric-tbl{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-top:.4rem;font-size:.86rem}
+.rubric-tbl th,.rubric-tbl td{padding:.65rem .85rem;text-align:left;border-bottom:1px solid var(--border)}
+.rubric-tbl th{background:linear-gradient(180deg,#1A6640 0%,#0d3a23 100%);color:#fff;font-family:'Google Sans',sans-serif;font-weight:500;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
+.rubric-tbl tbody tr:last-child td{border-bottom:none}
+.rubric-tbl tbody tr.total{background:rgba(26,102,64,.06);font-weight:600;color:var(--gc-green-d)}
+.rubric-tbl td.pts{text-align:center;font-weight:600;color:var(--gc-green);width:80px}
+
+/* ── ANNOUNCEMENT (Stream) ── */
+.announce{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.4rem;box-shadow:var(--shadow-1)}
+.announce-head{display:flex;align-items:center;gap:.75rem;margin-bottom:.65rem}
+.announce-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+.announce-info .a{font-size:.93rem;font-weight:500;color:var(--text)}
+.announce-info .d{font-size:.78rem;color:var(--text-2)}
+.announce p{font-size:.92rem;color:var(--text);line-height:1.65;margin-bottom:.5rem}
+.announce p:last-child{margin-bottom:0}
+
+/* ── INFO TAB ── */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:1.2rem}
+.info-tile{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.3rem;box-shadow:var(--shadow-1)}
+.info-tile .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin-bottom:.3rem}
+.info-tile .val{font-family:'Google Sans',sans-serif;font-size:1.5rem;font-weight:500;color:var(--text);line-height:1.2}
+.info-tile .desc{font-size:.83rem;color:var(--text-2);margin-top:.25rem}
+
+/* ── PAGES ── */
+.page{display:none;animation:fade .25s ease}
+.page.on{display:grid}
+@media(max-width:880px){.page.on{display:flex;flex-direction:column}}
+
+/* ── REGISTER CTA HERO ── */
+.cta-hero{position:relative;background:linear-gradient(135deg,#1A6640 0%,#2D9A5E 50%,#3FB572 100%);border-radius:14px;padding:1.8rem 2rem;color:#fff;overflow:hidden;box-shadow:0 6px 22px rgba(26,102,64,.18);margin-bottom:.4rem}
+.cta-hero::before{content:'';position:absolute;top:-40%;right:-10%;width:60%;height:180%;background:radial-gradient(ellipse,rgba(255,255,255,.18) 0%,transparent 60%);pointer-events:none}
+.cta-hero::after{content:'🌱';position:absolute;right:1.5rem;top:50%;transform:translateY(-50%) rotate(-15deg);font-size:6rem;opacity:.15}
+.cta-hero .cta-tag{display:inline-block;background:rgba(255,255,255,.18);padding:.28rem .85rem;border-radius:100px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.7rem;backdrop-filter:blur(8px)}
+.cta-hero h3{font-family:'Google Sans',serif;font-size:1.55rem;font-weight:700;line-height:1.2;margin-bottom:.5rem;max-width:480px;letter-spacing:-.01em}
+.cta-hero p{font-size:.95rem;color:rgba(255,255,255,.92);margin-bottom:1.1rem;max-width:520px;line-height:1.55}
+.cta-hero .btn-row{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;position:relative;z-index:2}
+.btn-primary{background:#fff;color:var(--gc-green);padding:.78rem 1.6rem;border-radius:100px;font-weight:600;font-size:.95rem;border:none;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:.5rem;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.btn-secondary{background:transparent;color:#fff;padding:.7rem 1.2rem;border-radius:100px;font-weight:500;font-size:.88rem;border:1.5px solid rgba(255,255,255,.4);cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-secondary:hover{background:rgba(255,255,255,.12);border-color:#fff}
+
+/* ── FLOATING REGISTER BUTTON ── */
+.fab{position:fixed;bottom:1.6rem;right:1.6rem;background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;padding:.95rem 1.6rem;border-radius:100px;font-weight:600;font-size:.92rem;border:none;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:.55rem;box-shadow:0 4px 18px rgba(26,102,64,.35);z-index:200;transition:all .2s;letter-spacing:.01em}
+.fab:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(26,102,64,.45)}
+.fab .ico{font-size:1.05rem}
+
+/* ── MODAL ── */
+.modal-backdrop{position:fixed;inset:0;background:rgba(15,30,22,.55);backdrop-filter:blur(4px);z-index:300;display:none;align-items:center;justify-content:center;padding:1rem;animation:fade .2s ease}
+.modal-backdrop.on{display:flex}
+.modal{background:#fff;border-radius:16px;max-width:620px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:up .35s cubic-bezier(.2,.8,.4,1)}
+@keyframes up{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-head{position:relative;background:linear-gradient(135deg,#1A6640 0%,#2D9A5E 100%);color:#fff;padding:1.6rem 2rem;border-radius:16px 16px 0 0;overflow:hidden}
+.modal-head::after{content:'🌿';position:absolute;right:1.5rem;top:50%;transform:translateY(-50%) rotate(-12deg);font-size:5rem;opacity:.18}
+.modal-head h3{font-family:'Google Sans',serif;font-size:1.5rem;font-weight:700;margin-bottom:.3rem;position:relative;z-index:2}
+.modal-head p{font-size:.88rem;color:rgba(255,255,255,.85);position:relative;z-index:2;max-width:440px}
+.modal-close{position:absolute;top:1rem;right:1rem;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.18);border:none;color:#fff;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;z-index:3}
+.modal-close:hover{background:rgba(255,255,255,.3)}
+.modal-body{padding:1.6rem 2rem 1.8rem}
+.form-section{margin-bottom:1.4rem}
+.form-section h4{font-family:'Google Sans',sans-serif;font-size:.78rem;font-weight:600;color:var(--gc-green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.7rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+@media(max-width:560px){.field-grid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:.3rem}
+.field.full{grid-column:1/-1}
+.field label{font-size:.8rem;font-weight:500;color:var(--text);display:flex;align-items:center;gap:.25rem}
+.field label .req{color:var(--gc-coral);font-weight:700}
+.field input,.field select,.field textarea{padding:.6rem .8rem;border:1.5px solid var(--border-d);border-radius:8px;font-size:.92rem;font-family:inherit;color:var(--text);background:#fff;transition:border-color .15s,box-shadow .15s;outline:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gc-green);box-shadow:0 0 0 3px rgba(26,102,64,.12)}
+.field textarea{min-height:84px;resize:vertical;line-height:1.5}
+.checkbox-field{display:flex;align-items:flex-start;gap:.55rem;padding:.7rem .85rem;background:#F8F9FA;border:1px solid var(--border);border-radius:8px;cursor:pointer}
+.checkbox-field input{width:18px;height:18px;margin-top:2px;flex-shrink:0;accent-color:var(--gc-green)}
+.checkbox-field label{font-size:.83rem;color:var(--text);font-weight:400;line-height:1.5;cursor:pointer}
+.form-submit{width:100%;background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;padding:.95rem 1.4rem;border-radius:100px;font-weight:600;font-size:1rem;border:none;cursor:pointer;font-family:inherit;margin-top:.6rem;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.form-submit:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(26,102,64,.3)}
+.form-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.form-msg{padding:.7rem .9rem;border-radius:8px;font-size:.86rem;margin-top:.6rem;display:none}
+.form-msg.show{display:block}
+.form-msg.error{background:rgba(224,85,51,.1);color:#902a18;border:1px solid rgba(224,85,51,.3)}
+.form-msg.ok{background:rgba(45,154,94,.1);color:var(--gc-green-d);border:1px solid rgba(45,154,94,.3)}
+
+/* success state */
+.success-view{display:none;text-align:center;padding:2.5rem 2rem 2.2rem}
+.success-view.on{display:block;animation:up .35s ease}
+.success-view .check{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;font-size:2.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem;box-shadow:0 6px 18px rgba(45,154,94,.35)}
+.success-view h3{font-family:'Google Sans',serif;font-size:1.45rem;color:var(--text);margin-bottom:.5rem;font-weight:700}
+.success-view p{font-size:.94rem;color:var(--text-2);max-width:380px;margin:0 auto 1.3rem;line-height:1.6}
+
+/* ── COMPLETED BANNER (already-completed student) ── */
+.completed-banner{display:none;align-items:center;gap:1rem;padding:1.1rem 1.6rem;background:linear-gradient(135deg,#1A6640 0%,#3FB572 60%,#C9A84C 100%);color:#fff;position:sticky;top:56px;z-index:85;box-shadow:0 2px 14px rgba(26,102,64,.25);flex-wrap:wrap}
+.completed-banner.on{display:flex}
+.completed-banner .cb-emoji{font-size:2rem;line-height:1;flex-shrink:0;filter:drop-shadow(0 2px 4px rgba(0,0,0,.18))}
+.completed-banner .cb-info{flex:1;min-width:240px}
+.completed-banner .cb-title{font-family:'Google Sans',serif;font-size:1.05rem;font-weight:700;line-height:1.2;margin-bottom:.2rem}
+.completed-banner .cb-sub{font-size:.83rem;color:rgba(255,255,255,.88);line-height:1.4}
+.completed-banner .cb-sub strong{color:#fff;font-weight:600}
+.completed-banner .cb-actions{display:flex;gap:.55rem;flex-wrap:wrap}
+.completed-banner .cb-btn{padding:.55rem 1.05rem;border-radius:100px;font-size:.84rem;font-weight:600;border:1.5px solid transparent;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:.35rem;transition:all .15s;white-space:nowrap}
+.completed-banner .cb-btn.primary{background:#fff;color:var(--gc-green)}
+.completed-banner .cb-btn.primary:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.completed-banner .cb-btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+.completed-banner .cb-btn.ghost:hover{background:rgba(255,255,255,.18);border-color:#fff}
+.completed-banner .cb-btn:disabled{opacity:.7;cursor:wait}
+@media(max-width:640px){
+  .completed-banner{padding:.95rem 1rem;top:56px}
+  .completed-banner .cb-emoji{font-size:1.6rem}
+  .completed-banner .cb-title{font-size:.96rem}
+  .completed-banner .cb-actions{width:100%}
+  .completed-banner .cb-btn{flex:1;justify-content:center;padding:.5rem .75rem;font-size:.78rem}
+}
+
+/* ── PROGRESS BAR ── */
+.progress-bar{position:sticky;top:56px;background:linear-gradient(180deg,#fff 0%,#FAFBFC 100%);border-bottom:1px solid var(--border);padding:.85rem 2rem;z-index:80;display:none;align-items:center;gap:1rem;flex-wrap:wrap}
+.progress-bar.on{display:flex}
+.progress-bar .who{font-size:.83rem;color:var(--text-2);display:flex;align-items:center;gap:.4rem}
+.progress-bar .who strong{color:var(--gc-green);font-weight:600}
+.progress-bar .pb-track{flex:1;min-width:200px;height:8px;background:#E8EAED;border-radius:100px;overflow:hidden;position:relative}
+.progress-bar .pb-fill{height:100%;background:linear-gradient(90deg,var(--gc-green) 0%,var(--gc-leaf) 100%);border-radius:100px;transition:width .5s cubic-bezier(.2,.8,.4,1);width:0}
+.progress-bar .pb-text{font-size:.83rem;font-weight:600;color:var(--gc-green);min-width:80px;text-align:right;font-family:'Google Sans',sans-serif}
+.progress-bar .signout{font-size:.78rem;color:var(--text-2);background:transparent;border:1px solid var(--border-d);padding:.3rem .7rem;border-radius:100px;cursor:pointer;font-family:inherit}
+.progress-bar .signout:hover{color:var(--gc-coral);border-color:var(--gc-coral)}
+
+/* ── ITEM STATUS BADGE ── */
+.status-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.7rem;font-weight:600;padding:.18rem .6rem;border-radius:100px;letter-spacing:.04em;margin-left:auto;text-transform:uppercase}
+.status-badge.todo{background:#F1F3F4;color:var(--muted)}
+.status-badge.done{background:rgba(45,154,94,.14);color:var(--gc-green)}
+.status-badge.fail{background:rgba(224,85,51,.14);color:#b03318}
+
+/* ── REFLECT BOX (reflection question + mark complete) ── */
+.reflect-box{margin-top:.4rem;background:linear-gradient(135deg,#F1F8F4 0%,#E8F5EC 100%);border:1.5px solid rgba(45,154,94,.2);border-radius:10px;padding:1.1rem 1.3rem;position:relative;overflow:hidden}
+.reflect-box::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,var(--gc-green) 0%,var(--gc-leaf) 100%)}
+.reflect-box .reflect-lbl{font-size:.68rem;font-weight:700;color:var(--gc-green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.45rem;display:flex;align-items:center;gap:.4rem}
+.reflect-box .reflect-q{font-family:'Google Sans','Playfair Display',serif;font-size:1.05rem;font-weight:500;color:var(--gc-green-d);line-height:1.45;margin-bottom:.3rem;font-style:italic}
+.reflect-box .reflect-hint{font-size:.78rem;color:var(--text-2);margin-bottom:.95rem;line-height:1.5}
+.reflect-box .reflect-foot{display:flex;align-items:center;justify-content:space-between;gap:.7rem;flex-wrap:wrap}
+.reflect-box .complete-btn{background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;border:none;padding:.6rem 1.4rem;border-radius:100px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem}
+.reflect-box .complete-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 4px 14px rgba(26,102,64,.3)}
+.reflect-box .complete-btn:disabled{opacity:.5;cursor:not-allowed}
+.reflect-box.done{background:linear-gradient(135deg,#E8F5EC 0%,#D4EDD9 100%)}
+.reflect-box.done .complete-btn{background:#fff;color:var(--gc-green);border:1.5px solid var(--gc-green);cursor:default}
+.reflect-box .complete-msg{font-size:.78rem;color:var(--gc-green);font-weight:600;display:none;align-items:center;gap:.3rem}
+.reflect-box.done .complete-msg{display:inline-flex}
+
+/* ── QUIZ INTERACTIVE ── */
+.q-opts li.selected{background:#fff;border-color:var(--gc-blue);box-shadow:0 0 0 2px rgba(26,115,232,.18);font-weight:500}
+.q-opts li.wrong{background:rgba(224,85,51,.08);border-color:var(--gc-coral);color:#b03318}
+.q-opts li.wrong::before{content:'✗ ';font-weight:700;color:var(--gc-coral)}
+.q.locked .q-opts li{cursor:default}
+
+.quiz-actions{display:flex;align-items:center;gap:.8rem;margin-top:.6rem;flex-wrap:wrap}
+.quiz-submit-btn{background:linear-gradient(135deg,var(--gc-blue) 0%,#4A90E2 100%);color:#fff;border:none;padding:.65rem 1.4rem;border-radius:100px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem}
+.quiz-submit-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 3px 10px rgba(26,115,232,.3)}
+.quiz-submit-btn:disabled{opacity:.55;cursor:not-allowed}
+.quiz-score{padding:.5rem 1rem;border-radius:100px;font-size:.86rem;font-weight:600;font-family:'Google Sans',sans-serif;display:none}
+.quiz-score.show{display:inline-flex;align-items:center;gap:.4rem}
+.quiz-score.pass{background:rgba(45,154,94,.14);color:var(--gc-green-d)}
+.quiz-score.fail{background:rgba(224,85,51,.12);color:#902a18}
+
+/* ── FINAL SUBMIT FORM (separate styling) ── */
+.final-form{background:#fff;border:2px solid var(--gc-green);border-radius:10px;padding:1.1rem 1.3rem;margin-top:1rem}
+.final-form h5{font-family:'Google Sans',sans-serif;font-size:.95rem;font-weight:600;color:var(--gc-green);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem}
+.final-form textarea{width:100%;min-height:180px;padding:.7rem .9rem;border:1.5px solid var(--border-d);border-radius:8px;font-size:.92rem;font-family:inherit;line-height:1.6;color:var(--text);resize:vertical;outline:none;transition:border-color .15s}
+.final-form textarea:focus{border-color:var(--gc-green);box-shadow:0 0 0 3px rgba(26,102,64,.1)}
+.final-form .f-foot{display:flex;align-items:center;justify-content:space-between;margin-top:.7rem;gap:.7rem;flex-wrap:wrap}
+.final-form .f-count{font-size:.85rem;color:var(--text-2);font-family:'Google Sans',sans-serif;font-weight:500}
+.final-form .f-count.ok{color:var(--gc-green)}
+.final-form .f-btn{background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;border:none;padding:.7rem 1.5rem;border-radius:100px;font-size:.92rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}
+.final-form .f-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 4px 14px rgba(26,102,64,.3)}
+.final-form .f-btn:disabled{opacity:.55;cursor:not-allowed}
+.final-form .f-msg{margin-top:.6rem;font-size:.84rem;padding:.5rem .7rem;border-radius:6px;display:none}
+.final-form .f-msg.ok{display:block;background:rgba(45,154,94,.1);color:var(--gc-green-d);border:1px solid rgba(45,154,94,.3)}
+.final-form .f-msg.err{display:block;background:rgba(224,85,51,.1);color:#902a18;border:1px solid rgba(224,85,51,.3)}
+
+/* ── CELEBRATION BANNER ── */
+.celebrate{position:fixed;inset:0;background:rgba(15,30,22,.6);backdrop-filter:blur(6px);z-index:400;display:none;align-items:center;justify-content:center;padding:1rem;animation:fade .3s ease}
+.celebrate.on{display:flex}
+.celebrate-card{background:linear-gradient(135deg,#fff 0%,#F1F8F4 100%);border-radius:18px;max-width:480px;width:100%;padding:2.4rem 2rem;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35);animation:up .45s cubic-bezier(.2,.8,.4,1);position:relative;overflow:hidden}
+.celebrate-card::before{content:'';position:absolute;top:-50%;left:-20%;right:-20%;height:200%;background:radial-gradient(ellipse,rgba(63,181,114,.2) 0%,transparent 60%);pointer-events:none}
+.celebrate-card .emoji{font-size:4.5rem;margin-bottom:.6rem;display:inline-block;animation:bounce 1s ease infinite alternate;position:relative;z-index:2}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+.celebrate-card h3{font-family:'Google Sans',serif;font-size:1.7rem;font-weight:700;color:var(--gc-green-d);margin-bottom:.5rem;position:relative;z-index:2}
+.celebrate-card p{font-size:.96rem;color:var(--text);line-height:1.6;margin-bottom:1.3rem;max-width:380px;margin-left:auto;margin-right:auto;position:relative;z-index:2}
+.celebrate-card p strong{color:var(--gc-green-d)}
+.celebrate-card .c-btn{background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;padding:.85rem 1.8rem;border-radius:100px;border:none;font-weight:600;font-size:.95rem;cursor:pointer;font-family:inherit;position:relative;z-index:2;transition:all .2s}
+.celebrate-card .c-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(45,154,94,.4)}
+
+/* mobile */
+@media(max-width:600px){
+  .appbar{padding:.5rem .9rem}
+  .tabbar{padding:0 .8rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab{padding:.9rem 1rem;font-size:.83rem;white-space:nowrap}
+  .banner{height:200px}
+  .banner-inner{padding:1.2rem 1.2rem}
+  main{padding:1rem .8rem}
+  .item-h{padding:.85rem 1rem;gap:.7rem}
+  .item-icon{width:36px;height:36px;font-size:1rem}
+  .item-title{font-size:.9rem}
+  .topic-h{padding:.85rem 1rem}
+  .topic-h h2{font-size:1.1rem}
+  .item-body{padding:.5rem 1rem 1.1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOP APP BAR ── -->
+<div class="appbar">
+  <div class="brand">
+    <div class="logo">N</div>
+    <span>EcoClassroom</span>
+  </div>
+  <div class="spacer"></div>
+
+  <!-- Logged-out state -->
+  <div class="auth-out" id="authOut">
+    <button class="auth-btn login" onclick="openLogin()">Sign in</button>
+    <button class="auth-btn register" onclick="openRegister()">Register</button>
+  </div>
+
+  <!-- Logged-in state -->
+  <div class="auth-in" id="authIn" style="display:none">
+    <div class="user-chip">
+      <div class="avatar" id="userAvatar">S</div>
+      <div class="user-info">
+        <div class="user-name" id="userName">Student</div>
+        <div class="user-mail" id="userMail">student@example.com</div>
+      </div>
+    </div>
+    <button class="auth-btn signout-btn" onclick="signOut()" title="Sign out">↪</button>
+  </div>
+
+  <a href="/programs/eco-classroom" class="home-btn">← All Courses</a>
+</div>
+
+<!-- ── BANNER ── -->
+<div class="banner">
+  <div class="banner-inner">
+    <h1>Eco Literacy: From Environmental Systems to Youth Action</h1>
+    <p class="subtitle">A NexYouth Course · 9 Lessons · Self-Paced</p>
+    <div class="meta-row">
+      <span>📚 9 Lessons</span>
+      <span>🧪 2 Quizzes</span>
+      <span>📝 1 Action Plan</span>
+      <span>🎓 Certificate + $15 Award</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── TAB BAR ── -->
+<div class="tabbar">
+  <button class="tab on" onclick="goto('stream',this)">Stream</button>
+  <button class="tab" onclick="goto('classwork',this)">Classwork</button>
+  <button class="tab" onclick="goto('about',this)">About</button>
+</div>
+
+<!-- ── PROGRESS BAR (visible after registration) ── -->
+<div class="progress-bar" id="progressBar">
+  <div class="who">Welcome, <strong id="pbName">Student</strong></div>
+  <div class="pb-track"><div class="pb-fill" id="pbFill"></div></div>
+  <div class="pb-text" id="pbText">0 / 12</div>
+  <button class="signout" onclick="signOut()">Sign out</button>
+</div>
+
+<!-- ── COMPLETED BANNER (only when student has already finished) ── -->
+<div class="completed-banner" id="completedBanner">
+  <div class="cb-emoji">🏆</div>
+  <div class="cb-info">
+    <div class="cb-title">You've already completed this course!</div>
+    <div class="cb-sub">Hi <strong id="cbName">friend</strong> — you finished Eco Literacy on <strong id="cbDate">—</strong>. Your NexYouth EcoHero certificate has been issued.</div>
+  </div>
+  <div class="cb-actions">
+    <a href="/programs/eco-classroom" class="cb-btn primary">🌍 Browse Other Courses</a>
+    <button class="cb-btn ghost" id="resendBtn" onclick="resendCert(this)">📧 Resend Certificate</button>
+  </div>
+</div>
+
+<!-- ── STREAM PAGE ── -->
+<main id="stream" class="page on">
+
+  <!-- Sidebar -->
+  <aside class="side">
+    <div class="side-card">
+      <h3>📌 Upcoming</h3>
+      <div class="upcoming"><span class="ic">📝</span><span>Final: Youth Eco Action Plan (≥ 100 words)</span></div>
+      <div class="upcoming"><span class="ic quiz">🧪</span><span>Course Quiz 1 — Lessons 1–5</span></div>
+      <div class="upcoming"><span class="ic quiz">🧪</span><span>Course Quiz 2 — Lessons 6–9</span></div>
+    </div>
+    <div class="side-card">
+      <h3>🎓 Earn the Certificate</h3>
+      <div class="stat-row"><span>Pass Quiz 1</span><span class="v">≥ 60%</span></div>
+      <div class="stat-row"><span>Pass Quiz 2</span><span class="v">≥ 60%</span></div>
+      <div class="stat-row"><span>Action Plan</span><span class="v">Submitted</span></div>
+      <div class="stat-row"><span>Reward</span><span class="v">$15 + Cert.</span></div>
+    </div>
+  </aside>
+
+  <!-- Feed -->
+  <div class="feed">
+    <!-- ── REGISTER CTA HERO ── -->
+    <div class="cta-hero">
+      <span class="cta-tag">🌍 Now Enrolling</span>
+      <h3>Join the Eco Literacy Course</h3>
+      <p>Free for all youth. Earn a NexYouth certificate and a $15 award when you complete the program. Spots are limited — sign up to reserve yours.</p>
+      <div class="btn-row">
+        <button class="btn-primary" onclick="openRegister()">Register Now &nbsp;→</button>
+        <button class="btn-secondary" onclick="goto('classwork',document.querySelectorAll('.tab')[1])">Browse Lessons</button>
+      </div>
+    </div>
+
+    <h2 class="section-h">Welcome to your course <span class="count">Posted by NexYouth</span></h2>
+
+    <div class="announce">
+      <div class="announce-head">
+        <div class="announce-avatar">N</div>
+        <div class="announce-info">
+          <div class="a">NexYouth · Eco Literacy</div>
+          <div class="d">Course Overview</div>
+        </div>
+      </div>
+      <p>In this course, students will learn how environmental systems are connected, how pollution spreads, how human choices create hidden impacts, and how youth can design realistic environmental action.</p>
+      <p><strong>Each lesson includes:</strong> one reading · one video · one student task</p>
+      <p><strong>Course length:</strong> 9 lessons. <strong>Time per lesson:</strong> about 30 minutes.</p>
+      <p><strong>Final requirements:</strong> 2 course quizzes + 1 Youth Eco Action Plan.</p>
+    </div>
+
+    <div class="announce">
+      <div class="announce-head">
+        <div class="announce-avatar" style="background:linear-gradient(135deg,#C9A84C 0%,#E5C46A 100%)">🎓</div>
+        <div class="announce-info">
+          <div class="a">Completion Award</div>
+          <div class="d">How to earn your certificate</div>
+        </div>
+      </div>
+      <p>Students who complete both course quizzes with at least <strong>60% on each</strong> and submit a satisfactory Youth Eco Action Plan will receive a <strong>NexYouth Eco Literacy Course Certificate</strong> plus a <strong>$15 completion prize</strong>.</p>
+      <p>To qualify, students must:</p>
+      <ul style="margin-left:1.4rem">
+        <li>Submit Course Quiz 1</li>
+        <li>Submit Course Quiz 2</li>
+        <li>Score at least 60% (6/10) on each quiz</li>
+        <li>Submit a satisfactory Youth Eco Action Plan</li>
+      </ul>
+    </div>
+
+    <div class="announce">
+      <div class="announce-head">
+        <div class="announce-avatar" style="background:linear-gradient(135deg,#1A73E8 0%,#4A90E2 100%)">📚</div>
+        <div class="announce-info">
+          <div class="a">Get started</div>
+          <div class="d">Open the Classwork tab to view all lessons</div>
+        </div>
+      </div>
+      <p>Head to the <strong>Classwork</strong> tab above to see all 9 lessons, both quizzes, and the final assignment. Lessons are organised by topic and you can complete them at your own pace.</p>
+    </div>
+  </div>
+</main>
+
+<!-- ── CLASSWORK PAGE ── -->
+<main id="classwork" class="page">
+  <aside class="side">
+    <div class="side-card">
+      <h3>📋 Course Structure</h3>
+      <div class="stat-row"><span>Lessons</span><span class="v">9</span></div>
+      <div class="stat-row"><span>Quizzes</span><span class="v">2</span></div>
+      <div class="stat-row"><span>Final Project</span><span class="v">1</span></div>
+      <div class="stat-row"><span>Total time</span><span class="v">~5 hrs</span></div>
+    </div>
+    <div class="side-card">
+      <h3>🌱 Topics Covered</h3>
+      <div style="font-size:.83rem;color:var(--text-2);line-height:1.7">
+        Planetary boundaries · Climate science · Biodiversity · Eutrophication · Air quality · Plastic packaging · Fast fashion · Environmental justice · Action design
+      </div>
+    </div>
+  </aside>
+
+  <div class="feed">
+
+    <!-- ══════════ TOPIC: LESSONS ══════════ -->
+    <div class="topic" id="lessons">
+      <div class="topic-h" onclick="toggle(this.parentElement)">
+        <h2>📖 Lessons</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="topic-body">
+
+        <!-- Lesson 1 -->
+        <div class="item material">
+          <div class="item-h" onclick="openItem(this.parentElement)">
+            <div class="item-icon">📘</div>
+            <div class="item-meta">
+              <div class="item-title">Lesson 1 — Environmental Systems, Not Just "Being Green"</div>
+              <div class="item-sub"><span class="pill">Lesson</span><span>Reading · Video · Task</span></div>
+            </div>
+            <span class="item-arrow">▼</span>
+          </div>
+          <div class="item-body">
+            <h4>Overview</h4>
+            <p>Environmental learning is not just about individual habits. Climate change, biodiversity loss, freshwater stress, land-use change, pollution, and ocean changes are connected parts of one Earth system. This lesson introduces <strong>planetary boundaries</strong>, a framework scientists use to describe the limits that help keep Earth stable for human life. The Stockholm Resilience Centre describes planetary boundaries as nine critical global processes that regulate Earth's stability and resilience.</p>
+
+            <h4>Resources</h4>
+            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Stockholm Resilience Centre — Planetary Boundaries</div></div></div>
+            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">World Economic Forum — Earth has crossed 6 of 9 dangerous planetary boundaries</div></div></div>
+
+            <h4>Student Task</h4>
+            <div class="task-box">
+              <div class="lbl">Choose 3 planetary boundaries</div>
+              <p>For each one, explain:</p>
+              <ul><li>What the boundary is about</li><li>How human activity puts pressure on it</li><li>Why it matters for people, not just nature</li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lesson 2 -->
+        <div class="item material">
+          <div class="item-h" onclick="openItem(this.parentElement)">
+            <div class="item-icon">🌡️</div>
+            <div class="item-meta">
+              <div class="item-title">Lesson 2 — Climate Change: Evidence, Not Slogans</div>
+              <div class="item-sub"><span class="pill">Lesson</span><span>Reading · Video · Task</span></div>
+            </div>
+            <span class="item-arrow">▼</span>
+          </div>
+          <div class="item-body">
+            <h4>Overview</h4>
+            <p>You may already know that climate change is serious. This lesson focuses on a better question: <em>how do scientists know it is happening?</em> Students examine multiple lines of evidence — rising global temperatures, warming oceans, shrinking ice sheets, and sea-level rise. NASA explains that the evidence for rapid climate change is compelling across multiple indicators, not based on one weather event.</p>
+
+            <h4>Resources</h4>
+            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">NASA — Evidence: The Evidence for Rapid Climate Change Is Compelling</div></div></div>
+            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">National Geographic — Climate Change 101 with Bill Nye</div></div></div>
+
+            <h4>Student Task</h4>
+            <div class="task-box">
+              <div class="lbl">Build a 4-part climate evidence chain</div>
+              <ul><li>Temperature</li><li>Ocean warming</li><li>Ice loss</li><li>Sea-level rise</li></ul>
+              <p>For each one, write what is being measured and why it matters.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lesson 3 -->
+        <div class="item material">
+          <div class="item-h" onclick="openItem(this.parentElement)">
+            <div class="item-icon">🐝</div>
+            <div class="item-meta">
+              <div class="item-title">Lesson 3 — Biodiversity and Ecosystem Services</div>
+              <div class="item-sub"><span class="pill">Lesson</span><span>Reading · Video · Task</span></div>
+            </div>
+            <span class="item-arrow">▼</span>
+          </div>
+          <div class="item-body">
+            <h4>Overview</h4>
+            <p>Biodiversity is not just about saving animals. It supports the systems humans depend on — food, clean water, pollination, soil health, flood protection, and climate stability. The IPBES Global Assessment reported that around <strong>1 million animal and plant species are threatened with extinction</strong>, many within decades.</p>
+
+            <h4>Resources</h4>
+            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">UNEP — Nature's Dangerous Decline: Species Extinction Rates Accelerating</div></div></div>
+            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">David Attenborough — What is biodiversity?</div></div></div>
+
+            <h4>Student Task</h4>
+            <div class="task-box">
+              <div class="lbl">Choose one ecosystem service</div>
+              <ul><li>Pollination</li><li>Clean water</li><li>Soil health</li><li>Flood protection</li><li>Carbon storage</li></ul>
+              <p>Explain what could happen if that service became weaker.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lesson 4 -->
+        <div class="item material">
+          <div class="item-h" onclick="openItem(this.parentElement)">
+            <div class="item-icon">🌊</div>
+            <div class="item-meta">
+              <div class="item-title">Lesson 4 — Eutrophication, Dead Zones, and Harmful Algal Blooms</div>
+              <div class="item-sub"><span class="pill">Lesson</span><span>Reading · Video · Task</span></div>
+            </div>
+            <span class="item-arrow">▼</span>
+          </div>
+          <div class="item-body">
+            <h4>Overview</h4>
+            <p>Water pollution is not always visible as trash floating on the surface. One major water problem is <strong>eutrophication</strong> — when excess nutrients such as nitrogen and phosphorus enter water systems. These nutrients can trigger dense algal blooms, reduce water clarity, block sunlight, lower oxygen levels, and create dead zones where aquatic life struggles to survive. Students will learn the chain reaction from land-based pollution to ecosystem damage, and why water quality problems are often caused by activities far upstream.</p>
+
+            <h4>Resources</h4>
+            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Nature Education — Eutrophication: Causes, Consequences, and Controls in Aquatic Ecosystems</div></div></div>
+            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">NOAA — HABs: Overview Video</div></div></div>
+
+            <h4>Student Task</h4>
+            <div class="task-box">
+              <div class="lbl">Draw the cause-and-effect chain</div>
+              <p style="font-family:'Google Sans',monospace;font-size:.85rem;background:#fff;padding:.55rem .75rem;border-radius:4px;border:1px solid var(--border);color:var(--gc-green-d)">runoff → excess nutrients → eutrophication → algal bloom → oxygen loss / toxins → ecosystem or human impact</p>
+              <p>Then write 3 places where prevention or monitoring could happen.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lesson 5 -->
+        <div class="item material">
+          <div class="item-h" onclick="openItem(this.parentElement)">
+            <div class="item-icon">💨</div>
+            <div class="item-meta">
+              <div class="item-title">Lesson 5 — Air Pollution and Human Health</div>
+              <div class="item-sub"><span class="pill">Lesson</span><span>Reading · Video · Task</span></div>
+            </div>
+            <span class="item-arrow">▼</span>
+          </div>
+          <div class="item-body">
+            <h4>Overview</h4>
+            <p>Environmental issues are not only about forests, oceans, and wildlife — they are also about the air people breathe. Air pollution can affect the lungs, heart, brain, and overall health. WHO explains that air pollution enters mainly through the respiratory tract and can cause inflammation, oxidative stress, immunosuppression, and disease in multiple organs.</p>
+
+            <h4>Resources</h4>
+            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">WHO — Health Impacts of Air Pollution</div></div></div>
+            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">WHO — How Air Pollution Impacts Your Body</div></div></div>
+
+            <h4>Student Task</h4>
+            <div class="task-box">
+              <div class="lbl">Identify</div>
+              <ul><li>Three sources of air pollution</li><li>Three groups who may be more vulnerable</li><li>One action that could reduce air pollution or exposure</li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lesson 6 -->
+        <div class="item material">
+          <div class="item-h" onclick="openItem(this.parentElement)">
+            <div class="item-icon">📦</div>
+            <div class="item-meta">
+              <div class="item-title">Lesson 6 — Plastic Packaging and Material Systems</div>
+              <div class="item-sub"><span class="pill">Lesson</span><span>Reading · Video · Task</span></div>
+            </div>
+            <span class="item-arrow">▼</span>
+          </div>
+          <div class="item-body">
+            <h4>Overview</h4>
+            <p>Plastic pollution is not only a littering problem. It is connected to material choices, packaging design, convenience, production, waste systems, recycling limits, and pollution leakage. This lesson uses plastic packaging as a case study because packaging is everywhere and often used briefly before becoming waste. The goal: understand why plastic is useful, why it becomes a problem, and why <em>recycling alone cannot fix the system</em>.</p>
+
+            <h4>Resources</h4>
+            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Ecoware — The Environmental Impacts of Plastic Packaging</div></div></div>
+            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">National Geographic — Plastics 101</div></div></div>
+
+            <h4>Student Task</h4>
+            <div class="task-box">
+              <div class="lbl">Choose one packaged product you used recently</div>
+              <p>Answer:</p>
+              <ul><li>Why was plastic or packaging used?</li><li>What makes it convenient?</li><li>What environmental problems can happen during production or disposal?</li><li>What would a better packaging design look like?</li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lesson 7 -->
+        <div class="item material">
+          <div class="item-h" onclick="openItem(this.parentElement)">
+            <div class="item-icon">👕</div>
+            <div class="item-meta">
+              <div class="item-title">Lesson 7 — Fast Fashion and Consumption Footprints</div>
+              <div class="item-sub"><span class="pill">Lesson</span><span>Reading · Video · Task</span></div>
+            </div>
+            <span class="item-arrow">▼</span>
+          </div>
+          <div class="item-body">
+            <h4>Overview</h4>
+            <p>Environmental impact is often hidden inside everyday products. Clothing is a clear example. Fast fashion encourages quick production, low prices, frequent buying, and fast disposal. This creates impacts through textile production, dyeing, washing, microplastic fibres, transport, and landfill waste. The European Parliament explains that textile production is estimated to cause about <strong>20% of global clean water pollution</strong>, mainly from dyeing, and that one laundry load of polyester clothing can release <strong>700,000 microplastic fibres</strong>.</p>
+
+            <h4>Resources</h4>
+            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">European Parliament — Fast fashion: EU laws for sustainable textile consumption</div></div></div>
+            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">The Economist — The true cost of fast fashion</div></div></div>
+
+            <h4>Student Task</h4>
+            <div class="task-box">
+              <div class="lbl">Choose one clothing item — write a short lifecycle analysis</div>
+              <ul><li>What material is it made from?</li><li>How often do you wear it?</li><li>What impacts may come from making it?</li><li>What impacts may come from washing or throwing it away?</li><li>What is one realistic way to reduce clothing waste?</li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lesson 8 -->
+        <div class="item material">
+          <div class="item-h" onclick="openItem(this.parentElement)">
+            <div class="item-icon">⚖️</div>
+            <div class="item-meta">
+              <div class="item-title">Lesson 8 — Environmental Justice</div>
+              <div class="item-sub"><span class="pill">Lesson</span><span>Reading · Video · Task</span></div>
+            </div>
+            <span class="item-arrow">▼</span>
+          </div>
+          <div class="item-body">
+            <h4>Overview</h4>
+            <p>Environmental problems do not affect everyone equally. Some communities face more pollution, weaker protection, less green space, unsafe water, or higher heat risk. This lesson asks students to think about <strong>exposure, power, evidence, and decision-making</strong>. Canada's National Strategy Respecting Environmental Racism and Environmental Justice Act became law on <strong>June 20, 2024</strong>, and the Government of Canada states that advancing environmental justice requires addressing environmental racism and unequal protection.</p>
+
+            <h4>Resources</h4>
+            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Government of Canada — Environmental Justice and Environmental Racism</div></div></div>
+            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">Duke University — What is Environmental Justice? | Quick Learner</div></div></div>
+
+            <h4>Student Task</h4>
+            <div class="task-box">
+              <div class="lbl">Choose one environmental burden</div>
+              <ul><li>Unsafe water</li><li>Air pollution</li><li>Extreme heat</li><li>Lack of green space</li><li>Flooding</li><li>Industrial pollution</li></ul>
+              <p>Then answer:</p>
+              <ul><li>Who is most exposed?</li><li>Who has the least control?</li><li>What evidence would prove the problem?</li><li>What would fair decision-making require?</li></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lesson 9 -->
+        <div class="item material">
+          <div class="item-h" onclick="openItem(this.parentElement)">
+            <div class="item-icon">🚀</div>
+            <div class="item-meta">
+              <div class="item-title">Lesson 9 — Environmental Action Without Fake Activism</div>
+              <div class="item-sub"><span class="pill">Lesson</span><span>Reading · Video · Task</span></div>
+            </div>
+            <span class="item-arrow">▼</span>
+          </div>
+          <div class="item-body">
+            <h4>Overview</h4>
+            <p>A strong environmental action plan is not just <em>"raise awareness."</em> It must identify a specific problem, use evidence, explain who is affected, propose a realistic action, measure results, and admit limitations. Project Drawdown's primer is useful because it teaches students to judge climate solutions by how they work, whether they reduce emissions or remove carbon, and how their impact can be classified.</p>
+
+            <h4>Resources</h4>
+            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Project Drawdown — A Primer on Science-Based Climate Solutions</div></div></div>
+            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">Project Drawdown — How to use Drawdown Explorer</div></div></div>
+
+            <h4>Student Task</h4>
+            <div class="task-box">
+              <div class="lbl">Choose one environmental problem and test it</div>
+              <ul><li>Is the problem specific?</li><li>What evidence supports it?</li><li>Who is affected?</li><li>What action is realistic for a student?</li><li>How could impact be measured?</li><li>What are the limits of the action?</li></ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════ TOPIC: QUIZZES ══════════ -->
+    <div class="topic" id="quizzes">
+      <div class="topic-h" onclick="toggle(this.parentElement)">
+        <h2>🧪 Quizzes</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="topic-body">
+
+        <!-- Quiz 1 -->
+        <div class="item quiz">
+          <div class="item-h" onclick="openItem(this.parentElement)">
+            <div class="item-icon">📝</div>
+            <div class="item-meta">
+              <div class="item-title">Course Quiz 1 — Lessons 1–5</div>
+              <div class="item-sub"><span class="pill">Quiz</span><span>10 questions · 60% to pass</span></div>
+            </div>
+            <span class="item-arrow">▼</span>
+          </div>
+          <div class="item-body">
+            <p><strong>Instructions:</strong> Choose the best answer for each question. You need <strong>60% (6 out of 10)</strong> to pass.</p>
+            <button class="show-toggle" onclick="toggleAns(this)">👁 Show answers</button>
+
+            <div class="q">
+              <div class="q-num">Question 1</div>
+              <div class="q-text">What is the main idea of planetary boundaries?</div>
+              <ul class="q-opts">
+                <li data-c="1">A. Earth has systems that help keep conditions stable for human life</li>
+                <li>B. Only recycling matters</li>
+                <li>C. Humans cannot affect Earth systems</li>
+                <li>D. Environmental problems are all separate</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: A</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 2</div>
+              <div class="q-text">Why does Lesson 1 begin with systems instead of simple "green habits"?</div>
+              <ul class="q-opts">
+                <li>A. Because individual habits never matter</li>
+                <li data-c="1">B. Because environmental problems are connected across Earth systems</li>
+                <li>C. Because students should ignore pollution</li>
+                <li>D. Because planetary boundaries are only about outer space</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: B</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 3</div>
+              <div class="q-text">What kind of evidence does NASA use to explain climate change?</div>
+              <ul class="q-opts">
+                <li>A. Only daily weather reports</li>
+                <li data-c="1">B. Long-term indicators such as temperature, ocean warming, ice loss, and sea-level rise</li>
+                <li>C. Only political opinions</li>
+                <li>D. Only one hot summer</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: B</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 4</div>
+              <div class="q-text">What is wrong with saying "It is cold today, so climate change is not real"?</div>
+              <ul class="q-opts">
+                <li data-c="1">A. It confuses short-term weather with long-term climate trends</li>
+                <li>B. It uses too much evidence</li>
+                <li>C. It focuses too much on oceans</li>
+                <li>D. It is scientifically correct</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: A</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 5</div>
+              <div class="q-text">Biodiversity matters because it:</div>
+              <ul class="q-opts">
+                <li>A. Only protects rare animals</li>
+                <li data-c="1">B. Supports ecosystem services humans depend on</li>
+                <li>C. Has no connection to human life</li>
+                <li>D. Only matters in rainforests</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: B</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 6</div>
+              <div class="q-text">Which is an ecosystem service?</div>
+              <ul class="q-opts">
+                <li>A. Pollination</li>
+                <li>B. Clean water</li>
+                <li>C. Flood protection</li>
+                <li data-c="1">D. All of the above</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: D</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 7</div>
+              <div class="q-text">What can happen when too much nitrogen and phosphorus enter water?</div>
+              <ul class="q-opts">
+                <li>A. Algal blooms can grow rapidly</li>
+                <li>B. Oxygen levels can drop</li>
+                <li>C. Aquatic life can be harmed</li>
+                <li data-c="1">D. All of the above</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: D</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 8</div>
+              <div class="q-text">A harmful algal bloom can affect people by:</div>
+              <ul class="q-opts">
+                <li>A. Reducing water quality</li>
+                <li>B. Producing toxins in some cases</li>
+                <li>C. Harming fisheries or recreation</li>
+                <li data-c="1">D. All of the above</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: D</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 9</div>
+              <div class="q-text">Why is air pollution an environmental issue?</div>
+              <ul class="q-opts">
+                <li data-c="1">A. It affects human health and the quality of the air people breathe</li>
+                <li>B. It only affects buildings</li>
+                <li>C. It has nothing to do with health</li>
+                <li>D. It only happens indoors</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: A</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 10</div>
+              <div class="q-text">Which group may be more vulnerable to air pollution?</div>
+              <ul class="q-opts">
+                <li>A. Children</li>
+                <li>B. Older adults</li>
+                <li>C. People with existing health conditions</li>
+                <li data-c="1">D. All of the above</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: D</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz 2 -->
+        <div class="item quiz">
+          <div class="item-h" onclick="openItem(this.parentElement)">
+            <div class="item-icon">📝</div>
+            <div class="item-meta">
+              <div class="item-title">Course Quiz 2 — Lessons 6–9</div>
+              <div class="item-sub"><span class="pill">Quiz</span><span>10 questions · 60% to pass</span></div>
+            </div>
+            <span class="item-arrow">▼</span>
+          </div>
+          <div class="item-body">
+            <p><strong>Instructions:</strong> Choose the best answer for each question. You need <strong>60% (6 out of 10)</strong> to pass.</p>
+            <button class="show-toggle" onclick="toggleAns(this)">👁 Show answers</button>
+
+            <div class="q">
+              <div class="q-num">Question 1</div>
+              <div class="q-text">Plastic pollution is a system problem because it involves:</div>
+              <ul class="q-opts">
+                <li data-c="1">A. Product design, packaging, waste systems, and consumption</li>
+                <li>B. Only individual littering</li>
+                <li>C. Only ocean animals</li>
+                <li>D. Only paper bags</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: A</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 2</div>
+              <div class="q-text">Why is plastic packaging widely used?</div>
+              <ul class="q-opts">
+                <li data-c="1">A. It can be lightweight, cheap, durable, and convenient</li>
+                <li>B. It always disappears quickly</li>
+                <li>C. It is never used in food systems</li>
+                <li>D. It cannot be shaped</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: A</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 3</div>
+              <div class="q-text">Why is recycling alone not enough to solve plastic pollution?</div>
+              <ul class="q-opts">
+                <li data-c="1">A. Some plastics are hard to collect, sort, or recycle effectively</li>
+                <li>B. Recycling solves every plastic problem</li>
+                <li>C. Plastic never enters ecosystems</li>
+                <li>D. All plastic is reused forever</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: A</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 4</div>
+              <div class="q-text">Fast fashion can harm the environment because it encourages:</div>
+              <ul class="q-opts">
+                <li>A. Buying fewer, higher-quality items</li>
+                <li data-c="1">B. Producing, buying, and discarding clothes quickly</li>
+                <li>C. Repairing clothing</li>
+                <li>D. Sharing clothing more often</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: B</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 5</div>
+              <div class="q-text">Textile production can contribute to:</div>
+              <ul class="q-opts">
+                <li>A. Water pollution</li>
+                <li>B. Microplastic pollution</li>
+                <li>C. Waste in landfills</li>
+                <li data-c="1">D. All of the above</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: D</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 6</div>
+              <div class="q-text">Which action best reduces clothing-related waste?</div>
+              <ul class="q-opts">
+                <li>A. Buying clothes only because they are cheap</li>
+                <li>B. Throwing away clothes after wearing them once</li>
+                <li data-c="1">C. Repairing, reusing, donating, or buying fewer items</li>
+                <li>D. Washing every clothing item after every short use</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: C</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 7</div>
+              <div class="q-text">Environmental justice focuses on:</div>
+              <ul class="q-opts">
+                <li data-c="1">A. Whether environmental risks and protections are distributed fairly</li>
+                <li>B. Who memorizes the most environmental terms</li>
+                <li>C. Only protecting forests</li>
+                <li>D. Only studying weather</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: A</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 8</div>
+              <div class="q-text">Which question is central to environmental justice?</div>
+              <ul class="q-opts">
+                <li>A. Who is exposed to environmental harm?</li>
+                <li>B. Who has decision-making power?</li>
+                <li>C. Who has access to evidence and protection?</li>
+                <li data-c="1">D. All of the above</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: D</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 9</div>
+              <div class="q-text">A strong environmental action plan should include:</div>
+              <ul class="q-opts">
+                <li>A. A specific problem</li>
+                <li>B. Evidence</li>
+                <li>C. Measurement and limitations</li>
+                <li data-c="1">D. All of the above</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: D</div>
+            </div>
+
+            <div class="q">
+              <div class="q-num">Question 10</div>
+              <div class="q-text">What should a student environmental project avoid?</div>
+              <ul class="q-opts">
+                <li>A. Evidence</li>
+                <li>B. A clear audience</li>
+                <li>C. A measurable goal</li>
+                <li data-c="1">D. Being vague, unrealistic, or impossible to evaluate</li>
+              </ul>
+              <div class="q-ans">✓ Correct answer: D</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════ TOPIC: FINAL ══════════ -->
+    <div class="topic" id="final">
+      <div class="topic-h" onclick="toggle(this.parentElement)">
+        <h2>🎯 Final Assignment</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="topic-body">
+        <div class="item final open">
+          <div class="item-h" onclick="openItem(this.parentElement)">
+            <div class="item-icon">📋</div>
+            <div class="item-meta">
+              <div class="item-title">Youth Eco Action Plan (≥ 100 words)</div>
+              <div class="item-sub"><span class="pill">Final · 20 pts</span><span>Choose one issue from the course</span></div>
+            </div>
+            <span class="item-arrow">▼</span>
+          </div>
+          <div class="item-body">
+            <h4>Instructions</h4>
+            <p>Create a Youth Eco Action Plan of <strong>at least 100 words</strong>. Choose one environmental issue from the course and explain how you could take a realistic action on it.</p>
+
+            <h4>Your Plan Must Include</h4>
+            <ul>
+              <li><strong>Problem</strong> — What environmental issue do you want to address?</li>
+              <li><strong>Evidence</strong> — What course idea or fact supports your concern?</li>
+              <li><strong>Who Is Affected</strong> — Who or what is impacted by this issue?</li>
+              <li><strong>Action</strong> — What realistic action could you take?</li>
+              <li><strong>Measurement</strong> — How would you know if your action worked?</li>
+              <li><strong>Limit</strong> — What is one limitation of your action?</li>
+            </ul>
+
+            <p>Examples of possible topics: single-use plastic, stormwater runoff, water pollution, fast fashion, air pollution, or environmental justice.</p>
+            <p>Your plan should be <strong>specific</strong>. Do not write only "help the planet" or "raise awareness." A strong plan explains a real issue, a clear action, and a simple way to measure impact.</p>
+
+            <h4>Rubric (20 points)</h4>
+            <table class="rubric-tbl">
+              <thead><tr><th>Category</th><th style="text-align:center">Points</th></tr></thead>
+              <tbody>
+                <tr><td>Problem is clear and specific</td><td class="pts">3</td></tr>
+                <tr><td>Evidence is accurate and connected to the course</td><td class="pts">4</td></tr>
+                <tr><td>Affected group is clearly explained</td><td class="pts">3</td></tr>
+                <tr><td>Action is realistic and specific</td><td class="pts">4</td></tr>
+                <tr><td>Measurement is clear</td><td class="pts">3</td></tr>
+                <tr><td>Limitation is honest and thoughtful</td><td class="pts">3</td></tr>
+                <tr class="total"><td>Total</td><td class="pts">20</td></tr>
+              </tbody>
+            </table>
+
+            <!-- ── FINAL SUBMISSION FORM ── -->
+            <div class="final-form" id="finalForm">
+              <h5>📝 Submit Your Youth Eco Action Plan</h5>
+              <p style="font-size:.84rem;color:var(--text-2);margin-bottom:.7rem">Write your action plan below. Minimum 100 words. Cover all six required parts (Problem, Evidence, Who Is Affected, Action, Measurement, Limit).</p>
+              <textarea id="finalText" placeholder="Problem: ...&#10;Evidence: ...&#10;Who Is Affected: ...&#10;Action: ...&#10;Measurement: ...&#10;Limit: ..."></textarea>
+              <div class="f-foot">
+                <span class="f-count" id="finalCount">0 / 100 words</span>
+                <button class="f-btn" id="finalBtn" onclick="submitFinal(this)" disabled>Submit Action Plan</button>
+              </div>
+              <div class="f-msg" id="finalMsg"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ── ABOUT PAGE ── -->
+<main id="about" class="page">
+  <aside class="side">
+    <div class="side-card">
+      <h3>📩 Questions?</h3>
+      <p style="font-size:.86rem;color:var(--text-2);line-height:1.55">Contact NexYouth via the <a href="/contact" style="color:var(--gc-green);font-weight:500">Contact page</a> or visit the <a href="/" style="color:var(--gc-green);font-weight:500">main site</a>.</p>
+    </div>
+  </aside>
+
+  <div class="feed">
+    <h2 class="section-h">About the Course</h2>
+
+    <div class="info-grid">
+      <div class="info-tile"><div class="lbl">Lessons</div><div class="val">9</div><div class="desc">Reading + video + task each</div></div>
+      <div class="info-tile"><div class="lbl">Time per lesson</div><div class="val">~30 min</div><div class="desc">Self-paced</div></div>
+      <div class="info-tile"><div class="lbl">Quizzes</div><div class="val">2</div><div class="desc">10 questions each, multiple choice</div></div>
+      <div class="info-tile"><div class="lbl">Final Project</div><div class="val">100 words</div><div class="desc">Youth Eco Action Plan</div></div>
+      <div class="info-tile"><div class="lbl">Pass Threshold</div><div class="val">60%</div><div class="desc">Per quiz (6 out of 10)</div></div>
+      <div class="info-tile"><div class="lbl">Award</div><div class="val">$15 + Cert.</div><div class="desc">For students who complete all requirements</div></div>
+    </div>
+
+    <div class="announce">
+      <div class="announce-head">
+        <div class="announce-avatar">N</div>
+        <div class="announce-info"><div class="a">Course Description</div><div class="d">NexYouth · Eco Literacy</div></div>
+      </div>
+      <p>In this course, students will learn how environmental systems are connected, how pollution spreads, how human choices create hidden impacts, and how youth can design realistic environmental action.</p>
+      <p><strong>Topics:</strong> planetary boundaries, climate science, biodiversity, eutrophication, air pollution and health, plastic packaging, fast fashion, environmental justice, and action design.</p>
+    </div>
+
+    <div class="announce">
+      <div class="announce-head">
+        <div class="announce-avatar" style="background:linear-gradient(135deg,#C9A84C 0%,#E5C46A 100%)">🎓</div>
+        <div class="announce-info"><div class="a">How to Earn the Certificate</div><div class="d">Complete all four steps</div></div>
+      </div>
+      <ol style="margin-left:1.4rem">
+        <li>Submit Course Quiz 1</li>
+        <li>Submit Course Quiz 2</li>
+        <li>Score at least 60% (6/10) on each quiz</li>
+        <li>Submit a satisfactory Youth Eco Action Plan</li>
+      </ol>
+      <p style="margin-top:.6rem">Students who complete all four steps will receive a <strong>NexYouth Eco Literacy Course Certificate</strong> and a <strong>$15 completion prize</strong>.</p>
+    </div>
+  </div>
+</main>
+
+<!-- ── FLOATING REGISTER BUTTON (only when logged out) ── -->
+<button class="fab" id="fab" onclick="openRegister()">
+  <span class="ico">✨</span> Register for Course
+</button>
+
+<!-- ── LOGIN MODAL ── -->
+<div class="modal-backdrop" id="loginModal" onclick="if(event.target===this) closeLogin()">
+  <div class="modal" style="max-width:440px">
+    <div class="modal-head">
+      <button class="modal-close" onclick="closeLogin()" aria-label="Close">×</button>
+      <h3>Sign In</h3>
+      <p>Already registered? Enter your student email to continue your course.</p>
+    </div>
+    <div class="modal-body">
+      <form id="loginForm" novalidate>
+        <div class="field full">
+          <label>Student Email <span class="req">*</span></label>
+          <input type="email" id="loginEmail" required maxlength="120" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <button type="submit" class="form-submit" id="loginBtn">
+          <span id="loginBtnText">Continue</span>
+        </button>
+        <div class="form-msg" id="loginMsg"></div>
+        <p style="text-align:center;font-size:.83rem;color:var(--text-2);margin-top:1rem">
+          Don't have an account?
+          <a href="#" onclick="closeLogin();openRegister();return false;" style="color:var(--gc-green);font-weight:600">Register here →</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ── CELEBRATION (course completion) ── -->
+<div class="celebrate" id="celebrate" onclick="if(event.target===this) closeCelebrate()">
+  <div class="celebrate-card">
+    <div class="emoji">🎉</div>
+    <h3>You're an EcoHero!</h3>
+    <p>Amazing work, <strong id="celebrateName">friend</strong>! You've completed all 9 lessons, both quizzes, and the Youth Eco Action Plan. Your <strong>NexYouth EcoHero Certificate</strong> has been emailed to you, along with details for your <strong>$15 award</strong>. Don't forget to reply with the email you'd like to receive the e-transfer at!</p>
+    <button class="c-btn" onclick="closeCelebrate()">🌱 Keep going</button>
+  </div>
+</div>
+
+<!-- ── REGISTRATION MODAL ── -->
+<div class="modal-backdrop" id="modal" onclick="if(event.target===this) closeRegister()">
+  <div class="modal" role="dialog" aria-labelledby="modalTitle">
+    <div class="modal-head">
+      <button class="modal-close" onclick="closeRegister()" aria-label="Close">×</button>
+      <h3 id="modalTitle">Register for Eco Literacy</h3>
+      <p>Tell us a bit about yourself so we can set up your course access. Parent/guardian consent is required for participants under 18.</p>
+    </div>
+
+    <!-- form view -->
+    <div class="modal-body" id="formView">
+      <form id="regForm" novalidate>
+        <div class="form-section">
+          <h4>👤 Student Information</h4>
+          <div class="field-grid">
+            <div class="field full">
+              <label>Full Name <span class="req">*</span></label>
+              <input type="text" name="student_name" required maxlength="100" placeholder="e.g. Alex Chen">
+            </div>
+            <div class="field">
+              <label>Age <span class="req">*</span></label>
+              <input type="number" name="age" required min="6" max="22" placeholder="e.g. 14">
+            </div>
+            <div class="field">
+              <label>Grade Level</label>
+              <select name="grade">
+                <option value="">Select grade...</option>
+                <option>Grade 5 or below</option>
+                <option>Grade 6</option><option>Grade 7</option><option>Grade 8</option>
+                <option>Grade 9</option><option>Grade 10</option><option>Grade 11</option>
+                <option>Grade 12</option><option>University / Post-secondary</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label>School Name</label>
+              <input type="text" name="school" maxlength="120" placeholder="Your school's name">
+            </div>
+            <div class="field">
+              <label>City <span class="req">*</span></label>
+              <input type="text" name="city" required maxlength="80" placeholder="e.g. Toronto">
+            </div>
+            <div class="field">
+              <label>Country <span class="req">*</span></label>
+              <input type="text" name="country" required maxlength="80" placeholder="e.g. Canada">
+            </div>
+            <div class="field full">
+              <label>Student Email <span class="req">*</span></label>
+              <input type="email" name="student_email" required maxlength="120" placeholder="you@example.com">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h4>👨‍👩‍👧 Parent / Guardian</h4>
+          <div class="field-grid">
+            <div class="field">
+              <label>Parent / Guardian Name <span class="req">*</span></label>
+              <input type="text" name="parent_name" required maxlength="100" placeholder="Full name">
+            </div>
+            <div class="field">
+              <label>Parent / Guardian Phone</label>
+              <input type="tel" name="parent_phone" maxlength="30" placeholder="Optional">
+            </div>
+            <div class="field full">
+              <label>Parent / Guardian Email <span class="req">*</span></label>
+              <input type="email" name="parent_email" required maxlength="120" placeholder="parent@example.com">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h4>🌱 Background</h4>
+          <div class="field-grid">
+            <div class="field full">
+              <label>How did you hear about this course?</label>
+              <select name="source">
+                <option value="">Select one...</option>
+                <option>NexYouth website</option>
+                <option>School / Teacher</option>
+                <option>Friend or family</option>
+                <option>Social media</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label>Why do you want to take this course?</label>
+              <textarea name="motivation" maxlength="500" placeholder="A few sentences about your interest in environmental issues..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="checkbox-field">
+          <input type="checkbox" name="consent" id="consent" required>
+          <label for="consent">I confirm that the information above is accurate and that the parent/guardian has given permission for the student to participate in this course. <span class="req">*</span></label>
+        </div>
+
+        <button type="submit" class="form-submit" id="submitBtn">
+          <span id="submitText">Submit Registration</span>
+        </button>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+
+    <!-- success view -->
+    <div class="success-view" id="successView">
+      <div class="check">✓</div>
+      <h3>You're registered!</h3>
+      <p>Welcome to the NexYouth Eco Literacy course. Your account is ready — your progress will be tracked automatically as you go through each lesson. Ready to begin?</p>
+      <button class="btn-primary" style="background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;font-size:1rem;padding:.95rem 1.8rem" onclick="startCourse()">🚀 Start the Course &nbsp;→</button>
+      <p style="margin-top:.9rem;font-size:.78rem;color:var(--text-2)"><a href="#" onclick="closeRegister();return false;" style="color:var(--text-2);text-decoration:underline">Maybe later</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ───────────────────────── NAVIGATION ─────────────────────────
+function goto(id, btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  if(btn) btn.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggle(topic){topic.classList.toggle('collapsed')}
+function openItem(item){item.classList.toggle('open')}
+function toggleAns(btn){
+  const body = btn.closest('.item-body');
+  const showing = body.classList.toggle('show-answers');
+  body.querySelectorAll('.q').forEach(q=>q.classList.toggle('show-ans',showing));
+  body.querySelectorAll('.q-opts li[data-c="1"]').forEach(li=>li.classList.toggle('correct',showing));
+  btn.textContent = showing ? '🙈 Hide answers' : '👁 Show answers';
+}
+
+// ───────────────────────── AUTH STATE ─────────────────────────
+const KEY_EMAIL='eco_email', KEY_NAME='eco_name';
+function getStudent(){return {email: localStorage.getItem(KEY_EMAIL)||'', name: localStorage.getItem(KEY_NAME)||''};}
+function setStudent(email, name){
+  localStorage.setItem(KEY_EMAIL, email);
+  localStorage.setItem(KEY_NAME, name||'');
+  applyAuthState();
+  refreshProgress();
+}
+function clearStudent(){
+  localStorage.removeItem(KEY_EMAIL);
+  localStorage.removeItem(KEY_NAME);
+  applyAuthState();
+  // reset progress UI
+  document.getElementById('pbFill').style.width='0%';
+  document.getElementById('pbText').textContent='0 / 12';
+  document.querySelectorAll('.status-badge').forEach(b=>b.outerHTML='');
+  document.querySelectorAll('.task-submit textarea').forEach(t=>{t.value='';t.disabled=false});
+  document.querySelectorAll('.q-opts li').forEach(li=>li.classList.remove('selected','wrong','correct'));
+  document.querySelectorAll('.q').forEach(q=>q.classList.remove('locked'));
+  document.querySelectorAll('.quiz-score').forEach(s=>s.classList.remove('show','pass','fail'));
+}
+function signOut(){clearStudent();}
+
+function applyAuthState(){
+  const {email, name} = getStudent();
+  const out = document.getElementById('authOut');
+  const inn = document.getElementById('authIn');
+  const fab = document.getElementById('fab');
+  const pb = document.getElementById('progressBar');
+  if (email) {
+    out.style.display='none';
+    inn.style.display='flex';
+    fab.style.display='none';
+    document.getElementById('userName').textContent = name || email.split('@')[0];
+    document.getElementById('userMail').textContent = email;
+    document.getElementById('userAvatar').textContent = (name || email)[0].toUpperCase();
+    document.getElementById('pbName').textContent = name || email.split('@')[0];
+    pb.classList.add('on');
+  } else {
+    out.style.display='flex';
+    inn.style.display='none';
+    fab.style.display='inline-flex';
+    pb.classList.remove('on');
+  }
+}
+
+// ───────────────────────── REGISTER MODAL ─────────────────────────
+function openRegister(){
+  document.getElementById('modal').classList.add('on');
+  document.body.style.overflow='hidden';
+  document.getElementById('formView').style.display='block';
+  document.getElementById('successView').classList.remove('on');
+}
+function closeRegister(){
+  document.getElementById('modal').classList.remove('on');
+  document.body.style.overflow='';
+}
+
+// ───────────────────────── LOGIN MODAL ─────────────────────────
+function openLogin(){
+  document.getElementById('loginModal').classList.add('on');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>document.getElementById('loginEmail').focus(), 100);
+}
+function closeLogin(){
+  document.getElementById('loginModal').classList.remove('on');
+  document.body.style.overflow='';
+  document.getElementById('loginMsg').classList.remove('show','error','ok');
+}
+
+document.addEventListener('keydown', e => {
+  if(e.key==='Escape'){closeRegister();closeLogin();closeCelebrate();}
+});
+
+// ───────────────────────── REGISTER SUBMIT ─────────────────────────
+document.getElementById('regForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const msg = document.getElementById('formMsg');
+  const btn = document.getElementById('submitBtn');
+  const txt = document.getElementById('submitText');
+  msg.classList.remove('show','error','ok');
+
+  if (!form.checkValidity()) {
+    msg.textContent = 'Please fill in all required fields.';
+    msg.classList.add('show','error');
+    form.reportValidity();
+    return;
+  }
+
+  const data = Object.fromEntries(new FormData(form).entries());
+  btn.disabled = true; txt.textContent = 'Submitting...';
+
+  try {
+    const res = await fetch('/api/eco-classroom/register', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    });
+    const result = await res.json().catch(() => ({}));
+
+    if (res.ok && result.ok) {
+      // auto-login after register
+      setStudent(data.student_email.toLowerCase().trim(), data.student_name);
+      document.getElementById('formView').style.display='none';
+      document.getElementById('successView').classList.add('on');
+      form.reset();
+    } else {
+      msg.textContent = result.error || 'Something went wrong. Please try again.';
+      msg.classList.add('show','error');
+    }
+  } catch (err) {
+    msg.textContent = 'Could not reach the server. Please check your connection.';
+    msg.classList.add('show','error');
+  } finally {
+    btn.disabled = false; txt.textContent = 'Submit Registration';
+  }
+});
+
+// ───────────────────────── LOGIN SUBMIT ─────────────────────────
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const msg = document.getElementById('loginMsg');
+  const btn = document.getElementById('loginBtn');
+  const txt = document.getElementById('loginBtnText');
+  msg.classList.remove('show','error','ok');
+
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    msg.textContent = 'Please enter a valid email address.';
+    msg.classList.add('show','error'); return;
+  }
+
+  btn.disabled=true; txt.textContent='Looking up...';
+  try {
+    const res = await fetch('/api/eco-classroom/login', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({student_email: email})
+    });
+    const r = await res.json().catch(()=>({}));
+    if (res.ok && r.ok) {
+      setStudent(r.student.email, r.student.name);
+      closeLogin();
+    } else {
+      msg.textContent = r.error || 'Could not sign in.';
+      msg.classList.add('show','error');
+    }
+  } catch (err) {
+    msg.textContent = 'Network error. Please try again.';
+    msg.classList.add('show','error');
+  } finally {
+    btn.disabled=false; txt.textContent='Continue';
+  }
+});
+
+// ───────────────────────── REFLECTION QUESTIONS (per lesson) ─────────────────────────
+const REFLECT_QUESTIONS = {
+  1: "Which planetary boundary do you think is most urgent to protect — and why?",
+  2: "Of the four climate evidence types, which one feels most convincing to you?",
+  3: "Which ecosystem service would you miss most if it became weaker?",
+  4: "Where in the runoff-to-bloom chain do you think prevention would work best?",
+  5: "What's one realistic step you could take to reduce air pollution exposure?",
+  6: "Think of one packaged product you used today. Did it really need to be in plastic?",
+  7: "Of the clothes you own, which item gets the most wear — and was it worth its impact?",
+  8: "Whose voice do you think is missing from environmental decisions in your community?",
+  9: "What's one realistic environmental action you could test in the next month?",
+};
+
+const LESSON_ITEMS = document.querySelectorAll('#lessons .item.material');
+
+LESSON_ITEMS.forEach((item, idx) => {
+  const lessonId = String(idx + 1);
+  item.dataset.lessonId = lessonId;
+
+  // Add status badge to header
+  const sub = item.querySelector('.item-sub');
+  if (sub) {
+    const badge = document.createElement('span');
+    badge.className = 'status-badge todo';
+    badge.dataset.lessonStatus = lessonId;
+    badge.textContent = '○ To do';
+    sub.appendChild(badge);
+  }
+
+  // Replace the existing Student Task content with a single reflection question
+  const taskBox = item.querySelector('.task-box');
+  const taskHeading = [...item.querySelectorAll('h4')].find(h => /Student Task/i.test(h.textContent));
+  const question = REFLECT_QUESTIONS[lessonId] || 'What is one thing you want to remember from this lesson?';
+
+  // Replace the heading text
+  if (taskHeading) taskHeading.textContent = 'Reflect';
+
+  // Replace the task-box content with a clean reflect-box
+  if (taskBox) {
+    taskBox.outerHTML = `
+      <div class="reflect-box" data-lesson-reflect="${lessonId}">
+        <div class="reflect-lbl">💭 Reflect (no answer required)</div>
+        <p class="reflect-q">"${question}"</p>
+        <p class="reflect-hint">Think it through on your own. When you're ready, mark this lesson complete.</p>
+        <div class="reflect-foot">
+          <span class="complete-msg">✓ Lesson complete</span>
+          <button class="complete-btn" onclick="markComplete(${lessonId}, this)">✓ Mark Lesson Complete</button>
+        </div>
+      </div>
+    `;
+  }
+});
+
+async function markComplete(lessonId, btn){
+  const {email} = getStudent();
+  if (!email) { alert('Please sign in or register first to track your progress.'); openLogin(); return; }
+  const box = btn.closest('.reflect-box');
+  if (box.classList.contains('done')) return;
+
+  btn.disabled = true; const orig = btn.textContent; btn.textContent = 'Saving...';
+  try {
+    const res = await fetch('/api/eco-classroom/submit', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({type:'task', lesson_id:String(lessonId), student_email:email})
+    });
+    const r = await res.json().catch(()=>({}));
+    if (res.ok && r.ok) {
+      box.classList.add('done');
+      btn.textContent = '✓ Completed';
+      btn.disabled = true;
+      const badge = document.querySelector(`[data-lesson-status="${lessonId}"]`);
+      if (badge) { badge.className='status-badge done'; badge.textContent='✓ Complete'; }
+      updateProgressUI(r.progress);
+      if (r.completed_now) celebrate();
+    } else {
+      alert(r.error || 'Could not save.');
+      btn.disabled = false; btn.textContent = orig;
+    }
+  } catch (e) {
+    alert('Network error. Please try again.');
+    btn.disabled = false; btn.textContent = orig;
+  }
+}
+
+// Apply done state to reflect-boxes from saved progress
+function syncReflectionStates(progress){
+  if (!progress) return;
+  (progress.tasks_done || []).forEach(lid => {
+    const box = document.querySelector(`[data-lesson-reflect="${lid}"]`);
+    if (box && !box.classList.contains('done')) {
+      box.classList.add('done');
+      const btn = box.querySelector('.complete-btn');
+      if (btn) { btn.textContent = '✓ Completed'; btn.disabled = true; }
+    }
+  });
+}
+
+// ───────────────────────── START COURSE BUTTON ─────────────────────────
+function startCourse(){
+  closeRegister();
+  const classworkTab = document.querySelectorAll('.tab')[1];
+  goto('classwork', classworkTab);
+}
+
+// ───────────────────────── QUIZ INTERACTIVE ─────────────────────────
+document.querySelectorAll('#quizzes .item.quiz').forEach((quizItem, qIdx) => {
+  const quizId = qIdx === 0 ? 'quiz1' : 'quiz2';
+  quizItem.dataset.quizId = quizId;
+
+  const sub = quizItem.querySelector('.item-sub');
+  if (sub) {
+    const badge = document.createElement('span');
+    badge.className = 'status-badge todo';
+    badge.dataset.quizStatus = quizId;
+    badge.textContent = '○ Not attempted';
+    sub.appendChild(badge);
+  }
+
+  // Make options selectable
+  quizItem.querySelectorAll('.q').forEach((q, i) => {
+    q.dataset.qIdx = i;
+    q.querySelectorAll('.q-opts li').forEach(li => {
+      li.addEventListener('click', () => {
+        if (q.classList.contains('locked')) return;
+        q.querySelectorAll('.q-opts li').forEach(x=>x.classList.remove('selected'));
+        li.classList.add('selected');
+      });
+    });
+  });
+
+  // Replace "Show answers" button with "Submit Quiz" + score display + retake button
+  const showBtn = quizItem.querySelector('.show-toggle');
+  if (showBtn) {
+    const wrap = document.createElement('div');
+    wrap.className = 'quiz-actions';
+    wrap.innerHTML = `
+      <button class="quiz-submit-btn" data-quiz-action="${quizId}" onclick="submitQuiz('${quizId}', this)">📤 Submit Quiz</button>
+      <button class="quiz-submit-btn retake" data-quiz-retake="${quizId}" onclick="retakeQuiz('${quizId}', this)" style="display:none;background:linear-gradient(135deg,#5F6368 0%,#80868B 100%)">🔁 Retake Quiz</button>
+      <span class="quiz-score" data-quiz-score="${quizId}"></span>
+    `;
+    showBtn.replaceWith(wrap);
+  }
+});
+
+function retakeQuiz(quizId, btn){
+  const quizItem = document.querySelector(`[data-quiz-id="${quizId}"]`);
+  // Unlock all questions and clear selections / answer markers
+  quizItem.querySelectorAll('.q').forEach(q => {
+    q.classList.remove('locked','show-ans');
+    q.querySelectorAll('.q-opts li').forEach(li => {
+      li.classList.remove('selected','correct','wrong');
+    });
+  });
+  // Hide score
+  const scoreEl = quizItem.querySelector(`[data-quiz-score="${quizId}"]`);
+  if (scoreEl) scoreEl.classList.remove('show','pass','fail');
+  // Show submit, hide retake
+  const submitBtn = quizItem.querySelector(`[data-quiz-action="${quizId}"]`);
+  const retakeBtn = quizItem.querySelector(`[data-quiz-retake="${quizId}"]`);
+  if (submitBtn) submitBtn.style.display = '';
+  if (retakeBtn) retakeBtn.style.display = 'none';
+  // Scroll to first question
+  const first = quizItem.querySelector('.q');
+  if (first) first.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+async function submitQuiz(quizId, btn){
+  const {email} = getStudent();
+  if (!email) { alert('Please sign in or register first to submit your quiz.'); openLogin(); return; }
+  const quizItem = document.querySelector(`[data-quiz-id="${quizId}"]`);
+  const questions = quizItem.querySelectorAll('.q');
+  const answers = [];
+  let unanswered = 0;
+  questions.forEach(q => {
+    const sel = q.querySelector('.q-opts li.selected');
+    if (!sel) { unanswered++; answers.push(''); }
+    else { answers.push((sel.textContent.trim()[0] || '').toUpperCase()); }
+  });
+  if (unanswered) { alert(`Please answer all questions. ${unanswered} unanswered.`); return; }
+
+  btn.disabled = true; btn.textContent = 'Grading...';
+  try {
+    const res = await fetch('/api/eco-classroom/submit', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({type:quizId, answers, student_email:email})
+    });
+    const r = await res.json().catch(()=>({}));
+    if (res.ok && r.ok) {
+      const scoreEl = quizItem.querySelector(`[data-quiz-score="${quizId}"]`);
+      scoreEl.textContent = `${r.score} / ${r.max_score} (${Math.round(r.score*10)}%) ${r.passed ? '✓ Passed' : '✗ Below 60%'}`;
+      scoreEl.classList.add('show', r.passed ? 'pass' : 'fail');
+
+      // highlight correct/wrong on each question
+      const key = ['quiz1','quiz2'].includes(quizId) ?
+        (quizId==='quiz1' ? ['A','B','B','A','B','D','D','D','A','D'] : ['A','A','A','B','D','C','A','D','D','D'])
+        : [];
+      questions.forEach((q, i) => {
+        q.classList.add('locked');
+        const sel = q.querySelector('.q-opts li.selected');
+        const correctLi = q.querySelector('.q-opts li[data-c="1"]');
+        if (correctLi) correctLi.classList.add('correct');
+        if (sel && !sel.dataset.c) sel.classList.add('wrong');
+        q.classList.add('show-ans');
+      });
+
+      const badge = document.querySelector(`[data-quiz-status="${quizId}"]`);
+      if (badge) {
+        badge.className = 'status-badge ' + (r.passed ? 'done' : 'fail');
+        badge.textContent = r.passed ? `✓ ${r.score}/10` : `✗ ${r.score}/10`;
+      }
+      updateProgressUI(r.progress);
+      if (r.completed_now) celebrate();
+
+      // Swap Submit button for Retake button
+      btn.style.display = 'none';
+      const retakeBtn = quizItem.querySelector(`[data-quiz-retake="${quizId}"]`);
+      if (retakeBtn) retakeBtn.style.display = '';
+    } else {
+      alert(r.error || 'Could not submit quiz.');
+      btn.disabled = false; btn.textContent = '📤 Submit Quiz';
+    }
+  } catch (e) {
+    alert('Network error. Please try again.');
+    btn.disabled = false; btn.textContent = '📤 Submit Quiz';
+  }
+}
+
+// ───────────────────────── FINAL ASSIGNMENT ─────────────────────────
+const finalText = document.getElementById('finalText');
+const finalCount = document.getElementById('finalCount');
+const finalBtn = document.getElementById('finalBtn');
+function countWords(s){return (s.match(/[A-Za-z\u4e00-\u9fff]+/g) || []).length;}
+if (finalText) {
+  finalText.addEventListener('input', () => {
+    const w = countWords(finalText.value);
+    finalCount.textContent = `${w} / 100 words`;
+    finalCount.classList.toggle('ok', w >= 100);
+    finalBtn.disabled = w < 100;
+  });
+
+  // Add status badge to final item header
+  const finalItem = document.querySelector('.item.final');
+  if (finalItem) {
+    finalItem.dataset.finalId = 'final';
+    const sub = finalItem.querySelector('.item-sub');
+    if (sub) {
+      const badge = document.createElement('span');
+      badge.className = 'status-badge todo';
+      badge.id = 'finalStatus';
+      badge.textContent = '○ Not submitted';
+      sub.appendChild(badge);
+    }
+  }
+}
+
+async function submitFinal(btn){
+  const {email} = getStudent();
+  if (!email) { alert('Please sign in or register first to submit your action plan.'); openLogin(); return; }
+  const content = finalText.value;
+  if (countWords(content) < 100) return;
+  const msg = document.getElementById('finalMsg');
+  msg.className = 'f-msg';
+
+  btn.disabled = true; btn.textContent = 'Submitting...';
+  try {
+    const res = await fetch('/api/eco-classroom/submit', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({type:'final', content, student_email:email})
+    });
+    const r = await res.json().catch(()=>({}));
+    if (res.ok && r.ok) {
+      msg.textContent = `✓ Action plan submitted! (${r.score} words)`;
+      msg.className = 'f-msg ok';
+      const badge = document.getElementById('finalStatus');
+      if (badge) { badge.className='status-badge done'; badge.textContent='✓ Submitted'; }
+      updateProgressUI(r.progress);
+      if (r.completed_now) celebrate();
+    } else {
+      msg.textContent = r.error || 'Could not submit.';
+      msg.className = 'f-msg err';
+      btn.disabled = false;
+    }
+  } catch (e) {
+    msg.textContent = 'Network error. Please try again.';
+    msg.className = 'f-msg err';
+    btn.disabled = false;
+  } finally {
+    btn.textContent = 'Submit Action Plan';
+  }
+}
+
+// ───────────────────────── PROGRESS BAR ─────────────────────────
+function updateProgressUI(progress){
+  if (!progress) return;
+  const tasks = (progress.tasks_done || []).length;
+  const q1 = (progress.quiz1 || 0) >= 6 ? 1 : 0;
+  const q2 = (progress.quiz2 || 0) >= 6 ? 1 : 0;
+  const fin = (progress.final_words || 0) >= 100 ? 1 : 0;
+  const total = tasks + q1 + q2 + fin;
+  const pct = Math.round((total/12)*100);
+  document.getElementById('pbFill').style.width = pct + '%';
+  document.getElementById('pbText').textContent = `${total} / 12`;
+
+  // Mark task badges + reflect-boxes from saved progress
+  (progress.tasks_done || []).forEach(lid => {
+    const badge = document.querySelector(`[data-lesson-status="${lid}"]`);
+    if (badge && !badge.classList.contains('done')) {
+      badge.className='status-badge done';
+      badge.textContent='✓ Complete';
+    }
+  });
+  syncReflectionStates(progress);
+  // Quiz badges
+  if (progress.quiz1 !== null && progress.quiz1 !== undefined) {
+    const b = document.querySelector('[data-quiz-status="quiz1"]');
+    if (b) { b.className='status-badge ' + (q1?'done':'fail'); b.textContent = (q1?'✓ ':'✗ ') + progress.quiz1 + '/10'; }
+  }
+  if (progress.quiz2 !== null && progress.quiz2 !== undefined) {
+    const b = document.querySelector('[data-quiz-status="quiz2"]');
+    if (b) { b.className='status-badge ' + (q2?'done':'fail'); b.textContent = (q2?'✓ ':'✗ ') + progress.quiz2 + '/10'; }
+  }
+  if (fin) {
+    const b = document.getElementById('finalStatus');
+    if (b) { b.className='status-badge done'; b.textContent='✓ Submitted'; }
+  }
+}
+
+async function refreshProgress(){
+  const {email} = getStudent();
+  if (!email) { hideCompletedBanner(); return; }
+  try {
+    const r = await fetch('/api/eco-classroom/progress?email=' + encodeURIComponent(email));
+    const j = await r.json();
+    if (j.ok) {
+      updateProgressUI(j.progress);
+      if (j.completion_info) {
+        showCompletedBanner(j.completion_info);
+      } else {
+        hideCompletedBanner();
+      }
+    }
+  } catch (e) {/* silent */}
+}
+
+// ───────────────────────── COMPLETED BANNER + RESEND ─────────────────────────
+function showCompletedBanner(info){
+  const banner = document.getElementById('completedBanner');
+  const {name} = getStudent();
+  const displayName = info.name || name || 'friend';
+  document.getElementById('cbName').textContent = displayName;
+  // Format date nicely
+  let dateStr = '—';
+  if (info.completed_at) {
+    try {
+      const d = new Date(info.completed_at);
+      dateStr = d.toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'});
+    } catch(e) { dateStr = info.completed_at.split('T')[0]; }
+  }
+  document.getElementById('cbDate').textContent = dateStr;
+  banner.classList.add('on');
+}
+function hideCompletedBanner(){
+  document.getElementById('completedBanner').classList.remove('on');
+}
+
+async function resendCert(btn){
+  const {email} = getStudent();
+  if (!email) { alert('Please sign in first.'); return; }
+  const orig = btn.textContent;
+  btn.disabled = true; btn.textContent = '⏳ Sending...';
+  try {
+    const r = await fetch('/api/eco-classroom/resend-cert', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({student_email: email})
+    });
+    const j = await r.json();
+    if (r.ok && j.ok) {
+      const status = j.email_status;
+      btn.textContent = '✓ Sent!';
+      let msg = '';
+      if (status === 'sent') {
+        msg = `Certificate email re-sent to ${j.sent_to} (CC: ${j.cc}). Check your inbox in a few minutes.`;
+      } else if (status === 'logged') {
+        msg = `Certificate generated and email logged on the server, but SMTP is not configured so the email was not actually delivered. Contact NexYouth admin to set up email delivery.`;
+      } else if (status === 'error') {
+        msg = `Certificate generated but SMTP failed. Check the server log. Contact NexYouth admin.`;
+      }
+      alert(msg);
+    } else {
+      btn.textContent = orig;
+      alert(j.error || 'Could not resend.');
+    }
+  } catch (e) {
+    btn.textContent = orig;
+    alert('Network error. Please try again.');
+  } finally {
+    setTimeout(() => { btn.disabled = false; btn.textContent = orig; }, 3000);
+  }
+}
+
+// ───────────────────────── CELEBRATION ─────────────────────────
+function celebrate(){
+  const {name} = getStudent();
+  document.getElementById('celebrateName').textContent = name || 'friend';
+  document.getElementById('celebrate').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function closeCelebrate(){
+  document.getElementById('celebrate').classList.remove('on');
+  document.body.style.overflow='';
+}
+
+// ───────────────────────── INIT ─────────────────────────
+applyAuthState();
+refreshProgress();
+</script>
+</body>
+</html>

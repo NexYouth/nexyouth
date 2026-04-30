@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoClassroom — Choose Your Course | NexYouth</title>
+<meta name="description" content="EcoClassroom — Free, self-paced courses for young environmental leaders. Earn certificates and completion awards.">
+<link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gc-green:#1A6640;--gc-green-d:#0d3a23;--gc-green-l:#2D9A5E;
+  --gc-leaf:#3FB572;--gc-cream:#F8F5F0;--gc-gold:#C9A84C;
+  --gc-blue:#1A73E8;--gc-coral:#E05533;--gc-purple:#7B3FA0;--gc-sky:#0EA5E9;
+  --bg:#F8F9FA;--surface:#fff;--border:#E0E0E0;--border-d:#DADCE0;
+  --text:#202124;--text-2:#5F6368;--muted:#80868B;
+  --shadow-1:0 1px 2px rgba(60,64,67,.08),0 1px 3px rgba(60,64,67,.12);
+  --shadow-2:0 1px 3px rgba(60,64,67,.12),0 4px 8px rgba(60,64,67,.10);
+  --shadow-3:0 6px 22px rgba(60,64,67,.18);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Roboto','Google Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* ── APP BAR ── */
+.appbar{background:#fff;border-bottom:1px solid var(--border);padding:.55rem 1.5rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:100;height:56px}
+.appbar .brand{display:flex;align-items:center;gap:.65rem;font-weight:500;font-size:1.05rem;color:var(--text)}
+.appbar .brand .logo{width:30px;height:30px;background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem}
+.appbar .spacer{flex:1}
+.appbar .home-btn{font-size:.85rem;color:var(--gc-green);font-weight:500;padding:.5rem 1rem;border-radius:100px;border:1px solid var(--border-d);transition:all .15s;background:#fff;cursor:pointer}
+.appbar .home-btn:hover{background:var(--gc-cream);border-color:var(--gc-green)}
+
+/* ── HERO ── */
+.hero{position:relative;padding:4rem 1.5rem 3rem;text-align:center;background:linear-gradient(135deg,#0d3a23 0%,#1A6640 50%,#2D9A5E 100%);color:#fff;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse 700px 350px at 80% 20%,rgba(63,181,114,.4) 0%,transparent 60%),
+  radial-gradient(ellipse 500px 250px at 20% 80%,rgba(201,168,76,.2) 0%,transparent 65%);}
+.hero::after{content:'🌱';position:absolute;right:5%;top:20%;font-size:7rem;opacity:.08;transform:rotate(-15deg)}
+.hero-content{position:relative;z-index:2;max-width:780px;margin:0 auto}
+.hero .badge{display:inline-block;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);padding:.4rem 1.1rem;border-radius:100px;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.4rem;border:1px solid rgba(255,255,255,.2)}
+.hero h1{font-family:'Google Sans','Playfair Display',serif;font-size:clamp(2.1rem,5vw,3.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:.85rem}
+.hero h1 .accent{background:linear-gradient(90deg,#FFD27D 0%,#FFE5A8 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic}
+.hero p.lede{font-size:1.1rem;color:rgba(255,255,255,.88);max-width:580px;margin:0 auto 1.8rem;line-height:1.55}
+.hero-stats{display:flex;justify-content:center;gap:2.4rem;flex-wrap:wrap;margin-top:1rem}
+.hero-stats .s .n{font-family:'Google Sans',serif;font-size:1.7rem;font-weight:700;color:#FFD27D;display:block;line-height:1}
+.hero-stats .s .l{font-size:.7rem;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem}
+
+/* ── MAIN ── */
+main{max-width:1180px;margin:0 auto;padding:3rem 1.5rem 4rem}
+.section-h{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;padding-bottom:.6rem;border-bottom:1.5px solid var(--border)}
+.section-h h2{font-family:'Google Sans',serif;font-size:1.5rem;font-weight:700;color:var(--text)}
+.section-h .sub{color:var(--text-2);font-size:.88rem}
+
+/* ── COURSE GRID ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.4rem}
+
+.course-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-1);transition:all .25s cubic-bezier(.2,.8,.4,1);display:flex;flex-direction:column;cursor:pointer;text-decoration:none;color:inherit}
+.course-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-3);border-color:rgba(45,154,94,.4)}
+.course-card.locked{cursor:default;opacity:.78}
+.course-card.locked:hover{transform:none;box-shadow:var(--shadow-1);border-color:var(--border)}
+
+.card-banner{position:relative;height:160px;display:flex;align-items:center;justify-content:center;color:#fff;overflow:hidden}
+.card-banner::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(255,255,255,.18) 0%,transparent 60%);pointer-events:none}
+.card-banner.eco{background:linear-gradient(135deg,#1A6640 0%,#3FB572 100%)}
+.card-banner.climate{background:linear-gradient(135deg,#0EA5E9 0%,#0369A1 100%)}
+.card-banner.bio{background:linear-gradient(135deg,#7B3FA0 0%,#C026D3 100%)}
+.card-banner.water{background:linear-gradient(135deg,#0d9488 0%,#06B6D4 100%)}
+.card-banner.locked{background:linear-gradient(135deg,#9CA3AF 0%,#6B7280 100%)}
+.card-emoji{font-size:4rem;line-height:1;filter:drop-shadow(0 2px 8px rgba(0,0,0,.18));position:relative;z-index:2}
+.card-status{position:absolute;top:.85rem;right:.85rem;background:rgba(255,255,255,.95);color:var(--gc-green);padding:.25rem .7rem;border-radius:100px;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:.3rem;z-index:3;backdrop-filter:blur(8px)}
+.card-status.active::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--gc-leaf);box-shadow:0 0 0 2px rgba(63,181,114,.3);animation:pulse 2s ease infinite}
+.card-status.coming{color:var(--gc-gold);background:rgba(255,255,255,.92)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+.card-body{padding:1.3rem 1.4rem 1.4rem;flex:1;display:flex;flex-direction:column}
+.card-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.6rem}
+.tag{font-size:.68rem;font-weight:600;padding:.2rem .6rem;border-radius:100px;background:#F1F3F4;color:var(--text-2);letter-spacing:.03em;text-transform:uppercase}
+.tag.cat-eco{background:rgba(45,154,94,.12);color:var(--gc-green)}
+.tag.cat-climate{background:rgba(14,165,233,.12);color:#0369A1}
+.tag.cat-bio{background:rgba(123,63,160,.12);color:var(--gc-purple)}
+.tag.level{background:rgba(201,168,76,.16);color:#7a5500}
+
+.card-title{font-family:'Google Sans',serif;font-size:1.18rem;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:.5rem}
+.card-desc{font-size:.88rem;color:var(--text-2);line-height:1.6;margin-bottom:1rem;flex:1}
+
+.card-stats{display:flex;gap:.85rem;flex-wrap:wrap;font-size:.78rem;color:var(--text-2);padding:.6rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:1rem}
+.card-stats .stat{display:flex;align-items:center;gap:.3rem;font-weight:500}
+
+.card-cta{display:flex;align-items:center;justify-content:space-between;gap:.7rem}
+.cta-btn{background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;padding:.6rem 1.2rem;border-radius:100px;font-size:.85rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem;transition:all .2s;border:none;font-family:inherit;cursor:pointer}
+.course-card:hover .cta-btn{transform:translateX(2px);box-shadow:0 4px 12px rgba(26,102,64,.3)}
+.cta-btn.locked{background:#F1F3F4;color:var(--muted);cursor:default}
+.course-card.locked:hover .cta-btn{transform:none;box-shadow:none}
+
+.reward-pill{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;color:var(--gc-gold);font-weight:600;background:rgba(201,168,76,.1);padding:.28rem .65rem;border-radius:100px;border:1px solid rgba(201,168,76,.25)}
+
+/* ── HOW IT WORKS ── */
+.how{margin-top:3.5rem;background:linear-gradient(135deg,#fff 0%,#F1F8F4 100%);border:1px solid var(--border);border-radius:16px;padding:2rem 1.8rem}
+.how h2{font-family:'Google Sans',serif;font-size:1.4rem;font-weight:700;color:var(--gc-green-d);margin-bottom:.4rem}
+.how .lede{color:var(--text-2);font-size:.92rem;margin-bottom:1.5rem;max-width:580px}
+.how-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem}
+.step{display:flex;gap:.8rem;align-items:flex-start}
+.step .num{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.95rem;font-family:'Google Sans',serif;flex-shrink:0;box-shadow:0 2px 6px rgba(26,102,64,.2)}
+.step .copy h4{font-family:'Google Sans',sans-serif;font-size:.94rem;color:var(--text);font-weight:600;margin-bottom:.18rem}
+.step .copy p{font-size:.83rem;color:var(--text-2);line-height:1.55}
+
+/* ── CALL TO ACTION FOOTER ── */
+.cta-foot{margin-top:3rem;text-align:center;background:#fff;border:1px solid var(--border);border-radius:14px;padding:2rem 1.5rem}
+.cta-foot h3{font-family:'Google Sans',serif;font-size:1.3rem;color:var(--text);margin-bottom:.4rem;font-weight:600}
+.cta-foot p{color:var(--text-2);font-size:.92rem;margin-bottom:1rem;max-width:520px;margin-left:auto;margin-right:auto}
+.cta-foot a.contact-link{color:var(--gc-green);font-weight:600}
+
+footer{background:#fff;border-top:1px solid var(--border);padding:1.6rem 1.5rem;text-align:center;color:var(--text-2);font-size:.82rem}
+
+@media(max-width:600px){
+  .hero{padding:3rem 1rem 2.5rem}
+  .hero-stats{gap:1.4rem}
+  main{padding:2rem 1rem 3rem}
+  .card-banner{height:140px}
+  .card-emoji{font-size:3.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- APP BAR -->
+<div class="appbar">
+  <div class="brand">
+    <div class="logo">N</div>
+    <span>EcoClassroom</span>
+  </div>
+  <div class="spacer"></div>
+  <a href="/" class="home-btn">← Home</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="badge">🌍 Free for All Youth</span>
+    <h1>Choose Your <span class="accent">Course</span></h1>
+    <p class="lede">Self-paced courses designed for young environmental leaders. Each course earns you a NexYouth EcoHero Certificate and a completion award.</p>
+    <div class="hero-stats">
+      <div class="s"><span class="n">1</span><span class="l">Active Course</span></div>
+      <div class="s"><span class="n">9+</span><span class="l">Lessons Each</span></div>
+      <div class="s"><span class="n">$15+</span><span class="l">Per Completion</span></div>
+      <div class="s"><span class="n">100%</span><span class="l">Free</span></div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <!-- ACTIVE COURSES -->
+  <div class="section-h">
+    <h2>Available Now</h2>
+    <span class="sub">Click any course to begin</span>
+  </div>
+
+  <div class="grid">
+
+    <!-- ECO LITERACY (ACTIVE) -->
+    <a href="/programs/eco-classroom/eco-literacy" class="course-card">
+      <div class="card-banner eco">
+        <span class="card-status active">Active</span>
+        <div class="card-emoji">🌍</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="tag cat-eco">Environmental Science</span>
+          <span class="tag level">Beginner-friendly</span>
+        </div>
+        <h3 class="card-title">Eco Literacy: From Environmental Systems to Youth Action</h3>
+        <p class="card-desc">Learn how environmental systems are connected, how pollution spreads, how human choices create hidden impacts, and how youth can design realistic environmental action.</p>
+        <div class="card-stats">
+          <span class="stat">📖 9 Lessons</span>
+          <span class="stat">🧪 2 Quizzes</span>
+          <span class="stat">📝 1 Project</span>
+          <span class="stat">⏱ ~5 hrs</span>
+        </div>
+        <div class="card-cta">
+          <button class="cta-btn">Start Course →</button>
+          <span class="reward-pill">🎓 Cert + $15</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- COMING SOON COURSES -->
+  <div class="section-h" style="margin-top:3rem">
+    <h2>Coming Soon</h2>
+    <span class="sub">More courses launching this year</span>
+  </div>
+
+  <div class="grid">
+
+    <!-- CLIMATE ACTION (Coming Soon) -->
+    <div class="course-card locked">
+      <div class="card-banner climate">
+        <span class="card-status coming">Coming Soon</span>
+        <div class="card-emoji">🌡️</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="tag cat-climate">Climate Science</span>
+          <span class="tag level">Intermediate</span>
+        </div>
+        <h3 class="card-title">Climate Action 101</h3>
+        <p class="card-desc">A deep dive into climate science evidence, drawdown solutions, and how to design measurable climate projects in your school or community.</p>
+        <div class="card-stats">
+          <span class="stat">📖 TBD Lessons</span>
+          <span class="stat">🧪 Quizzes</span>
+          <span class="stat">🎯 Project</span>
+        </div>
+        <div class="card-cta">
+          <button class="cta-btn locked">Notify Me</button>
+          <span class="reward-pill">🎓 Cert + Award</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BIODIVERSITY (Coming Soon) -->
+    <div class="course-card locked">
+      <div class="card-banner bio">
+        <span class="card-status coming">Coming Soon</span>
+        <div class="card-emoji">🦋</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="tag cat-bio">Biodiversity</span>
+          <span class="tag level">All Levels</span>
+        </div>
+        <h3 class="card-title">Biodiversity &amp; Ecosystem Services</h3>
+        <p class="card-desc">Understand why biodiversity matters for human life, how species loss accelerates, and how local conservation projects can succeed.</p>
+        <div class="card-stats">
+          <span class="stat">📖 TBD Lessons</span>
+          <span class="stat">🧪 Quizzes</span>
+          <span class="stat">🌱 Field Project</span>
+        </div>
+        <div class="card-cta">
+          <button class="cta-btn locked">Notify Me</button>
+          <span class="reward-pill">🎓 Cert + Award</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- WATER (Coming Soon) -->
+    <div class="course-card locked">
+      <div class="card-banner water">
+        <span class="card-status coming">Coming Soon</span>
+        <div class="card-emoji">💧</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="tag cat-eco">Water Systems</span>
+          <span class="tag level">Beginner-friendly</span>
+        </div>
+        <h3 class="card-title">Water: From Source to Solution</h3>
+        <p class="card-desc">Explore freshwater systems, eutrophication, microplastic pollution, and student-led water-quality monitoring strategies.</p>
+        <div class="card-stats">
+          <span class="stat">📖 TBD Lessons</span>
+          <span class="stat">🧪 Quizzes</span>
+          <span class="stat">🔬 Lab Project</span>
+        </div>
+        <div class="card-cta">
+          <button class="cta-btn locked">Notify Me</button>
+          <span class="reward-pill">🎓 Cert + Award</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <h2>How EcoClassroom works</h2>
+    <p class="lede">Every course follows the same structure. Pick a topic that interests you, work at your own pace, and earn a certificate when you finish.</p>
+    <div class="how-steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div class="copy"><h4>Register</h4><p>Sign up once with your email — your progress is saved across all courses.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="copy"><h4>Learn</h4><p>Each lesson includes a reading, a video, and a short reflection question.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div class="copy"><h4>Complete</h4><p>Pass the quizzes (60%+) and submit your final project.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <div class="copy"><h4>Earn</h4><p>Receive your NexYouth EcoHero Certificate plus a completion award.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FOOTER -->
+  <div class="cta-foot">
+    <h3>Have a course idea?</h3>
+    <p>We're always adding new EcoClassroom courses. If there's a topic you'd like to see, or if you're an educator who wants to contribute, reach out.</p>
+    <a href="/contact" class="contact-link">Contact NexYouth →</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>NexYouth EcoClassroom · Creating Space for Youth · <a href="/" style="color:var(--gc-green);font-weight:500">nexyouth.org</a></p>
+</footer>
+
+</body>
+</html>
