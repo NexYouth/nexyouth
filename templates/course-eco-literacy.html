@@ -1721,10 +1721,14 @@ function retakeQuiz(quizId, btn){
   // Hide score
   const scoreEl = quizItem.querySelector(`[data-quiz-score="${quizId}"]`);
   if (scoreEl) scoreEl.classList.remove('show','pass','fail');
-  // Show submit, hide retake
+  // Show submit (reset state from previous attempt), hide retake
   const submitBtn = quizItem.querySelector(`[data-quiz-action="${quizId}"]`);
   const retakeBtn = quizItem.querySelector(`[data-quiz-retake="${quizId}"]`);
-  if (submitBtn) submitBtn.style.display = '';
+  if (submitBtn) {
+    submitBtn.style.display = '';
+    submitBtn.disabled = false;
+    submitBtn.textContent = '📤 Submit Quiz';
+  }
   if (retakeBtn) retakeBtn.style.display = 'none';
   // Scroll to first question
   const first = quizItem.querySelector('.q');
