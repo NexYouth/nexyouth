@@ -5442,7 +5442,7 @@ def eco_classroom_register():
         msg['From'] = email_from
         msg['To'] = ECO_ADMIN_EMAIL
         msg.set_content(text)
-        timeout = int(os.environ.get('SMTP_TIMEOUT', '15'))
+        timeout = int(os.environ.get('SMTP_TIMEOUT', '7'))
         smtp_cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
         with smtp_cls(host, port, timeout=timeout) as srv:
             if not use_ssl and os.environ.get('SMTP_TLS', '1') == '1':
@@ -5876,7 +5876,7 @@ def _send_completion_email(email, name, completion_date=None):
             import sys
             print(f"[ECO COMPLETION] sending WITHOUT cert attachment to {email} (cert_pdf was falsy)", file=sys.stderr)
 
-        timeout = int(os.environ.get('SMTP_TIMEOUT', '15'))
+        timeout = int(os.environ.get('SMTP_TIMEOUT', '7'))
         smtp_cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
         with smtp_cls(host, port, timeout=timeout) as srv:
             if not use_ssl and os.environ.get('SMTP_TLS', '1') == '1':
@@ -5964,7 +5964,27 @@ def eco_classroom_submit():
             completed_now = True
             info = _db_completion_info(conn, email)
             completion_date = _format_completion_date(info.get('completed_at') if info else None)
-            email_status = _send_completion_email(email, name, completion_date)
+            # Send email with a short deadline so we always return quickly:
+            # the frontend needs a fast response to fire the celebrate popup.
+            # If SMTP is slow, the request returns 'pending' and the student
+            # can use the Resend button (or the email may still arrive).
+            from concurrent.futures import ThreadPoolExecutor, TimeoutError as _TO
+            _ex = ThreadPoolExecutor(max_workers=1)
+            try:
+                fut = _ex.submit(_send_completion_email, email, name, completion_date)
+                try:
+                    email_status = fut.result(timeout=5)
+                except _TO:
+                    email_status = 'pending'
+            except Exception as _e:
+                import sys, traceback
+                print(f"[ECO COMPLETION DISPATCH] {type(_e).__name__}: {_e}\n{traceback.format_exc()}", file=sys.stderr)
+                email_status = 'error'
+            finally:
+                # Don't wait for the thread on shutdown — the response must
+                # return quickly. The thread keeps running until the function
+                # process exits or the email finishes (best effort).
+                _ex.shutdown(wait=False)
 
         return jsonify({
             'ok': True,
