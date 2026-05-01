@@ -223,6 +223,13 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 .modal-close{position:absolute;top:1rem;right:1rem;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.18);border:none;color:#fff;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;z-index:3}
 .modal-close:hover{background:rgba(255,255,255,.3)}
 .modal-body{padding:1.6rem 2rem 1.8rem}
+.reg-next-row{padding:1.1rem 1.5rem;border-top:1px solid var(--border);background:linear-gradient(180deg,#F8F9FA 0%,#F1F8F4 100%);display:flex;gap:1rem;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.reg-next-row .reg-next-text{display:flex;flex-direction:column;gap:.18rem;font-size:.88rem;color:var(--text);line-height:1.45;min-width:0}
+.reg-next-row .reg-next-text strong{color:var(--gc-green-d);font-weight:600}
+.reg-next-row .reg-next-text span{font-size:.8rem;color:var(--text-2)}
+.reg-next-row .reg-next-text em{font-style:normal;color:var(--gc-green-d);font-weight:600}
+.reg-next-btn{background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;border:none;border-radius:100px;padding:.7rem 1.5rem;font-size:.93rem;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;transition:all .18s;box-shadow:0 2px 8px rgba(26,102,64,.18)}
+.reg-next-btn:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(45,154,94,.32)}
 .form-section{margin-bottom:1.4rem}
 .form-section h4{font-family:'Google Sans',sans-serif;font-size:.78rem;font-weight:600;color:var(--gc-green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.7rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
 .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
@@ -1346,21 +1353,13 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
         allow="geolocation; microphone; camera"
         allowfullscreen></iframe>
 
-      <div style="padding:1rem 1.5rem;border-top:1px solid var(--border);background:#F8F9FA;display:flex;gap:.85rem;justify-content:space-between;align-items:center;flex-wrap:wrap">
-        <p style="font-size:.85rem;color:var(--text-2);margin:0;line-height:1.5">
-          Already submitted the registration?<br>
-          <span style="font-size:.78rem;color:var(--muted)">Sign in with your student email to start the course.</span>
-        </p>
-        <button class="form-submit" style="margin:0;width:auto;padding:.65rem 1.4rem;font-size:.92rem" onclick="closeRegister();setTimeout(openLogin,200)">Sign In &nbsp;→</button>
+      <div class="reg-next-row">
+        <div class="reg-next-text">
+          <strong>Done filling out the form?</strong>
+          <span>Click <em>Sign In</em> with the same student email to unlock the course.</span>
+        </div>
+        <button class="reg-next-btn" onclick="closeRegister();setTimeout(openLogin,200)">Sign In&nbsp;→</button>
       </div>
-    </div>
-
-    <!-- Legacy success view kept hidden (not reached via JotForm flow) -->
-    <div class="success-view" id="successView" style="display:none"></div>
-      <h3>You're registered!</h3>
-      <p>Welcome to the NexYouth Eco Literacy course. Your registration has been recorded — you can now sign in and start with Module 1.</p>
-      <button class="btn-primary" style="background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;font-size:1rem;padding:.95rem 1.8rem" onclick="startCourse()">🚀 Start the Course &nbsp;→</button>
-      <p style="margin-top:.9rem;font-size:.78rem;color:var(--text-2)"><a href="#" onclick="closeRegister();return false;" style="color:var(--text-2);text-decoration:underline">Maybe later</a></p>
     </div>
   </div>
 </div>
@@ -1451,8 +1450,10 @@ function applyAuthState(){
 function openRegister(){
   document.getElementById('modal').classList.add('on');
   document.body.style.overflow='hidden';
-  document.getElementById('formView').style.display='block';
-  document.getElementById('successView').classList.remove('on');
+  const fv = document.getElementById('formView');
+  if (fv) fv.style.display = 'block';
+  const sv = document.getElementById('successView');
+  if (sv) sv.classList.remove('on');
 }
 function closeRegister(){
   document.getElementById('modal').classList.remove('on');
