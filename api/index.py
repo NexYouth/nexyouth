@@ -5475,6 +5475,158 @@ def eco_classroom_login():
                         'error': 'Could not verify registration. Please try again in a moment.'}), 500
 
 
+def _extract_email_from_jotform_answers(answers):
+    """Pull a lowercased email from a JotForm answers dict (any field shape)."""
+    if not isinstance(answers, dict):
+        return ''
+    for _, field in answers.items():
+        ans = (field or {}).get('answer')
+        if isinstance(ans, str):
+            v = ans.strip().lower()
+            if re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', v):
+                return v
+        elif isinstance(ans, dict):
+            v = (ans.get('email') or '').strip().lower()
+            if re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', v):
+                return v
+    return ''
+
+
+def _extract_name_from_jotform_answers(answers):
+    """Pull the student name from a JotForm answers dict."""
+    if not isinstance(answers, dict):
+        return ''
+    for _, field in answers.items():
+        ans = (field or {}).get('answer')
+        if isinstance(ans, dict) and ('first' in ans or 'last' in ans):
+            candidate = ' '.join(filter(None, [
+                (ans.get('prefix') or '').strip(),
+                (ans.get('first') or '').strip(),
+                (ans.get('last') or '').strip(),
+            ])).strip()
+            if candidate:
+                return candidate
+    return ''
+
+
+@app.route('/api/eco-classroom/post-register-check', methods=['POST'])
+def eco_classroom_post_register_check():
+    """Called right after a JotForm submission completes. Fetches the just-submitted
+    email from JotForm, decides if it's a duplicate (already in our DB), and reacts:
+
+      - Duplicate → returns {duplicate: true, email}. Frontend shows the
+        "already registered, please sign in or use another email" panel and
+        we DELETE the duplicate JotForm submission so the registration set
+        stays clean.
+      - New → inserts a row into eco_registrations, fires the welcome email
+        in the background, returns {ok: true, email}.
+
+    If we can't resolve an email at all (e.g. JotForm API unavailable), we
+    fail open with {ok: true, email: ''} so we don't block a real student.
+    """
+    data = request.get_json(silent=True) or {}
+    submission_id = str(data.get('submission_id') or '').strip()
+
+    api_key = os.environ.get('JOTFORM_API_KEY')
+
+    email = ''
+    student_name = ''
+
+    if submission_id and api_key:
+        try:
+            import urllib.request, urllib.parse, json as _json
+            url = (f'https://api.jotform.com/submission/{urllib.parse.quote(submission_id)}'
+                   f'?apiKey={urllib.parse.quote(api_key)}')
+            req = urllib.request.Request(url, headers={'Accept': 'application/json'})
+            with urllib.request.urlopen(req, timeout=8) as resp:
+                payload = _json.loads(resp.read().decode('utf-8'))
+            answers = ((payload.get('content') or {}).get('answers')) or {}
+            email = _extract_email_from_jotform_answers(answers)
+            student_name = _extract_name_from_jotform_answers(answers)
+        except Exception as e:
+            import sys
+            print(f"[ECO POST-REG] JotForm fetch failed: {type(e).__name__}: {e}", file=sys.stderr)
+
+    # Fallback: if no submission_id but JotForm API key, fetch the most recent submission
+    if not email and api_key:
+        try:
+            import urllib.request, urllib.parse, json as _json
+            url = (f'https://api.jotform.com/form/{JOTFORM_FORM_ID}/submissions'
+                   f'?apiKey={urllib.parse.quote(api_key)}&limit=5&orderby=created_at')
+            req = urllib.request.Request(url, headers={'Accept': 'application/json'})
+            with urllib.request.urlopen(req, timeout=8) as resp:
+                payload = _json.loads(resp.read().decode('utf-8'))
+            for sub in (payload.get('content') or [])[:5]:
+                e = _extract_email_from_jotform_answers(sub.get('answers') or {})
+                if e:
+                    email = e
+                    student_name = student_name or _extract_name_from_jotform_answers(sub.get('answers') or {})
+                    if not submission_id:
+                        submission_id = str(sub.get('id') or '')
+                    break
+        except Exception as e:
+            import sys
+            print(f"[ECO POST-REG] JotForm list fallback failed: {type(e).__name__}: {e}", file=sys.stderr)
+
+    if not email:
+        # Couldn't resolve — fail open so we don't block a real registration
+        return jsonify({'ok': True, 'email': '', 'note': 'email-not-resolved'})
+
+    # Check our DB for an existing registration
+    _conn = _db_connect()
+    is_duplicate = False
+    if _conn is not None:
+        try:
+            _db_ensure_schema(_conn)
+            with _conn.cursor() as cur:
+                cur.execute(
+                    "SELECT 1 FROM eco_registrations WHERE LOWER(student_email)=%s LIMIT 1",
+                    (email,),
+                )
+                is_duplicate = cur.fetchone() is not None
+                if not is_duplicate:
+                    ip = (request.headers.get('X-Forwarded-For') or request.remote_addr or '').split(',')[0].strip()
+                    cur.execute(
+                        "INSERT INTO eco_registrations "
+                        "(student_email, student_name, source, ip) "
+                        "VALUES (%s,%s,%s,%s)",
+                        (email, student_name or email.split('@')[0], 'jotform', ip),
+                    )
+        except Exception as e:
+            import sys
+            print(f"[ECO POST-REG DB] {type(e).__name__}: {e}", file=sys.stderr)
+        finally:
+            try: _conn.close()
+            except Exception: pass
+
+    if is_duplicate:
+        # Best-effort: delete the duplicate JotForm submission so the data stays clean
+        if submission_id and api_key:
+            try:
+                import urllib.request, urllib.parse
+                del_url = (f'https://api.jotform.com/submission/{urllib.parse.quote(submission_id)}'
+                           f'?apiKey={urllib.parse.quote(api_key)}')
+                del_req = urllib.request.Request(del_url, method='DELETE',
+                                                 headers={'Accept': 'application/json'})
+                urllib.request.urlopen(del_req, timeout=6).read()
+            except Exception as e:
+                import sys
+                print(f"[ECO POST-REG] failed to delete dup submission {submission_id}: {type(e).__name__}: {e}", file=sys.stderr)
+        return jsonify({'duplicate': True, 'email': email})
+
+    # New registration → fire the welcome email asynchronously
+    try:
+        from concurrent.futures import ThreadPoolExecutor
+        _ex = ThreadPoolExecutor(max_workers=1)
+        _ex.submit(_send_welcome_email, email, student_name)
+        _ex.shutdown(wait=False)
+    except Exception as e:
+        import sys
+        print(f"[ECO POST-REG WELCOME DISPATCH] {type(e).__name__}: {e}", file=sys.stderr)
+
+    return jsonify({'ok': True, 'email': email})
+
+
 @app.route('/api/eco-classroom/register', methods=['POST'])
 def eco_classroom_register():
     data = request.get_json(silent=True) or {}

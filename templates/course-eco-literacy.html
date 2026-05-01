@@ -1366,20 +1366,7 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 
     <!-- JotForm embed — Eco Literacy Registration -->
     <div class="modal-body" id="formView" style="padding:0;background:#fff">
-
-      <!-- Step 1: Email gate. Block re-registration of an already-known email. -->
-      <div id="regEmailGate" class="reg-gate">
-        <div class="reg-gate-icon">📧</div>
-        <h3>Let's check your email first</h3>
-        <p>To make sure each student only registers once, we'll quickly check whether your email is already in our system before you fill out the form.</p>
-        <input type="email" id="regGateEmail" placeholder="you@example.com" autocomplete="email" autocapitalize="off" spellcheck="false">
-        <button class="reg-next-btn reg-gate-btn" id="regGateBtn" onclick="checkRegEmail(this)">Continue&nbsp;→</button>
-        <div class="reg-gate-msg" id="regGateMsg"></div>
-        <p class="reg-gate-fine">Already registered? <a href="#" onclick="closeRegister();setTimeout(openLogin,200);return false">Sign in instead</a></p>
-      </div>
-
-      <!-- Step 2: JotForm iframe (revealed only after email gate passes) -->
-      <div id="regFormFrame" style="display:none">
+      <div id="regFormFrame">
         <iframe
           id="JotFormIFrame-261196877713065"
           title="NexYouth Eco Literacy Registration"
@@ -1399,14 +1386,33 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
         </div>
       </div>
 
-      <!-- Branded success view shown after JotForm posts submission-completed -->
+      <!-- Post-submit views: success OR duplicate warning -->
       <div id="regSubmittedView" style="display:none">
-        <div class="reg-success-card">
+        <!-- Spinner while we check the email -->
+        <div class="reg-success-card" id="regCheckingCard">
+          <div class="reg-success-icon" style="background:linear-gradient(135deg,#5F6368 0%,#9AA0A6 100%)">⏳</div>
+          <h3>Verifying your registration…</h3>
+          <p>Just a moment while we check your email.</p>
+        </div>
+
+        <!-- Success: this email is new -->
+        <div class="reg-success-card" id="regSuccessCard" style="display:none">
           <div class="reg-success-icon">✓</div>
           <h3>Registration received!</h3>
-          <p>Thanks for registering for the <strong>NexYouth Eco Literacy</strong> course. We just sent a welcome email to your inbox with the next steps.</p>
+          <p>Thanks for registering for the <strong>NexYouth Eco Literacy</strong> course. We just sent a welcome email to <strong id="regSuccessEmail"></strong> with the next steps.</p>
           <p style="font-size:.85rem;color:var(--text-2);margin-top:.6rem">Tip: if you don't see it in a couple of minutes, check your Spam or Promotions folder.</p>
           <button class="reg-next-btn" style="margin-top:1.4rem" onclick="closeRegister();setTimeout(openLogin,200)">Sign In to start the course&nbsp;→</button>
+        </div>
+
+        <!-- Duplicate: this email is already registered -->
+        <div class="reg-success-card" id="regDuplicateCard" style="display:none">
+          <div class="reg-success-icon" style="background:linear-gradient(135deg,#C9A84C 0%,#E5B547 100%);box-shadow:0 10px 28px rgba(201,168,76,.42),0 0 0 6px rgba(201,168,76,.18)">!</div>
+          <h3>This email is already registered</h3>
+          <p><strong id="regDupEmail"></strong> is already in our system. Please sign in with this email — or, if this is a different student, register with a different email address.</p>
+          <div style="display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center;margin-top:1.4rem">
+            <button class="reg-next-btn" onclick="closeRegister();setTimeout(openLogin,200)">Sign In&nbsp;→</button>
+            <button class="reg-next-btn" style="background:#fff;color:var(--gc-green-d);border:1.5px solid var(--gc-green);box-shadow:none" onclick="restartRegistration()">Use a different email</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1501,89 +1507,109 @@ function openRegister(){
   document.body.style.overflow='hidden';
   const fv = document.getElementById('formView');
   if (fv) fv.style.display = 'block';
-  // Reset to the email gate (Step 1). Hide the iframe + success views.
-  const gate = document.getElementById('regEmailGate');
+  // Always show the JotForm form on open. Post-submit views start hidden.
   const frame = document.getElementById('regFormFrame');
   const submitted = document.getElementById('regSubmittedView');
-  if (gate) gate.style.display = 'flex';
-  if (frame) frame.style.display = 'none';
+  if (frame) frame.style.display = 'block';
   if (submitted) submitted.style.display = 'none';
-  // Clear gate state
-  const inp = document.getElementById('regGateEmail');
-  const msg = document.getElementById('regGateMsg');
-  const btn = document.getElementById('regGateBtn');
-  if (inp) { inp.value = ''; inp.classList.remove('err'); }
-  if (msg) { msg.textContent = ''; msg.className = 'reg-gate-msg'; }
-  if (btn) { btn.disabled = false; btn.textContent = 'Continue →'; }
+  // Reset all post-submit panels
+  ['regCheckingCard','regSuccessCard','regDuplicateCard'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = (id === 'regCheckingCard') ? 'flex' : 'none';
+  });
 }
 
-// Step 1: pre-check the email against /api/eco-classroom/login.
-//   - 200 ok → email is already registered → block and steer to Sign In.
-//   - 404    → email is new → reveal the JotForm iframe so they can register.
-async function checkRegEmail(btn){
-  const inp = document.getElementById('regGateEmail');
-  const msg = document.getElementById('regGateMsg');
-  const email = (inp.value || '').trim().toLowerCase();
-  inp.classList.remove('err');
-  msg.textContent = ''; msg.className = 'reg-gate-msg';
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    inp.classList.add('err');
-    msg.textContent = 'Please enter a valid email address.';
-    msg.className = 'reg-gate-msg err';
-    inp.focus();
-    return;
+// "Use a different email" → reload the JotForm iframe so the student can re-fill.
+function restartRegistration(){
+  const frame = document.getElementById('regFormFrame');
+  const submitted = document.getElementById('regSubmittedView');
+  if (frame) frame.style.display = 'block';
+  if (submitted) submitted.style.display = 'none';
+  // Reload the iframe to clear any cached form state
+  const f = document.getElementById('JotFormIFrame-261196877713065');
+  if (f) {
+    const src = f.src.split('?')[0];
+    f.src = 'about:blank';
+    setTimeout(() => { f.src = src; }, 50);
   }
-  btn.disabled = true; btn.textContent = 'Checking…';
+}
+
+// Show one of the three post-submit panels: 'checking' | 'success' | 'duplicate'
+function showRegPanel(which, data){
+  const submitted = document.getElementById('regSubmittedView');
+  const frame = document.getElementById('regFormFrame');
+  if (frame) frame.style.display = 'none';
+  if (submitted) submitted.style.display = 'block';
+  ['regCheckingCard','regSuccessCard','regDuplicateCard'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  if (which === 'checking') {
+    document.getElementById('regCheckingCard').style.display = 'flex';
+  } else if (which === 'success') {
+    const e = document.getElementById('regSuccessEmail');
+    if (e && data && data.email) e.textContent = data.email;
+    document.getElementById('regSuccessCard').style.display = 'flex';
+  } else if (which === 'duplicate') {
+    const e = document.getElementById('regDupEmail');
+    if (e && data && data.email) e.textContent = data.email;
+    document.getElementById('regDuplicateCard').style.display = 'flex';
+  }
+}
+
+// JotForm posts {action:'submission-completed', submissionID:'...', formID:'...'} when
+// a submission completes. Catch that, then have our backend reach back to JotForm with
+// the submissionID to fetch the email and check for duplicates.
+let _regCheckedThisSession = false;
+window.addEventListener('message', function(e){
+  if (!e || !e.data) return;
+  if (typeof e.origin === 'string' && e.origin.indexOf('jotform.com') === -1
+      && e.origin.indexOf('jotform.io') === -1) return;
+  const raw = typeof e.data === 'string' ? e.data : JSON.stringify(e.data);
+  if (raw.indexOf('submission-completed') === -1
+      && raw.indexOf('submissionCompleted') === -1) return;
+  if (_regCheckedThisSession) return;
+  _regCheckedThisSession = true;
+
+  // Try to extract submissionID from common payload shapes
+  let submissionID = '';
   try {
-    const r = await fetch('/api/eco-classroom/login', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({student_email: email}),
-    });
-    if (r.ok) {
-      // Email already registered — block re-registration.
-      msg.innerHTML = `This email <strong>${email}</strong> is already registered. ` +
-                      `<a href="#" onclick="closeRegister();setTimeout(openLogin,200);return false">Sign in instead →</a>`;
-      msg.className = 'reg-gate-msg warn';
-      btn.disabled = false; btn.textContent = 'Continue →';
-      return;
+    if (typeof e.data === 'object' && e.data) {
+      submissionID = e.data.submissionID || e.data.submissionId || '';
+    } else if (typeof e.data === 'string') {
+      const m = e.data.match(/submissionID["':\s]+([0-9]+)/i)
+             || e.data.match(/"submissionId"\s*:\s*"([0-9]+)"/i);
+      if (m) submissionID = m[1];
+      // try parsing as JSON suffix (e.g. "submission-completed:{...}")
+      const colonIdx = e.data.indexOf('{');
+      if (!submissionID && colonIdx !== -1) {
+        try {
+          const obj = JSON.parse(e.data.slice(colonIdx));
+          submissionID = obj.submissionID || obj.submissionId || '';
+        } catch(_){}
+      }
     }
-    if (r.status === 404) {
-      // Not in the system → proceed to JotForm
-      document.getElementById('regEmailGate').style.display = 'none';
-      document.getElementById('regFormFrame').style.display = 'block';
-      // Optional: pass email to JotForm so they don't retype it (best-effort)
-      try {
-        const f = document.getElementById('JotFormIFrame-261196877713065');
-        if (f && !f.src.includes('?') && !f.src.includes('=')) {
-          f.src = f.src + '?student_email=' + encodeURIComponent(email);
-        }
-      } catch(e){}
-      return;
-    }
-    // Other status (e.g. 503 sign-in unavailable) — show a friendly retry message
-    let serverErr = 'Could not verify. Please try again in a moment.';
-    try { const j = await r.json(); if (j && j.error) serverErr = j.error; } catch(e){}
-    msg.textContent = serverErr;
-    msg.className = 'reg-gate-msg err';
-    btn.disabled = false; btn.textContent = 'Continue →';
-  } catch (e) {
-    msg.textContent = 'Network error. Please try again.';
-    msg.className = 'reg-gate-msg err';
-    btn.disabled = false; btn.textContent = 'Continue →';
-  }
-}
+  } catch(_){}
 
-// Allow Enter key to submit the gate
-document.addEventListener('keydown', e => {
-  if (e.key !== 'Enter') return;
-  const gate = document.getElementById('regEmailGate');
-  if (!gate || gate.style.display === 'none') return;
-  const inp = document.getElementById('regGateEmail');
-  if (document.activeElement === inp) {
-    e.preventDefault();
-    checkRegEmail(document.getElementById('regGateBtn'));
-  }
+  showRegPanel('checking');
+  fetch('/api/eco-classroom/post-register-check', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({submission_id: submissionID || ''}),
+  }).then(r => r.json().catch(()=>({}))).then(j => {
+    if (j && j.duplicate) {
+      showRegPanel('duplicate', {email: j.email || ''});
+    } else if (j && j.ok) {
+      showRegPanel('success', {email: j.email || ''});
+    } else {
+      // Unknown response — fail open by showing success so we don't block the student
+      showRegPanel('success', {email: (j && j.email) || ''});
+    }
+    _regCheckedThisSession = false;
+  }).catch(() => {
+    showRegPanel('success', {});
+    _regCheckedThisSession = false;
+  });
 });
 
 // JotForm posts {action:'submission-completed', ...} (and other formats across versions).
