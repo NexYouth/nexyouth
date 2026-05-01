@@ -1605,7 +1605,7 @@ LESSON_ITEMS.forEach((item, idx) => {
 });
 
 async function markComplete(lessonId, btn){
-  const {email} = getStudent();
+  const {email, name} = getStudent();
   if (!email) { alert('Please sign in or register first to track your progress.'); openLogin(); return; }
   const box = btn.closest('.reflect-box');
   if (box.classList.contains('done')) return;
@@ -1614,7 +1614,7 @@ async function markComplete(lessonId, btn){
   try {
     const res = await fetch('/api/eco-classroom/submit', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({type:'task', lesson_id:String(lessonId), student_email:email})
+      body: JSON.stringify({type:'task', lesson_id:String(lessonId), student_email:email, student_name:name})
     });
     const r = await res.json().catch(()=>({}));
     if (res.ok && r.ok) {
@@ -1736,7 +1736,7 @@ function retakeQuiz(quizId, btn){
 }
 
 async function submitQuiz(quizId, btn){
-  const {email} = getStudent();
+  const {email, name} = getStudent();
   if (!email) { alert('Please sign in or register first to submit your quiz.'); openLogin(); return; }
   const quizItem = document.querySelector(`[data-quiz-id="${quizId}"]`);
   const questions = quizItem.querySelectorAll('.q');
@@ -1753,7 +1753,7 @@ async function submitQuiz(quizId, btn){
   try {
     const res = await fetch('/api/eco-classroom/submit', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({type:quizId, answers, student_email:email})
+      body: JSON.stringify({type:quizId, answers, student_email:email, student_name:name})
     });
     const r = await res.json().catch(()=>({}));
     if (res.ok && r.ok) {
@@ -1825,7 +1825,7 @@ if (finalText) {
 }
 
 async function submitFinal(btn){
-  const {email} = getStudent();
+  const {email, name} = getStudent();
   if (!email) { alert('Please sign in or register first to submit your action plan.'); openLogin(); return; }
   const content = finalText.value;
   if (countWords(content) < 100) return;
@@ -1836,7 +1836,7 @@ async function submitFinal(btn){
   try {
     const res = await fetch('/api/eco-classroom/submit', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({type:'final', content, student_email:email})
+      body: JSON.stringify({type:'final', content, student_email:email, student_name:name})
     });
     const r = await res.json().catch(()=>({}));
     if (res.ok && r.ok) {
@@ -1935,7 +1935,7 @@ function hideCompletedBanner(){
 }
 
 async function resendCert(btn){
-  const {email} = getStudent();
+  const {email, name} = getStudent();
   if (!email) { alert('Please sign in first.'); return; }
   const orig = btn.textContent;
   btn.disabled = true; btn.textContent = '⏳ Sending...';
@@ -1943,7 +1943,7 @@ async function resendCert(btn){
     const r = await fetch('/api/eco-classroom/resend-cert', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({student_email: email})
+      body: JSON.stringify({student_email: email, student_name: name})
     });
     const j = await r.json();
     if (r.ok && j.ok) {

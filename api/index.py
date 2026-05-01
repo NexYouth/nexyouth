@@ -5759,6 +5759,7 @@ def eco_classroom_submit():
     data = request.get_json(silent=True) or {}
     email = str(data.get('student_email') or '').strip().lower()
     sub_type = str(data.get('type') or '').strip()
+    req_name = str(data.get('student_name') or '').strip()
 
     if not re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', email):
         return jsonify({'ok': False, 'error': 'Please register first or enter a valid email.'}), 400
@@ -5817,7 +5818,7 @@ def eco_classroom_submit():
         completed_now = False
         email_status = None
         if _db_is_completed(progress) and not _db_already_completed(conn, email):
-            name = _db_student_name(conn, email)
+            name = _db_student_name(conn, email) or req_name
             with conn.cursor() as cur:
                 cur.execute(
                     "INSERT INTO eco_completions (student_email, student_name) VALUES (%s, %s) "
@@ -5877,6 +5878,7 @@ def eco_classroom_progress():
 def eco_classroom_resend_cert():
     data = request.get_json(silent=True) or {}
     email = str(data.get('student_email') or '').strip().lower()
+    req_name = str(data.get('student_name') or '').strip()
     if not re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', email):
         return jsonify({'ok': False, 'error': 'Valid email required.'}), 400
 
@@ -5890,7 +5892,7 @@ def eco_classroom_resend_cert():
                 'ok': False,
                 'error': 'No completion record found for this email. Finish all lessons first.',
             }), 404
-        name = _db_student_name(conn, email)
+        name = _db_student_name(conn, email) or req_name
         status = _send_completion_email(email, name)
         admin_cc = os.environ.get('ADMIN_CC_EMAIL', 'nexyouth.master@gmail.com')
         if status == 'sent':
