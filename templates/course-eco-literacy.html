@@ -137,8 +137,9 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 .item-body li{font-size:.9rem;color:var(--text);line-height:1.6;margin-bottom:.25rem}
 .item-body li::marker{color:var(--gc-green)}
 
-.resource{display:flex;align-items:center;gap:.75rem;padding:.7rem .95rem;background:#fff;border:1px solid var(--border);border-radius:6px;margin-bottom:.5rem;transition:all .15s}
-.resource:hover{box-shadow:var(--shadow-1);border-color:var(--gc-green)}
+.resource{display:flex;align-items:center;gap:.75rem;padding:.7rem .95rem;background:#fff;border:1px solid var(--border);border-radius:6px;margin-bottom:.5rem;transition:all .15s;text-decoration:none;color:inherit}
+.resource:hover{box-shadow:var(--shadow-1);border-color:var(--gc-green);text-decoration:none}
+.resource:hover .r-title{color:var(--gc-green)}
 .resource .r-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;background:rgba(26,115,232,.1);color:var(--gc-blue)}
 .resource.read .r-icon{background:rgba(45,154,94,.12);color:var(--gc-green)}
 .resource.video .r-icon{background:rgba(224,85,51,.1);color:var(--gc-coral)}
@@ -697,8 +698,8 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
             <p>Environmental learning is not just about individual habits. Climate change, biodiversity loss, freshwater stress, land-use change, pollution, and ocean changes are connected parts of one Earth system. This lesson introduces <strong>planetary boundaries</strong>, a framework scientists use to describe the limits that help keep Earth stable for human life. The Stockholm Resilience Centre describes planetary boundaries as nine critical global processes that regulate Earth's stability and resilience.</p>
 
             <h4>Resources</h4>
-            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Stockholm Resilience Centre — Planetary Boundaries</div></div></div>
-            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">World Economic Forum — Earth has crossed 6 of 9 dangerous planetary boundaries</div></div></div>
+            <a class="resource read" href="https://www.stockholmresilience.org/research/planetary-boundaries.html" target="_blank" rel="noopener noreferrer"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Stockholm Resilience Centre — Planetary Boundaries</div></div></a>
+            <a class="resource video" href="https://www.weforum.org/videos/earth-planetary-boundaries/" target="_blank" rel="noopener noreferrer"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">World Economic Forum — Earth has crossed 6 of 9 dangerous planetary boundaries</div></div></a>
 
             <h4>Student Task</h4>
             <div class="task-box">
@@ -724,8 +725,8 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
             <p>You may already know that climate change is serious. This lesson focuses on a better question: <em>how do scientists know it is happening?</em> Students examine multiple lines of evidence — rising global temperatures, warming oceans, shrinking ice sheets, and sea-level rise. NASA explains that the evidence for rapid climate change is compelling across multiple indicators, not based on one weather event.</p>
 
             <h4>Resources</h4>
-            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">NASA — Evidence: The Evidence for Rapid Climate Change Is Compelling</div></div></div>
-            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">National Geographic — Climate Change 101 with Bill Nye</div></div></div>
+            <a class="resource read" href="https://science.nasa.gov/climate-change/evidence/" target="_blank" rel="noopener noreferrer"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">NASA — Evidence: The Evidence for Rapid Climate Change Is Compelling</div></div></a>
+            <a class="resource video" href="https://www.youtube.com/watch?v=EtW2rrLHs08" target="_blank" rel="noopener noreferrer"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">National Geographic — Climate Change 101 with Bill Nye</div></div></a>
 
             <h4>Student Task</h4>
             <div class="task-box">
@@ -751,8 +752,8 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
             <p>Biodiversity is not just about saving animals. It supports the systems humans depend on — food, clean water, pollination, soil health, flood protection, and climate stability. The IPBES Global Assessment reported that around <strong>1 million animal and plant species are threatened with extinction</strong>, many within decades.</p>
 
             <h4>Resources</h4>
-            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">UNEP — Nature's Dangerous Decline: Species Extinction Rates Accelerating</div></div></div>
-            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">David Attenborough — What is biodiversity?</div></div></div>
+            <a class="resource read" href="https://www.unep.org/news-and-stories/press-release/natures-dangerous-decline-unprecedented-species-extinction-rates" target="_blank" rel="noopener noreferrer"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">UNEP — Nature's Dangerous Decline: Species Extinction Rates Accelerating</div></div></a>
+            <a class="resource video" href="https://www.youtube.com/watch?v=sDZ8UHEERMM" target="_blank" rel="noopener noreferrer"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">David Attenborough — What is biodiversity?</div></div></a>
 
             <h4>Student Task</h4>
             <div class="task-box">
@@ -778,8 +779,8 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
             <p>Water pollution is not always visible as trash floating on the surface. One major water problem is <strong>eutrophication</strong> — when excess nutrients such as nitrogen and phosphorus enter water systems. These nutrients can trigger dense algal blooms, reduce water clarity, block sunlight, lower oxygen levels, and create dead zones where aquatic life struggles to survive. Students will learn the chain reaction from land-based pollution to ecosystem damage, and why water quality problems are often caused by activities far upstream.</p>
 
             <h4>Resources</h4>
-            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Nature Education — Eutrophication: Causes, Consequences, and Controls in Aquatic Ecosystems</div></div></div>
-            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">NOAA — HABs: Overview Video</div></div></div>
+            <a class="resource read" href="https://www.nature.com/scitable/knowledge/library/eutrophication-causes-consequences-and-controls-in-aquatic-102364466/" target="_blank" rel="noopener noreferrer"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Nature Education — Eutrophication: Causes, Consequences, and Controls in Aquatic Ecosystems</div></div></a>
+            <a class="resource video" href="https://videos.fisheries.noaa.gov/detail/video/5806341043001/habs:-overview-video" target="_blank" rel="noopener noreferrer"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">NOAA — HABs: Overview Video</div></div></a>
 
             <h4>Student Task</h4>
             <div class="task-box">
@@ -805,8 +806,8 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
             <p>Environmental issues are not only about forests, oceans, and wildlife — they are also about the air people breathe. Air pollution can affect the lungs, heart, brain, and overall health. WHO explains that air pollution enters mainly through the respiratory tract and can cause inflammation, oxidative stress, immunosuppression, and disease in multiple organs.</p>
 
             <h4>Resources</h4>
-            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">WHO — Health Impacts of Air Pollution</div></div></div>
-            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">WHO — How Air Pollution Impacts Your Body</div></div></div>
+            <a class="resource read" href="https://www.who.int/teams/environment-climate-change-and-health/air-quality-energy-and-health/health-impacts" target="_blank" rel="noopener noreferrer"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">WHO — Health Impacts of Air Pollution</div></div></a>
+            <a class="resource video" href="https://www.youtube.com/watch?v=GVBeY1jSG9Y" target="_blank" rel="noopener noreferrer"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">WHO — How Air Pollution Impacts Your Body</div></div></a>
 
             <h4>Student Task</h4>
             <div class="task-box">
@@ -831,8 +832,8 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
             <p>Plastic pollution is not only a littering problem. It is connected to material choices, packaging design, convenience, production, waste systems, recycling limits, and pollution leakage. This lesson uses plastic packaging as a case study because packaging is everywhere and often used briefly before becoming waste. The goal: understand why plastic is useful, why it becomes a problem, and why <em>recycling alone cannot fix the system</em>.</p>
 
             <h4>Resources</h4>
-            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Ecoware — The Environmental Impacts of Plastic Packaging</div></div></div>
-            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">National Geographic — Plastics 101</div></div></div>
+            <a class="resource read" href="https://ecoware.com.tr/the-environmental-impacts-of-plastic-packaging" target="_blank" rel="noopener noreferrer"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Ecoware — The Environmental Impacts of Plastic Packaging</div></div></a>
+            <a class="resource video" href="https://www.youtube.com/watch?v=ggh0Ptk3VGE" target="_blank" rel="noopener noreferrer"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">National Geographic — Plastics 101</div></div></a>
 
             <h4>Student Task</h4>
             <div class="task-box">
@@ -858,8 +859,8 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
             <p>Environmental impact is often hidden inside everyday products. Clothing is a clear example. Fast fashion encourages quick production, low prices, frequent buying, and fast disposal. This creates impacts through textile production, dyeing, washing, microplastic fibres, transport, and landfill waste. The European Parliament explains that textile production is estimated to cause about <strong>20% of global clean water pollution</strong>, mainly from dyeing, and that one laundry load of polyester clothing can release <strong>700,000 microplastic fibres</strong>.</p>
 
             <h4>Resources</h4>
-            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">European Parliament — Fast fashion: EU laws for sustainable textile consumption</div></div></div>
-            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">The Economist — The true cost of fast fashion</div></div></div>
+            <a class="resource read" href="https://www.europarl.europa.eu/topics/en/article/20201208STO93327/fast-fashion-eu-laws-for-sustainable-textile-consumption" target="_blank" rel="noopener noreferrer"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">European Parliament — Fast fashion: EU laws for sustainable textile consumption</div></div></a>
+            <a class="resource video" href="https://www.youtube.com/watch?v=tLfNUD0-8ts" target="_blank" rel="noopener noreferrer"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">The Economist — The true cost of fast fashion</div></div></a>
 
             <h4>Student Task</h4>
             <div class="task-box">
@@ -884,8 +885,8 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
             <p>Environmental problems do not affect everyone equally. Some communities face more pollution, weaker protection, less green space, unsafe water, or higher heat risk. This lesson asks students to think about <strong>exposure, power, evidence, and decision-making</strong>. Canada's National Strategy Respecting Environmental Racism and Environmental Justice Act became law on <strong>June 20, 2024</strong>, and the Government of Canada states that advancing environmental justice requires addressing environmental racism and unequal protection.</p>
 
             <h4>Resources</h4>
-            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Government of Canada — Environmental Justice and Environmental Racism</div></div></div>
-            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">Duke University — What is Environmental Justice? | Quick Learner</div></div></div>
+            <a class="resource read" href="https://www.canada.ca/en/environment-climate-change/services/environmental-justice.html" target="_blank" rel="noopener noreferrer"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Government of Canada — Environmental Justice and Environmental Racism</div></div></a>
+            <a class="resource video" href="https://www.youtube.com/results?search_query=Duke+University+What+is+Environmental+Justice+Quick+Learner" target="_blank" rel="noopener noreferrer"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">Duke University — What is Environmental Justice? | Quick Learner</div></div></a>
 
             <h4>Student Task</h4>
             <div class="task-box">
@@ -912,8 +913,8 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
             <p>A strong environmental action plan is not just <em>"raise awareness."</em> It must identify a specific problem, use evidence, explain who is affected, propose a realistic action, measure results, and admit limitations. Project Drawdown's primer is useful because it teaches students to judge climate solutions by how they work, whether they reduce emissions or remove carbon, and how their impact can be classified.</p>
 
             <h4>Resources</h4>
-            <div class="resource read"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Project Drawdown — A Primer on Science-Based Climate Solutions</div></div></div>
-            <div class="resource video"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">Project Drawdown — How to use Drawdown Explorer</div></div></div>
+            <a class="resource read" href="https://drawdown.org/sites/default/files/pdfs/A%20Primer%20on%20Science-Based%20Climate%20Solutions.pdf" target="_blank" rel="noopener noreferrer"><div class="r-icon">📖</div><div class="r-meta"><div class="r-type">Read</div><div class="r-title">Project Drawdown — A Primer on Science-Based Climate Solutions</div></div></a>
+            <a class="resource video" href="https://drawdown.org/explorer" target="_blank" rel="noopener noreferrer"><div class="r-icon">▶</div><div class="r-meta"><div class="r-type">Watch</div><div class="r-title">Project Drawdown — How to use Drawdown Explorer</div></div></a>
 
             <h4>Student Task</h4>
             <div class="task-box">
