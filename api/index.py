@@ -5283,6 +5283,74 @@ ECO_ADMIN_EMAIL = os.environ.get('ADMIN_CC_EMAIL', 'nexyouth.master@gmail.com')
 
 JOTFORM_FORM_ID = os.environ.get('JOTFORM_FORM_ID', '261196877713065')
 
+def _send_welcome_email(email, name):
+    """Send the registration-confirmation welcome email to the student.
+    Best-effort. Returns True if SMTP succeeded, False otherwise."""
+    creds = _smtp_creds()
+    if not creds:
+        return False
+    host, port, use_ssl, user, pwd, email_from = creds
+    first_name = (name or '').strip().split()[0] if name else 'there'
+    subject = "Welcome to NexYouth Eco Literacy — Registration Confirmed"
+    text_body = (
+        f"Hi {first_name},\n\n"
+        "Thanks for registering for the NexYouth Eco Literacy course! Your\n"
+        "registration is confirmed.\n\n"
+        "What's next:\n"
+        "  1) Visit https://nexyouth.org/programs/eco-classroom/eco-literacy\n"
+        "  2) Click \"I'm already registered → Sign In\" and enter this email:\n"
+        f"     {email}\n"
+        "  3) Work through the 9 lessons, 2 quizzes, and the Youth Eco\n"
+        "     Action Plan. You can pause and resume anytime.\n\n"
+        "Finish the course to earn your NexYouth EcoHero Certificate (PDF)\n"
+        "and a $10 Interac e-Transfer completion award.\n\n"
+        "If you didn't register, you can ignore this email.\n\n"
+        "- The NexYouth Team\n"
+    )
+    html_body = (
+        '<!DOCTYPE html><html><body style="font-family:Arial,Helvetica,sans-serif;'
+        'font-size:14px;color:#202124;max-width:640px;margin:0 auto;padding:18px;line-height:1.55">'
+        f'<p>Hi <strong>{first_name}</strong>,</p>'
+        '<p>Thanks for registering for the <strong>NexYouth Eco Literacy</strong> course! '
+        'Your registration is confirmed.</p>'
+        '<p><strong>What\'s next:</strong></p>'
+        '<ol style="padding-left:22px;margin:8px 0">'
+        '<li>Visit <a href="https://nexyouth.org/programs/eco-classroom/eco-literacy" style="color:#1A73E8">'
+        'nexyouth.org/programs/eco-classroom/eco-literacy</a></li>'
+        '<li>Click <em>"I\'m already registered → Sign In"</em> and enter this email:<br>'
+        f'&nbsp;&nbsp;&nbsp;<strong>{email}</strong></li>'
+        '<li>Work through the 9 lessons, 2 quizzes, and the Youth Eco Action Plan.</li>'
+        '</ol>'
+        '<p>Finish the course to earn your <strong>NexYouth EcoHero Certificate</strong> (PDF) '
+        'and a <strong>$10 Interac e-Transfer completion award</strong>.</p>'
+        '<p style="color:#5F6368;font-size:13px">If you didn\'t register, you can ignore this email.</p>'
+        '<p style="color:#5F6368;margin-top:18px">— The NexYouth Team</p>'
+        '</body></html>'
+    )
+    try:
+        import smtplib
+        from email.message import EmailMessage as _EmailMessage
+        msg = _EmailMessage()
+        msg['Subject'] = subject
+        msg['From'] = email_from
+        msg['To'] = email
+        msg['Cc'] = ECO_ADMIN_EMAIL
+        msg.set_content(text_body)
+        msg.add_alternative(html_body, subtype='html')
+        timeout = int(os.environ.get('SMTP_TIMEOUT', '7'))
+        smtp_cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
+        with smtp_cls(host, port, timeout=timeout) as srv:
+            if not use_ssl and os.environ.get('SMTP_TLS', '1') == '1':
+                srv.starttls()
+            srv.login(user, pwd)
+            srv.send_message(msg, to_addrs=[email, ECO_ADMIN_EMAIL])
+        return True
+    except Exception as e:
+        import sys, traceback
+        print(f"[ECO WELCOME EMAIL] {type(e).__name__}: {e}\n{traceback.format_exc()}", file=sys.stderr)
+        return False
+
+
 @app.route('/api/eco-classroom/login', methods=['POST'])
 def eco_classroom_login():
     """Verify student email against JotForm submissions and unlock Classwork."""
@@ -5330,11 +5398,45 @@ def eco_classroom_login():
                         if candidate and not student_name:
                             student_name = candidate
             if email_found:
+                resolved_name = student_name or email.split('@')[0]
+                # On first successful login, persist a registration record in
+                # our DB and fire a one-shot welcome email. Subsequent logins
+                # see the existing row and skip the email.
+                _conn = _db_connect()
+                if _conn is not None:
+                    try:
+                        _db_ensure_schema(_conn)
+                        with _conn.cursor() as cur:
+                            cur.execute(
+                                "SELECT 1 FROM eco_registrations WHERE LOWER(student_email)=%s LIMIT 1",
+                                (email,),
+                            )
+                            already_recorded = cur.fetchone() is not None
+                            if not already_recorded:
+                                ip = (request.headers.get('X-Forwarded-For') or request.remote_addr or '').split(',')[0].strip()
+                                cur.execute(
+                                    "INSERT INTO eco_registrations "
+                                    "(student_email, student_name, source, ip) "
+                                    "VALUES (%s,%s,%s,%s)",
+                                    (email, resolved_name, 'jotform', ip),
+                                )
+                        if not already_recorded:
+                            # Fire welcome email asynchronously so login stays snappy.
+                            from concurrent.futures import ThreadPoolExecutor
+                            _ex = ThreadPoolExecutor(max_workers=1)
+                            _ex.submit(_send_welcome_email, email, resolved_name)
+                            _ex.shutdown(wait=False)
+                    except Exception as _e:
+                        import sys
+                        print(f"[ECO LOGIN WELCOME] {type(_e).__name__}: {_e}", file=sys.stderr)
+                    finally:
+                        try: _conn.close()
+                        except Exception: pass
                 return jsonify({
                     'ok': True,
                     'student': {
                         'email': email,
-                        'name': student_name or email.split('@')[0],
+                        'name': resolved_name,
                     },
                 })
 
@@ -5357,7 +5459,7 @@ def eco_classroom_register():
     if missing:
         return jsonify({'ok': False, 'error': f"Missing required fields: {', '.join(missing)}"}), 400
 
-    email = str(data.get('student_email', '')).strip()
+    email = str(data.get('student_email', '')).strip().lower()
     if not re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', email):
         return jsonify({'ok': False, 'error': 'Please enter a valid student email.'}), 400
     parent_email = str(data.get('parent_email', '')).strip()
@@ -5374,6 +5476,18 @@ def eco_classroom_register():
     if _conn is not None:
         try:
             _db_ensure_schema(_conn)
+            # Enforce one registration per email — friendly error if duplicate.
+            with _conn.cursor() as cur:
+                cur.execute(
+                    "SELECT 1 FROM eco_registrations WHERE LOWER(student_email)=%s LIMIT 1",
+                    (email,),
+                )
+                if cur.fetchone():
+                    return jsonify({
+                        'ok': False,
+                        'error': 'This email is already registered. Please sign in instead, '
+                                 'or use a different email if you meant to register a new student.',
+                    }), 409
             ip = (request.headers.get('X-Forwarded-For') or request.remote_addr or '').split(',')[0].strip()
             with _conn.cursor() as cur:
                 cur.execute(
@@ -5434,21 +5548,76 @@ def eco_classroom_register():
         return jsonify({'ok': True, 'note': 'Registration recorded in server log. SMTP not configured in Vercel env vars.'})
 
     host, port, use_ssl, user, pwd, email_from = creds
+
+    # Compose the student welcome / confirmation email
+    first_name = name.split()[0] if name else 'there'
+    welcome_subject = "Welcome to NexYouth Eco Literacy — Registration Confirmed"
+    welcome_text = (
+        f"Hi {first_name},\n\n"
+        "Thanks for registering for the NexYouth Eco Literacy course! Your\n"
+        "registration is confirmed.\n\n"
+        "What's next:\n"
+        "  1) Visit https://nexyouth.org/programs/eco-classroom/eco-literacy\n"
+        "  2) Click \"I'm already registered → Sign In\" and enter this email:\n"
+        f"     {email}\n"
+        "  3) Work through the 9 lessons, 2 quizzes, and the Youth Eco\n"
+        "     Action Plan. You can pause and resume anytime.\n\n"
+        "Finish the course to earn your NexYouth EcoHero Certificate (PDF)\n"
+        "and a $10 Interac e-Transfer completion award.\n\n"
+        "If you didn't register, you can ignore this email.\n\n"
+        "- The NexYouth Team\n"
+    )
+    welcome_html = (
+        '<!DOCTYPE html><html><body style="font-family:Arial,Helvetica,sans-serif;'
+        'font-size:14px;color:#202124;max-width:640px;margin:0 auto;padding:18px;line-height:1.55">'
+        f'<p>Hi <strong>{first_name}</strong>,</p>'
+        '<p>Thanks for registering for the <strong>NexYouth Eco Literacy</strong> course! '
+        'Your registration is confirmed.</p>'
+        '<p><strong>What\'s next:</strong></p>'
+        '<ol style="padding-left:22px;margin:8px 0">'
+        '<li>Visit <a href="https://nexyouth.org/programs/eco-classroom/eco-literacy" style="color:#1A73E8">'
+        'nexyouth.org/programs/eco-classroom/eco-literacy</a></li>'
+        '<li>Click <em>"I\'m already registered → Sign In"</em> and enter this email:<br>'
+        f'&nbsp;&nbsp;&nbsp;<strong>{email}</strong></li>'
+        '<li>Work through the 9 lessons, 2 quizzes, and the Youth Eco Action Plan. '
+        'You can pause and resume anytime.</li>'
+        '</ol>'
+        '<p>Finish the course to earn your <strong>NexYouth EcoHero Certificate</strong> (PDF) '
+        'and a <strong>$10 Interac e-Transfer completion award</strong>.</p>'
+        '<p style="color:#5F6368;font-size:13px">If you didn\'t register, you can ignore this email.</p>'
+        '<p style="color:#5F6368;margin-top:18px">— The NexYouth Team</p>'
+        '</body></html>'
+    )
+
     try:
         import smtplib
         from email.message import EmailMessage as _EmailMessage
-        msg = _EmailMessage()
-        msg['Subject'] = subject
-        msg['From'] = email_from
-        msg['To'] = ECO_ADMIN_EMAIL
-        msg.set_content(text)
+        admin_msg = _EmailMessage()
+        admin_msg['Subject'] = subject
+        admin_msg['From'] = email_from
+        admin_msg['To'] = ECO_ADMIN_EMAIL
+        admin_msg.set_content(text)
+
+        student_msg = _EmailMessage()
+        student_msg['Subject'] = welcome_subject
+        student_msg['From'] = email_from
+        student_msg['To'] = email
+        student_msg['Cc'] = ECO_ADMIN_EMAIL
+        student_msg.set_content(welcome_text)
+        student_msg.add_alternative(welcome_html, subtype='html')
+
         timeout = int(os.environ.get('SMTP_TIMEOUT', '7'))
         smtp_cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
         with smtp_cls(host, port, timeout=timeout) as srv:
             if not use_ssl and os.environ.get('SMTP_TLS', '1') == '1':
                 srv.starttls()
             srv.login(user, pwd)
-            srv.send_message(msg)
+            srv.send_message(admin_msg)
+            try:
+                srv.send_message(student_msg, to_addrs=[email, ECO_ADMIN_EMAIL])
+            except Exception as _se:
+                import sys, traceback
+                print(f"[ECO REGISTRATION STUDENT EMAIL] {type(_se).__name__}: {_se}\n{traceback.format_exc()}", file=sys.stderr)
         return jsonify({'ok': True})
     except Exception as e:
         import sys, traceback
