@@ -40,7 +40,7 @@ button{font-family:inherit}
 .auth-btn.login:hover{background:var(--gc-cream)}
 .auth-btn.register{background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;border-color:transparent}
 .auth-btn.register:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(26,102,64,.3)}
-.auth-btn.signout-btn{padding:.45rem .65rem;color:var(--text-2);font-size:1.05rem;line-height:1}
+.auth-btn.signout-btn{color:var(--text-2)}
 .auth-btn.signout-btn:hover{color:var(--gc-coral);border-color:var(--gc-coral);background:rgba(224,85,51,.06)}
 
 .auth-in{display:flex;align-items:center;gap:.6rem}
@@ -536,7 +536,7 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
         <div class="user-mail" id="userMail">student@example.com</div>
       </div>
     </div>
-    <button class="auth-btn signout-btn" onclick="signOut()" title="Sign out">↪</button>
+    <button class="auth-btn signout-btn" onclick="signOut()">Sign out</button>
   </div>
 
   <a href="/programs/eco-classroom" class="home-btn">← All Courses</a>
@@ -560,7 +560,6 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
   <div class="who">Welcome, <strong id="pbName">Student</strong></div>
   <div class="pb-track"><div class="pb-fill" id="pbFill"></div></div>
   <div class="pb-text" id="pbText">0 / 12</div>
-  <button class="signout" onclick="signOut()">Sign out</button>
 </div>
 
 <!-- ── COMPLETED BANNER (only when student has already finished) ── -->
