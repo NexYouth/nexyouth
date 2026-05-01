@@ -5797,8 +5797,9 @@ def _smtp_creds():
 
 def _send_completion_email(email, name, completion_date=None, etransfer_email=None):
     """Send the EcoHero certificate email via SMTP, with PDF certificate attached.
-    Returns one of: 'sent', 'logged' (no SMTP), 'error'.
-    Best-effort — failures are logged to stderr and never bubble up to user.
+    Returns a dict with keys: status ('sent' | 'logged' | 'error'), cert_attached (bool),
+    cert_id (str | None), cert_bytes (int | None).
+    Best-effort — SMTP failures are logged to stderr and never bubble up to user.
     If etransfer_email is provided, the email confirms it; otherwise it asks
     the student to reply with their preferred e-Transfer address."""
     full_name = (name or '').strip() or 'Student'
@@ -5879,11 +5880,14 @@ def _send_completion_email(email, name, completion_date=None, etransfer_email=No
         '</body></html>'
     )
 
+    cert_attached = False
+    cert_bytes = len(cert_pdf) if cert_pdf else 0
+
     creds = _smtp_creds()
     if not creds:
         import sys
         print(f"[ECO COMPLETION — SMTP not configured]\nTo: {email}\nCc: {admin_cc}\nSubject: {subject}\n\n{text_body}", file=sys.stderr)
-        return 'logged'
+        return {'status': 'logged', 'cert_attached': False, 'cert_id': cert_id, 'cert_bytes': cert_bytes}
 
     host, port, use_ssl, user, pwd, email_from = creds
     try:
@@ -5900,8 +5904,9 @@ def _send_completion_email(email, name, completion_date=None, etransfer_email=No
             safe_name = re.sub(r'[^A-Za-z0-9._-]+', '_', full_name).strip('_') or 'Student'
             msg.add_attachment(cert_pdf, maintype='application', subtype='pdf',
                                filename=f"NexYouth-EcoHero-{safe_name}-{cert_id}.pdf")
+            cert_attached = True
             import sys
-            print(f"[ECO COMPLETION] attached cert {cert_id} ({len(cert_pdf)} bytes) to {email}", file=sys.stderr)
+            print(f"[ECO COMPLETION] attached cert {cert_id} ({cert_bytes} bytes) to {email}", file=sys.stderr)
         else:
             import sys
             print(f"[ECO COMPLETION] sending WITHOUT cert attachment to {email} (cert_pdf was falsy)", file=sys.stderr)
@@ -5913,11 +5918,12 @@ def _send_completion_email(email, name, completion_date=None, etransfer_email=No
                 srv.starttls()
             srv.login(user, pwd)
             srv.send_message(msg, to_addrs=[email, admin_cc])
-        return 'sent'
+        return {'status': 'sent', 'cert_attached': cert_attached, 'cert_id': cert_id, 'cert_bytes': cert_bytes}
     except Exception as e:
         import sys, traceback
         print(f"[ECO COMPLETION SMTP ERROR] {type(e).__name__}: {e}\n{traceback.format_exc()}", file=sys.stderr)
-        return 'error'
+        return {'status': 'error', 'cert_attached': False, 'cert_id': cert_id, 'cert_bytes': cert_bytes,
+                'error_type': type(e).__name__, 'error_msg': str(e)}
 
 
 @app.route('/api/eco-classroom/submit', methods=['POST'])
@@ -6001,10 +6007,17 @@ def eco_classroom_submit():
             # can use the Resend button (or the email may still arrive).
             from concurrent.futures import ThreadPoolExecutor, TimeoutError as _TO
             _ex = ThreadPoolExecutor(max_workers=1)
+            email_status = 'pending'
+            cert_attached = None
             try:
                 fut = _ex.submit(_send_completion_email, email, name, completion_date, etransfer_email)
                 try:
-                    email_status = fut.result(timeout=5)
+                    result = fut.result(timeout=5)
+                    if isinstance(result, dict):
+                        email_status = result.get('status', 'pending')
+                        cert_attached = result.get('cert_attached')
+                    else:
+                        email_status = result  # backward compat
                 except _TO:
                     email_status = 'pending'
             except Exception as _e:
@@ -6026,6 +6039,7 @@ def eco_classroom_submit():
             'completed': _db_is_completed(progress),
             'completed_now': completed_now,
             'email_status': email_status,
+            'cert_attached': cert_attached if completed_now else None,
         })
     except Exception as e:
         import sys, traceback
@@ -6120,15 +6134,29 @@ def eco_classroom_resend_cert():
         info = _db_completion_info(conn, email)
         completion_date = _format_completion_date(info.get('completed_at') if info else None)
         etransfer_email = info.get('etransfer_email') if info else None
-        status = _send_completion_email(email, name, completion_date, etransfer_email)
+        result = _send_completion_email(email, name, completion_date, etransfer_email)
+        # Backward compat: result might be a string from older code paths
+        if isinstance(result, str):
+            result = {'status': result, 'cert_attached': False, 'cert_id': None, 'cert_bytes': 0}
         admin_cc = os.environ.get('ADMIN_CC_EMAIL', 'nexyouth.master@gmail.com')
+        status = result.get('status')
         if status == 'sent':
-            return jsonify({'ok': True, 'email_status': 'sent',
-                            'sent_to': email, 'cc': admin_cc})
+            return jsonify({
+                'ok': True,
+                'email_status': 'sent',
+                'sent_to': email,
+                'cc': admin_cc,
+                'cert_attached': result.get('cert_attached', False),
+                'cert_id': result.get('cert_id'),
+                'cert_bytes': result.get('cert_bytes', 0),
+            })
         if status == 'logged':
             return jsonify({'ok': False,
                             'error': 'Email service is not configured. Please contact nexyouth.master@gmail.com.'}), 503
-        return jsonify({'ok': False, 'error': 'Could not send email. Please try again later.'}), 500
+        return jsonify({
+            'ok': False,
+            'error': f"Could not send email ({result.get('error_type','SMTP')}). Please try again later.",
+        }), 500
     except Exception as e:
         import sys, traceback
         print(f"[ECO RESEND ERROR] {type(e).__name__}: {e}\n{traceback.format_exc()}", file=sys.stderr)
