@@ -5353,11 +5353,37 @@ def _send_welcome_email(email, name):
 
 @app.route('/api/eco-classroom/login', methods=['POST'])
 def eco_classroom_login():
-    """Verify student email against JotForm submissions and unlock Classwork."""
+    """Verify student email against our DB and JotForm submissions.
+    Returns 200 if found anywhere, 404 if not."""
     data = request.get_json(silent=True) or {}
     email = str(data.get('student_email') or '').strip().lower()
     if not re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', email):
         return jsonify({'ok': False, 'error': 'Please enter a valid email address.'}), 400
+
+    # First check our DB — covers anyone we've already seen log in once or
+    # anyone who registered via the legacy form.
+    _conn = _db_connect()
+    if _conn is not None:
+        try:
+            _db_ensure_schema(_conn)
+            with _conn.cursor() as cur:
+                cur.execute(
+                    "SELECT student_name FROM eco_registrations "
+                    "WHERE LOWER(student_email)=%s LIMIT 1",
+                    (email,),
+                )
+                row = cur.fetchone()
+                if row:
+                    return jsonify({
+                        'ok': True,
+                        'student': {'email': email, 'name': row[0] or email.split('@')[0]},
+                    })
+        except Exception as _e:
+            import sys
+            print(f"[ECO LOGIN DB CHECK] {type(_e).__name__}: {_e}", file=sys.stderr)
+        finally:
+            try: _conn.close()
+            except Exception: pass
 
     api_key = os.environ.get('JOTFORM_API_KEY')
     if not api_key:

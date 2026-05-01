@@ -230,6 +230,21 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 .reg-next-row .reg-next-text em{font-style:normal;color:var(--gc-green-d);font-weight:600}
 .reg-next-btn{background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;border:none;border-radius:100px;padding:.7rem 1.5rem;font-size:.93rem;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;transition:all .18s;box-shadow:0 2px 8px rgba(26,102,64,.18)}
 .reg-next-btn:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(45,154,94,.32)}
+.reg-gate{padding:2.6rem 2rem 2.2rem;text-align:center;background:radial-gradient(ellipse at 50% 0%,#EAF7EE 0%,#F8FBF9 50%,#FFFFFF 100%);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:420px}
+.reg-gate .reg-gate-icon{font-size:2.6rem;margin-bottom:.6rem;line-height:1}
+.reg-gate h3{font-family:'Google Sans',serif;font-size:1.45rem;color:var(--gc-green-d);margin-bottom:.55rem;font-weight:700}
+.reg-gate > p{font-size:.92rem;color:var(--text-2);max-width:420px;margin:0 auto 1.2rem;line-height:1.55}
+.reg-gate input{width:100%;max-width:380px;padding:.85rem 1rem;border:1.5px solid rgba(63,181,114,.35);border-radius:10px;font-size:1rem;font-family:inherit;color:var(--text);box-sizing:border-box;transition:all .15s;background:#fff}
+.reg-gate input:focus{outline:none;border-color:var(--gc-green);box-shadow:0 0 0 4px rgba(45,154,94,.14)}
+.reg-gate input.err{border-color:var(--gc-coral);box-shadow:0 0 0 4px rgba(224,85,51,.1)}
+.reg-gate .reg-gate-btn{margin-top:.85rem;padding:.85rem 1.8rem;font-size:.95rem}
+.reg-gate-msg{margin-top:.85rem;min-height:1.2em;font-size:.9rem;line-height:1.5;max-width:420px}
+.reg-gate-msg.err{color:var(--gc-coral)}
+.reg-gate-msg.warn{color:#8A6500;background:linear-gradient(135deg,#FFF6D5 0%,#FAE6A6 100%);border:1px solid rgba(201,168,76,.4);border-radius:10px;padding:.7rem 1rem;text-align:left}
+.reg-gate-msg.warn a{color:var(--gc-green-d);font-weight:600}
+.reg-gate-fine{font-size:.82rem;color:var(--text-2);margin-top:1.1rem}
+.reg-gate-fine a{color:var(--gc-green);font-weight:600;text-decoration:none}
+.reg-gate-fine a:hover{text-decoration:underline}
 .reg-success-card{padding:3.4rem 2rem 2.6rem;text-align:center;background:radial-gradient(ellipse at 50% 0%,#EAF7EE 0%,#F4FAF6 45%,#FFFFFF 100%);min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
 .reg-success-card .reg-success-icon{width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,#1A6640 0%,#3FB572 100%);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-weight:700;margin-bottom:1.2rem;box-shadow:0 10px 28px rgba(45,154,94,.42),0 0 0 6px rgba(63,181,114,.12)}
 .reg-success-card h3{font-family:'Google Sans',serif;font-size:1.55rem;color:var(--gc-green-d);margin-bottom:.65rem;font-weight:700}
@@ -1351,7 +1366,20 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 
     <!-- JotForm embed — Eco Literacy Registration -->
     <div class="modal-body" id="formView" style="padding:0;background:#fff">
-      <div id="regFormFrame">
+
+      <!-- Step 1: Email gate. Block re-registration of an already-known email. -->
+      <div id="regEmailGate" class="reg-gate">
+        <div class="reg-gate-icon">📧</div>
+        <h3>Let's check your email first</h3>
+        <p>To make sure each student only registers once, we'll quickly check whether your email is already in our system before you fill out the form.</p>
+        <input type="email" id="regGateEmail" placeholder="you@example.com" autocomplete="email" autocapitalize="off" spellcheck="false">
+        <button class="reg-next-btn reg-gate-btn" id="regGateBtn" onclick="checkRegEmail(this)">Continue&nbsp;→</button>
+        <div class="reg-gate-msg" id="regGateMsg"></div>
+        <p class="reg-gate-fine">Already registered? <a href="#" onclick="closeRegister();setTimeout(openLogin,200);return false">Sign in instead</a></p>
+      </div>
+
+      <!-- Step 2: JotForm iframe (revealed only after email gate passes) -->
+      <div id="regFormFrame" style="display:none">
         <iframe
           id="JotFormIFrame-261196877713065"
           title="NexYouth Eco Literacy Registration"
@@ -1473,12 +1501,90 @@ function openRegister(){
   document.body.style.overflow='hidden';
   const fv = document.getElementById('formView');
   if (fv) fv.style.display = 'block';
-  // Reset the JotForm vs success view so the iframe shows again on next open
+  // Reset to the email gate (Step 1). Hide the iframe + success views.
+  const gate = document.getElementById('regEmailGate');
   const frame = document.getElementById('regFormFrame');
   const submitted = document.getElementById('regSubmittedView');
-  if (frame) frame.style.display = 'block';
+  if (gate) gate.style.display = 'flex';
+  if (frame) frame.style.display = 'none';
   if (submitted) submitted.style.display = 'none';
+  // Clear gate state
+  const inp = document.getElementById('regGateEmail');
+  const msg = document.getElementById('regGateMsg');
+  const btn = document.getElementById('regGateBtn');
+  if (inp) { inp.value = ''; inp.classList.remove('err'); }
+  if (msg) { msg.textContent = ''; msg.className = 'reg-gate-msg'; }
+  if (btn) { btn.disabled = false; btn.textContent = 'Continue →'; }
 }
+
+// Step 1: pre-check the email against /api/eco-classroom/login.
+//   - 200 ok → email is already registered → block and steer to Sign In.
+//   - 404    → email is new → reveal the JotForm iframe so they can register.
+async function checkRegEmail(btn){
+  const inp = document.getElementById('regGateEmail');
+  const msg = document.getElementById('regGateMsg');
+  const email = (inp.value || '').trim().toLowerCase();
+  inp.classList.remove('err');
+  msg.textContent = ''; msg.className = 'reg-gate-msg';
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    inp.classList.add('err');
+    msg.textContent = 'Please enter a valid email address.';
+    msg.className = 'reg-gate-msg err';
+    inp.focus();
+    return;
+  }
+  btn.disabled = true; btn.textContent = 'Checking…';
+  try {
+    const r = await fetch('/api/eco-classroom/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({student_email: email}),
+    });
+    if (r.ok) {
+      // Email already registered — block re-registration.
+      msg.innerHTML = `This email <strong>${email}</strong> is already registered. ` +
+                      `<a href="#" onclick="closeRegister();setTimeout(openLogin,200);return false">Sign in instead →</a>`;
+      msg.className = 'reg-gate-msg warn';
+      btn.disabled = false; btn.textContent = 'Continue →';
+      return;
+    }
+    if (r.status === 404) {
+      // Not in the system → proceed to JotForm
+      document.getElementById('regEmailGate').style.display = 'none';
+      document.getElementById('regFormFrame').style.display = 'block';
+      // Optional: pass email to JotForm so they don't retype it (best-effort)
+      try {
+        const f = document.getElementById('JotFormIFrame-261196877713065');
+        if (f && !f.src.includes('?') && !f.src.includes('=')) {
+          f.src = f.src + '?student_email=' + encodeURIComponent(email);
+        }
+      } catch(e){}
+      return;
+    }
+    // Other status (e.g. 503 sign-in unavailable) — show a friendly retry message
+    let serverErr = 'Could not verify. Please try again in a moment.';
+    try { const j = await r.json(); if (j && j.error) serverErr = j.error; } catch(e){}
+    msg.textContent = serverErr;
+    msg.className = 'reg-gate-msg err';
+    btn.disabled = false; btn.textContent = 'Continue →';
+  } catch (e) {
+    msg.textContent = 'Network error. Please try again.';
+    msg.className = 'reg-gate-msg err';
+    btn.disabled = false; btn.textContent = 'Continue →';
+  }
+}
+
+// Allow Enter key to submit the gate
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const gate = document.getElementById('regEmailGate');
+  if (!gate || gate.style.display === 'none') return;
+  const inp = document.getElementById('regGateEmail');
+  if (document.activeElement === inp) {
+    e.preventDefault();
+    checkRegEmail(document.getElementById('regGateBtn'));
+  }
+});
 
 // JotForm posts {action:'submission-completed', ...} (and other formats across versions).
 // When we detect a successful submission, swap the iframe + Sign In row out for our
