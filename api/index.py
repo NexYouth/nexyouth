@@ -6157,43 +6157,21 @@ def _send_completion_email(email, name, completion_date=None, etransfer_email=No
 
     subject = f"NexYouth EcoHero Certificate - {full_name} (Course Complete)"
 
-    if etransfer_email:
-        etransfer_text = (
-            "Your $10 award will be sent by Interac e-Transfer to:\n"
-            f"   {etransfer_email}\n\n"
-            "(You confirmed this address on the course site, so no reply is\n"
-            "needed unless you want to change it.)\n\n"
-            "We will process your payment within 3-5 business days.\n\n"
-        )
-        etransfer_html = (
-            f'<p>Your <strong>$10 award</strong> will be sent by Interac e-Transfer to:<br>'
-            f'&nbsp;&nbsp;&nbsp;<a href="mailto:{etransfer_email}" style="color:#1A73E8">{etransfer_email}</a></p>'
-            '<p style="font-size:13px;color:#5F6368">You confirmed this address on the course site, so no reply is needed unless you want to change it.</p>'
-            '<p>We will process your payment within 3-5 business days.</p>'
-        )
-    else:
-        etransfer_text = (
-            "ACTION REQUIRED: e-Transfer Email\n\n"
-            "We will send your $10 award by Interac e-Transfer.\n\n"
-            f"The email we have on file for you is:\n   {email}\n\n"
-            "Please REPLY to this email to confirm:\n"
-            "  1) That this address can receive Interac e-Transfers, OR\n"
-            "  2) The correct e-Transfer email you would like us to use.\n\n"
-            "We will process your payment within 3-5 business days of receiving your confirmation.\n\n"
-        )
-        etransfer_html = (
-            '<p style="margin-top:22px;font-size:16px"><strong style="color:#1A73E8">'
-            'ACTION REQUIRED: e-Transfer Email</strong></p>'
-            '<p>We will send your <strong>$10 award</strong> by Interac e-Transfer.</p>'
-            '<p>The email we have on file for you is:<br>'
-            f'&nbsp;&nbsp;&nbsp;<a href="mailto:{email}" style="color:#1A73E8">{email}</a></p>'
-            '<p>Please <strong>REPLY</strong> to this email to confirm:</p>'
-            '<ol style="padding-left:22px;margin:8px 0">'
-            '<li>That this address can receive Interac e-Transfers, OR</li>'
-            '<li>The correct e-Transfer email you would like us to use.</li>'
-            '</ol>'
-            '<p>We will process your payment within 3-5 business days of receiving your confirmation.</p>'
-        )
+    # The student already confirmed their e-Transfer email on the course site
+    # (or, if they skipped the popup, defaulted to their login email). Either
+    # way we never ask them to reply — keep the email purely informational.
+    payout_target = (etransfer_email or email).strip()
+    etransfer_text = (
+        "Your $10 award will be sent by Interac e-Transfer to:\n"
+        f"   {payout_target}\n\n"
+        "We will process your payment within 3-5 business days. No further\n"
+        "action is needed from you.\n\n"
+    )
+    etransfer_html = (
+        f'<p>Your <strong>$10 award</strong> will be sent by Interac e-Transfer to:<br>'
+        f'&nbsp;&nbsp;&nbsp;<a href="mailto:{payout_target}" style="color:#1A73E8">{payout_target}</a></p>'
+        '<p>We will process your payment within 3-5 business days. <strong>No further action is needed from you.</strong></p>'
+    )
 
     text_body = (
         f"Hi {first_name},\n\n"
