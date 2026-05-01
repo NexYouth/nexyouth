@@ -2,4 +2,10 @@ Flask==3.1.2
 Werkzeug==3.1.4
 Flask-Mail==0.9.1
 psycopg[binary]==3.2.3
-reportlab==4.2.5
+# Certificate PDF generation requires reportlab, but it can fail on Vercel
+# (Pillow compile / 250MB serverless size cap). _generate_certificate() in
+# api/index.py returns (None, None) when reportlab is missing, and
+# _send_completion_email() only adds the PDF attachment when present, so
+# the rest of the flow keeps working. Re-enable below once we have a
+# Vercel-friendly cert library wired up (fpdf2 is a likely candidate).
+# reportlab==4.2.5
