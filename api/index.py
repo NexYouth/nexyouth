@@ -5650,11 +5650,22 @@ def _generate_certificate(name, completion_date=None):
     Returns (pdf_bytes, cert_id) — or (None, None) if fpdf is missing.
     fpdf2 is pure Python with no C extensions, so it installs cleanly on
     Vercel where reportlab+Pillow can fail."""
+    import sys
     try:
         from fpdf import FPDF
-    except ImportError:
+    except ImportError as e:
+        print(f"[CERT] fpdf2 not importable: {e}", file=sys.stderr)
         return None, None
 
+    try:
+        return _generate_certificate_inner(FPDF, name, completion_date)
+    except Exception as e:
+        import traceback
+        print(f"[CERT] generation failed: {type(e).__name__}: {e}\n{traceback.format_exc()}", file=sys.stderr)
+        return None, None
+
+
+def _generate_certificate_inner(FPDF, name, completion_date):
     import hashlib
     from datetime import datetime, timezone
 
@@ -5859,6 +5870,11 @@ def _send_completion_email(email, name, completion_date=None):
             safe_name = re.sub(r'[^A-Za-z0-9._-]+', '_', full_name).strip('_') or 'Student'
             msg.add_attachment(cert_pdf, maintype='application', subtype='pdf',
                                filename=f"NexYouth-EcoHero-{safe_name}-{cert_id}.pdf")
+            import sys
+            print(f"[ECO COMPLETION] attached cert {cert_id} ({len(cert_pdf)} bytes) to {email}", file=sys.stderr)
+        else:
+            import sys
+            print(f"[ECO COMPLETION] sending WITHOUT cert attachment to {email} (cert_pdf was falsy)", file=sys.stderr)
 
         timeout = int(os.environ.get('SMTP_TIMEOUT', '15'))
         smtp_cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
