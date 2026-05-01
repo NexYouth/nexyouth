@@ -5557,6 +5557,9 @@ def _db_ensure_schema(conn):
                 student_email TEXT NOT NULL UNIQUE,
                 student_name TEXT
             );
+            ALTER TABLE eco_completions
+                ADD COLUMN IF NOT EXISTS etransfer_email TEXT,
+                ADD COLUMN IF NOT EXISTS etransfer_confirmed_at TIMESTAMPTZ;
         """)
     _DB_SCHEMA_READY = True
 
@@ -5615,7 +5618,8 @@ def _db_completion_info(conn, email):
     email = (email or '').strip().lower()
     with conn.cursor() as cur:
         cur.execute(
-            "SELECT completed_at, student_name FROM eco_completions WHERE LOWER(student_email)=%s",
+            "SELECT completed_at, student_name, etransfer_email "
+            "FROM eco_completions WHERE LOWER(student_email)=%s",
             (email,),
         )
         row = cur.fetchone()
@@ -5624,6 +5628,7 @@ def _db_completion_info(conn, email):
         return {
             'completed_at': row[0].isoformat(timespec='seconds') if row[0] else '',
             'name': row[1] or _db_student_name(conn, email),
+            'etransfer_email': row[2] or '',
         }
 
 def _db_unavailable_response():
@@ -5790,10 +5795,12 @@ def _smtp_creds():
     return host, port, use_ssl, user, pwd, email_from
 
 
-def _send_completion_email(email, name, completion_date=None):
+def _send_completion_email(email, name, completion_date=None, etransfer_email=None):
     """Send the EcoHero certificate email via SMTP, with PDF certificate attached.
     Returns one of: 'sent', 'logged' (no SMTP), 'error'.
-    Best-effort — failures are logged to stderr and never bubble up to user."""
+    Best-effort — failures are logged to stderr and never bubble up to user.
+    If etransfer_email is provided, the email confirms it; otherwise it asks
+    the student to reply with their preferred e-Transfer address."""
     full_name = (name or '').strip() or 'Student'
     first_name = full_name.split()[0] if full_name != 'Student' else 'there'
     admin_cc = os.environ.get('ADMIN_CC_EMAIL', 'nexyouth.master@gmail.com')
@@ -5801,6 +5808,45 @@ def _send_completion_email(email, name, completion_date=None):
     cert_pdf, cert_id = _generate_certificate(full_name, completion_date)
 
     subject = f"NexYouth EcoHero Certificate - {full_name} (Course Complete)"
+
+    if etransfer_email:
+        etransfer_text = (
+            "Your $10 award will be sent by Interac e-Transfer to:\n"
+            f"   {etransfer_email}\n\n"
+            "(You confirmed this address on the course site, so no reply is\n"
+            "needed unless you want to change it.)\n\n"
+            "We will process your payment within 3-5 business days.\n\n"
+        )
+        etransfer_html = (
+            f'<p>Your <strong>$10 award</strong> will be sent by Interac e-Transfer to:<br>'
+            f'&nbsp;&nbsp;&nbsp;<a href="mailto:{etransfer_email}" style="color:#1A73E8">{etransfer_email}</a></p>'
+            '<p style="font-size:13px;color:#5F6368">You confirmed this address on the course site, so no reply is needed unless you want to change it.</p>'
+            '<p>We will process your payment within 3-5 business days.</p>'
+        )
+    else:
+        etransfer_text = (
+            "ACTION REQUIRED: e-Transfer Email\n\n"
+            "We will send your $10 award by Interac e-Transfer.\n\n"
+            f"The email we have on file for you is:\n   {email}\n\n"
+            "Please REPLY to this email to confirm:\n"
+            "  1) That this address can receive Interac e-Transfers, OR\n"
+            "  2) The correct e-Transfer email you would like us to use.\n\n"
+            "We will process your payment within 3-5 business days of receiving your confirmation.\n\n"
+        )
+        etransfer_html = (
+            '<p style="margin-top:22px;font-size:16px"><strong style="color:#1A73E8">'
+            'ACTION REQUIRED: e-Transfer Email</strong></p>'
+            '<p>We will send your <strong>$10 award</strong> by Interac e-Transfer.</p>'
+            '<p>The email we have on file for you is:<br>'
+            f'&nbsp;&nbsp;&nbsp;<a href="mailto:{email}" style="color:#1A73E8">{email}</a></p>'
+            '<p>Please <strong>REPLY</strong> to this email to confirm:</p>'
+            '<ol style="padding-left:22px;margin:8px 0">'
+            '<li>That this address can receive Interac e-Transfers, OR</li>'
+            '<li>The correct e-Transfer email you would like us to use.</li>'
+            '</ol>'
+            '<p>We will process your payment within 3-5 business days of receiving your confirmation.</p>'
+        )
+
     text_body = (
         f"Hi {first_name},\n\n"
         "Congratulations on completing the NexYouth Eco Literacy course!\n\n"
@@ -5809,14 +5855,8 @@ def _send_completion_email(email, name, completion_date=None):
         "  - Passed both course quizzes with 60% or higher\n"
         "  - Submitted your Youth Eco Action Plan\n\n"
         "Your NexYouth EcoHero Certificate is attached to this email as a PDF.\n"
-        "You have also earned a $15 completion award.\n\n"
-        "ACTION REQUIRED: e-Transfer Email\n\n"
-        "We will send your $15 award by Interac e-Transfer.\n\n"
-        f"The email we have on file for you is:\n   {email}\n\n"
-        "Please REPLY to this email to confirm:\n"
-        "  1) That this address can receive Interac e-Transfers, OR\n"
-        "  2) The correct e-Transfer email you would like us to use.\n\n"
-        "We will process your payment within 3-5 business days of receiving your confirmation.\n\n"
+        "You have also earned a $10 completion award.\n\n"
+        + etransfer_text +
         "Thank you for taking real action on the environment.\n\n"
         "- The NexYouth Team\n"
     )
@@ -5832,18 +5872,8 @@ def _send_completion_email(email, name, completion_date=None):
         '<li>Submitted your Youth Eco Action Plan</li>'
         '</ul>'
         '<p>Your <strong>NexYouth EcoHero Certificate</strong> is attached to this email as a PDF.<br>'
-        'You have also earned a <strong>$15 completion award</strong>.</p>'
-        '<p style="margin-top:22px;font-size:16px"><strong style="color:#1A73E8">'
-        'ACTION REQUIRED: e-Transfer Email</strong></p>'
-        '<p>We will send your $15 award by Interac e-Transfer.</p>'
-        '<p>The email we have on file for you is:<br>'
-        f'&nbsp;&nbsp;&nbsp;<a href="mailto:{email}" style="color:#1A73E8">{email}</a></p>'
-        '<p>Please <strong>REPLY</strong> to this email to confirm:</p>'
-        '<ol style="padding-left:22px;margin:8px 0">'
-        '<li>That this address can receive Interac e-Transfers, OR</li>'
-        '<li>The correct e-Transfer email you would like us to use.</li>'
-        '</ol>'
-        '<p>We will process your payment within 3-5 business days of receiving your confirmation.</p>'
+        'You have also earned a <strong>$10 completion award</strong>.</p>'
+        + etransfer_html +
         '<p style="margin-top:22px">Thank you for taking real action on the environment.</p>'
         '<p style="color:#5F6368;margin-top:18px">— The NexYouth Team</p>'
         '</body></html>'
@@ -5964,6 +5994,7 @@ def eco_classroom_submit():
             completed_now = True
             info = _db_completion_info(conn, email)
             completion_date = _format_completion_date(info.get('completed_at') if info else None)
+            etransfer_email = info.get('etransfer_email') if info else None
             # Send email with a short deadline so we always return quickly:
             # the frontend needs a fast response to fire the celebrate popup.
             # If SMTP is slow, the request returns 'pending' and the student
@@ -5971,7 +6002,7 @@ def eco_classroom_submit():
             from concurrent.futures import ThreadPoolExecutor, TimeoutError as _TO
             _ex = ThreadPoolExecutor(max_workers=1)
             try:
-                fut = _ex.submit(_send_completion_email, email, name, completion_date)
+                fut = _ex.submit(_send_completion_email, email, name, completion_date, etransfer_email)
                 try:
                     email_status = fut.result(timeout=5)
                 except _TO:
@@ -6032,6 +6063,41 @@ def eco_classroom_progress():
         except Exception: pass
 
 
+@app.route('/api/eco-classroom/confirm-etransfer-email', methods=['POST'])
+def eco_classroom_confirm_etransfer_email():
+    data = request.get_json(silent=True) or {}
+    student_email = str(data.get('student_email') or '').strip().lower()
+    etransfer_email = str(data.get('etransfer_email') or '').strip().lower()
+    if not re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', student_email):
+        return jsonify({'ok': False, 'error': 'Valid student email required.'}), 400
+    if not re.match(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', etransfer_email):
+        return jsonify({'ok': False, 'error': 'Please enter a valid e-Transfer email.'}), 400
+
+    conn = _db_connect()
+    if conn is None:
+        return _db_unavailable_response()
+    try:
+        _db_ensure_schema(conn)
+        with conn.cursor() as cur:
+            cur.execute(
+                "UPDATE eco_completions "
+                "SET etransfer_email = %s, etransfer_confirmed_at = now() "
+                "WHERE LOWER(student_email) = %s",
+                (etransfer_email, student_email),
+            )
+            if cur.rowcount == 0:
+                return jsonify({'ok': False,
+                                'error': 'No completion record found. Finish the course first.'}), 404
+        return jsonify({'ok': True, 'etransfer_email': etransfer_email})
+    except Exception as e:
+        import sys, traceback
+        print(f"[ECO ETRANSFER CONFIRM] {type(e).__name__}: {e}\n{traceback.format_exc()}", file=sys.stderr)
+        return jsonify({'ok': False, 'error': 'Could not save. Please try again.'}), 500
+    finally:
+        try: conn.close()
+        except Exception: pass
+
+
 @app.route('/api/eco-classroom/resend-cert', methods=['POST'])
 def eco_classroom_resend_cert():
     data = request.get_json(silent=True) or {}
@@ -6053,7 +6119,8 @@ def eco_classroom_resend_cert():
         name = _db_student_name(conn, email) or req_name
         info = _db_completion_info(conn, email)
         completion_date = _format_completion_date(info.get('completed_at') if info else None)
-        status = _send_completion_email(email, name, completion_date)
+        etransfer_email = info.get('etransfer_email') if info else None
+        status = _send_completion_email(email, name, completion_date, etransfer_email)
         admin_cc = os.environ.get('ADMIN_CC_EMAIL', 'nexyouth.master@gmail.com')
         if status == 'sent':
             return jsonify({'ok': True, 'email_status': 'sent',

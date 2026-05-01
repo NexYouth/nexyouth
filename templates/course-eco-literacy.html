@@ -349,6 +349,18 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 .celebrate-card p strong{color:var(--gc-green-d)}
 .celebrate-card .c-btn{background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;padding:.85rem 1.8rem;border-radius:100px;border:none;font-weight:600;font-size:.95rem;cursor:pointer;font-family:inherit;position:relative;z-index:2;transition:all .2s}
 .celebrate-card .c-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(45,154,94,.4)}
+.celebrate-card .c-btn[disabled]{opacity:.55;cursor:default;transform:none;box-shadow:none}
+.celebrate-card .c-btn.ghost{background:transparent;color:var(--text-2);border:1px solid var(--border-d);box-shadow:none;margin-left:.5rem}
+.celebrate-card .c-btn.ghost:hover{color:var(--text);border-color:var(--text-2);transform:none}
+.celebrate-award{display:inline-flex;align-items:center;gap:.5rem;background:#FFF4D6;border:1px solid #E5B547;border-radius:100px;padding:.55rem 1rem;font-weight:600;color:#8A6500;font-size:.95rem;margin-bottom:1.2rem;position:relative;z-index:2}
+.celebrate-confirm{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;margin:0 0 1.2rem;text-align:left;position:relative;z-index:2}
+.celebrate-confirm .lbl{font-size:.78rem;color:var(--gc-green-d);font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.35rem}
+.celebrate-confirm .desc{font-size:.85rem;color:var(--text-2);margin-bottom:.7rem;line-height:1.5}
+.celebrate-confirm input{width:100%;padding:.65rem .8rem;border:1px solid var(--border-d);border-radius:8px;font-size:.92rem;font-family:inherit;color:var(--text);box-sizing:border-box}
+.celebrate-confirm input:focus{outline:none;border-color:var(--gc-green);box-shadow:0 0 0 3px rgba(45,154,94,.12)}
+.celebrate-confirm .c-msg{font-size:.82rem;margin-top:.5rem;line-height:1.4;min-height:1em}
+.celebrate-confirm .c-msg.ok{color:var(--gc-green-d)}
+.celebrate-confirm .c-msg.err{color:var(--gc-coral)}
 
 /* ── EDX-STYLE LANDING PAGE ── */
 .page.landing{display:block;max-width:none;margin:0;padding:0;grid-template-columns:none;gap:0}
@@ -1297,8 +1309,19 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
   <div class="celebrate-card">
     <div class="emoji">🎉</div>
     <h3>You're an EcoHero!</h3>
-    <p>Amazing work, <strong id="celebrateName">friend</strong>! You've completed all 9 lessons, both quizzes, and the Youth Eco Action Plan. Your <strong>NexYouth EcoHero Certificate</strong> has been emailed to you. Welcome to the EcoHero community!</p>
-    <button class="c-btn" onclick="closeCelebrate()">🌱 Keep going</button>
+    <p>Amazing work, <strong id="celebrateName">friend</strong>! You've completed all 9 lessons, both quizzes, and the Youth Eco Action Plan. Your <strong>NexYouth EcoHero Certificate</strong> has been emailed to you.</p>
+
+    <div class="celebrate-award">🎁 You also earned a <strong style="color:#8A6500">$10</strong> completion award!</div>
+
+    <div class="celebrate-confirm">
+      <div class="lbl">Confirm your e-Transfer email</div>
+      <div class="desc">We will send your $10 award by Interac e-Transfer. Please confirm or update the email below — once confirmed, no email reply is needed and we can process your award faster.</div>
+      <input type="email" id="etransferEmail" placeholder="you@example.com" autocomplete="email">
+      <div class="c-msg" id="etransferMsg"></div>
+    </div>
+
+    <button class="c-btn" id="etransferConfirmBtn" onclick="confirmEtransferEmail(this)">Confirm e-Transfer email</button>
+    <button class="c-btn ghost" onclick="closeCelebrate()">Close</button>
   </div>
 </div>
 
@@ -1956,14 +1979,54 @@ async function resendCert(btn){
 
 // ───────────────────────── CELEBRATION ─────────────────────────
 function celebrate(){
-  const {name} = getStudent();
+  const {name, email} = getStudent();
   document.getElementById('celebrateName').textContent = name || 'friend';
+  const inp = document.getElementById('etransferEmail');
+  if (inp) inp.value = email || '';
+  const msg = document.getElementById('etransferMsg');
+  if (msg) { msg.textContent = ''; msg.className = 'c-msg'; }
+  const btn = document.getElementById('etransferConfirmBtn');
+  if (btn) { btn.disabled = false; btn.textContent = 'Confirm e-Transfer email'; }
   document.getElementById('celebrate').classList.add('on');
   document.body.style.overflow='hidden';
 }
 function closeCelebrate(){
   document.getElementById('celebrate').classList.remove('on');
   document.body.style.overflow='';
+}
+async function confirmEtransferEmail(btn){
+  const {email: studentEmail} = getStudent();
+  const inp = document.getElementById('etransferEmail');
+  const msg = document.getElementById('etransferMsg');
+  const newEmail = (inp.value || '').trim();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(newEmail)) {
+    msg.textContent = 'Please enter a valid email address.';
+    msg.className = 'c-msg err';
+    return;
+  }
+  btn.disabled = true; btn.textContent = 'Saving...';
+  msg.textContent = ''; msg.className = 'c-msg';
+  try {
+    const r = await fetch('/api/eco-classroom/confirm-etransfer-email', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({student_email: studentEmail, etransfer_email: newEmail})
+    });
+    const j = await r.json().catch(()=>({}));
+    if (r.ok && j.ok) {
+      msg.textContent = `✓ Confirmed. We'll send your $10 award to ${newEmail}.`;
+      msg.className = 'c-msg ok';
+      btn.textContent = '✓ Confirmed';
+    } else {
+      msg.textContent = j.error || 'Could not save. Please try again.';
+      msg.className = 'c-msg err';
+      btn.disabled = false; btn.textContent = 'Confirm e-Transfer email';
+    }
+  } catch (e) {
+    msg.textContent = 'Network error. Please try again.';
+    msg.className = 'c-msg err';
+    btn.disabled = false; btn.textContent = 'Confirm e-Transfer email';
+  }
 }
 
 // ───────────────────────── INIT ─────────────────────────
