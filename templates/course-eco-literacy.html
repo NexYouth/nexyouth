@@ -230,6 +230,11 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 .reg-next-row .reg-next-text em{font-style:normal;color:var(--gc-green-d);font-weight:600}
 .reg-next-btn{background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;border:none;border-radius:100px;padding:.7rem 1.5rem;font-size:.93rem;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;transition:all .18s;box-shadow:0 2px 8px rgba(26,102,64,.18)}
 .reg-next-btn:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(45,154,94,.32)}
+.reg-success-card{padding:3.4rem 2rem 2.6rem;text-align:center;background:linear-gradient(180deg,#fff 0%,#F1F8F4 100%);min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.reg-success-card .reg-success-icon{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-weight:700;margin-bottom:1.1rem;box-shadow:0 8px 22px rgba(45,154,94,.32)}
+.reg-success-card h3{font-family:'Google Sans',serif;font-size:1.55rem;color:var(--gc-green-d);margin-bottom:.65rem;font-weight:700}
+.reg-success-card p{font-size:.95rem;color:var(--text);max-width:420px;margin:0 auto;line-height:1.55}
+.reg-success-card p strong{color:var(--gc-green-d)}
 .form-section{margin-bottom:1.4rem}
 .form-section h4{font-family:'Google Sans',sans-serif;font-size:.78rem;font-weight:600;color:var(--gc-green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.7rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
 .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
@@ -1343,22 +1348,35 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem 2rem 3rem;display:grid;grid-t
 
     <!-- JotForm embed — Eco Literacy Registration -->
     <div class="modal-body" id="formView" style="padding:0;background:#fff">
-      <iframe
-        id="JotFormIFrame-261196877713065"
-        title="NexYouth Eco Literacy Registration"
-        src="https://form.jotform.com/261196877713065"
-        frameborder="0"
-        style="width:100%;height:640px;border:0;display:block"
-        scrolling="auto"
-        allow="geolocation; microphone; camera"
-        allowfullscreen></iframe>
+      <div id="regFormFrame">
+        <iframe
+          id="JotFormIFrame-261196877713065"
+          title="NexYouth Eco Literacy Registration"
+          src="https://form.jotform.com/261196877713065"
+          frameborder="0"
+          style="width:100%;height:640px;border:0;display:block"
+          scrolling="auto"
+          allow="geolocation; microphone; camera"
+          allowfullscreen></iframe>
 
-      <div class="reg-next-row">
-        <div class="reg-next-text">
-          <strong>Done filling out the form?</strong>
-          <span>Click <em>Sign In</em> with the same student email to unlock the course.</span>
+        <div class="reg-next-row" id="regNextRow">
+          <div class="reg-next-text">
+            <strong>Done filling out the form?</strong>
+            <span>Click <em>Sign In</em> with the same student email to unlock the course.</span>
+          </div>
+          <button class="reg-next-btn" onclick="closeRegister();setTimeout(openLogin,200)">Sign In&nbsp;→</button>
         </div>
-        <button class="reg-next-btn" onclick="closeRegister();setTimeout(openLogin,200)">Sign In&nbsp;→</button>
+      </div>
+
+      <!-- Branded success view shown after JotForm posts submission-completed -->
+      <div id="regSubmittedView" style="display:none">
+        <div class="reg-success-card">
+          <div class="reg-success-icon">✓</div>
+          <h3>Registration received!</h3>
+          <p>Thanks for registering for the <strong>NexYouth Eco Literacy</strong> course. We just sent a welcome email to your inbox with the next steps.</p>
+          <p style="font-size:.85rem;color:var(--text-2);margin-top:.6rem">Tip: if you don't see it in a couple of minutes, check your Spam or Promotions folder.</p>
+          <button class="reg-next-btn" style="margin-top:1.4rem" onclick="closeRegister();setTimeout(openLogin,200)">Sign In to start the course&nbsp;→</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1452,9 +1470,29 @@ function openRegister(){
   document.body.style.overflow='hidden';
   const fv = document.getElementById('formView');
   if (fv) fv.style.display = 'block';
-  const sv = document.getElementById('successView');
-  if (sv) sv.classList.remove('on');
+  // Reset the JotForm vs success view so the iframe shows again on next open
+  const frame = document.getElementById('regFormFrame');
+  const submitted = document.getElementById('regSubmittedView');
+  if (frame) frame.style.display = 'block';
+  if (submitted) submitted.style.display = 'none';
 }
+
+// JotForm posts {action:'submission-completed', ...} (and other formats across versions).
+// When we detect a successful submission, swap the iframe + Sign In row out for our
+// own branded success card so users don't see JotForm's "Now create your own Jotform"
+// promo or a wall of empty space.
+window.addEventListener('message', function(e){
+  if (!e || !e.data) return;
+  if (typeof e.origin === 'string' && e.origin.indexOf('jotform.com') === -1
+      && e.origin.indexOf('jotform.io') === -1) return;
+  const raw = typeof e.data === 'string' ? e.data : JSON.stringify(e.data);
+  if (raw.indexOf('submission-completed') === -1
+      && raw.indexOf('submissionCompleted') === -1) return;
+  const frame = document.getElementById('regFormFrame');
+  const submitted = document.getElementById('regSubmittedView');
+  if (frame) frame.style.display = 'none';
+  if (submitted) submitted.style.display = 'block';
+});
 function closeRegister(){
   document.getElementById('modal').classList.remove('on');
   document.body.style.overflow='';
