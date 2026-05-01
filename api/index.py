@@ -5892,8 +5892,10 @@ def eco_classroom_resend_cert():
             }), 404
         name = _db_student_name(conn, email)
         status = _send_completion_email(email, name)
+        admin_cc = os.environ.get('ADMIN_CC_EMAIL', 'nexyouth.master@gmail.com')
         if status == 'sent':
-            return jsonify({'ok': True, 'email_status': 'sent'})
+            return jsonify({'ok': True, 'email_status': 'sent',
+                            'sent_to': email, 'cc': admin_cc})
         if status == 'logged':
             return jsonify({'ok': False,
                             'error': 'Email service is not configured. Please contact nexyouth.master@gmail.com.'}), 503
