@@ -5633,6 +5633,120 @@ def _db_unavailable_response():
     }), 503
 
 
+def _format_completion_date(iso_or_none):
+    """Format an ISO timestamp (or None) as 'Month D, YYYY'."""
+    from datetime import datetime, timezone
+    if iso_or_none:
+        try:
+            s = str(iso_or_none).replace('Z', '+00:00')
+            return datetime.fromisoformat(s).strftime('%B %-d, %Y')
+        except (ValueError, TypeError):
+            pass
+    return datetime.now(timezone.utc).strftime('%B %-d, %Y')
+
+
+def _generate_certificate(name, completion_date=None):
+    """Generate a NexYouth EcoHero certificate PDF in memory.
+    Returns (pdf_bytes, cert_id) — or (None, None) if reportlab is missing."""
+    try:
+        from reportlab.lib.pagesizes import landscape, letter
+        from reportlab.pdfgen import canvas
+        from reportlab.lib.colors import HexColor
+        from reportlab.lib.units import inch
+    except ImportError:
+        return None, None
+
+    import io, hashlib
+    from datetime import datetime, timezone
+
+    if not completion_date:
+        completion_date = datetime.now(timezone.utc).strftime('%B %d, %Y')
+    if not name:
+        name = "Student"
+
+    sid = hashlib.md5(f"{name}|{completion_date}".encode()).hexdigest()[:8].upper()
+    cert_id = f"NY-ECO-{datetime.now(timezone.utc).strftime('%Y')}-{sid}"
+
+    buf = io.BytesIO()
+    page_size = landscape(letter)
+    c = canvas.Canvas(buf, pagesize=page_size)
+    W, H = page_size
+
+    GREEN = HexColor('#1A6640')
+    LEAF  = HexColor('#3FB572')
+    GOLD  = HexColor('#C9A84C')
+    DARK  = HexColor('#18182A')
+    CREAM = HexColor('#F8F5F0')
+
+    c.setFillColor(CREAM); c.rect(0, 0, W, H, fill=1, stroke=0)
+
+    margin = 0.5 * inch
+    c.setStrokeColor(GREEN); c.setLineWidth(6)
+    c.rect(margin, margin, W - 2 * margin, H - 2 * margin, fill=0, stroke=1)
+    inner = margin + 10
+    c.setStrokeColor(GOLD); c.setLineWidth(1)
+    c.rect(inner, inner, W - 2 * inner, H - 2 * inner, fill=0, stroke=1)
+
+    c.setFillColor(GREEN); c.setFont("Helvetica-Bold", 16)
+    c.drawCentredString(W / 2, H - 1.0 * inch, "N E X Y O U T H")
+    c.setFillColor(GOLD); c.setFont("Helvetica-Oblique", 10)
+    c.drawCentredString(W / 2, H - 1.25 * inch, "- CREATING SPACE FOR YOUTH -")
+
+    c.setStrokeColor(GOLD); c.setLineWidth(1)
+    c.line(W / 2 - 2 * inch, H - 1.45 * inch, W / 2 + 2 * inch, H - 1.45 * inch)
+
+    c.setFillColor(DARK); c.setFont("Times-Bold", 38)
+    c.drawCentredString(W / 2, H - 2.1 * inch, "Certificate of Completion")
+
+    c.setFillColor(LEAF); c.setFont("Times-BoldItalic", 24)
+    c.drawCentredString(W / 2, H - 2.6 * inch, "EcoHero")
+
+    c.setFillColor(DARK); c.setFont("Times-Roman", 14)
+    c.drawCentredString(W / 2, H - 3.2 * inch, "This certificate is proudly presented to")
+
+    c.setFillColor(GREEN); c.setFont("Times-Bold", 32)
+    c.drawCentredString(W / 2, H - 3.95 * inch, name)
+
+    name_width = c.stringWidth(name, "Times-Bold", 32)
+    c.setStrokeColor(GOLD); c.setLineWidth(1.5)
+    c.line(W / 2 - name_width / 2 - 20, H - 4.1 * inch,
+           W / 2 + name_width / 2 + 20, H - 4.1 * inch)
+
+    c.setFillColor(DARK); c.setFont("Times-Roman", 13)
+    c.drawCentredString(W / 2, H - 4.55 * inch,
+                        "for successfully completing the NexYouth Eco Literacy Course:")
+    c.setFillColor(GREEN); c.setFont("Times-BoldItalic", 16)
+    c.drawCentredString(W / 2, H - 4.95 * inch,
+                        "Eco Literacy: From Environmental Systems to Youth Action")
+
+    c.setFillColor(DARK); c.setFont("Times-Italic", 11)
+    c.drawCentredString(W / 2, H - 5.4 * inch,
+                        "9 Lessons   |   2 Quizzes Passed (60%+)   |   Youth Eco Action Plan Submitted")
+
+    sig_y = 1.4 * inch
+
+    c.setFillColor(DARK); c.setFont("Times-Italic", 16)
+    c.drawCentredString(2.5 * inch, sig_y + 6, "Justin Huang & Max Wen")
+    c.setStrokeColor(DARK); c.setLineWidth(0.5)
+    c.line(1.5 * inch, sig_y, 3.5 * inch, sig_y)
+    c.setFont("Helvetica", 10)
+    c.drawCentredString(2.5 * inch, sig_y - 15, "NexYouth Program Director")
+
+    c.setFont("Times-Italic", 16)
+    c.drawCentredString(W - 2.5 * inch, sig_y + 6, completion_date)
+    c.line(W - 3.5 * inch, sig_y, W - 1.5 * inch, sig_y)
+    c.setFont("Helvetica", 10)
+    c.drawCentredString(W - 2.5 * inch, sig_y - 15, "Date Issued")
+
+    c.setFont("Helvetica", 8); c.setFillColor(DARK)
+    c.drawRightString(W - margin - 10, margin + 8, f"Certificate ID: {cert_id}")
+    c.drawString(margin + 10, margin + 8, "nexyouth.org")
+
+    c.save()
+    buf.seek(0)
+    return buf.getvalue(), cert_id
+
+
 def _smtp_creds():
     """Resolve SMTP credentials from any of the supported env var names.
     Falls back to Gmail SMTP defaults when only a Gmail user/pass pair is set.
@@ -5665,13 +5779,15 @@ def _smtp_creds():
     return host, port, use_ssl, user, pwd, email_from
 
 
-def _send_completion_email(email, name):
-    """Send the EcoHero certificate email via SMTP.
+def _send_completion_email(email, name, completion_date=None):
+    """Send the EcoHero certificate email via SMTP, with PDF certificate attached.
     Returns one of: 'sent', 'logged' (no SMTP), 'error'.
     Best-effort — failures are logged to stderr and never bubble up to user."""
     full_name = (name or '').strip() or 'Student'
     first_name = full_name.split()[0] if full_name != 'Student' else 'there'
     admin_cc = os.environ.get('ADMIN_CC_EMAIL', 'nexyouth.master@gmail.com')
+
+    cert_pdf, cert_id = _generate_certificate(full_name, completion_date)
 
     subject = f"NexYouth EcoHero Certificate - {full_name} (Course Complete)"
     text_body = (
@@ -5681,15 +5797,15 @@ def _send_completion_email(email, name):
         "  - Completed all 9 lessons\n"
         "  - Passed both course quizzes with 60% or higher\n"
         "  - Submitted your Youth Eco Action Plan\n\n"
-        "You have earned a $15 completion award.\n\n"
+        "Your NexYouth EcoHero Certificate is attached to this email as a PDF.\n"
+        "You have also earned a $15 completion award.\n\n"
         "ACTION REQUIRED: e-Transfer Email\n\n"
         "We will send your $15 award by Interac e-Transfer.\n\n"
         f"The email we have on file for you is:\n   {email}\n\n"
         "Please REPLY to this email to confirm:\n"
         "  1) That this address can receive Interac e-Transfers, OR\n"
         "  2) The correct e-Transfer email you would like us to use.\n\n"
-        "We will process your payment within 3-5 business days of receiving your confirmation.\n"
-        "Your printable EcoHero certificate will follow once we process your award.\n\n"
+        "We will process your payment within 3-5 business days of receiving your confirmation.\n\n"
         "Thank you for taking real action on the environment.\n\n"
         "- The NexYouth Team\n"
     )
@@ -5704,7 +5820,8 @@ def _send_completion_email(email, name):
         '<li>Passed both course quizzes with 60% or higher</li>'
         '<li>Submitted your Youth Eco Action Plan</li>'
         '</ul>'
-        '<p>You have earned a <strong>$15 completion award</strong>.</p>'
+        '<p>Your <strong>NexYouth EcoHero Certificate</strong> is attached to this email as a PDF.<br>'
+        'You have also earned a <strong>$15 completion award</strong>.</p>'
         '<p style="margin-top:22px;font-size:16px"><strong style="color:#1A73E8">'
         'ACTION REQUIRED: e-Transfer Email</strong></p>'
         '<p>We will send your $15 award by Interac e-Transfer.</p>'
@@ -5715,8 +5832,7 @@ def _send_completion_email(email, name):
         '<li>That this address can receive Interac e-Transfers, OR</li>'
         '<li>The correct e-Transfer email you would like us to use.</li>'
         '</ol>'
-        '<p>We will process your payment within 3-5 business days of receiving your confirmation.<br>'
-        'Your printable EcoHero certificate will follow once we process your award.</p>'
+        '<p>We will process your payment within 3-5 business days of receiving your confirmation.</p>'
         '<p style="margin-top:22px">Thank you for taking real action on the environment.</p>'
         '<p style="color:#5F6368;margin-top:18px">— The NexYouth Team</p>'
         '</body></html>'
@@ -5739,6 +5855,10 @@ def _send_completion_email(email, name):
         msg['Cc'] = admin_cc
         msg.set_content(text_body)
         msg.add_alternative(html_body, subtype='html')
+        if cert_pdf:
+            safe_name = re.sub(r'[^A-Za-z0-9._-]+', '_', full_name).strip('_') or 'Student'
+            msg.add_attachment(cert_pdf, maintype='application', subtype='pdf',
+                               filename=f"NexYouth-EcoHero-{safe_name}-{cert_id}.pdf")
 
         timeout = int(os.environ.get('SMTP_TIMEOUT', '15'))
         smtp_cls = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
@@ -5826,7 +5946,9 @@ def eco_classroom_submit():
                     (email, name),
                 )
             completed_now = True
-            email_status = _send_completion_email(email, name)
+            info = _db_completion_info(conn, email)
+            completion_date = _format_completion_date(info.get('completed_at') if info else None)
+            email_status = _send_completion_email(email, name, completion_date)
 
         return jsonify({
             'ok': True,
@@ -5893,7 +6015,9 @@ def eco_classroom_resend_cert():
                 'error': 'No completion record found for this email. Finish all lessons first.',
             }), 404
         name = _db_student_name(conn, email) or req_name
-        status = _send_completion_email(email, name)
+        info = _db_completion_info(conn, email)
+        completion_date = _format_completion_date(info.get('completed_at') if info else None)
+        status = _send_completion_email(email, name, completion_date)
         admin_cc = os.environ.get('ADMIN_CC_EMAIL', 'nexyouth.master@gmail.com')
         if status == 'sent':
             return jsonify({'ok': True, 'email_status': 'sent',
