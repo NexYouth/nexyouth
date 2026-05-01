@@ -1464,14 +1464,10 @@ function clearStudent(){
     _navigate('stream', document.querySelectorAll('.tab')[0]);
   }
   applyAuthState();
-  // reset progress UI
-  document.getElementById('pbFill').style.width='0%';
-  document.getElementById('pbText').textContent='0 / 12';
-  document.querySelectorAll('.status-badge').forEach(b=>b.outerHTML='');
-  document.querySelectorAll('.task-submit textarea').forEach(t=>{t.value='';t.disabled=false});
-  document.querySelectorAll('.q-opts li').forEach(li=>li.classList.remove('selected','wrong','correct'));
-  document.querySelectorAll('.q').forEach(q=>q.classList.remove('locked'));
-  document.querySelectorAll('.quiz-score').forEach(s=>s.classList.remove('show','pass','fail'));
+  // Wipe all the previous student's progress UI so it doesn't bleed into
+  // the next session.
+  if (typeof resetProgressUI === 'function') resetProgressUI();
+  hideCompletedBanner();
 }
 function signOut(){clearStudent();}
 
@@ -2077,9 +2073,45 @@ function updateProgressUI(progress){
   }
 }
 
+// Wipe all client-side completion UI back to a fresh state. Called BEFORE
+// applying a new student's progress so a previously-signed-in student's
+// "done" markers don't leak into the new session.
+function resetProgressUI(){
+  // Reflect boxes — clear .done + restore button label
+  document.querySelectorAll('.reflect-box').forEach(box => {
+    box.classList.remove('done');
+    const btn = box.querySelector('.complete-btn');
+    if (btn) { btn.disabled = false; btn.textContent = '✓ Mark Lesson Complete'; }
+  });
+  // Lesson task badges (the small ✓ Complete pills next to each lesson)
+  document.querySelectorAll('[data-lesson-status]').forEach(b => {
+    b.className = 'status-badge';
+    b.textContent = '';
+  });
+  // Quiz badges
+  document.querySelectorAll('[data-quiz-status]').forEach(b => {
+    b.className = 'status-badge';
+    b.textContent = '';
+  });
+  // Quiz answer state — clear selections, scores, locks
+  document.querySelectorAll('.q-opts li').forEach(li => li.classList.remove('selected','wrong','correct'));
+  document.querySelectorAll('.q').forEach(q => q.classList.remove('locked'));
+  document.querySelectorAll('.quiz-score').forEach(s => s.classList.remove('show','pass','fail'));
+  // Final action plan
+  const finalStatus = document.getElementById('finalStatus');
+  if (finalStatus) { finalStatus.className = 'status-badge'; finalStatus.textContent = ''; }
+  document.querySelectorAll('.task-submit textarea').forEach(t => { t.value = ''; t.disabled = false; });
+  // Progress bar
+  const fill = document.getElementById('pbFill'); if (fill) fill.style.width = '0%';
+  const txt  = document.getElementById('pbText'); if (txt) txt.textContent = '0 / 12';
+}
+
 async function refreshProgress(){
   const {email} = getStudent();
-  if (!email) { hideCompletedBanner(); return; }
+  if (!email) { hideCompletedBanner(); resetProgressUI(); return; }
+  // Reset first so previous student's UI state doesn't leak in until the
+  // server response lands.
+  resetProgressUI();
   try {
     const r = await fetch('/api/eco-classroom/progress?email=' + encodeURIComponent(email));
     const j = await r.json();
