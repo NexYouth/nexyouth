@@ -5646,105 +5646,105 @@ def _format_completion_date(iso_or_none):
 
 
 def _generate_certificate(name, completion_date=None):
-    """Generate a NexYouth EcoHero certificate PDF in memory.
-    Returns (pdf_bytes, cert_id) — or (None, None) if reportlab is missing."""
+    """Generate a NexYouth EcoHero certificate PDF in memory using fpdf2.
+    Returns (pdf_bytes, cert_id) — or (None, None) if fpdf is missing.
+    fpdf2 is pure Python with no C extensions, so it installs cleanly on
+    Vercel where reportlab+Pillow can fail."""
     try:
-        from reportlab.lib.pagesizes import landscape, letter
-        from reportlab.pdfgen import canvas
-        from reportlab.lib.colors import HexColor
-        from reportlab.lib.units import inch
+        from fpdf import FPDF
     except ImportError:
         return None, None
 
-    import io, hashlib
+    import hashlib
     from datetime import datetime, timezone
 
     if not completion_date:
-        completion_date = datetime.now(timezone.utc).strftime('%B %d, %Y')
+        completion_date = datetime.now(timezone.utc).strftime('%B %-d, %Y')
     if not name:
         name = "Student"
 
     sid = hashlib.md5(f"{name}|{completion_date}".encode()).hexdigest()[:8].upper()
     cert_id = f"NY-ECO-{datetime.now(timezone.utc).strftime('%Y')}-{sid}"
 
-    buf = io.BytesIO()
-    page_size = landscape(letter)
-    c = canvas.Canvas(buf, pagesize=page_size)
-    W, H = page_size
+    GREEN = (26, 102, 64)
+    LEAF  = (63, 181, 114)
+    GOLD  = (201, 168, 76)
+    DARK  = (24, 24, 42)
+    CREAM = (248, 245, 240)
 
-    GREEN = HexColor('#1A6640')
-    LEAF  = HexColor('#3FB572')
-    GOLD  = HexColor('#C9A84C')
-    DARK  = HexColor('#18182A')
-    CREAM = HexColor('#F8F5F0')
+    pdf = FPDF(orientation='L', unit='in', format='Letter')
+    pdf.set_auto_page_break(False)
+    pdf.add_page()
+    W, H = 11.0, 8.5
+    margin = 0.5
 
-    c.setFillColor(CREAM); c.rect(0, 0, W, H, fill=1, stroke=0)
+    pdf.set_fill_color(*CREAM)
+    pdf.rect(0, 0, W, H, style='F')
 
-    margin = 0.5 * inch
-    c.setStrokeColor(GREEN); c.setLineWidth(6)
-    c.rect(margin, margin, W - 2 * margin, H - 2 * margin, fill=0, stroke=1)
-    inner = margin + 10
-    c.setStrokeColor(GOLD); c.setLineWidth(1)
-    c.rect(inner, inner, W - 2 * inner, H - 2 * inner, fill=0, stroke=1)
+    pdf.set_draw_color(*GREEN); pdf.set_line_width(6/72)
+    pdf.rect(margin, margin, W - 2*margin, H - 2*margin)
+    inner = margin + 10/72
+    pdf.set_draw_color(*GOLD); pdf.set_line_width(1/72)
+    pdf.rect(inner, inner, W - 2*inner, H - 2*inner)
 
-    c.setFillColor(GREEN); c.setFont("Helvetica-Bold", 16)
-    c.drawCentredString(W / 2, H - 1.0 * inch, "N E X Y O U T H")
-    c.setFillColor(GOLD); c.setFont("Helvetica-Oblique", 10)
-    c.drawCentredString(W / 2, H - 1.25 * inch, "- CREATING SPACE FOR YOUTH -")
+    def at_center(y, font, style, size, color, txt):
+        pdf.set_font(font, style, size)
+        pdf.set_text_color(*color)
+        w = pdf.get_string_width(txt)
+        pdf.text((W - w) / 2, y, txt)
 
-    c.setStrokeColor(GOLD); c.setLineWidth(1)
-    c.line(W / 2 - 2 * inch, H - 1.45 * inch, W / 2 + 2 * inch, H - 1.45 * inch)
+    at_center(1.0,  'Helvetica', 'B',  16, GREEN, 'N E X Y O U T H')
+    at_center(1.25, 'Helvetica', 'I',  10, GOLD,  '- CREATING SPACE FOR YOUTH -')
 
-    c.setFillColor(DARK); c.setFont("Times-Bold", 38)
-    c.drawCentredString(W / 2, H - 2.1 * inch, "Certificate of Completion")
+    pdf.set_draw_color(*GOLD); pdf.set_line_width(1/72)
+    pdf.line(W/2 - 2, 1.45, W/2 + 2, 1.45)
 
-    c.setFillColor(LEAF); c.setFont("Times-BoldItalic", 24)
-    c.drawCentredString(W / 2, H - 2.6 * inch, "EcoHero")
+    at_center(2.1,  'Times', 'B',  38, DARK, 'Certificate of Completion')
+    at_center(2.6,  'Times', 'BI', 24, LEAF, 'EcoHero')
+    at_center(3.2,  'Times', '',   14, DARK, 'This certificate is proudly presented to')
+    at_center(3.95, 'Times', 'B',  32, GREEN, name)
 
-    c.setFillColor(DARK); c.setFont("Times-Roman", 14)
-    c.drawCentredString(W / 2, H - 3.2 * inch, "This certificate is proudly presented to")
+    pdf.set_font('Times', 'B', 32)
+    name_width = pdf.get_string_width(name)
+    pdf.set_draw_color(*GOLD); pdf.set_line_width(1.5/72)
+    pdf.line(W/2 - name_width/2 - 0.28, 4.1, W/2 + name_width/2 + 0.28, 4.1)
 
-    c.setFillColor(GREEN); c.setFont("Times-Bold", 32)
-    c.drawCentredString(W / 2, H - 3.95 * inch, name)
+    at_center(4.55, 'Times', '',   13, DARK,
+              'for successfully completing the NexYouth Eco Literacy Course:')
+    at_center(4.95, 'Times', 'BI', 16, GREEN,
+              'Eco Literacy: From Environmental Systems to Youth Action')
+    at_center(5.4,  'Times', 'I',  11, DARK,
+              '9 Lessons   |   2 Quizzes Passed (60%+)   |   Youth Eco Action Plan Submitted')
 
-    name_width = c.stringWidth(name, "Times-Bold", 32)
-    c.setStrokeColor(GOLD); c.setLineWidth(1.5)
-    c.line(W / 2 - name_width / 2 - 20, H - 4.1 * inch,
-           W / 2 + name_width / 2 + 20, H - 4.1 * inch)
+    sig_y = H - 1.4
 
-    c.setFillColor(DARK); c.setFont("Times-Roman", 13)
-    c.drawCentredString(W / 2, H - 4.55 * inch,
-                        "for successfully completing the NexYouth Eco Literacy Course:")
-    c.setFillColor(GREEN); c.setFont("Times-BoldItalic", 16)
-    c.drawCentredString(W / 2, H - 4.95 * inch,
-                        "Eco Literacy: From Environmental Systems to Youth Action")
+    def at(cx, y, font, style, size, color, txt):
+        pdf.set_font(font, style, size)
+        pdf.set_text_color(*color)
+        w = pdf.get_string_width(txt)
+        pdf.text(cx - w/2, y, txt)
 
-    c.setFillColor(DARK); c.setFont("Times-Italic", 11)
-    c.drawCentredString(W / 2, H - 5.4 * inch,
-                        "9 Lessons   |   2 Quizzes Passed (60%+)   |   Youth Eco Action Plan Submitted")
+    at(2.5, sig_y - 6/72,  'Times',     'I', 16, DARK, 'Justin Huang & Max Wen')
+    pdf.set_draw_color(*DARK); pdf.set_line_width(0.5/72)
+    pdf.line(1.5, sig_y, 3.5, sig_y)
+    at(2.5, sig_y + 15/72, 'Helvetica', '',  10, DARK, 'NexYouth Program Director')
 
-    sig_y = 1.4 * inch
+    at(W - 2.5, sig_y - 6/72,  'Times',     'I', 16, DARK, completion_date)
+    pdf.line(W - 3.5, sig_y, W - 1.5, sig_y)
+    at(W - 2.5, sig_y + 15/72, 'Helvetica', '',  10, DARK, 'Date Issued')
 
-    c.setFillColor(DARK); c.setFont("Times-Italic", 16)
-    c.drawCentredString(2.5 * inch, sig_y + 6, "Justin Huang & Max Wen")
-    c.setStrokeColor(DARK); c.setLineWidth(0.5)
-    c.line(1.5 * inch, sig_y, 3.5 * inch, sig_y)
-    c.setFont("Helvetica", 10)
-    c.drawCentredString(2.5 * inch, sig_y - 15, "NexYouth Program Director")
+    pdf.set_font('Helvetica', '', 8)
+    pdf.set_text_color(*DARK)
+    bottom_y = H - margin - 8/72
+    cert_text = f'Certificate ID: {cert_id}'
+    cw = pdf.get_string_width(cert_text)
+    pdf.text(W - margin - 10/72 - cw, bottom_y, cert_text)
+    pdf.text(margin + 10/72, bottom_y, 'nexyouth.org')
 
-    c.setFont("Times-Italic", 16)
-    c.drawCentredString(W - 2.5 * inch, sig_y + 6, completion_date)
-    c.line(W - 3.5 * inch, sig_y, W - 1.5 * inch, sig_y)
-    c.setFont("Helvetica", 10)
-    c.drawCentredString(W - 2.5 * inch, sig_y - 15, "Date Issued")
-
-    c.setFont("Helvetica", 8); c.setFillColor(DARK)
-    c.drawRightString(W - margin - 10, margin + 8, f"Certificate ID: {cert_id}")
-    c.drawString(margin + 10, margin + 8, "nexyouth.org")
-
-    c.save()
-    buf.seek(0)
-    return buf.getvalue(), cert_id
+    out = pdf.output()
+    if isinstance(out, str):
+        return out.encode('latin-1'), cert_id
+    return bytes(out), cert_id
 
 
 def _smtp_creds():
