@@ -5636,12 +5636,26 @@ def _db_unavailable_response():
 def _smtp_creds():
     """Resolve SMTP credentials from any of the supported env var names.
     Falls back to Gmail SMTP defaults when only a Gmail user/pass pair is set.
+    Also accepts Vercel project-prefixed names (e.g. Nexyouth_Gmail_password)
+    by matching any env var whose uppercased name equals or ends with a known
+    suffix.
     Returns (host, port, use_ssl, user, password, email_from) or None if no creds."""
-    user = (os.environ.get('SMTP_USER') or os.environ.get('GMAIL_USER')
-            or os.environ.get('Gmail_user') or os.environ.get('gmail_user') or '')
-    pwd  = (os.environ.get('SMTP_PASS') or os.environ.get('SMTP_PASSWORD')
-            or os.environ.get('GMAIL_PASSWORD') or os.environ.get('Gmail_password')
-            or os.environ.get('gmail_password') or '')
+    def _find(suffixes):
+        for k in suffixes:
+            v = os.environ.get(k)
+            if v:
+                return v
+        for name, val in os.environ.items():
+            if not val:
+                continue
+            up = name.upper()
+            for suf in suffixes:
+                if up == suf or up.endswith('_' + suf):
+                    return val
+        return ''
+
+    user = _find(('SMTP_USER', 'GMAIL_USER'))
+    pwd  = _find(('SMTP_PASS', 'SMTP_PASSWORD', 'GMAIL_PASSWORD'))
     if not (user and pwd):
         return None
     host = os.environ.get('SMTP_HOST') or 'smtp.gmail.com'
