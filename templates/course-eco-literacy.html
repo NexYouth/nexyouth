@@ -2163,10 +2163,11 @@ async function resendCert(btn){
       btn.textContent = '✓ Sent!';
       let msg = '';
       if (status === 'sent') {
-        const attachInfo = j.cert_attached
-          ? `Certificate PDF attached (${j.cert_bytes} bytes, ID ${j.cert_id}).`
-          : `⚠️ Email sent but certificate PDF was NOT attached — please contact NexYouth admin so we can resend with the cert.`;
-        msg = `Email re-sent to ${j.sent_to} (CC: ${j.cc}).\n${attachInfo}\nCheck your inbox in a few minutes.`;
+        if (j.cert_attached) {
+          msg = `🎉 Congratulations again, EcoHero!\n\nYour certificate is on its way to ${j.sent_to}. It should arrive in a few minutes — please check your inbox (and Spam / Promotions folder just in case). Thank you for taking real action on the environment!`;
+        } else {
+          msg = `Email re-sent to ${j.sent_to}, but the certificate PDF couldn't be attached this time. Please contact nexyouth.master@gmail.com and we'll send it manually.`;
+        }
       } else if (status === 'logged') {
         msg = `Certificate generated and email logged on the server, but SMTP is not configured so the email was not actually delivered. Contact NexYouth admin to set up email delivery.`;
       } else if (status === 'error') {
