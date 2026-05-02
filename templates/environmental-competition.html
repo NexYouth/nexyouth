@@ -1429,12 +1429,13 @@
         .winner-photo {
             flex-shrink: 0;
             width: 180px;
-            height: 90px;
+            height: 140px;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             display: flex;
             gap: 2px;
+            background: #f1f5f9;
         }
 
         .winner-photo img {
@@ -1442,8 +1443,8 @@
             min-width: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center 20%;
+            object-fit: contain;
+            object-position: center;
         }
 
         .winner-avatar {
@@ -1975,8 +1976,8 @@
             }
 
             .winner-photo {
-                width: 50px;
-                height: 50px;
+                width: 100px;
+                height: 100px;
             }
 
             .winner-card {
