@@ -1,14 +1,31 @@
-from flask import Flask, render_template, render_template_string, send_from_directory, request, jsonify
+from flask import Flask, render_template, render_template_string, send_from_directory, request, jsonify, Response, make_response
 import os
 import re
 from datetime import datetime, timezone
 
 # Configure template folder for Vercel deployment
 template_dir = os.path.join(os.path.dirname(__file__), '..', 'templates')
-app = Flask(__name__, 
-            static_folder='../static', 
+app = Flask(__name__,
+            static_folder='../static',
             static_url_path='/static',
             template_folder=template_dir)
+
+# Private gate: any request hitting nexyouth.org / www.nexyouth.org sees a
+# minimal placeholder. The full site stays reachable via the *.vercel.app URL.
+PRIVATE_HOSTS = {'nexyouth.org', 'www.nexyouth.org'}
+
+@app.before_request
+def _gate_private_hosts():
+    host = (request.host or '').lower().split(':')[0]
+    if host in PRIVATE_HOSTS and request.path != '/robots.txt':
+        resp = make_response(render_template('site_offline.html'))
+        resp.headers['X-Robots-Tag'] = 'noindex, nofollow'
+        resp.headers['Cache-Control'] = 'no-store'
+        return resp
+
+@app.route('/robots.txt')
+def robots_txt():
+    return Response("User-agent: *\nDisallow: /\n", mimetype='text/plain')
 
 @app.route('/static/<path:filename>')
 def serve_static(filename):
