@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory, request, jsonify, Response, send_file
+from flask import Flask, render_template, send_from_directory, request, jsonify, Response, send_file, make_response
 import os
 import csv
 import re
@@ -6,6 +6,23 @@ from datetime import datetime, timezone
 from functools import wraps
 
 app = Flask(__name__, static_folder='static', static_url_path='/static', template_folder='templates')
+
+# Private gate: any request hitting nexyouth.org / www.nexyouth.org sees a
+# minimal placeholder. The full site stays reachable via the *.vercel.app URL.
+PRIVATE_HOSTS = {'nexyouth.org', 'www.nexyouth.org'}
+
+@app.before_request
+def _gate_private_hosts():
+    host = (request.host or '').lower().split(':')[0]
+    if host in PRIVATE_HOSTS and request.path != '/robots.txt':
+        resp = make_response(render_template('site_offline.html'))
+        resp.headers['X-Robots-Tag'] = 'noindex, nofollow'
+        resp.headers['Cache-Control'] = 'no-store'
+        return resp
+
+@app.route('/robots.txt')
+def robots_txt():
+    return Response("User-agent: *\nDisallow: /\n", mimetype='text/plain')
 
 # ============== ECO CLASSROOM REGISTRATION ==============
 
