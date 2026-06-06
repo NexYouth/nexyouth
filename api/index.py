@@ -3409,7 +3409,7 @@ ENVIRONMENTAL_COMPETITION_TEMPLATE = """
                 </div>
                 <p style="color: #666; font-size: 1.1rem; margin-bottom: 1rem; margin-top: 1.5rem; text-align: center;">Explore more details about IYEC and get inspired by past winners' success stories.</p>
                 <div style="text-align: center;">
-                    <a href="https://globalenvironmentchallenge.org/" target="_blank" style="display: inline-block; padding: 0.75rem 2rem; background-color: #059669; color: white; text-decoration: none; border-radius: 0.5rem; font-weight: bold;">Learn More</a>
+                    <a href="javascript:void(0)" style="display: inline-block; padding: 0.75rem 2rem; background-color: #059669; color: white; text-decoration: none; border-radius: 0.5rem; font-weight: bold;">Learn More</a>
                 </div>
             </div>
             <div>
