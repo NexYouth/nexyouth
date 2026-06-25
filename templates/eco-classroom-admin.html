@@ -1,126 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EcoClassroom Admin — NexYouth</title>
-<link rel="icon" type="image/svg+xml" href="/static/logo.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+{% extends "base.html" %}
+
+{% block title %}Eco Classroom Admin — NexYouth{% endblock %}
+{% block description %}Admin dashboard for the NexYouth Eco Classroom: student registry, progress, and certificate tools.{% endblock %}
+
+{% block head_extra %}
 <style>
-:root{
-  --gc-green:#1A6640;--gc-green-d:#0d3a23;--gc-leaf:#3FB572;--gc-cream:#F8F5F0;
-  --gc-gold:#C9A84C;--gc-blue:#1A73E8;--gc-coral:#E05533;
-  --bg:#F8F9FA;--surface:#fff;--border:#E0E0E0;--border-d:#DADCE0;
-  --text:#202124;--text-2:#5F6368;--muted:#80868B;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Roboto','Google Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:14px;-webkit-font-smoothing:antialiased}
-a{color:var(--gc-green);text-decoration:none}
-
-/* APP BAR */
-.appbar{background:#fff;border-bottom:1px solid var(--border);padding:.55rem 1.5rem;display:flex;align-items:center;gap:1rem;height:56px;position:sticky;top:0;z-index:100}
-.appbar .brand{display:flex;align-items:center;gap:.65rem;font-weight:500;font-size:1.05rem}
-.appbar .brand .logo{width:30px;height:30px;background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
-.appbar .badge{font-size:.66rem;background:rgba(224,85,51,.12);color:var(--gc-coral);font-weight:700;padding:.22rem .55rem;border-radius:4px;letter-spacing:.08em;text-transform:uppercase}
-.appbar .spacer{flex:1}
-.appbar .user{font-size:.82rem;color:var(--text-2);display:flex;align-items:center;gap:.4rem}
-.appbar .user strong{color:var(--text)}
-.appbar a.back{font-size:.84rem;color:var(--gc-green);font-weight:500;padding:.45rem .9rem;border-radius:100px;border:1px solid var(--border-d)}
-.appbar a.back:hover{background:var(--gc-cream);border-color:var(--gc-green)}
-
-/* HEADER */
-.head{padding:1.6rem 1.8rem .8rem;background:#fff;border-bottom:1px solid var(--border)}
-.head h1{font-family:'Google Sans',serif;font-size:1.5rem;font-weight:700;color:var(--text)}
-.head p{color:var(--text-2);font-size:.88rem;margin-top:.15rem}
+/* ADMIN DASHBOARD — Eco Classroom (brand-harmonised) */
 
 /* STATS */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.85rem;padding:1.2rem 1.8rem;background:#fff;border-bottom:1px solid var(--border)}
-.stat-card{background:#F8F9FA;border:1px solid var(--border);border-radius:10px;padding:.95rem 1.1rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.85rem;margin-bottom:1.4rem}
+.stat-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);padding:.95rem 1.1rem}
 .stat-card .label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:.25rem}
-.stat-card .value{font-family:'Google Sans',sans-serif;font-size:1.7rem;font-weight:700;color:var(--text);line-height:1}
-.stat-card.green .value{color:var(--gc-green)}
-.stat-card.blue .value{color:var(--gc-blue)}
+.stat-card .value{font-family:var(--font-display);font-size:1.7rem;font-weight:700;color:var(--ink);line-height:1}
+.stat-card.green .value{color:#1A6640}
+.stat-card.blue .value{color:var(--cobalt)}
 .stat-card.gold .value{color:#9a7800}
-.stat-card.gray .value{color:var(--text-2)}
+.stat-card.gray .value{color:var(--muted)}
 
 /* TOOLBAR */
-.toolbar{padding:.85rem 1.8rem;display:flex;gap:.7rem;align-items:center;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--border);position:sticky;top:56px;z-index:90}
-.toolbar input{flex:1;min-width:220px;max-width:360px;padding:.55rem .9rem;border:1.5px solid var(--border-d);border-radius:8px;font-size:.88rem;font-family:inherit;background:#fff;outline:none;transition:border-color .15s}
-.toolbar input:focus{border-color:var(--gc-green);box-shadow:0 0 0 3px rgba(26,102,64,.1)}
-.toolbar select{padding:.55rem .8rem;border:1.5px solid var(--border-d);border-radius:8px;font-size:.86rem;font-family:inherit;background:#fff;outline:none;cursor:pointer}
+.toolbar{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap;margin-bottom:1.2rem}
+.toolbar input{flex:1;min-width:220px;max-width:360px;padding:.55rem .9rem;border:1.5px solid var(--line);border-radius:var(--radius-sm);font-size:.88rem;font-family:var(--font-body);background:var(--paper);color:var(--ink-2);outline:none;transition:border-color .15s}
+.toolbar input:focus{border-color:var(--cobalt);box-shadow:0 0 0 3px rgba(36,51,214,.12)}
+.toolbar select{padding:.55rem .8rem;border:1.5px solid var(--line);border-radius:var(--radius-sm);font-size:.86rem;font-family:var(--font-body);background:var(--paper);color:var(--ink-2);outline:none;cursor:pointer}
+.toolbar select:focus{border-color:var(--cobalt)}
 .toolbar .actions{margin-left:auto;display:flex;gap:.5rem}
-.btn{padding:.55rem 1.05rem;border-radius:8px;font-size:.85rem;font-weight:500;cursor:pointer;font-family:inherit;border:1.5px solid var(--border-d);background:#fff;color:var(--text);transition:all .15s;display:inline-flex;align-items:center;gap:.35rem;text-decoration:none}
-.btn:hover{border-color:var(--gc-green);background:var(--gc-cream)}
-.btn.primary{background:linear-gradient(135deg,var(--gc-green) 0%,var(--gc-leaf) 100%);color:#fff;border-color:transparent}
-.btn.primary:hover{box-shadow:0 3px 10px rgba(26,102,64,.3)}
 
 /* TABLE */
-.tbl-wrap{overflow-x:auto;background:#fff;margin:0 0 2rem 0}
+.tbl-wrap{overflow-x:auto;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);margin:0 0 2rem 0}
 table.tbl{width:100%;border-collapse:collapse;font-size:.85rem;min-width:1100px}
-.tbl thead{position:sticky;top:0;background:#fff;z-index:10}
-.tbl th{text-align:left;padding:.7rem .85rem;font-weight:600;color:var(--text-2);text-transform:uppercase;font-size:.7rem;letter-spacing:.06em;background:#F8F9FA;border-bottom:2px solid var(--border)}
-.tbl td{padding:.7rem .85rem;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text)}
-.tbl tbody tr:hover{background:#FAFBFC}
+.tbl thead{position:sticky;top:0;z-index:10}
+.tbl th{text-align:left;padding:.7rem .85rem;font-weight:600;color:var(--on-dark-muted);text-transform:uppercase;font-size:.7rem;letter-spacing:.06em;background:var(--navy);border-bottom:2px solid var(--navy)}
+.tbl td{padding:.7rem .85rem;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+.tbl tbody tr:hover{background:var(--tint)}
 .tbl tbody tr.orphan{background:rgba(224,85,51,.04)}
 .tbl tbody tr.orphan:hover{background:rgba(224,85,51,.08)}
 
-.tbl .name{font-weight:600;color:var(--text)}
-.tbl .email{color:var(--gc-blue);font-size:.82rem;font-family:'DM Mono',monospace}
-.tbl .meta{color:var(--text-2);font-size:.78rem;line-height:1.4}
+.tbl .name{font-weight:600;color:var(--ink)}
+.tbl .email{color:var(--cobalt);font-size:.82rem;font-family:var(--font-body)}
+.tbl .meta{color:var(--muted);font-size:.78rem;line-height:1.4}
 .tbl .progress-cell{min-width:200px}
-.pb-mini{height:6px;background:#E8EAED;border-radius:100px;overflow:hidden;margin-bottom:.3rem}
-.pb-mini .fill{height:100%;background:linear-gradient(90deg,var(--gc-green) 0%,var(--gc-leaf) 100%);border-radius:100px;transition:width .3s}
-.progress-text{font-size:.75rem;color:var(--text-2);font-family:'DM Mono',monospace}
+.pb-mini{height:6px;background:var(--tint-2);border-radius:var(--radius-full);overflow:hidden;margin-bottom:.3rem}
+.pb-mini .fill{height:100%;background:var(--cobalt);border-radius:var(--radius-full);transition:width .3s}
+.progress-text{font-size:.75rem;color:var(--muted);font-family:var(--font-body)}
 
-.status{display:inline-flex;align-items:center;gap:.3rem;font-size:.7rem;font-weight:600;padding:.18rem .55rem;border-radius:100px;letter-spacing:.04em;text-transform:uppercase}
-.status.done{background:rgba(45,154,94,.14);color:var(--gc-green-d)}
-.status.progress{background:rgba(26,115,232,.12);color:#1557B0}
-.status.notstart{background:#F1F3F4;color:var(--muted)}
+.status{display:inline-flex;align-items:center;gap:.3rem;font-size:.7rem;font-weight:600;padding:.18rem .55rem;border-radius:var(--radius-full);letter-spacing:.04em;text-transform:uppercase}
+.status.done{background:rgba(45,154,94,.14);color:#0d3a23}
+.status.progress{background:rgba(36,51,214,.12);color:var(--cobalt-deep)}
+.status.notstart{background:var(--tint);color:var(--muted)}
 .status.orphan{background:rgba(224,85,51,.12);color:#902a18}
 
-.score-pill{display:inline-block;font-size:.74rem;font-weight:600;padding:.12rem .5rem;border-radius:4px;font-family:'DM Mono',monospace}
-.score-pill.pass{background:rgba(45,154,94,.12);color:var(--gc-green-d)}
+.score-pill{display:inline-block;font-size:.74rem;font-weight:600;padding:.12rem .5rem;border-radius:var(--radius-sm);font-family:var(--font-body)}
+.score-pill.pass{background:rgba(45,154,94,.12);color:#0d3a23}
 .score-pill.fail{background:rgba(224,85,51,.12);color:#902a18}
-.score-pill.none{background:#F1F3F4;color:var(--muted)}
+.score-pill.none{background:var(--tint);color:var(--muted)}
 
-.cert-link{font-size:.75rem;color:var(--gc-gold);font-weight:500;display:inline-flex;align-items:center;gap:.2rem}
+.cert-link{font-size:.75rem;color:#9a7800;font-weight:500;display:inline-flex;align-items:center;gap:.2rem}
 .cert-link:hover{text-decoration:underline}
 
-.action-btn{font-size:.74rem;padding:.32rem .7rem;border-radius:100px;border:1px solid var(--border-d);background:#fff;color:var(--text-2);cursor:pointer;font-family:inherit;transition:all .15s;margin-right:.3rem}
-.action-btn:hover{border-color:var(--gc-blue);color:var(--gc-blue)}
-.action-btn.resend{color:var(--gc-coral);border-color:rgba(224,85,51,.3)}
-.action-btn.resend:hover{background:rgba(224,85,51,.08);border-color:var(--gc-coral)}
+.action-btn{font-size:.74rem;padding:.32rem .7rem;border-radius:var(--radius-full);border:1px solid var(--line);background:var(--paper);color:var(--muted);cursor:pointer;font-family:var(--font-body);transition:all .15s;margin-right:.3rem}
+.action-btn:hover{border-color:var(--cobalt);color:var(--cobalt)}
+.action-btn.resend{color:#E05533;border-color:rgba(224,85,51,.3)}
+.action-btn.resend:hover{background:rgba(224,85,51,.08);border-color:#E05533}
 
-.empty{padding:3rem 1.5rem;text-align:center;color:var(--text-2);font-size:.95rem}
+.empty{padding:3rem 1.5rem;text-align:center;color:var(--muted);font-size:.95rem}
 .empty p{margin-bottom:.6rem}
-
-footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border);background:#fff}
 
 @media(max-width:780px){
   .stats{grid-template-columns:repeat(2,1fr)}
-  .head,.stats,.toolbar,.tbl-wrap{padding-left:1rem;padding-right:1rem}
 }
 </style>
-</head>
-<body>
+{% endblock %}
 
-<div class="appbar">
-  <div class="brand">
-    <div class="logo">N</div>
-    <span>EcoClassroom</span>
-    <span class="badge">Admin</span>
+{% block content %}
+<section class="section section--tint">
+  <div class="container">
+    <div class="section-head anim">
+      <span class="eyebrow">Admin</span>
+      <h1>Eco Classroom admin</h1>
+      <p class="lead">Student registry for the Eco Literacy program — registrations, progress, and completion status, with certificate resend and CSV export.</p>
+    </div>
   </div>
-  <div class="spacer"></div>
-  <div class="user">Signed in as <strong>{{ admin_user }}</strong></div>
-  <a href="/programs/eco-classroom" class="back">← Back to Catalog</a>
-</div>
+</section>
 
-<div class="head">
-  <h1>Eco Literacy — Student Registry</h1>
-  <p>All students who have registered for the course, plus their progress and completion status.</p>
-</div>
+<section class="section">
+  <div class="container">
 
 <div class="stats">
   <div class="stat-card blue">
@@ -150,7 +113,8 @@ footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.78rem;bord
     <option value="notstart">Not started</option>
   </select>
   <div class="actions">
-    <a href="/programs/eco-classroom/admin/export.csv" class="btn">⬇ Export CSV</a>
+    <button type="button" class="btn btn-ghost btn-sm" onclick="location.reload()">Refresh</button>
+    <a href="/programs/eco-classroom/admin/export.csv" class="btn btn-primary btn-sm">Export CSV</a>
   </div>
 </div>
 
@@ -193,7 +157,7 @@ footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.78rem;bord
         <td>
           <div class="meta">
             {% if r.parent_name %}{{ r.parent_name }}<br>{% endif %}
-            {% if r.parent_email %}<a href="mailto:{{ r.parent_email }}" style="color:var(--gc-blue)">{{ r.parent_email }}</a><br>{% endif %}
+            {% if r.parent_email %}<a href="mailto:{{ r.parent_email }}" style="color:var(--cobalt)">{{ r.parent_email }}</a><br>{% endif %}
             {% if r.parent_phone %}{{ r.parent_phone }}{% endif %}
           </div>
         </td>
@@ -259,11 +223,15 @@ footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.78rem;bord
   {% endif %}
 </div>
 
-<footer>
-  NexYouth EcoClassroom Admin · Data lives in <code>data/eco-registrations.csv</code>, <code>data/eco-submissions.csv</code>, <code>data/eco-completed.csv</code>
-</footer>
+    <p class="meta" style="color:var(--muted);font-size:.78rem;text-align:center;margin-top:.5rem">
+      Signed in as <strong style="color:var(--ink)">{{ admin_user }}</strong> · Data lives in <code>data/eco-registrations.csv</code>, <code>data/eco-submissions.csv</code>, <code>data/eco-completed.csv</code>
+    </p>
 
-<script>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
 function filterRows(){
   const q = document.getElementById('search').value.toLowerCase().trim();
   const statusFilter = document.getElementById('statusFilter').value;
@@ -304,6 +272,4 @@ async function resendCert(email, btn){
     setTimeout(()=>{ btn.disabled=false; btn.textContent=orig; }, 4000);
   }
 }
-</script>
-</body>
-</html>
+{% endblock %}
