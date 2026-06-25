@@ -1,1175 +1,252 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NexYouth - Meet our team of passionate youth leaders.">
-    <title>About Us - NexYouth</title>
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="About Us - NexYouth">
-    <meta property="og:description" content="Meet our team of passionate youth leaders empowering youth globally.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nexyouth.org/about">
-    <meta property="og:image" content="/static/logo.svg">
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
-    <link rel="apple-touch-icon" href="/static/logo.svg">
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #fff;
-        }
-
-        /* Navigation */
-        nav {
-            background: white;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            padding: 0.8rem 2rem;
-        }
-
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        nav .logo img {
-            height: 70px;
-            width: auto;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav li {
-            position: relative;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: color 0.2s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            white-space: nowrap;
-        }
-
-        nav a:hover {
-            color: #00d4ff;
-        }
-
-        /* Dropdown Menu */
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 220px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 0.5rem 0;
-            z-index: 100;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 0.8rem 1.2rem;
-            font-size: 0.9rem;
-            text-transform: none;
-            letter-spacing: 0;
-        }
-
-        .dropdown-menu a:hover {
-            background: #f5f5f5;
-        }
-
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-btn span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-btn.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .mobile-menu-btn.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-btn.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
-            color: white;
-            text-align: center;
-            padding: 6rem 2rem;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
-
-        /* Who We Are Section */
-        .who-we-are {
-            padding: 6rem 2rem 2rem 2rem;
-            background: white;
-        }
-
-        .who-we-are h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #1a1a2e;
-            text-align: center;
-        }
-
-        .who-we-are-content {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 4rem;
-            align-items: flex-start;
-            margin-bottom: 3rem;
-        }
-
-        .who-we-are-text {
-            text-align: center;
-        }
-
-        .who-we-are-text {
-            text-align: left;
-        }
-
-        .who-we-are-text p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 1.5rem;
-        }
-
-        .who-we-are-featured {
-            text-align: center;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .featured-founder {
-            text-align: center;
-        }
-
-        .featured-founder img {
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
-            object-position: center 18%;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: block;
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
-        }
-
-        .featured-founder h3 {
-            font-size: 1.3rem;
-            color: #1a1a2e;
-            margin-bottom: 0.5rem;
-        }
-
-        .featured-founder .title {
-            color: #00d4ff;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .featured-founder p {
-            font-size: 0.9rem;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .who-we-are-featured img {
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: block;
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
-        }
-
-        .who-we-are-featured h3 {
-            font-size: 1.4rem;
-            color: #1a1a2e;
-            margin-bottom: 0.5rem;
-        }
-
-        .who-we-are-featured .title {
-            color: #00d4ff;
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-
-        .who-we-are-featured p {
-            font-size: 0.95rem;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Our Story Section */
-        .our-story {
-            padding: 2rem 2rem 3rem 2rem;
-            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-        }
-
-        .our-story h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #1a1a2e;
-            text-align: center;
-        }
-
-        .our-story-content {
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 3rem;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 900px) {
-            .our-story-content {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-        }
-
-        .our-story-text {
-            text-align: left;
-        }
-
-        .our-story-text p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 1.5rem;
-        }
-
-        .our-story-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        .our-story-image img {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        /* What We Do Section */
-        .what-we-do {
-            padding: 3rem 2rem 6rem 2rem;
-            background: white;
-        }
-
-        .what-we-do h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #1a1a2e;
-            text-align: center;
-        }
-
-        .what-we-do-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .what-we-do-text {
-            text-align: left;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .what-we-do-text p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 0.8rem;
-        }
-
-        .what-we-do-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        .what-we-do-image img {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Leadership Section */
-        .leadership {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-        }
-
-        .leadership h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-            color: #1a1a2e;
-        }
-
-        .leadership > .container > p {
-            text-align: center;
-            color: #666;
-            font-size: 1.05rem;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            line-height: 1.7;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2.5rem;
-        }
-
-        .team-member {
-            text-align: center;
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .team-member:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .team-member-image {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, #e8f9ff 0%, #d0f0ff 100%);
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
-        }
-
-        .team-member-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 18%;
-        }
-
-        .team-member h3 {
-            font-size: 1.2rem;
-            color: #1a1a2e;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .team-member .title {
-            color: #00d4ff;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .team-member .bio {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-
-        .team-member .social-link {
-            display: inline-block;
-            color: #00d4ff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
-        .team-member .social-link:hover {
-            text-decoration: underline;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
-            color: white;
-            text-align: center;
-            padding: 6rem 2rem;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-
-        .cta-section p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
-        }
-
-        footer {
-            background: #000;
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        footer p {
-            color: #999;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 0.8rem 1rem;
-            }
-
-            nav .logo img {
-                height: 50px;
-            }
-
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                gap: 0;
-                border-top: 1px solid #eee;
-            }
-
-            nav ul.active {
-                display: flex;
-            }
-
-            nav li {
-                width: 100%;
-                position: relative;
-            }
-
-            nav a {
-                display: block;
-                padding: 1rem 2rem;
-                font-size: 0.9rem;
-                text-transform: uppercase;
-            }
-
-            .dropdown-menu {
-                position: static;
-                display: none;
-                box-shadow: none;
-                background: #f5f5f5;
-                border-radius: 0;
-                min-width: auto;
-            }
-
-            .dropdown-menu.active {
-                display: block;
-            }
-
-            .dropdown-menu a {
-                padding: 0.6rem 2rem 0.6rem 3rem;
-                font-size: 0.85rem;
-            }
-
-            .dropdown:hover .dropdown-menu {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: flex;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .hero {
-                padding: 3rem 1rem;
-            }
-
-            .hero h1 {
-                font-size: 1.8rem;
-                margin-bottom: 0.8rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .who-we-are {
-                padding: 3rem 1rem;
-            }
-
-            .who-we-are h2 {
-                font-size: 1.8rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .who-we-are-content,
-            .our-story-content,
-            .what-we-do-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .who-we-are-featured {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .featured-founder img,
-            .who-we-are-featured img {
-                width: 140px;
-                height: 140px;
-            }
-
-            .featured-founder h3,
-            .who-we-are-featured h3 {
-                font-size: 1.1rem;
-            }
-
-            .featured-founder p,
-            .who-we-are-featured p {
-                font-size: 0.85rem;
-            }
-
-            .what-we-do {
-                padding: 3rem 1rem;
-            }
-
-            .what-we-do h2 {
-                font-size: 1.8rem;
-            }
-
-            .what-we-do-text p {
-                font-size: 1rem;
-            }
-
-            .leadership {
-                padding: 3rem 1rem;
-            }
-
-            .leadership h2 {
-                font-size: 1.8rem;
-                margin-bottom: 1rem;
-            }
-
-            .leadership > .container > p {
-                font-size: 0.95rem;
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .team-member {
-                padding: 1.5rem;
-            }
-
-            .team-member-image {
-                width: 100px;
-                height: 100px;
-            }
-
-            .cta-section {
-                padding: 3rem 1rem;
-            }
-
-            .cta-section h2 {
-                font-size: 1.5rem;
-                margin-bottom: 0.8rem;
-            }
-
-            .cta-section p {
-                font-size: 0.95rem;
-            }
-
-            .cta-btn {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.9rem;
-            }
-
-            footer {
-                padding: 2rem 1rem;
-            }
-
-            footer .links {
-                gap: 1rem;
-            }
-
-            footer a {
-                font-size: 0.85rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav {
-                padding: 0.6rem 0.8rem;
-            }
-
-            nav .logo img {
-                height: 40px;
-            }
-
-            nav a {
-                font-size: 0.9rem;
-            }
-
-            .hero h1 {
-                font-size: 1.4rem;
-            }
-
-            .hero p {
-                font-size: 0.9rem;
-            }
-
-            .who-we-are h2,
-            .what-we-do h2,
-            .leadership h2 {
-                font-size: 1.5rem;
-            }
-
-            .who-we-are-featured {
-                grid-template-columns: 1fr;
-            }
-
-            .featured-founder img,
-            .who-we-are-featured img {
-                width: 120px;
-                height: 120px;
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .team-member {
-                padding: 1rem;
-            }
-
-            .team-member-image {
-                width: 80px;
-                height: 80px;
-            }
-
-            .cta-section h2 {
-                font-size: 1.3rem;
-            }
-
-            .cta-btn {
-                padding: 0.7rem 1.2rem;
-                font-size: 0.85rem;
-                display: block;
-                width: 100%;
-                text-align: center;
-            }
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <div class="container">
-            <a href="/" class="logo">
-                <img src="/static/logo.svg" alt="NexYouth">
-            </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul id="navMenu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/#what-we-do">What We Do</a></li>
-                <li class="dropdown">
-                    <a href="/#programs">Programs ▾</a>
-                    <div class="dropdown-menu" id="programsDropdown">
-                        <a href="/programs/skill-development">Skill Development Courses</a>
-                        <a href="/programs/seminars">Seminars & Workships</a>
-                        <a href="/programs/mentorship">Global Mentorship Network</a>
-                        <a href="javascript:void(0)">Youth Environmental Challenge</a>
-                        <a href="/programs/youth-tech-lab">Youth Tech Lab</a>
-                    </div>
-                </li>
-                <li><a href="/chapters">Chapters</a></li>
-                <li><a href="/#community">Community</a></li>
-                <li><a href="/partner">Partner</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
+{% extends "base.html" %}
+
+{% block title %}About us — NexYouth{% endblock %}
+{% block description %}NexYouth is a youth-led nonprofit founded in 2023, empowering young people across Ontario and beyond through skills, mentorship, and community.{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="section section--tint">
+    <div class="container">
+        <div class="section-head center anim">
+            <span class="eyebrow">About us</span>
+            <h1>The team behind NexYouth</h1>
+            <p class="lead">A youth-run nonprofit supporting students across diverse backgrounds through education, mentorship, and service — built on the belief that young people are capable leaders in creating change.</p>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>The Team Behind NexYouth</h1>
-            <p>At the heart of NexYouth is our inspiring community of volunteers — passionate individuals who dedicate their time, skills, and creativity to driving meaningful change. Coming from diverse backgrounds in science, education, advocacy, and the arts, our volunteers share a common commitment to protecting the environment and empowering youth.</p>
+<!-- Who we are -->
+<section class="section">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">Who we are</span>
+            <h2>Youth leading change, not just receiving it</h2>
         </div>
-    </section>
+        <div class="anim">
+            <p class="lead">NexYouth was founded by a small group of high school students who recognised gaps in educational access and sought to address them through peer-led action. What began as a student initiative has grown into a youth-run nonprofit supporting students across diverse backgrounds through education, mentorship, and service.</p>
+            <p>Our work is grounded in the belief that young people are not only beneficiaries of change, but capable leaders in creating it. Through partnerships with schools, community organisations, and youth groups, NexYouth provides structured opportunities for students to develop academic skills, leadership capacity, and a sense of civic responsibility.</p>
+            <p>Led entirely by students, our organisation emphasises sustainable impact, collaboration, and access. By lowering barriers to quality learning and leadership opportunities, NexYouth aims to equip young people with the confidence, skills, and perspective needed to contribute meaningfully to their communities and beyond.</p>
+        </div>
+    </div>
+</section>
 
-    <!-- Who We Are Section -->
-    <section class="who-we-are">
-        <div class="container">
-            <h2>Who We Are</h2>
-            
-            <div class="who-we-are-content">
-                <div class="who-we-are-text">
-                    <p>NexYouth was founded by a small group of high school students who recognized gaps in educational access and sought to address them through peer-led action. What began as a student initiative has grown into a youth-run nonprofit supporting students across diverse backgrounds through education, mentorship, and service.</p>
-                    <p>Our work is grounded in the belief that young people are not only beneficiaries of change, but capable leaders in creating it. Through partnerships with schools, community organizations, and youth groups, NexYouth provides structured opportunities for students to develop academic skills, leadership capacity, and a sense of civic responsibility.</p>
-                    <p>Led entirely by students, our organization emphasizes sustainable impact, collaboration, and access. By lowering barriers to quality learning and leadership opportunities, NexYouth aims to equip young people with the confidence, skills, and perspective needed to contribute meaningfully to their communities and beyond.</p>
-                </div>
+<!-- Our story -->
+<section class="section section--paper">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">Our story</span>
+            <h2>Founded in 2023, shaped by a pandemic</h2>
+        </div>
+        <div class="anim">
+            <p>NexYouth was founded in 2023 by high school students whose experiences during the COVID-19 pandemic reshaped how they viewed education, access, and youth leadership. As schools moved online and support systems became uneven, our founders saw firsthand how many young people were left without guidance, structure, or opportunities to grow.</p>
+            <p>Motivated by this experience, NexYouth began as a youth-led initiative focused on creating spaces where students could reconnect, develop skills, and take initiative. What started with a small group of volunteers has since grown into a broader youth network spanning multiple countries.</p>
+            <p>Today, NexYouth is built on a simple belief: young people are capable of leading meaningful change when given responsibility, trust, and the chance. Through youth-designed programs and partnerships with schools and community organisations, we work to expand access to learning opportunities and leadership experiences, while empowering students to support one another and contribute with purpose.</p>
+        </div>
+    </div>
+</section>
 
-                <div class="who-we-are-featured">
-                    <div class="featured-founder">
-                        <img src="/static/justin.jpg" alt="Justin Huang - Co-Founder" onerror="this.src='/static/placeholder.jpg'">
-                        <h3>Justin Huang</h3>
-                        <span class="title">Co-Founder</span>
-                        <p>Justin is the co-founder of NexYouth. He is interested in how young people learn through experience, connection, and initiative, and focuses on creating spaces where youth can explore ideas and take ownership of what they care about.</p>
-                    </div>
-
-                    <div class="featured-founder">
-                        <div style="width:180px;height:180px;border-radius:50%;overflow:hidden;margin:0 auto 1.5rem;box-shadow:0 5px 20px rgba(0,212,255,.2);">
-                            <img src="/static/Max.jpg" alt="Max Wen - Co-Founder" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;transform:scale(1.5);transform-origin:center 35%;border-radius:0;margin:0;box-shadow:none;display:block;" onerror="this.src='/static/placeholder.jpg'">
-                        </div>
-                        <h3>Max Wen</h3>
-                        <span class="title">Co-Founder</span>
-                        <p>Max co-founded NexYouth with a vision to democratize access to quality education and mentorship for youth globally. Passionate about creating systemic change through youth empowerment.</p>
-                    </div>
-                </div>
+<!-- What we do -->
+<section class="section section--tint">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">What we do</span>
+            <h2>Programs for every stage of the journey</h2>
+            <p class="lead">We operate three core programs designed to serve young people at different stages of their journey, and we keep innovating alongside the youth we serve to build initiatives with real, lasting impact.</p>
+        </div>
+        <div class="grid grid-auto anim-stagger">
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+                <h3>Skill Development Courses</h3>
+                <p>Comprehensive courses covering essential topics from public speaking to STEM, delivered by passionate instructors committed to youth success.</p>
+            </div>
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18v12H3z"/><path d="M8 20h8M12 16v4"/></svg></span>
+                <h3>Seminars &amp; Workshops</h3>
+                <p>We bring industry leaders and experts together with young people for interactive sessions on emerging opportunities and global challenges.</p>
+            </div>
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 4a3 3 0 0 1 0 6M21 20c0-2.5-1.5-4-3.5-4.5"/></svg></span>
+                <h3>Global Mentorship Network</h3>
+                <p>Our mentorship program connects youth with experienced professionals worldwide who provide personalised guidance for career development and personal growth.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Our Story Section -->
-    <section class="our-story">
-        <div class="container">
-            <h2>Our Story</h2>
-            <div class="our-story-content">
-                <div class="our-story-image">
-                    <img src="/static/max%20and%20justin%20award.jpg" alt="NexYouth founders Max and Justin receiving the Ingenious+ Regional Award">
-                </div>
-                <div class="our-story-text">
-                    <p>NexYouth was founded in 2023 by high school students whose experiences during the COVID-19 pandemic reshaped how they viewed education, access, and youth leadership. As schools moved online and support systems became uneven, our founders saw firsthand how many young people were left without guidance, structure, or opportunities to grow.</p>
-                    <p>Motivated by this experience, NexYouth began as a youth-led initiative focused on creating spaces where students could reconnect, develop skills, and take initiative. What started with a small group of volunteers has since grown into a broader youth network spanning multiple countries.</p>
-                    <p>Today, NexYouth is built on a simple belief: young people are capable of leading meaningful change when given responsibility, trust, and the chance. Through youth-designed programs and partnerships with schools and community organizations, we work to expand access to learning opportunities and leadership experiences, while empowering students to support one another and contribute with purpose.</p>
-                </div>
-                <div class="our-story-image">
-                    <img src="/static/main_background.mp4" alt="NexYouth Community" onerror="this.style.display='none'">
-                </div>
+<!-- Founders -->
+<section class="section">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">Our founders</span>
+            <h2>Where NexYouth started</h2>
+        </div>
+        <div class="grid grid-auto anim-stagger">
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">JH</span>
+                <h3>Justin Huang</h3>
+                <p>Co-Founder</p>
+                <p>Justin is the co-founder of NexYouth. He is interested in how young people learn through experience, connection, and initiative, and focuses on creating spaces where youth can explore ideas and take ownership of what they care about.</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">MW</span>
+                <h3>Max Wen</h3>
+                <p>Co-Founder</p>
+                <p>Max co-founded NexYouth with a vision to democratise access to quality education and mentorship for youth globally. Passionate about creating systemic change through youth empowerment.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- What We Do Section -->
-    <section class="what-we-do">
-        <div class="container">
-            <h2>What We Do</h2>
-            <div class="what-we-do-content">
-                <div class="what-we-do-text">
-                    <p>We operate three core programs designed to serve young people at different stages of their journey:</p>
-                    <p><strong>Skill Development Courses:</strong> Our comprehensive courses cover essential topics from public speaking to STEM, delivered by passionate instructors committed to youth success.</p>
-                    <p><strong>Seminars & Workships:</strong> We bring industry leaders and experts together with young people for interactive sessions on emerging opportunities and global challenges.</p>
-                    <p><strong>Global Mentorship Network:</strong> Our mentorship program connects youth with experienced professionals worldwide who provide personalized guidance and support for career development and personal growth.</p>
-                    <p>Beyond these programs, we're constantly innovating and listening to the youth we serve to develop initiatives that have real, lasting impact.</p>
-                </div>
-                <div class="what-we-do-image">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=400&fit=crop" alt="NexYouth Programs" onerror="this.style.display='none'">
-                </div>
+<!-- Leadership & team -->
+<section class="section section--paper">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">Our leadership</span>
+            <h2>The team driving our vision</h2>
+            <p class="lead">Our leadership team is comprised of passionate youth leaders from across the globe, each bringing unique expertise and a commitment to youth empowerment. They guide NexYouth's vision and strategy.</p>
+        </div>
+        <div class="grid grid-auto anim-stagger">
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">SU</span>
+                <h3>Stephanie Uzea</h3>
+                <p>Canada President &amp; Director of Operations</p>
+                <p>Stephanie brings strategic vision and operational excellence to NexYouth. As Canada President and Director of Operations, she oversees Canadian operations and manages our growing team of volunteers and partners.</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">XY</span>
+                <h3>Xuhan Yang</h3>
+                <p>Director of Technology</p>
+                <p>Xuhan, as Director of Technology, oversees our technology initiatives, developing digital solutions to make NexYouth's programs accessible to youth around the world. Passionate about innovation and impact.</p>
+            </div>
+            <div class="card">
+                <img class="avatar" src="/static/profile_ethanluo.jpg" alt="Ethan Luo" style="width:72px;height:72px;font-size:1.4rem">
+                <h3>Ethan Luo</h3>
+                <p>Oakville Chapter President</p>
+                <p>Ethan is a Grade 10 student at Abbey Park High School in Oakville. With 2 years of competitive debate experience, he has advanced at prestigious tournaments such as Harvard WSDC, Queens BPHS, McGill BPHS, and Hart House High Schools. Outside debate, he enjoys clarinet, trail running, and co-hosting Perception Podcast.</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">RW</span>
+                <h3>Rachel Wei</h3>
+                <p>Coquitlam Chapter President</p>
+                <p>Rachel, as president of the Coquitlam Chapter, oversees the chapter and is instrumental in building community connections. She's dedicated to making NexYouth's programs accessible to local youth.</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">CH</span>
+                <h3>Chloe Huang</h3>
+                <p>Secretary</p>
+                <p>Chloe is a Grade 11 student at Earl of March High School. She is an avid volleyball player and loves sports!</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">KJ</span>
+                <h3>Keerti Joshi</h3>
+                <p>Debate Coach</p>
+                <p>I'm Keerti, I'm a grade 11 student at Upper Canada College. I've been debating since Grade 8 and I debate in both WSDC and BP formats. I am a new member of the Canadian National Debating Team.</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">KY</span>
+                <h3>Kristen Yip</h3>
+                <p>Debate Coach</p>
+                <p>Kristen Y (she/her) is a grade 9 student and avid debater. Achievements include: Top 4th speaker and top jr speaker (Harthouse Winter Open), top 3rd speaker and grand finalist (Harthouse Summer Open).</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">CZ</span>
+                <h3>Cody Zhang</h3>
+                <p>Economics Instructor</p>
+                <p>Cody Zhang is a high schooler from Toronto and scored a 5 on AP Micro and makes economics simple, fun, and engaging!</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">JL</span>
+                <h3>Jeffrey Liu</h3>
+                <p>Debate Coach</p>
+                <p>Hi, I'm Jeffrey! I am a grade 11 student at Milliken Mills High School. In my free time I love cooking food, listening to music, and working out! Passionate about accessibility in debate.</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">AL</span>
+                <h3>Amy Liu</h3>
+                <p>Debate Coach</p>
+                <p>Amy is a G10 student and a competitive debater who has won many debate tournaments.</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">FZ</span>
+                <h3>Ferrari Zhang</h3>
+                <p>Debate Coach</p>
+                <p>Ferrari is a G10 student and a competitive debater, who loves argumentation and refutation!</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">TG</span>
+                <h3>Terrence Guo</h3>
+                <p>Debate Coach</p>
+                <p>Terrence is a G12 student and a competitive debater at the national level, winning many debating tournaments, including being the top speaker at Hart House High Schools.</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">YS</span>
+                <h3>Yunfei Shuai</h3>
+                <p>Contests Organizer</p>
+                <p>Yunfei wrote her first story when she was 7 years old and never looked back since. She is an avid sci-fi enthusiast and an aspiring astrophysicist.</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">SZ</span>
+                <h3>Susan Zheng</h3>
+                <p>Contests Organizer</p>
+                <p>Susan finds way too much enjoyment in daydreaming about fictional scenarios and promising herself she'll finish a project tomorrow. A sci-fi fanatic, she obsesses over specific concepts.</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">SI</span>
+                <h3>Shahrad Islam</h3>
+                <p>Science Instructor</p>
+                <p>Hi! My name is Shahrad! Some things you should know about me are that I like playing sports, playing instruments, watching movies and shows, and I really like cats!</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">RL</span>
+                <h3>Ronnie Liu</h3>
+                <p>Science Instructor</p>
+                <p>Hello, my name is Ronnie Liu. I am a gifted grade 10 scholar at Richmond Hill High School. I love teaching because I enjoy watching children learn and discover new things.</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">AY</span>
+                <h3>Aaron Yang</h3>
+                <p>Debate Coach</p>
+                <p>Aaron is a high school student at University of Toronto Schools with a strong passion about Debate and Competitive Programming. Has been competing for 3 years and is the only junior-qualifying senior national semifinalist in recent years. Achievements include top performer in age group at Harvard World Schools and Hart House Junior Quarterfinalist. Outside of debate, enjoys ultimate frisbee and exploring Classics.</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">HJ</span>
+                <h3>Haim Joshi</h3>
+                <p>Debate Coach</p>
+                <p>Haim Joshi is a grade nine at UCC, having been debating for 2 years. Achievements include: 1st Open Speaker and 1st Junior Speaker at UofT's HHWO, Octofinalist at Oxford's WSDC (one of the biggest debate tournaments in the world with over 350 debaters), and 4th ranking team at HHHS (the biggest debate tournament in Canada).</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">IL</span>
+                <h3>Isolde Li</h3>
+                <p>Debate Coach</p>
+                <p>I am an IB student attending Bayview Secondary School. I have been debating competitively for 3 years and finalled in major debate tournaments such as Western, Queen's, EDS, and Waterloo. Besides debate, I like to dance, write, and learn about philosophy.</p>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">VP</span>
+                <h3>Vincent Pham</h3>
+                <p>Coding Instructor</p>
+                <p>Vincent is an IB Grade 11 student from Ottawa who enjoys building projects ranging from websites and games to apps and machine learning. He is proficient in full-stack development, Python, and Swift, and has performed well in several Canadian computer science competitions. Outside of coding, he is an award-winning violinist and enjoys running with his goldendoodle, Isabelle.</p>
+            </div>
+            <div class="card">
+                <img class="avatar" src="/static/profile_williamwu.jpg" alt="William Wu" style="width:72px;height:72px;font-size:1.4rem">
+                <h3>William Wu</h3>
+                <p>Coding Instructor</p>
+                <p>William Wu is a high school student at University of Toronto Schools with a strong interest in STEM. He enjoys exploring coding and problem-solving and is excited to help students build a solid foundation in programming through NexYouth.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Leadership Section -->
-    <section class="leadership">
-        <div class="container">
-            <h2>Our Leadership</h2>
-            <p>Our leadership team is comprised of passionate youth leaders from across the globe, each bringing unique expertise and a commitment to youth empowerment. They guide NexYouth's vision and strategy.</p>
-
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="/static/justin.jpg" alt="Justin Huang" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Justin Huang</h3>
-                    <span class="title">Co-Founder</span>
-                    <p>Justin is the co-founder of NexYouth. He is interested in how young people learn through experience, connection, and initiative, and focuses on creating spaces where youth can explore ideas and take ownership of what they care about.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="/static/Max.jpg" alt="Max Wen" style="object-position:center 30%;transform:scale(1.5);transform-origin:center 35%" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Max Wen</h3>
-                    <span class="title">Co-Founder</span>
-                    <p>Max is dedicated to making youth development accessible globally. With expertise in program design, he drives innovation in our initiatives and curriculum.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Suzea1.png" alt="Stephanie Uzea" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Stephanie Uzea</h3>
-                    <span class="title">Canada President & Director of Operations</span>
-                    <p>Stephanie brings strategic vision and operational excellence to NexYouth. As Canada President and Director of Operations, she oversees Canadian operations and manages our growing team of volunteers and partners.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Xyang1.jpg" alt="Xuhan Yang" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Xuhan Yang</h3>
-                    <span class="title">Director of Technology</span>
-                    <p>Xuhan, as Director of Technology, oversees our technology initiatives, developing digital solutions to make NexYouth's programs accessible to youth around the world. Passionate about innovation and impact.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Eluo1.png" alt="Ethan Luo" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Ethan Luo</h3>
-                    <span class="title">Oakville Chapter President</span>
-                    <p>Ethan is a Grade 10 student at Abbey Park High School in Oakville. With 2 years of competitive debate experience, he has advanced at prestigious tournaments such as Harvard WSDC, Queens BPHS, McGill BPHS, and Hart House High Schools. Outside debate, he enjoys clarinet, trail running, and co-hosting Perception Podcast.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Rwei1.png" alt="Rachel Wei" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Rachel Wei</h3>
-                    <span class="title">Coquitlam Chapter President</span>
-                    <p>Rachel, as president of the Coquitlam Chapter, oversees the chapter and is instrumental in building community connections. She's dedicated to making NexYouth's programs accessible to local youth.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Chuan1.jpg" alt="Chloe Huang" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Chloe Huang</h3>
-                    <span class="title">Secretary</span>
-                    <p>Chloe is a Grade 11 student at Earl of March High School. She is an avid volleyball player and loves sports!</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Kjosh1.png" alt="Keerti Joshi" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Keerti Joshi</h3>
-                    <span class="title">Debate Coach</span>
-                    <p>I'm Keerti, I'm a grade 11 student at Upper Canada College. I've been debating since Grade 8 and I debate in both WSDC and BP formats. I am a new member of the Canadian National Debating Team.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Kyip1.png" alt="Kristen Yip" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Kristen Yip</h3>
-                    <span class="title">Debate Coach</span>
-                    <p>Kristen Y (she/her) is a grade 9 student and avid debater. Achievements include: Top 4th speaker+top jr speaker (Harthouse Winter Open), top 3rd speaker + grand finalist (Harthouse Summer Open).</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Czhan1.png" alt="Cody Zhang" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Cody Zhang</h3>
-                    <span class="title">Economics Instructor</span>
-                    <p>Cody Zhang is a high schooler from Toronto and scored a 5 on AP Micro and makes economics simple, fun, and engaging!</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Jliu1.png" alt="Jeffrey Liu" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Jeffrey Liu</h3>
-                    <span class="title">Debate Coach</span>
-                    <p>Hi, I'm Jeffrey! I am a grade 11 student at Milliken Mills High School. In my free time I love cooking food, listening to music, and working out! Passionate about accessibility in debate.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Aliu1.png" alt="Amy Liu" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Amy Liu</h3>
-                    <span class="title">Debate Coach</span>
-                    <p>Amy is a G10 student and a competitive debater who has won many debate tournaments.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Fzhan1.jpg" alt="Ferrari Zhang" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Ferrari Zhang</h3>
-                    <span class="title">Debate Coach</span>
-                    <p>Ferrari is a G10 student and a competitive debater, who loves argumentation and refutation!</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Tguo1.png" alt="Terrence Guo" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Terrence Guo</h3>
-                    <span class="title">Debate Coach</span>
-                    <p>Terrence is a G12 student and a competitive debater at the national level, winning many debating tournaments, including being the top speaker at Hart House High Schools.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Yshua1.png" alt="Yunfei Shuai" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Yunfei Shuai</h3>
-                    <span class="title">Contests Organizer</span>
-                    <p>Yunfei wrote her first story when she was 7 years old and never looked back since. She is an avid sci-fi enthusiast and an aspiring astrophysicist.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Szhen1.png" alt="Susan Zheng" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Susan Zheng</h3>
-                    <span class="title">Contests Organizer</span>
-                    <p>Susan finds way too much enjoyment in daydreaming about fictional scenarios and promising herself she'll finish a project tomorrow. A sci-fi fanatic, she obsesses over specific concepts.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Sisla1.png" alt="Shahrad Islam" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Shahrad Islam</h3>
-                    <span class="title">Science Instructor</span>
-                    <p>Hi! My name is Shahrad! Some things you should know about me are that I like playing sports, playing instruments, watching movies and shows, and I really like cats!</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="https://www.nexyouth.org/Member_Rliu1.png" alt="Ronnie Liu" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Ronnie Liu</h3>
-                    <span class="title">Science Instructor</span>
-                    <p>Hello, my name is Ronnie Liu. I am a gifted grade 10 scholar at Richmond Hill High School. I love teaching because I enjoy watching children learn and discover new things.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="/static/AaronYang.jpg" alt="Aaron Yang" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Aaron Yang</h3>
-                    <span class="title">Debate Coach</span>
-                    <p>Aaron is a high school student at University of Toronto Schools with a strong passion about Debate and Competitive Programming. Has been competing for 3 years and is the only junior-qualifying senior national semifinalist in recent years. Achievements include top performer in age group at Harvard World Schools and Hart House Junior Quarterfinalist. Outside of debate, enjoys ultimate frisbee and exploring Classics.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="/static/HaimJoshi.jpg" alt="Haim Joshi" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Haim Joshi</h3>
-                    <span class="title">Debate Coach</span>
-                    <p>Haim Joshi is a grade nine at UCC, having been debating for 2 years. Achievements include: 1st Open Speaker and 1st Junior Speaker at UofT's HHWO, Octofinalist at Oxford's WSDC (one of the biggest debate tournaments in the world with over 350 debaters), and 4th ranking team at HHHS (the biggest debate tournament in Canada).</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="/static/Volunteer_DebateCoach_IsoldeLi.png" alt="Isolde Li" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Isolde Li</h3>
-                    <span class="title">Debate Coach</span>
-                    <p>I am an IB student attending Bayview Secondary School. I have been debating competitively for 3 years and finalled in major debate tournaments such as Western, Queen's, EDS, and Waterloo. Besides debate, I like to dance, write, and learn about philosophy.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="/static/VincentPham.jpg" alt="Vincent Pham" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>Vincent Pham</h3>
-                    <span class="title">Coding Instructor</span>
-                    <p>Vincent is an IB Grade 11 student from Ottawa who enjoys building projects ranging from websites and games to apps and machine learning. He is proficient in full-stack development, Python, and Swift, and has performed well in several Canadian computer science competitions. Outside of coding, he is an award-winning violinist and enjoys running with his goldendoodle, Isabelle.</p>
-                </div>
-
-                <div class="team-member">
-                    <div class="team-member-image">
-                        <img src="/static/WilliamWang.jpg" alt="William Wu" onerror="this.src='/static/placeholder.jpg'">
-                    </div>
-                    <h3>William Wu</h3>
-                    <span class="title">Coding Instructor</span>
-                    <p>William Wu is a high school student at University of Toronto Schools with a strong interest in STEM. He enjoys exploring coding and problem-solving and is excited to help students build a solid foundation in programming through NexYouth.</p>
-                </div>
+<!-- CTA -->
+<section class="section--blue">
+    <div class="container">
+        <div class="cta-band anim">
+            <h2>Join our movement</h2>
+            <p>Whether you're a young person looking to develop skills, a professional wanting to mentor, or an organisation interested in partnering with us, we'd love to hear from you.</p>
+            <div class="cta-actions">
+                <a href="{{ get_involved_url }}" target="_blank" rel="noopener" class="btn btn-light btn-lg">Get involved</a>
+                <a href="/contact" class="btn btn-on-dark-ghost btn-lg">Contact us</a>
             </div>
         </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Join Our Movement</h2>
-            <p>Whether you're a young person looking to develop skills, a professional wanting to mentor, or an organization interested in partnering with us, we'd love to hear from you.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform?pli=1" class="cta-btn">Get Involved</a>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile menu functionality
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        const programsDropdown = document.querySelector('.dropdown a');
-        const dropdownMenu = document.getElementById('programsDropdown');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when clicking on a link
-        const navLinks = document.querySelectorAll('#navMenu a:not([href*="Programs"])');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuBtn.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Handle programs dropdown on mobile
-        const dropdownTrigger = document.querySelector('.dropdown a');
-        dropdownTrigger.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                dropdownMenu.classList.toggle('active');
-            }
-        });
-
-        // Handle dropdown menu items click on mobile
-        const dropdownItems = document.querySelectorAll('.dropdown-menu a');
-        dropdownItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    // Close menu but allow navigation to proceed
-                    mobileMenuBtn.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    dropdownMenu.classList.remove('active');
-                    // Let the link navigate
-                }
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('nav')) {
-                mobileMenuBtn.classList.remove('active');
-                navMenu.classList.remove('active');
-                dropdownMenu.classList.remove('active');
-            }
-        });
-    </script>
-</body>
-</html>
+    </div>
+</section>
+{% endblock %}
