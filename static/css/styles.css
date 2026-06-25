@@ -141,7 +141,8 @@ h3 { font-size: clamp(1.2rem, 2.2vw, 1.5rem); }
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
 .btn-ghost:hover { border-color: var(--ink); color: var(--ink); background: rgba(11, 16, 48, .04); }
 .btn-light { background: #fff; color: var(--cobalt); }
-.btn-light:hover { background: var(--tint); color: var(--cobalt-deep); transform: translateY(-2px); }
+/* --tint-2 is NOT theme-registered, so it stays light in the homepage dark zone — avoids the white button going dark-on-dark on hover */
+.btn-light:hover { background: var(--tint-2); color: var(--cobalt-deep); transform: translateY(-2px); }
 .btn-on-dark-ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .4); }
 .btn-on-dark-ghost:hover { background: rgba(255, 255, 255, .12); color: #fff; border-color: #fff; }
 .btn-sm { padding: .6rem 1.1rem; min-height: 42px; font-size: .92rem; }

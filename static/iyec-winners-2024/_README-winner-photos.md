@@ -1,4 +1,7 @@
-# Award-winner photos — drop the 8 files here
+# Award-winner photos — 7 of 8 filled (1 still needed)
+
+> **Update (June 25):** 7 photos were found already in `static/` (the `winner_<Name>.png` files) and copied in here as `image-9/10/11/12/14/15/16.png`. Only **`image-13.png` (Earth Z Team)** is still missing — drop that one file here when you have it and it'll appear automatically.
+
 
 The `environmental-competition` page ("Award Winners" section) shows photos of the 2024
 Youth Environmental Challenge winners. They used to load from

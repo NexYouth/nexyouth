@@ -29,6 +29,7 @@
     }
     .contact-form textarea { resize: vertical; min-height: 160px; line-height: 1.6; }
     .contact-form .btn { justify-self: start; margin-top: .3rem; }
+    .copy-feedback { display: inline-block; font-size: .85rem; font-weight: 600; color: var(--cobalt); }
 </style>
 {% endblock %}
 
@@ -45,7 +46,7 @@
 </section>
 
 <!-- Contact form + info -->
-<section class="section">
+<section class="section section--navy">
     <div class="container">
         <div class="grid anim" style="grid-template-columns: 1.3fr 1fr; align-items: start;">
             <div class="card">
@@ -79,7 +80,7 @@
                     <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
                     <h3>Email us</h3>
                     <p>The quickest way to reach the team for partnerships, enquiries, and opportunities.</p>
-                    <p><a class="link-arrow" href="mailto:nexyouth.master@gmail.com">nexyouth.master@gmail.com<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+                    <p><a class="link-arrow email-copy" href="mailto:nexyouth.master@gmail.com" data-copy="nexyouth.master@gmail.com">nexyouth.master@gmail.com<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a> <span class="copy-feedback" aria-live="polite"></span></p>
                 </div>
                 <div class="card">
                     <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
@@ -110,4 +111,18 @@
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block scripts %}
+        // Email link: always copy to clipboard with confirmation (mailto still fires for users with a mail client)
+        document.querySelectorAll('.email-copy').forEach(function (a) {
+            a.addEventListener('click', function () {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(a.getAttribute('data-copy')).then(function () {
+                        var fb = a.parentNode.querySelector('.copy-feedback');
+                        if (fb) { fb.textContent = 'Copied to clipboard'; setTimeout(function () { fb.textContent = ''; }, 2500); }
+                    });
+                }
+            });
+        });
 {% endblock %}
