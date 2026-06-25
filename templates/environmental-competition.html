@@ -3262,7 +3262,7 @@
                         <div class="category-content">
                             <div class="winner-card">
                                 <div class="winner-photo">
-                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-10.png" alt="Amanullah Solangi">
+                                    <img src="/static/iyec-winners-2024/image-10.png" alt="Amanullah Solangi">
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">1st Place</div>
@@ -3276,7 +3276,7 @@
                             </div>
                             <div class="winner-card">
                                 <div class="winner-photo">
-                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-9.png" alt="Ngo Anh Tuan & Duong Hai Mien">
+                                    <img src="/static/iyec-winners-2024/image-9.png" alt="Ngo Anh Tuan & Duong Hai Mien">
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">2nd Place</div>
@@ -3290,7 +3290,7 @@
                             </div>
                             <div class="winner-card">
                                 <div class="winner-photo">
-                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-11.png" alt="Chun-Shan CHANG">
+                                    <img src="/static/iyec-winners-2024/image-11.png" alt="Chun-Shan CHANG">
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">Honorable</div>
@@ -3304,7 +3304,7 @@
                             </div>
                             <div class="winner-card">
                                 <div class="winner-photo">
-                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-12.png" alt="William Zeng">
+                                    <img src="/static/iyec-winners-2024/image-12.png" alt="William Zeng">
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">Honorable</div>
@@ -3325,7 +3325,7 @@
                         <div class="category-content">
                             <div class="winner-card">
                                 <div class="winner-photo">
-                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-14.png" alt="Girl Scout Troop 436">
+                                    <img src="/static/iyec-winners-2024/image-14.png" alt="Girl Scout Troop 436">
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">1st Place</div>
@@ -3339,7 +3339,7 @@
                             </div>
                             <div class="winner-card">
                                 <div class="winner-photo">
-                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-15.png" alt="Rui-Tong Yuan" style="object-fit:contain;background:#fafafa">
+                                    <img src="/static/iyec-winners-2024/image-15.png" alt="Rui-Tong Yuan" style="object-fit:contain;background:#fafafa">
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">2nd Place</div>
@@ -3353,7 +3353,7 @@
                             </div>
                             <div class="winner-card">
                                 <div class="winner-photo">
-                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-16.png" alt="Syuan-Hao HUANG">
+                                    <img src="/static/iyec-winners-2024/image-16.png" alt="Syuan-Hao HUANG">
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">Honorable</div>
@@ -3374,7 +3374,7 @@
                         <div class="category-content">
                             <div class="winner-card">
                                 <div class="winner-photo">
-                                    <img src="https://globalenvironmentchallenge.org/wp-content/uploads/2024/07/image-13.png" alt="Earth Z Team">
+                                    <img src="/static/iyec-winners-2024/image-13.png" alt="Earth Z Team">
                                 </div>
                                 <div class="winner-info">
                                     <div class="winner-rank">Ingenuity</div>
@@ -3685,5 +3685,14 @@
                     });
                 }
             });
+        });
+
+        // Award-winner photos are rehosted locally under /static/iyec-winners-2024/ (the old
+        // globalenvironmentchallenge.org URLs are dead). Until the image files are dropped in,
+        // hide any photo box whose image is missing so the winner cards stay clean.
+        document.querySelectorAll('.winner-photo img').forEach(function (img) {
+            function hide() { var box = img.closest('.winner-photo') || img; box.style.display = 'none'; }
+            img.addEventListener('error', hide);
+            if (img.complete && img.naturalWidth === 0) hide();
         });
 {% endblock %}
