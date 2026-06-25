@@ -1,969 +1,197 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partnership Packages - NexYouth</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #fff;
-        }
-
-        nav {
-            background: white;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            padding: 0.8rem 2rem;
-        }
-
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        nav .logo img {
-            height: 70px;
-            width: auto;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav ul li {
-            position: relative;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: color 0.2s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        nav a:hover {
-            color: #00d4ff;
-        }
-
-        /* Dropdown Menu */
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 220px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 0.5rem 0;
-            z-index: 100;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 0.8rem 1.2rem;
-            font-size: 0.9rem;
-            text-transform: none;
-            letter-spacing: 0;
-            color: #333;
-        }
-
-        .dropdown-menu a:hover {
-            background: #f5f5f5;
-            color: #00d4ff;
-        }
-
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-btn span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-btn.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .mobile-menu-btn.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-btn.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Hero Section */
-        .packages-hero {
-            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
-            color: white;
-            text-align: center;
-            padding: 4rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .packages-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .packages-hero .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .packages-hero-badge {
-            display: inline-block;
-            background: rgba(0, 212, 255, 0.2);
-            color: #00d4ff;
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-        }
-
-        .packages-hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .packages-hero h1 span {
-            background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .packages-hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0.9;
-            line-height: 1.8;
-        }
-
-        /* About Section */
-        .about-section {
-            padding: 3rem 2rem;
-            background: white;
-        }
-
-        .about-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .about-content h2 {
-            font-size: 1.8rem;
-            margin-top: 4rem;
-            margin-bottom: 2rem;
-            color: #1a1a2e;
-            line-height: 1.3;
-        }
-
-        .about-content > h1 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #1a1a2e;
-            line-height: 1.3;
-        }
-
-        .about-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-subsection {
-            margin-top: 3rem;
-        }
-
-        .about-subsection h3 {
-            font-size: 1.8rem;
-            color: #1a1a2e;
-            margin-bottom: 1rem;
-        }
-
-        .about-subsection ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .about-subsection li {
-            margin-bottom: 0.8rem;
-            color: #555;
-            font-size: 1.05rem;
-        }
-
-        .about-subsection li::before {
-            content: '✓ ';
-            color: #00d4ff;
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-
-        /* Why Partner Section */
-        .why-partner-section {
-            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-            padding: 3rem 2rem 1.5rem 2rem;
-        }
-
-        .why-partner-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            color: #1a1a2e;
-        }
-
-        .why-partner-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .why-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border-left: 4px solid #00d4ff;
-            transition: transform 0.3s ease;
-        }
-
-        .why-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .why-card h4 {
-            color: #1a1a2e;
-            margin-bottom: 0.8rem;
-            font-size: 1.2rem;
-        }
-
-        .why-card p {
-            color: #666;
-            font-size: 1rem;
-        }
-
-        /* Pricing Section */
-        .pricing-section {
-            padding: 3rem 2rem;
-            background: white;
-        }
-
-        .pricing-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            color: #1a1a2e;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            align-items: stretch;
-            align-content: start;
-        }
-
-        .pricing-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            border: 2px solid transparent;
-            transition: all 0.4s ease;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .pricing-card.featured {
-            border-color: #00d4ff;
-            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
-        }
-
-        .pricing-card:nth-child(4) {
-            grid-column: 1;
-        }
-
-        .pricing-card-header {
-            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .pricing-card.featured .pricing-card-header {
-            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-        }
-
-        .pricing-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .pricing-card.featured .pricing-badge {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .pricing-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-amount {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.2rem;
-        }
-
-        .pricing-amount small {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .pricing-card-body {
-            padding: 2rem;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .pricing-features li {
-            padding: 0.8rem 0;
-            color: #666;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 0.95rem;
-            line-height: 1.1;
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        .pricing-features li::before {
-            content: '✓ ';
-            color: #00d4ff;
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-
-        .pricing-cta {
-            display: inline-block;
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .pricing-card.featured .pricing-cta {
-            background: linear-gradient(135deg, #ff6b35 0%, #ff5200 100%);
-        }
-
-        .pricing-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-        }
-
-        /* Impact Section */
-        .impact-section {
-            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-            padding: 1.5rem 2rem 3rem 2rem;
-        }
-
-        .impact-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-            color: #1a1a2e;
-        }
-
-        .impact-section > .container > p {
-            text-align: center;
-            color: #666;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 3rem;
-        }
-
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .impact-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border-top: 4px solid #00d4ff;
-        }
-
-        .impact-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #00d4ff;
-            margin-bottom: 0.5rem;
-        }
-
-        .impact-label {
-            color: #666;
-            font-size: 1rem;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .contact-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-        }
-
-        .contact-section h2 span {
-            color: #00d4ff;
-        }
-
-        .contact-section p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contact-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-btn {
-            padding: 1rem 2.5rem;
-            border-radius: 10px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .contact-btn {
-            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-            color: white;
-            border: 2px solid #00d4ff;
-        }
-
-        .contact-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
-        }
-
-        .contact-btn.secondary {
-            background: transparent;
-            color: #00d4ff;
-            border: 2px solid #00d4ff;
-        }
-
-        .contact-btn.secondary:hover {
-            background: rgba(0, 212, 255, 0.1);
-        }
-
-        .contact-email {
-            font-size: 1.1rem;
-            margin-top: 2rem;
-        }
-
-        .contact-email a {
-            color: #00d4ff;
-            text-decoration: none;
-        }
-
-        .contact-email a:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            background: #0f0f1a;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                background: white;
-                gap: 0;
-                border-top: 1px solid #eee;
-                padding: 1rem 0;
-            }
-
-            nav ul.active {
-                display: flex;
-            }
-
-            nav ul li {
-                border-bottom: 1px solid #f0f0f0;
-            }
-
-            nav ul a {
-                display: block;
-                padding: 1rem 2rem;
-                font-size: 0.9rem;
-            }
-
-            .mobile-menu-btn {
-                display: flex;
-            }
-
-            .packages-hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .packages-hero p {
-                font-size: 1.1rem;
-            }
-
-            .intro-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .why-partner-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-buttons {
-                flex-direction: column;
-            }
-
-            .contact-btn {
-                width: 100%;
-            }
-
-            .about-content h2 {
-                font-size: 1.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .packages-hero {
-                padding: 4rem 1.5rem;
-            }
-
-            .packages-hero h1 {
-                font-size: 2rem;
-            }
-
-            .packages-hero p {
-                font-size: 1rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .pricing-card-body {
-                padding: 1.5rem;
-            }
-
-            .pricing-title {
-                font-size: 1.2rem;
-            }
-
-            .pricing-amount {
-                font-size: 2rem;
-            }
-
-            .about-content h2 {
-                font-size: 1.5rem;
-            }
-
-            .about-content p {
-                font-size: 1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <div class="container">
-            <a href="/" class="logo">
-                <img src="/static/logo.svg" alt="NexYouth">
-            </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul id="navMenu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/#what-we-do">What We Do</a></li>
-                <li class="dropdown">
-                    <a href="/#programs">Programs ▾</a>
-                    <div class="dropdown-menu" id="programsDropdown">
-                        <a href="/programs/skill-development">Skill Development Courses</a>
-                        <a href="/programs/seminars">Seminars & Workships</a>
-                        <a href="/programs/mentorship">Global Mentorship Network</a>
-                        <a href="javascript:void(0)">Environmental Youth Competition</a>
-                        <a href="/programs/youth-tech-lab">Youth Tech Lab</a>
-                    </div>
-                </li>
-                <li><a href="/#community">Community</a></li>
-                <li><a href="/partner">Partner</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
+{% extends "base.html" %}
+
+{% block title %}Partnership Packages — NexYouth{% endblock %}
+{% block description %}Partner with NexYouth to support accessible education and empower the next generation of global leaders. Explore our Platinum, Gold, Silver, Bronze, and Community Supporter sponsorship packages.{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="section section--tint">
+    <div class="container">
+        <div class="section-head center anim">
+            <span class="eyebrow">Sponsorship packages</span>
+            <h1>Invest in youth empowerment</h1>
+            <p class="lead">Partner with NexYouth to support accessible education and empower the next generation of global leaders.</p>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <section class="packages-hero">
-        <div class="container">
-            <span class="packages-hero-badge">Sponsorship Packages</span>
-            <h1>Invest in <span>Youth Empowerment</span></h1>
-            <p>Partner with NexYouth to support accessible education and empower the next generation of global leaders.</p>
+<!-- Programs & global reach -->
+<section class="section">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">Our programs &amp; global reach</span>
+            <h2>Programs and events that move youth forward</h2>
+            <p class="lead">In addition to ongoing mentoring and educational courses, NexYouth organises global youth initiatives and events that encourage students to think critically and act responsibly.</p>
         </div>
-    </section>
-
-    <section class="about-section">
-        <div class="about-content">
-            <h1 style="text-align: center;">Sponsorship Packages</h1>
-            
-            <div class="about-subsection">
-                <h3>Our Programs & Global Reach</h3>
-                <p>In addition to ongoing mentoring and educational courses, NexYouth organizes global youth initiatives and events that encourage students to think critically and act responsibly.</p>
+        <div class="grid grid-auto anim-stagger">
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+                <h3>International Youth Environmental Competition</h3>
                 <p>One of NexYouth's flagship initiatives is the International Youth Environmental Competition (IYEC) — a global youth competition that attracts youth globally to tackle environmental and sustainability issues through research, advocacy, and problem-solving.</p>
-                <p><strong>Together, NexYouth's programs and events create:</strong></p>
-                <ul>
-                    <li>Continuous academic support</li>
-                    <li>Leadership and skill development</li>
-                    <li>Global collaboration opportunities for youth</li>
-                </ul>
             </div>
-            
-            <div class="pricing-container" style="background: white; padding: 3rem 0;">
-                <div style="max-width: 1200px; margin: 0 auto;">
-                    <h2 style="font-size: 2.5rem; margin-bottom: 3rem; text-align: center; color: #1a1a2e;">Sponsorship Opportunities</h2>
-                    <div class="pricing-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; align-items: stretch; align-content: start;">
-                        <div class="pricing-card featured" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); border: 2px solid #00d4ff; display: flex; flex-direction: column; height: 100%;">
-                            <span class="pricing-badge" style="position: absolute; top: 1rem; right: 1rem; background: rgba(0, 212, 255, 0.3); color: white; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; border: 1px solid rgba(255, 255, 255, 0.4);">Most Popular</span>
-                            <div class="pricing-card-header" style="background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%); color: white; padding: 2rem; text-align: center; position: relative; min-height: 120px; display: flex; flex-direction: column; justify-content: center;">
-                                <div class="pricing-title" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Platinum Partner</div>
-                                <div class="pricing-amount" style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.2rem;">$5,000</div>
-                            </div>
-                            <div class="pricing-card-body" style="padding: 2rem; flex-grow: 1; display: flex; flex-direction: column;">
-                                <ul class="pricing-features" style="list-style: none; margin-bottom: 2rem; flex-grow: 1;">
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Recognition as Platinum Partner</li>
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Logo on NexYouth website homepage</li>
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Logo on IYEC website homepage</li>
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Naming rights for mentoring program & IYEC award</li>
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Host 2–3 virtual workshops</li>
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Major communications acknowledgment</li>
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Student recruitment opportunity</li>
-                                    <li style="padding: 0.8rem 0; color: #666; line-height: 1.1;">Impact summary report</li>
-                                </ul>
-                                <a href="/contact" class="pricing-cta" style="display: inline-block; width: 100%; padding: 1rem; background: linear-gradient(135deg, #ff6b35 0%, #ff5200 100%); color: white; text-decoration: none; text-align: center; border-radius: 10px; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer;">Get Started</a>
-                            </div>
-                        </div>
-
-                        <div class="pricing-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); border: 2px solid transparent; display: flex; flex-direction: column; height: 100%;">
-                            <div class="pricing-card-header" style="background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%); color: white; padding: 2rem; text-align: center; position: relative; min-height: 120px; display: flex; flex-direction: column; justify-content: center;">
-                                <div class="pricing-title" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Gold Partner</div>
-                                <div class="pricing-amount" style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.2rem;">$2,500</div>
-                            </div>
-                            <div class="pricing-card-body" style="padding: 2rem; flex-grow: 1; display: flex; flex-direction: column;">
-                                <ul class="pricing-features" style="list-style: none; margin-bottom: 2rem; flex-grow: 1;">
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Recognition as Gold Partner</li>
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Logo on NexYouth website</li>
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Logo on IYEC website</li>
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Naming rights for mentoring program</li>
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Host 1–2 virtual workshops</li>
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Major communications acknowledgment</li>
-                                    <li style="padding: 0.8rem 0; color: #666; line-height: 1.1;">Impact summary report</li>
-                                </ul>
-                                <a href="/contact" class="pricing-cta" style="display: inline-block; width: 100%; padding: 1rem; background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%); color: white; text-decoration: none; text-align: center; border-radius: 10px; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer;">Get Started</a>
-                            </div>
-                        </div>
-
-                        <div class="pricing-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); border: 2px solid transparent; display: flex; flex-direction: column; height: 100%;">
-                            <div class="pricing-card-header" style="background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%); color: white; padding: 2rem; text-align: center; position: relative; min-height: 120px; display: flex; flex-direction: column; justify-content: center;">
-                                <div class="pricing-title" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Silver Partner</div>
-                                <div class="pricing-amount" style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.2rem;">$1,000</div>
-                            </div>
-                            <div class="pricing-card-body" style="padding: 2rem; flex-grow: 1; display: flex; flex-direction: column;">
-                                <ul class="pricing-features" style="list-style: none; margin-bottom: 2rem; flex-grow: 1;">
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Logo on NexYouth website</li>
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Logo on IYEC award section</li>
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Selected communications recognition</li>
-                                    <li style="padding: 0.8rem 0; color: #666; line-height: 1.1;">Program wrap-up acknowledgment</li>
-                                </ul>
-                                <a href="/contact" class="pricing-cta" style="display: inline-block; width: 100%; padding: 1rem; background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%); color: white; text-decoration: none; text-align: center; border-radius: 10px; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer;">Get Started</a>
-                            </div>
-                        </div>
-
-                        <div class="pricing-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); border: 2px solid transparent; display: flex; flex-direction: column; height: 100%;">
-                            <div class="pricing-card-header" style="background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%); color: white; padding: 2rem; text-align: center; position: relative; min-height: 120px; display: flex; flex-direction: column; justify-content: center;">
-                                <div class="pricing-title" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Bronze Partner</div>
-                                <div class="pricing-amount" style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.2rem;">$500</div>
-                            </div>
-                            <div class="pricing-card-body" style="padding: 2rem; flex-grow: 1; display: flex; flex-direction: column;">
-                                <ul class="pricing-features" style="list-style: none; margin-bottom: 2rem; flex-grow: 1;">
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Logo on NexYouth sponsor section</li>
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Thank-you email recognition</li>
-                                    <li style="padding: 0.8rem 0; color: #666; line-height: 1.1;">Summary communications</li>
-                                </ul>
-                                <a href="/contact" class="pricing-cta" style="display: inline-block; width: 100%; padding: 1rem; background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%); color: white; text-decoration: none; text-align: center; border-radius: 10px; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer;">Get Started</a>
-                            </div>
-                        </div>
-
-                        <div class="pricing-card" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); border: 2px solid transparent; display: flex; flex-direction: column; height: 100%;">
-                            <div class="pricing-card-header" style="background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%); color: white; padding: 2rem; text-align: center; position: relative; min-height: 120px; display: flex; flex-direction: column; justify-content: center;">
-                                <div class="pricing-title" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Community Supporter</div>
-                                <div class="pricing-amount" style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.2rem;">$300</div>
-                            </div>
-                            <div class="pricing-card-body" style="padding: 2rem; flex-grow: 1; display: flex; flex-direction: column;">
-                                <ul class="pricing-features" style="list-style: none; margin-bottom: 2rem; flex-grow: 1;">
-                                    <li style="padding: 0.8rem 0; color: #666; border-bottom: 1px solid #f0f0f0; line-height: 1.1;">Logo on NexYouth sponsor section</li>
-                                    <li style="padding: 0.8rem 0; color: #666; line-height: 1.1;">Community recognition</li>
-                                </ul>
-                                <a href="/contact" class="pricing-cta" style="display: inline-block; width: 100%; padding: 1rem; background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%); color: white; text-decoration: none; text-align: center; border-radius: 10px; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer;">Get Started</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <h2>About NexYouth Society</h2>
-            <p>NexYouth Society is a youth-led nonprofit organization focused on education access equity for youth. Through free and low-cost online and in-person programs, NexYouth provides mentoring, mentorship, and skill-building opportunities in areas such as math, science, coding, debate, language learning, and sustainability.</p>
-            <p>Our programs are designed to be accessible, student-centered, and impact-driven, empowering youth not only to learn, but also to apply their knowledge to real-world challenges.</p>
-        </div>
-
-    <section class="why-partner-section">
-        <div class="container">
-            <h2>Why Partner with NexYouth</h2>
-            <div class="why-partner-grid">
-                <div class="why-card">
-                    <h4>Support Education Equity</h4>
-                    <p>Help us provide equitable access to education for youth from all backgrounds.</p>
-                </div>
-                <div class="why-card">
-                    <h4>Engage Global Community</h4>
-                    <p>Connect with a motivated, international student and volunteer community.</p>
-                </div>
-                <div class="why-card">
-                    <h4>Gain Visibility</h4>
-                    <p>Your organization gains visibility across ongoing educational programs and global youth events like IYEC.</p>
-                </div>
-                <div class="why-card">
-                    <h4>Align with Values</h4>
-                    <p>Align with the values of education, youth leadership, and sustainability.</p>
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+                <h3>Together, our programs create</h3>
+                <div class="pill-row">
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Continuous academic support</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Leadership and skill development</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Global collaboration opportunities for youth</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="impact-section">
-        <div class="container">
-            <h2>How Sponsorship Funds Are Used</h2>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 2rem 0; max-width: 800px; margin-left: auto; margin-right: auto;">
-                <div style="padding: 0.75rem; background: #f9f9f9; border-radius: 10px; border-left: 4px solid #00d4ff;">
-                    <div style="font-size: 1rem; color: #333; font-weight: 500;">Free & Accessible Programs</div>
+<!-- Sponsorship opportunities -->
+<section class="section section--paper">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">Sponsorship opportunities</span>
+            <h2>Choose the partnership that fits</h2>
+            <p class="lead">Every package directly supports accessible education and global youth initiatives. The Platinum Partner tier is our most popular.</p>
+        </div>
+        <div class="grid grid-auto anim-stagger">
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21 8 14 2 9.4h7.6z"/></svg></span>
+                <h3>Platinum Partner</h3>
+                <p><strong>$5,000</strong> · Most Popular</p>
+                <div class="pill-row">
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Recognition as Platinum Partner</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logo on NexYouth website homepage</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logo on IYEC website homepage</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Naming rights for mentoring program &amp; IYEC award</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Host 2–3 virtual workshops</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Major communications acknowledgment</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Student recruitment opportunity</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Impact summary report</span>
                 </div>
-                <div style="padding: 0.75rem; background: #f9f9f9; border-radius: 10px; border-left: 4px solid #00d4ff;">
-                    <div style="font-size: 1rem; color: #333; font-weight: 500;">Educational Courses & Materials</div>
+            </div>
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg></span>
+                <h3>Gold Partner</h3>
+                <p><strong>$2,500</strong></p>
+                <div class="pill-row">
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Recognition as Gold Partner</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logo on NexYouth website</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logo on IYEC website</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Naming rights for mentoring program</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Host 1–2 virtual workshops</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Major communications acknowledgment</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Impact summary report</span>
                 </div>
-                <div style="padding: 0.75rem; background: #f9f9f9; border-radius: 10px; border-left: 4px solid #00d4ff;">
-                    <div style="font-size: 1rem; color: #333; font-weight: 500;">Youth Volunteer Training</div>
+            </div>
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 15v6l3-2 3 2v-6"/></svg></span>
+                <h3>Silver Partner</h3>
+                <p><strong>$1,000</strong></p>
+                <div class="pill-row">
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logo on NexYouth website</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logo on IYEC award section</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Selected communications recognition</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Program wrap-up acknowledgment</span>
                 </div>
-                <div style="padding: 0.75rem; background: #f9f9f9; border-radius: 10px; border-left: 4px solid #00d4ff;">
-                    <div style="font-size: 1rem; color: #333; font-weight: 500;">Global Youth Initiatives</div>
+            </div>
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 15v6l3-2 3 2v-6"/></svg></span>
+                <h3>Bronze Partner</h3>
+                <p><strong>$500</strong></p>
+                <div class="pill-row">
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logo on NexYouth sponsor section</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Thank-you email recognition</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Summary communications</span>
                 </div>
-                <div style="padding: 0.75rem; background: #f9f9f9; border-radius: 10px; border-left: 4px solid #00d4ff; grid-column: 1;">
-                    <div style="font-size: 1rem; color: #333; font-weight: 500;">Underserved Community Outreach</div>
+            </div>
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></span>
+                <h3>Community Supporter</h3>
+                <p><strong>$300</strong></p>
+                <div class="pill-row">
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Logo on NexYouth sponsor section</span>
+                    <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Community recognition</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="contact-section">
-        <div class="container">
-            <h2>Ready to Make <span>Impact</span>?</h2>
-            <p>Join our network of partners committed to youth empowerment and education equity. Let's create meaningful change together.</p>
-            <div class="contact-buttons">
-                <a href="/contact" class="contact-btn">Become a Sponsor</a>
+<!-- About NexYouth Society -->
+<section class="section section--tint">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">About NexYouth Society</span>
+            <h2>A youth-led nonprofit for education equity</h2>
+            <p class="lead">NexYouth Society is a youth-led nonprofit organisation focused on education access equity for youth. Through free and low-cost online and in-person programs, NexYouth provides mentoring, mentorship, and skill-building opportunities in areas such as math, science, coding, debate, language learning, and sustainability.</p>
+        </div>
+        <div class="grid grid-auto anim-stagger">
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+                <h3>Accessible by design</h3>
+                <p>Our programs are designed to be accessible, student-centered, and impact-driven, empowering youth not only to learn, but also to apply their knowledge to real-world challenges.</p>
             </div>
-            <p class="contact-email">Questions? Contact us at <a href="mailto:nexyouth.master@gmail.com">nexyouth.master@gmail.com</a></p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
+<!-- Why partner -->
+<section class="section">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">Why partner</span>
+            <h2>Why partner with NexYouth</h2>
         </div>
-    </footer>
+        <div class="grid grid-auto anim-stagger">
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21v-6a9 9 0 0 1 18 0v6"/><path d="M3 21h18"/><path d="M12 3v3"/></svg></span>
+                <h3>Support Education Equity</h3>
+                <p>Help us provide equitable access to education for youth from all backgrounds.</p>
+            </div>
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+                <h3>Engage Global Community</h3>
+                <p>Connect with a motivated, international student and volunteer community.</p>
+            </div>
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
+                <h3>Gain Visibility</h3>
+                <p>Your organisation gains visibility across ongoing educational programs and global youth events like IYEC.</p>
+            </div>
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></span>
+                <h3>Align with Values</h3>
+                <p>Align with the values of education, youth leadership, and sustainability.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-<script>
-    // Mobile menu functionality
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navMenu = document.getElementById('navMenu');
-    const programsDropdown = document.querySelector('.dropdown a');
-    const dropdownMenu = document.getElementById('programsDropdown');
+<!-- How sponsorship funds are used -->
+<section class="section section--paper">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">Your impact</span>
+            <h2>How sponsorship funds are used</h2>
+        </div>
+        <div class="pill-row anim">
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Free &amp; Accessible Programs</span>
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Educational Courses &amp; Materials</span>
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Youth Volunteer Training</span>
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Global Youth Initiatives</span>
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Underserved Community Outreach</span>
+        </div>
+    </div>
+</section>
 
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenuBtn.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-
-    // Close menu when clicking on a link
-    const navLinks = document.querySelectorAll('#navMenu a:not([href*="Programs"])');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenuBtn.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
-
-    // Handle programs dropdown on mobile
-    const dropdownTrigger = document.querySelector('.dropdown a');
-    dropdownTrigger.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            dropdownMenu.classList.toggle('active');
-        }
-    });
-
-    // Handle dropdown menu items click on mobile
-    const dropdownItems = document.querySelectorAll('.dropdown-menu a');
-    dropdownItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                mobileMenuBtn.classList.remove('active');
-                navMenu.classList.remove('active');
-                dropdownMenu.classList.remove('active');
-            }
-        });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('nav')) {
-            mobileMenuBtn.classList.remove('active');
-            navMenu.classList.remove('active');
-            dropdownMenu.classList.remove('active');
-        }
-    });
-</script>
-</body>
-</html>
+<!-- CTA -->
+<section class="section--blue">
+    <div class="container">
+        <div class="cta-band anim">
+            <h2>Ready to make impact?</h2>
+            <p>Join our network of partners committed to youth empowerment and education equity. Let's create meaningful change together. Questions? Email us at nexyouth.master@gmail.com.</p>
+            <div class="cta-actions">
+                <a href="/contact" class="btn btn-light btn-lg">Become a sponsor</a>
+                <a href="mailto:nexyouth.master@gmail.com" class="btn btn-on-dark-ghost btn-lg">Email us</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
