@@ -717,15 +717,12 @@ def contact():
 def success():
     return render_template('success.html')
 
-# Catch-all route for client-side routing
-@app.route('/<path:path>')
-def catch_all(path):
-    """Catch all routes and return the main page for client-side routing"""
-    if path == 'about':
-        return render_template('about.html')
-    if path == 'contact':
-        return render_template('contact.html')
-    return render_template('home.html')
+# Proper 404 handling. Previously a catch-all (`/<path:path>`) returned home.html
+# for any unmatched URL, which silently masked broken links and left 404.html dead.
+# about/contact already have real routes above, so nothing legitimate relied on it.
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)

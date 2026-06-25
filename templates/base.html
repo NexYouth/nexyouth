@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+{% set get_involved_url = "https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform" %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block description %}NexYouth — a youth-led nonprofit empowering young people across Ontario through skills, mentorship, and community.{% endblock %}">
+    <title>{% block title %}NexYouth — Empowering Youth{% endblock %}</title>
+
+    <meta property="og:title" content="{% block og_title %}NexYouth — Empowering Youth{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}A youth-led nonprofit empowering young people across Ontario through skills, mentorship, and community.{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nexyouth.org">
+    <meta property="og:image" content="/static/logo.svg">
+    <meta name="theme-color" content="#1A1A2E">
+
+    <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+    <link rel="apple-touch-icon" href="/static/logo.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css?v=16">
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-nav" id="siteNav">
+        <div class="nav-inner container">
+            <a href="/" class="brand" aria-label="NexYouth home">
+                <span class="brand-mark">N</span>
+                <span class="brand-name">NexYouth</span>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav class="nav-menu" id="navMenu" aria-label="Primary">
+                <a href="/" class="nav-link">Home</a>
+
+                <div class="nav-item" data-dropdown>
+                    <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false">
+                        Programs
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown">
+                        <a href="/programs/skill-development">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
+                            Skill Development Courses
+                        </a>
+                        <a href="/programs/seminars">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18v12H3z"/><path d="M8 20h8M12 16v4"/></svg>
+                            Seminars &amp; Workshops
+                        </a>
+                        <a href="/programs/mentorship">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 4a3 3 0 010 6M21 20c0-2.5-1.5-4-3.5-4.5"/></svg>
+                            Global Mentorship Network
+                        </a>
+                        <a href="/programs/environmental-competition">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 014 13c0-5 7-9 7-9s7 4 7 9a7 7 0 01-7 7z"/><path d="M11 20v-7"/></svg>
+                            Youth Environmental Challenge
+                        </a>
+                        <a href="/programs/youth-tech-lab">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9l-3 3 3 3M16 9l3 3-3 3M13 7l-2 10"/></svg>
+                            Youth Tech Lab
+                        </a>
+                        <a href="/programs/eco-classroom">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V6a2 2 0 012-2h12v15"/><path d="M6 17h12v3H6a2 2 0 010-3z"/></svg>
+                            Eco Classroom
+                        </a>
+                    </div>
+                </div>
+
+                <a href="/partner" class="nav-link">Partner</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/contact" class="nav-link">Contact</a>
+                <a href="{{ get_involved_url }}" class="btn btn-cta btn-sm nav-cta" target="_blank" rel="noopener">Get involved</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="brand">
+                        <span class="brand-mark">N</span>
+                        <span class="brand-name">NexYouth</span>
+                    </a>
+                    <p>A youth-led nonprofit empowering young people across Ontario through skills, mentorship, and community.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Programs</h4>
+                    <a href="/programs/skill-development">Skill Development</a>
+                    <a href="/programs/mentorship">Mentorship Network</a>
+                    <a href="/programs/environmental-competition">Environmental Challenge</a>
+                    <a href="/programs/youth-tech-lab">Youth Tech Lab</a>
+                    <a href="/programs/eco-classroom">Eco Classroom</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Organisation</h4>
+                    <a href="/about">About us</a>
+                    <a href="/partner">Partner with us</a>
+                    <a href="/partnership-packages">Partnership packages</a>
+                    <a href="/contact">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Get involved</h4>
+                    <a href="{{ get_involved_url }}" target="_blank" rel="noopener">Join NexYouth</a>
+                    <a href="/contact">Volunteer</a>
+                    <a href="/partner">Become a partner</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="footYear">2026</span> NexYouth. All rights reserved.</p>
+                <p class="tag">GROW · LEAD · ACT</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
+    {% block libs %}{% endblock %}
+    <script>
+        document.documentElement.classList.add('js');
+
+        // Sticky nav shadow on scroll
+        var nav = document.getElementById('siteNav');
+        var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 8); };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Mobile menu
+        var toggle = document.getElementById('navToggle');
+        var menu = document.getElementById('navMenu');
+        toggle.addEventListener('click', function () {
+            var open = menu.classList.toggle('open');
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        });
+
+        // Dropdowns: hover on desktop (CSS), click/tap on mobile
+        document.querySelectorAll('[data-dropdown]').forEach(function (item) {
+            var btn = item.querySelector('.nav-dropdown-toggle');
+            btn.addEventListener('click', function (e) {
+                if (window.innerWidth <= 860) {
+                    e.preventDefault();
+                    var open = item.classList.toggle('open');
+                    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                }
+            });
+        });
+
+        // Close mobile menu after navigating
+        menu.querySelectorAll('a[href]').forEach(function (a) {
+            a.addEventListener('click', function () {
+                menu.classList.remove('open');
+                toggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Highlight the current page in the nav
+        var here = location.pathname.replace(/\/$/, '') || '/';
+        document.querySelectorAll('.nav-menu a[href]').forEach(function (a) {
+            var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+            if (href === here && !a.classList.contains('nav-cta')) {
+                a.classList.add('is-active');
+                var parent = a.closest('[data-dropdown]');
+                if (parent) parent.classList.add('is-active');
+            }
+        });
+
+        // Keep the footer year current
+        document.getElementById('footYear').textContent = new Date().getFullYear();
+
+        var motionOK = matchMedia('(prefers-reduced-motion: no-preference)').matches;
+
+        // Smooth scrolling (Lenis) — enhancement only, falls back to native scroll
+        window.addEventListener('load', function () {
+            if (window.Lenis && motionOK) {
+                var lenis = window.lenis = new Lenis({ duration: 1.05, smoothWheel: true });
+                (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })();
+                document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+                    a.addEventListener('click', function (e) {
+                        var id = a.getAttribute('href'); if (id.length < 2) return;
+                        var el = document.querySelector(id);
+                        if (el) { e.preventDefault(); lenis.scrollTo(el, { offset: -80 }); }
+                    });
+                });
+            }
+        });
+
+        // Scroll reveal — content-safe: a timeout guarantees everything becomes visible
+        (function () {
+            var els = [].slice.call(document.querySelectorAll('.anim, .anim-stagger'));
+            if (!els.length) return;
+            if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+            var io = new IntersectionObserver(function (ents) {
+                ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+            }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+            els.forEach(function (e) { io.observe(e); });
+            setTimeout(function () { els.forEach(function (e) { e.classList.add('in'); }); }, 2800);
+        })();
+
+        // Draggable horizontal sliders (drag + arrows + snap)
+        document.querySelectorAll('.slider').forEach(function (slider) {
+            var track = slider.querySelector('.slider__track');
+            if (!track) return;
+            var prev = slider.querySelector('[data-prev]');
+            var next = slider.querySelector('[data-next]');
+            function step() { var f = track.children[0]; return f ? f.getBoundingClientRect().width + 22 : 330; }
+            if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+            if (next) next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+            function update() { if (!prev || !next) return; prev.disabled = track.scrollLeft <= 2; next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2; }
+            track.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+            update();
+            var down = false, sx = 0, sl = 0, moved = false;
+            track.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') return; down = true; moved = false; sx = e.clientX; sl = track.scrollLeft; track.classList.add('dragging'); });
+            window.addEventListener('pointermove', function (e) { if (!down) return; var dx = e.clientX - sx; if (Math.abs(dx) > 4) moved = true; track.scrollLeft = sl - dx; });
+            window.addEventListener('pointerup', function () { if (down) { down = false; track.classList.remove('dragging'); } });
+            track.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
+        });
+
+        // Count-up stats on scroll into view (shows the final value without JS / reduced-motion)
+        (function () {
+            var nums = [].slice.call(document.querySelectorAll('[data-count]'));
+            if (!nums.length) return;
+            function fin(n) { return n.getAttribute('data-count') + (n.getAttribute('data-suffix') || ''); }
+            if (!motionOK || !('IntersectionObserver' in window)) { nums.forEach(function (n) { n.textContent = fin(n); }); return; }
+            function run(el) {
+                var target = parseFloat(el.getAttribute('data-count')), suffix = el.getAttribute('data-suffix') || '', start = null, dur = 1500;
+                function tick(ts) {
+                    if (!start) start = ts;
+                    var p = Math.min((ts - start) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+                    el.textContent = Math.round(target * e) + suffix;
+                    if (p < 1) requestAnimationFrame(tick); else el.textContent = target + suffix;
+                }
+                requestAnimationFrame(tick);
+            }
+            var io = new IntersectionObserver(function (ents) {
+                ents.forEach(function (en) { if (en.isIntersecting) { run(en.target); io.unobserve(en.target); } });
+            }, { threshold: 0.4 });
+            nums.forEach(function (n) { n.textContent = '0' + (n.getAttribute('data-suffix') || ''); io.observe(n); });
+        })();
+
+        // Scroll-driven light -> dark theme switch at the marquee divider
+        (function () {
+            var divider = document.querySelector('[data-theme-divider]') || document.querySelector('.marquee');
+            if (!divider) return;
+            var isDark = false;
+            function update() {
+                var top = divider.getBoundingClientRect().top;
+                // flip to dark once the divider rises to roughly the middle of the viewport (hysteresis avoids flicker)
+                var threshold = window.innerHeight * (isDark ? 0.60 : 0.50);
+                var dark = top <= threshold;
+                if (dark !== isDark) { isDark = dark; document.documentElement.classList.toggle('theme-dark', dark); }
+            }
+            update();
+            window.addEventListener('scroll', update, { passive: true });
+            window.addEventListener('resize', update);
+        })();
+        {% block scripts %}{% endblock %}
+    </script>
+</body>
+</html>
