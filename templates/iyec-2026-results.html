@@ -1,45 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IYEC 2026 — Official Results</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+{% extends "base.html" %}
+{% block title %}IYEC 2026 — Official Results — NexYouth{% endblock %}
+{% block description %}Official shortlist results for the International Youth Environmental Competition 2026 — global winners, regional winners, the Ingenuity Award, finalists, and the full searchable summary.{% endblock %}
+{% block head_extra %}
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --gold:#C9A84C;--silver:#8FA3B1;--bronze:#A0735A;--ingenuity:#7B3FA0;
-  --green:#1A6640;--gl:#2D9A5E;--gp:#EBF5F0;
-  --cream:#F8F5F0;--dark:#18182A;--white:#fff;
-  --border:#E5DDD4;--text:#26263A;--muted:#6B7280;
-  --red:#E05533;
+  --green:var(--cobalt);--gl:var(--cobalt);--gp:var(--tint);
+  --cream:var(--bg);--dark:var(--navy);--white:#fff;
+  --border:var(--line);--text:var(--ink-2);
+  --red:var(--cobalt);
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
 
 /* HEADER */
 header{background:var(--dark);color:#fff;padding:2.5rem 1.5rem 2rem;text-align:center;position:relative;overflow:hidden}
-header::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 60%,rgba(201,168,76,.13) 0%,transparent 55%),radial-gradient(ellipse at 80% 40%,rgba(45,154,94,.1) 0%,transparent 55%);pointer-events:none}
-.badge{display:inline-block;background:var(--gold);color:var(--dark);font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;padding:.25rem .9rem;border-radius:2px;margin-bottom:1rem}
-header h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;letter-spacing:-.02em;line-height:1.1;margin-bottom:.4rem}
+header::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 60%,rgba(201,168,76,.13) 0%,transparent 55%),radial-gradient(ellipse at 80% 40%,rgba(36,51,214,.12) 0%,transparent 55%);pointer-events:none}
+.badge{display:inline-block;background:var(--gold);color:var(--navy);font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;padding:.25rem .9rem;border-radius:2px;margin-bottom:1rem}
+header h1{font-family:var(--font-display);font-size:clamp(1.8rem,5vw,3.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:.4rem;color:#fff}
 header p{color:rgba(255,255,255,.55);font-size:.9rem;margin-bottom:1.8rem}
 .crit{display:inline-block;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:.7rem 1.2rem;margin-bottom:1.8rem;font-size:.78rem;color:rgba(255,255,255,.7);max-width:560px;text-align:left;line-height:1.6}
 .crit strong{color:var(--gold);display:block;margin-bottom:.3rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em}
 .stats{display:flex;justify-content:center;gap:1.8rem;flex-wrap:wrap}
-.stat .n{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold);display:block;line-height:1}
+.stat .n{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--gold);display:block;line-height:1}
 .stat .l{font-size:.68rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.1em}
 
 /* TABS */
 .tabs{display:flex;justify-content:center;gap:.2rem;padding:1.4rem 1rem 0;flex-wrap:wrap}
-.tab{padding:.45rem 1.1rem;border:1.5px solid var(--border);background:#fff;border-radius:100px;font-size:.82rem;font-weight:500;cursor:pointer;color:var(--muted);transition:all .2s}
+.tab{padding:.45rem 1.1rem;border:1.5px solid var(--border);background:var(--paper);border-radius:100px;font-size:.82rem;font-weight:500;cursor:pointer;color:var(--muted);transition:all .2s}
 .tab:hover{border-color:var(--green);color:var(--green)}
 .tab.on{background:var(--green);border-color:var(--green);color:#fff}
 
 /* SECTIONS */
 .sec{display:none;max-width:1080px;margin:0 auto;padding:2rem 1rem 3rem}
 .sec.on{display:block}
-.sec-h{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--dark);margin-bottom:.2rem}
+.sec-h{font-family:var(--font-display);font-size:1.7rem;font-weight:700;color:var(--ink);margin-bottom:.2rem}
 .sec-sub{color:var(--muted);font-size:.85rem;padding-bottom:.9rem;margin-bottom:1.8rem;border-bottom:1px solid var(--border)}
-.divider{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:400;margin:2rem 0 1rem;border-bottom:1px solid var(--border);padding-bottom:.4rem}
+.divider{font-family:var(--font-display);font-size:.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin:2rem 0 1rem;border-bottom:1px solid var(--border);padding-bottom:.4rem}
 
 /* GRIDS */
 .g2{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem}
@@ -47,25 +43,25 @@ header p{color:rgba(255,255,255,.55);font-size:.9rem;margin-bottom:1.8rem}
 
 /* VIDEO HIGHLIGHTS */
 .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.2rem}
-.vthumb{display:block;text-decoration:none;color:inherit;background:#fff;border:1.5px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s,transform .2s}
-.vthumb:hover{box-shadow:0 6px 20px rgba(0,0,0,.1);transform:translateY(-2px)}
+.vthumb{display:block;text-decoration:none;color:inherit;background:var(--paper);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s,transform .2s}
+.vthumb:hover{box-shadow:0 6px 20px rgba(11,16,48,.1);transform:translateY(-2px);border-color:var(--cobalt)}
 .vthumb-img{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
 .vthumb-img img{width:100%;height:100%;object-fit:cover;display:block}
-.vthumb-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.25);color:#fff;font-size:2.6rem;transition:background .2s}
-.vthumb:hover .vthumb-play{background:rgba(0,0,0,.4)}
-.vthumb-label{padding:.85rem 1rem;font-size:.9rem;font-weight:600;color:var(--dark)}
+.vthumb-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(11,16,48,.25);color:#fff;font-size:2.6rem;transition:background .2s}
+.vthumb:hover .vthumb-play{background:rgba(11,16,48,.4)}
+.vthumb-label{padding:.85rem 1rem;font-size:.9rem;font-weight:600;color:var(--ink)}
 .vthumb-sub{padding:0 1rem .9rem;font-size:.78rem;color:var(--muted)}
 
 /* CARDS */
-.card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:1.4rem;position:relative;overflow:hidden;transition:box-shadow .2s,border-color .2s}
-.card:hover{box-shadow:0 6px 20px rgba(0,0,0,.07);border-color:rgba(45,154,94,.25)}
+.card{background:var(--paper);border:1.5px solid var(--border);border-radius:12px;padding:1.4rem;position:relative;overflow:hidden;transition:box-shadow .2s,border-color .2s}
+.card:hover{box-shadow:0 6px 20px rgba(11,16,48,.08);border-color:rgba(36,51,214,.25)}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3.5px;border-radius:12px 12px 0 0}
 .card.gold::before{background:var(--gold)}
 .card.silver::before{background:var(--silver)}
 .card.bronze::before{background:var(--bronze)}
 .card.ingenuity::before{background:var(--ingenuity)}
 .card.regional::before{background:var(--gl)}
-.card.finalist::before{background:#B8CFBC}
+.card.finalist::before{background:var(--tint-2)}
 
 /* EVIDENCE BADGES */
 .ev{display:inline-flex;align-items:center;gap:.3rem;font-size:.67rem;font-weight:600;padding:.18rem .52rem;border-radius:4px;margin-right:.25rem;margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.05em}
@@ -85,38 +81,38 @@ header p{color:rgba(255,255,255,.55);font-size:.9rem;margin-bottom:1.8rem}
 .rank.regional{background:rgba(45,154,94,.12);color:var(--green)}
 .rank.finalist{background:rgba(26,102,64,.08);color:var(--green)}
 
-.card-name{font-family:'Playfair Display',serif;font-size:1.12rem;font-weight:700;color:var(--dark);margin-bottom:.28rem;line-height:1.25}
+.card-name{font-family:var(--font-display);font-size:1.12rem;font-weight:700;color:var(--ink);margin-bottom:.28rem;line-height:1.25}
 .meta{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.65rem}
 .tag{font-size:.69rem;padding:.17rem .52rem;border-radius:4px;font-weight:500;background:var(--cream);color:var(--muted);border:1px solid var(--border)}
-.tag.c{background:rgba(26,102,64,.08);color:var(--green);border-color:rgba(26,102,64,.2)}
+.tag.c{background:var(--tint);color:var(--cobalt);border-color:var(--tint-2)}
 .tag.j{background:rgba(80,120,220,.1);color:#3050a0;border-color:rgba(80,120,220,.18)}
 .tag.s{background:rgba(200,70,40,.08);color:#902018;border-color:rgba(200,70,40,.14)}
 
-.proj{font-size:.83rem;font-weight:600;color:var(--dark);font-style:italic;margin-bottom:.45rem;line-height:1.35}
+.proj{font-size:.83rem;font-weight:600;color:var(--ink);font-style:italic;margin-bottom:.45rem;line-height:1.35}
 .desc{font-size:.79rem;color:var(--muted);line-height:1.55;margin-bottom:.7rem}
-.reason{font-size:.77rem;background:var(--gp);border-left:3px solid var(--gl);padding:.52rem .72rem;border-radius:0 6px 6px 0;margin-bottom:.7rem;line-height:1.5;color:#1a4a30}
+.reason{font-size:.77rem;background:var(--gp);border-left:3px solid var(--gl);padding:.52rem .72rem;border-radius:0 6px 6px 0;margin-bottom:.7rem;line-height:1.5;color:var(--cobalt-deep)}
 .reason strong{display:block;font-size:.65rem;text-transform:uppercase;letter-spacing:.09em;margin-bottom:.2rem;opacity:.65}
-.pnote{font-size:.74rem;color:var(--muted);background:#F8F5F0;border:1px solid var(--border);border-radius:6px;padding:.42rem .62rem;margin-bottom:.6rem;line-height:1.4}
+.pnote{font-size:.74rem;color:var(--muted);background:var(--tint);border:1px solid var(--border);border-radius:6px;padding:.42rem .62rem;margin-bottom:.6rem;line-height:1.4}
 .pnote strong{color:var(--text);font-size:.71rem}
 a.lk{display:inline-flex;align-items:center;gap:.3rem;font-size:.75rem;color:var(--red);text-decoration:none;font-weight:500;margin-right:.5rem}
 a.lk:hover{text-decoration:underline}
 
 /* WINNER PHOTO */
-.wp{width:100%;height:210px;background:#fafafa;border-radius:8px;overflow:hidden;margin-bottom:1rem;display:flex;gap:2px}
+.wp{width:100%;height:210px;background:var(--tint);border-radius:8px;overflow:hidden;margin-bottom:1rem;display:flex;gap:2px}
 .wp img{flex:1 1 0;min-width:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}
 .wp.empty{display:none}
-.wpf{background:#f7f5f0;border:1px solid var(--border);border-radius:6px;padding:.55rem .75rem;margin-bottom:.7rem;font-size:.78rem;line-height:1.55;color:var(--text)}
+.wpf{background:var(--tint);border:1px solid var(--border);border-radius:6px;padding:.55rem .75rem;margin-bottom:.7rem;font-size:.78rem;line-height:1.55;color:var(--text)}
 .wpf-info{font-weight:600;color:var(--text)}
 .wpf-bio{margin-top:.5rem;color:var(--muted);font-weight:400;line-height:1.55}
 
 /* TABLE */
 .tw{overflow-x:auto;border-radius:10px;border:1.5px solid var(--border)}
-table{width:100%;border-collapse:collapse;background:#fff}
+table{width:100%;border-collapse:collapse;background:var(--paper)}
 thead{background:var(--dark);color:#fff}
 thead th{padding:.7rem .9rem;font-size:.71rem;text-transform:uppercase;letter-spacing:.08em;font-weight:500;text-align:left}
 tbody tr{border-bottom:1px solid var(--border)}
 tbody tr:last-child{border-bottom:none}
-tbody tr:hover{background:rgba(26,102,64,.02)}
+tbody tr:hover{background:var(--tint)}
 tbody td{padding:.6rem .9rem;font-size:.79rem;vertical-align:top}
 .aw{display:inline-block;font-size:.67rem;padding:.16rem .52rem;border-radius:100px;font-weight:600;white-space:nowrap;margin-bottom:2px;display:block;width:fit-content}
 .aw.go{background:rgba(201,168,76,.14);color:#7a5500}
@@ -132,28 +128,31 @@ tbody td{padding:.6rem .9rem;font-size:.79rem;vertical-align:top}
 
 /* FILTER */
 .fb{display:flex;gap:.6rem;margin-bottom:1.2rem;flex-wrap:wrap}
-.fi{flex:1;min-width:180px;padding:.42rem .85rem;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.82rem;background:#fff;outline:none}
+.fi{flex:1;min-width:180px;padding:.42rem .85rem;border:1.5px solid var(--border);border-radius:8px;font-family:var(--font-body);font-size:.82rem;background:var(--paper);color:var(--ink-2);outline:none}
 .fi:focus{border-color:var(--green)}
 
 /* LEGEND */
-.leg{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.3rem;padding:.7rem 1rem;background:#fff;border:1.5px solid var(--border);border-radius:8px}
+.leg{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.3rem;padding:.7rem 1rem;background:var(--paper);border:1.5px solid var(--border);border-radius:8px}
 .li{display:flex;align-items:center;gap:.3rem;font-size:.72rem;color:var(--muted)}
 
 @keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .card{animation:up .35s ease both}
 .card:nth-child(2){animation-delay:.06s}.card:nth-child(3){animation-delay:.12s}
-footer{text-align:center;padding:1.8rem;font-size:.74rem;color:var(--muted);border-top:1px solid var(--border)}
-.home-link-wrap{text-align:center;padding:1.5rem 1rem .5rem}
-.home-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--green);text-decoration:none;font-size:.85rem;font-weight:600;padding:.55rem 1.3rem;border:1.5px solid var(--green);border-radius:100px;background:#fff;transition:all .2s}
-.home-link:hover{color:#fff;background:var(--green)}
+.iyec-foot{text-align:center;padding:1.8rem 1rem;font-size:.74rem;color:var(--muted)}
 </style>
-</head>
-<body>
+{% endblock %}
 
-<header>
-  <div class="badge">IYEC 2026 · Official Shortlist Results</div>
-  <h1>International Youth<br>Environmental Competition</h1>
-</header>
+{% block content %}
+
+<section class="section section--tint">
+  <div class="container">
+    <div class="section-head center anim">
+      <span class="eyebrow">IYEC 2026</span>
+      <h1>International Youth Environmental Competition</h1>
+      <p class="lead">Official Shortlist Results — global winners, regional winners, the Ingenuity Award, finalists, and the full searchable summary across 85 entries and 40+ countries.</p>
+    </div>
+  </div>
+</section>
 
 <div class="tabs">
   <button class="tab on" onclick="show('global',this)">🏆 Global Winners</button>
@@ -162,7 +161,6 @@ footer{text-align:center;padding:1.8rem;font-size:.74rem;color:var(--muted);bord
   <button class="tab" onclick="show('regional',this)">🌍 Regional Winners</button>
   <button class="tab" onclick="show('finalists',this)">⭐ IYEC Finalists</button>
   <button class="tab" onclick="show('summary',this)">📋 Full Summary</button>
-  <a href="/" class="tab" style="text-decoration:none;">← Back to Home</a>
 </div>
 
 <!-- ══════════ VIDEO HIGHLIGHTS ══════════ -->
@@ -975,9 +973,11 @@ footer{text-align:center;padding:1.8rem;font-size:.74rem;color:var(--muted);bord
   </div>
 </div>
 
-<footer>IYEC 2026 Shortlist Results · Evidence-based evaluation · 85 entries · 40+ countries · Email notification reasons included in each award card</footer>
+<p class="iyec-foot">IYEC 2026 Shortlist Results · Evidence-based evaluation · 85 entries · 40+ countries · Email notification reasons included in each award card</p>
 
-<script>
+{% endblock %}
+
+{% block scripts %}
 function show(id,el){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
@@ -993,6 +993,4 @@ function ft(){
     r.style.display=(!s||t.includes(s))&&(!c||r.dataset.c===c)&&(!a||r.dataset.a===a)?'':'none';
   });
 }
-</script>
-</body>
-</html>
+{% endblock %}

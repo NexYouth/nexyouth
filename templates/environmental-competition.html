@@ -1,99 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>International Youth Environmental Challenge - NexYouth</title>
-    <meta name="description" content="IYEC - Compete globally to investigate real-world environmental challenges through research and data analysis. Win scholarships while making a positive impact.">
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="International Youth Environmental Challenge - NexYouth">
-    <meta property="og:description" content="Compete globally to investigate real-world environmental challenges through research and data analysis.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nexyouth.org/programs/environmental-competition">
-    <meta property="og:image" content="/static/logo.svg">
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
-    <link rel="apple-touch-icon" href="/static/logo.svg">
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+{% extends "base.html" %}
+
+{% block title %}International Youth Environmental Challenge — NexYouth{% endblock %}
+{% block description %}IYEC — Compete globally to investigate real-world environmental challenges through research and data analysis. Win scholarships while making a positive impact.{% endblock %}
+{% block og_title %}International Youth Environmental Challenge — NexYouth{% endblock %}
+{% block og_description %}Compete globally to investigate real-world environmental challenges through research and data analysis.{% endblock %}
+
+{% block head_extra %}
     <style>
-        /* CSS Variables */
+        /* CSS Variables — remapped onto the NexYouth brand design system.
+           Page-local tokens now point at brand tokens (styles.css), so every
+           rule below recolours/retypefaces to brand without structural edits. */
         :root {
-            /* Colors */
-            --primary: #0d9488;
-            --primary-dark: #0f766e;
-            --primary-light: #14b8a6;
-            --secondary: #1e3a5f;
-            --secondary-light: #2d4a6f;
-            --accent: #f59e0b;
-            --accent-light: #fbbf24;
+            /* Colors — green/amber accents become brand cobalt; dark blocks become navy */
+            --primary: var(--cobalt);
+            --primary-dark: var(--cobalt-deep);
+            --primary-light: var(--cobalt-bright);
+            --secondary: var(--navy);
+            --secondary-light: var(--navy-2);
+            --accent: var(--cobalt-bright);
+            --accent-light: #6E86FF;
 
-            /* Neutrals */
-            --white: #ffffff;
-            --gray-50: #f9fafb;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-300: #d1d5db;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-600: #4b5563;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
+            /* Neutrals — mapped onto cool brand neutrals */
+            --white: var(--paper);
+            --gray-50: var(--bg);
+            --gray-100: var(--tint);
+            --gray-200: var(--line);
+            --gray-300: var(--line-strong);
+            --gray-400: var(--muted);
+            --gray-500: var(--muted);
+            --gray-600: var(--ink-2);
+            --gray-700: var(--ink-2);
+            --gray-800: var(--ink);
+            --gray-900: var(--ink);
 
-            /* Gradients */
-            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            --gradient-hero: linear-gradient(135deg, #0f766e 0%, #1e3a5f 50%, #134e4a 100%);
+            /* Gradients — colour stops follow the remapped brand tokens */
+            --gradient-primary: linear-gradient(135deg, var(--cobalt) 0%, var(--cobalt-deep) 100%);
+            --gradient-hero: linear-gradient(135deg, var(--cobalt-deep) 0%, var(--navy) 50%, var(--navy) 100%);
 
-            /* Shadows */
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            /* Shadows — cool, navy-tinted brand shadows */
+            --shadow-sm: 0 1px 2px rgba(11, 16, 48, .06);
+            --shadow: 0 6px 20px rgba(11, 16, 48, .08);
+            --shadow-md: 0 16px 38px rgba(11, 16, 48, .12);
+            --shadow-lg: 0 16px 38px rgba(11, 16, 48, .12);
+            --shadow-xl: 0 24px 50px rgba(11, 16, 48, .16);
 
-            /* Typography */
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --font-display: 'Playfair Display', Georgia, serif;
+            /* Typography — brand display + body faces */
+            --font-sans: var(--font-body);
+            /* NOTE: --font-display is provided by the brand stylesheet (Bricolage Grotesque) */
 
             /* Spacing */
-            --section-padding: 6rem;
-            --container-max: 1200px;
+            --section-padding: var(--section-y);
+            --container-max: var(--container);
 
-            /* Border Radius */
-            --radius-sm: 0.375rem;
-            --radius: 0.5rem;
-            --radius-lg: 0.75rem;
-            --radius-xl: 1rem;
-            --radius-2xl: 1.5rem;
+            /* Border Radius — --radius-sm/--radius/--radius-lg/--radius-xl come
+               from the brand stylesheet; only the page-only --radius-2xl is set here. */
+            --radius-2xl: 26px;
 
             /* Transitions */
             --transition: all 0.3s ease;
         }
 
-        /* Reset & Base */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-sans);
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--gray-700);
-            background-color: var(--white);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
+        /* Reset & base type/colour/body rules are owned by the brand stylesheet
+           (styles.css). The page's own *{} reset and body{} rule were removed so
+           base controls global resets, fonts, and background. */
         img {
             max-width: 100%;
             height: auto;
@@ -510,7 +479,7 @@
 
         /* Global Impact Section */
         .global-impact {
-            background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 50%, #f0f9ff 100%);
+            background: var(--tint);
         }
 
         /* Impact Statistics */
@@ -588,7 +557,7 @@
             max-width: 900px;
             margin: 0 auto;
             aspect-ratio: 2/1;
-            background: linear-gradient(180deg, #e8f4fc 0%, #d4e8f7 100%);
+            background: linear-gradient(180deg, var(--tint) 0%, var(--tint-2) 100%);
             border-radius: var(--radius-xl);
             overflow: hidden;
         }
@@ -621,7 +590,7 @@
             background: var(--accent);
             border: 2px solid var(--white);
             border-radius: 50%;
-            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.5);
+            box-shadow: 0 2px 8px rgba(36, 51, 214, 0.5);
             animation: pulse 2s infinite;
         }
 
@@ -665,10 +634,10 @@
 
         @keyframes pulse {
             0%, 100% {
-                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5);
+                box-shadow: 0 0 0 0 rgba(36, 51, 214, 0.5);
             }
             50% {
-                box-shadow: 0 0 0 8px rgba(245, 158, 11, 0);
+                box-shadow: 0 0 0 8px rgba(36, 51, 214, 0);
             }
         }
 
@@ -785,7 +754,7 @@
 
         .eligibility-card.featured {
             border-color: var(--primary);
-            background: linear-gradient(to bottom, rgba(13, 148, 136, 0.03), var(--white));
+            background: linear-gradient(to bottom, rgba(36, 51, 214, 0.03), var(--white));
         }
 
         .card-badge {
@@ -933,7 +902,7 @@
         .timeline-marker.active {
             border-color: var(--primary);
             background: var(--primary);
-            box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.2);
+            box-shadow: 0 0 0 4px rgba(36, 51, 214, 0.2);
         }
 
         .timeline-item:hover .timeline-marker {
@@ -1213,7 +1182,7 @@
 
         .award-card.special {
             border-color: var(--primary);
-            background: linear-gradient(to bottom, rgba(13, 148, 136, 0.1), var(--white));
+            background: linear-gradient(to bottom, rgba(36, 51, 214, 0.1), var(--white));
         }
 
         .award-badge {
@@ -1394,7 +1363,7 @@
         }
 
         .category-header.junior {
-            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            background: linear-gradient(135deg, var(--cobalt-bright) 0%, #6E86FF 100%);
         }
 
         .category-header.special {
@@ -2044,57 +2013,23 @@
             }
         }
     </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="/" class="logo">
-                <img src="/static/logo.svg" alt="NexYouth">
-            </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="/">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#themes">Themes</a></li>
-                <li><a href="#global-impact">Global Impact</a></li>
-                <li><a href="#awards">Awards</a></li>
-                <li style="position: relative;">
-                    <a href="#winners">Winners</a>
-                    <ul style="position: absolute; top: 100%; left: 0; background: white; list-style: none; padding: 0.5rem 0; border-radius: 4px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); min-width: 180px; display: none; z-index: 100;">
-                        <li style="padding: 0;"><a href="#winners" style="display: block; padding: 0.75rem 1rem; text-decoration: none; color: inherit; border: none;">Past Winners</a></li>
-                        <li style="padding: 0;"><a href="/programs/iyec-2026-results" style="display: block; padding: 0.75rem 1rem; text-decoration: none; color: inherit; border: none;">IYEC 2026 Results</a></li>
-                    </ul>
-                </li>
-                <style>
-                    li:has(> a[href="#winners"]):hover ul {
-                        display: block !important;
-                    }
-                </style>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+{% endblock %}
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <span class="hero-label">2025-2026 Competition Open</span>
-            <h1 class="hero-title">International Youth<br>Environmental Challenge</h1>
-            <p class="hero-tagline">Inspire. Innovate. Impact.</p>
-
-            <div class="hero-cta">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc487tftJjAfLNuFsVuFODGCr7ljV-8DFdXyx9Lb5Szlxv24w/viewform" target="_blank" class="btn btn-primary btn-large">Register Now</a>
-                <a href="#about" class="btn btn-secondary btn-large">Learn More</a>
+{% block content %}
+    <!-- Hero -->
+    <section class="section section--tint">
+        <div class="container">
+            <div class="section-head center anim">
+                <span class="eyebrow">Youth Environmental Challenge</span>
+                <h1>International Youth Environmental Challenge</h1>
+                <p class="lead">Inspire. Innovate. Impact. A global competition empowering youth to investigate real-world environmental challenges through research and data analysis — and win scholarships while making a positive impact. The 2025-2026 competition is now open.</p>
+                <div class="hero-actions" style="justify-content: center; margin-top: 2rem;">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc487tftJjAfLNuFsVuFODGCr7ljV-8DFdXyx9Lb5Szlxv24w/viewform" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Register now</a>
+                    <a href="#about" class="btn btn-ghost btn-lg">Learn more</a>
+                </div>
             </div>
         </div>
-    </header>
+    </section>
 
     <!-- About Section -->
     <section id="about" class="section about">
@@ -3647,52 +3582,20 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="/" class="logo">
-                        <img src="/static/logo.svg" alt="NexYouth" style="height: 40px; filter: brightness(0) invert(1);">
-                    </a>
-                    <p>Empowering youth to create innovative solutions for our planet's environmental challenges.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Competition</h4>
-                        <ul>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#themes">Themes</a></li>
-                            <li><a href="#timeline">Timeline</a></li>
-                            <li><a href="#awards">Awards</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Resources</h4>
-                        <ul>
-                            <li><a href="#faq">FAQ</a></li>
-                            <li><a href="#winners">Past Winners</a></li>
-                            <li><a href="#register">Register</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 NexYouth - International Youth Environmental Challenge. All rights reserved.</p>
-                <p class="tagline">Inspire. Innovate. Impact.</p>
-            </div>
-        </div>
-    </footer>
+{% endblock %}
 
-    <script>
-        // Mobile menu functionality
+{% block scripts %}
+        // Mobile menu functionality — the shared nav is owned by base.html, so these
+        // page-local nav elements no longer exist here. Guard the references so the
+        // rest of this script (year tabs, FAQ, smooth scroll) still runs.
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+        if (mobileMenuBtn && navLinks) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
 
         // Year tabs functionality
         const yearTabBtns = document.querySelectorAll('.year-tab-btn');
@@ -3783,6 +3686,4 @@
                 }
             });
         });
-    </script>
-</body>
-</html>
+{% endblock %}
