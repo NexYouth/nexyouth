@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/styles.css?v=17">
+    <link rel="stylesheet" href="/static/css/styles.css?v=22">
     {% block head_extra %}{% endblock %}
 </head>
 <body>
@@ -29,8 +29,7 @@
     <header class="site-nav" id="siteNav">
         <div class="nav-inner container">
             <a href="/" class="brand" aria-label="NexYouth home">
-                <span class="brand-mark">N</span>
-                <span class="brand-name">NexYouth</span>
+                <img src="/static/nexyouth-logo.png?v=3" alt="NexYouth" class="brand-logo">
             </a>
 
             <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
@@ -90,8 +89,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="/" class="brand">
-                        <span class="brand-mark">N</span>
-                        <span class="brand-name">NexYouth</span>
+                        <img src="/static/nexyouth-logo.png?v=3" alt="NexYouth" class="brand-logo brand-logo--footer">
                     </a>
                     <p>A youth-led nonprofit empowering young people across Ontario through skills, mentorship, and community.</p>
                 </div>
@@ -128,6 +126,11 @@
     {% block libs %}{% endblock %}
     <script>
         document.documentElement.classList.add('js');
+
+        // Transparent nav while a dark hero sits at the top of the page
+        if (document.querySelector('#main > .page-hero')) {
+            document.documentElement.classList.add('hero-nav');
+        }
 
         // Sticky nav shadow on scroll
         var nav = document.getElementById('siteNav');

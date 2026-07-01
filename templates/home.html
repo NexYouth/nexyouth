@@ -5,27 +5,14 @@
 
 {% block content %}
 <!-- Hero -->
-<section class="hero">
+<section class="page-hero page-hero--full page-hero--img" style="--hero-img: url('/static/max and justin award.jpg'); --hero-pos: center 32%; --scrim-l: .82;">
     <div class="container">
-        <div class="hero-grid">
-            <div class="hero-copy">
-                <span class="eyebrow">Youth-led nonprofit · Est. 2024</span>
-                <h1>Creating space for youth to grow, lead and act.</h1>
-                <p class="lead">Skills, mentorship and community, built by young people for young people. We connect youth with experts and create real pathways to opportunity.</p>
-                <div class="hero-actions">
-                    <a href="{{ get_involved_url }}" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Get involved</a>
-                    <a href="#programs" class="btn btn-ghost btn-lg">Explore programs</a>
-                </div>
-                <div class="hero-meta">
-                    <div><div class="num">6</div><div class="lbl">programs</div></div>
-                    <div><div class="num">Est. 2024</div><div class="lbl">youth-led nonprofit</div></div>
-                    <div><div class="num">GTA + global</div><div class="lbl">community</div></div>
-                </div>
-            </div>
-            <div class="hero-photo">
-                <img src="/static/max and justin award.jpg" alt="NexYouth founders Max and Justin receiving certificates at an awards ceremony" loading="eager">
-                <span class="photo-chip"><span class="dot"></span> Youth-led since 2024</span>
-            </div>
+        <span class="eyebrow">Youth-led nonprofit · Est. 2024</span>
+        <h1>NexYouth</h1>
+        <p class="lead">A youth-led nonprofit helping young people build real skills, find mentors, and create their own pathways to opportunity — across the GTA and beyond.</p>
+        <div class="hero-actions">
+            <a href="{{ get_involved_url }}" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Get involved</a>
+            <a href="#programs" class="btn btn-on-dark-ghost btn-lg">Explore programs</a>
         </div>
     </div>
 </section>
@@ -39,15 +26,15 @@
     </div>
 </div>
 
-<!-- Impact stats (count-up) — opens the dark "second page" -->
-<section class="section">
+<!-- Impact stats (count-up) — dark band -->
+<section class="section section--navy">
     <div class="container">
         <div class="section-head center anim" style="margin-bottom:2.75rem;">
             <span class="eyebrow">By the numbers</span>
             <h2>Our impact so far</h2>
         </div>
         <div class="stats-grid">
-            <div><div class="stat-num" data-count="200" data-suffix="+">200+</div><div class="stat-label">Students taught</div></div>
+            <div><div class="stat-num" data-count="300" data-suffix="+">300+</div><div class="stat-label">Students taught</div></div>
             <div><div class="stat-num" data-count="13" data-suffix="+">13+</div><div class="stat-label">Countries reached</div></div>
             <div><div class="stat-num" data-count="6">6</div><div class="stat-label">Programs run</div></div>
         </div>
