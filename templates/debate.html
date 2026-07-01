@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Summer Debate Program — NexYouth{% endblock %}
+{% block title %}Summer Debate Program, NexYouth{% endblock %}
 {% block description %}The NexYouth Summer Debate Program is a free eight-week online course for students in grades 5–8, taking them from their first speech to a full debate round across Beginner, Intermediate, and Advanced levels.{% endblock %}
 
 {% block content %}
-{# TODO(Max): replace both with the real public links. The course link below is a
-   best-guess /viewform from the editor URL you gave me — confirm it opens for a
-   logged-out student. The workshop link needs Achēv's real "Register Now" URL. #}
-{% set debate_register_url = "https://docs.google.com/forms/d/1VtvJbEWy7AFrj9uFc8m2g8ulazZhRQe7E6wQhfMa2wQ/viewform" %}
+{# Workshop registration is run by Achēv; no public link yet, so the workshop CTA
+   points to /contact until Max supplies Achēv's "Register Now" URL. #}
+{% set debate_register_url = "https://forms.gle/qTNe2HjFkUsW79ap8" %}
 {% set workshop_register_url = "/contact" %}
 
 <!-- HERO -->
@@ -16,7 +15,7 @@
         <div class="section-head center anim">
             <span class="eyebrow">Public Speaking &amp; Debate</span>
             <h1>NexYouth Summer Debate Program</h1>
-            <p class="lead">An eight-week summer course for students in grades 5–8 that takes them from their first speech to a full debate round — with three levels, so every student is challenged at the right pace.</p>
+            <p class="lead">An eight-week summer course for students in grades 5–8 that takes them from their first speech to a full debate round, with three levels, so every student is challenged at the right pace.</p>
             <div class="pill-row" style="justify-content:center;margin-top:1.5rem">
                 <span class="pill">Free</span>
                 <span class="pill">Grades 5–8</span>
@@ -39,13 +38,13 @@
         <div class="section-head anim">
             <span class="eyebrow">Three levels</span>
             <h2>A track for every debater</h2>
-            <p class="lead">Pre-registration required — spots are limited to 30 students, and classes run online for eight weeks.</p>
+            <p class="lead">Pre-registration required, spots are limited to 30 students, and classes run online for eight weeks.</p>
         </div>
         <div class="grid grid-auto anim-stagger">
             <div class="card">
                 <h3>Beginner</h3>
                 <p><strong>Thursdays 3:00–4:00 pm</strong><br>July 9 – August 27</p>
-                <p>Confidence building, an introduction to debate, and the fundamentals — the perfect first step onto the stage.</p>
+                <p>Confidence building, an introduction to debate, and the fundamentals, the perfect first step onto the stage.</p>
             </div>
             <div class="card">
                 <h3>Intermediate</h3>
@@ -88,29 +87,40 @@
     </div>
 </section>
 
-<!-- COACHES -->
+<!-- HEAD COACH -->
 <section class="section section--paper">
     <div class="container">
         <div class="section-head anim">
-            <span class="eyebrow">Meet the coaches</span>
-            <h2>An experienced team of competitive debaters</h2>
-            <p class="lead">Led by Head Coach William Zhou, with a coaching team that has broken and won at the national and international level.</p>
+            <span class="eyebrow">Meet the head coach</span>
+            <h2>Why William leads the program</h2>
+        </div>
+        <div class="card anim" style="max-width:780px;margin-inline:auto">
+            <img class="avatar" src="/static/placeholder.svg" alt="William Zhou" style="width:88px;height:88px;object-fit:cover">
+            <h3>William Zhou</h3>
+            <p>Head Coach · Upper Canada College</p>
+            <p>William was a natural choice to head the program. What first stood out was his critical thinking: the instinct to question and pressure-test ideas that defines every strong debater. As a teacher he keeps things simple, explaining concepts clearly without the jargon that can lose younger students.</p>
+            <p>He also brings real ownership, having built the full curriculum and lesson plans for all three levels himself. At Upper Canada College he served as a junior executive on the debate team, where he ran a mentorship programme for younger debaters. We're glad to have him on the NexYouth team.</p>
+            <ul>
+                <li>Champion, Queen's Summer Open</li>
+                <li>Top Open &amp; Junior Speaker, Western Open</li>
+                <li>Top 6th Speaker, CUSID High School Nationals</li>
+                <li>Quarterfinalist, Hart House High Schools</li>
+                <li>Junior Semi-finalist, Harvard WSDC</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- COACHING TEAM -->
+<section class="section section--tint">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">The coaching team</span>
+            <h2>Coaches who've competed at every level</h2>
         </div>
         <div class="grid grid-auto anim-stagger">
             <div class="card">
-                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">WZ</span>
-                <h3>William Zhou</h3>
-                <p>Head Coach · Upper Canada College</p>
-                <ul>
-                    <li>Champion, Queen's Summer Open</li>
-                    <li>Top Open &amp; Junior Speaker, Western Open</li>
-                    <li>Top 6th Speaker, CUSID High School Nationals</li>
-                    <li>Quarterfinalist, Hart House High Schools</li>
-                    <li>Junior Semi-finalist, Harvard WSDC</li>
-                </ul>
-            </div>
-            <div class="card">
-                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">AG</span>
+                <img class="avatar" src="/static/placeholder.svg" alt="Alston Guo" style="width:72px;height:72px;object-fit:cover">
                 <h3>Alston Guo</h3>
                 <p>Intermediate Coach · St. Andrew's College</p>
                 <ul>
@@ -124,19 +134,19 @@
                 <h3>Haim Joshi</h3>
                 <p>Advanced Coach · Upper Canada College</p>
                 <ul>
-                    <li>HHHS 2026 — 4th Breaking</li>
+                    <li>HHHS 2026, 4th Breaking</li>
                     <li>Team Oxford WSDC 2025 Octofinalist</li>
                     <li>HHSO Top Speaker</li>
                 </ul>
             </div>
             <div class="card">
-                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">HD</span>
+                <img class="avatar" src="/static/placeholder.svg" alt="Heather Dong" style="width:72px;height:72px;object-fit:cover">
                 <h3>Heather Dong</h3>
                 <p>Beginner Coach · Abbey Park High School</p>
                 <ul>
                     <li>Semi-finalist, McGill Winter Nationals</li>
                     <li>Grand Finalist, Harvard BP 2026</li>
-                    <li>Team Canada Pre-WSDC — 6th team</li>
+                    <li>Team Canada Pre-WSDC, 6th team</li>
                 </ul>
             </div>
             <div class="card">
@@ -153,13 +163,13 @@
     <div class="container">
         <div class="section-head anim">
             <span class="eyebrow">In collaboration with Achēv</span>
-            <h2>Summer Debate Workshop — in person</h2>
+            <h2>Summer Debate Workshop, in person</h2>
             <p class="lead">A five-day, in-person debate workshop run with the Achēv Newcomer Information Centre, developing critical thinking, argumentation, and persuasive speaking.</p>
         </div>
         <div class="grid grid-auto anim-stagger">
             <div class="card">
                 <h3>The program</h3>
-                <p>Over five days students cover debate structure, motion analysis, speaker roles, strategy, and formal debate practice — learning to present ideas logically, respond effectively, and communicate with confidence in structured discussions.</p>
+                <p>Over five days students cover debate structure, motion analysis, speaker roles, strategy, and formal debate practice, learning to present ideas logically, respond effectively, and communicate with confidence in structured discussions.</p>
                 <p><strong>Taught by Ethan.</strong></p>
             </div>
             <div class="card">
@@ -167,7 +177,7 @@
                 <p><strong>Dates:</strong> July 13–17, 2026<br>
                    <strong>Time:</strong> 1:00 – 3:00 pm<br>
                    <strong>Location:</strong> 690 Dorval Dr., Suite 100, Oakville, L6K 3X9</p>
-                <p style="margin-top:1rem"><a href="{{ workshop_register_url }}" target="_blank" rel="noopener" class="btn btn-primary">Register with Achēv</a></p>
+                <p style="margin-top:1rem"><a href="{{ workshop_register_url }}" class="btn btn-primary">Contact us to register</a></p>
             </div>
             <div class="card">
                 <h3>Eligibility</h3>

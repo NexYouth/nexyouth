@@ -1,0 +1,7 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Photo coming soon">
+    <rect width="400" height="400" fill="#e9edf6"/>
+    <g fill="#b3bdd6">
+        <circle cx="200" cy="158" r="66"/>
+        <path d="M78 356c0-64 55-104 122-104s122 40 122 104z"/>
+    </g>
+</svg>
