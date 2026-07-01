@@ -26,3 +26,6 @@ templates/update_criteria.py
 data/
 *.bak
 
+
+# static build for Cloudflare Pages
+dist/

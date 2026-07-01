@@ -126,6 +126,10 @@ h3 { font-size: clamp(1.2rem, 2.2vw, 1.5rem); }
 .brand:hover { color: var(--ink); }
 .brand-logo { height: 48px; width: auto; display: block; }
 .brand-logo--footer { height: 54px; }
+/* Two logo variants: two-tone on light nav, white on the dark hero nav. Footer always uses white. */
+.brand-logo--ondark { display: none; }
+html.hero-nav .site-nav:not(.scrolled) .brand-logo--onlight { display: none; }
+html.hero-nav .site-nav:not(.scrolled) .brand-logo--ondark { display: block; }
 .brand-mark { width: 34px; height: 34px; border-radius: 9px; background: var(--cobalt); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; line-height: 1; }
 .brand-name { font-family: var(--font-display); font-weight: 700; font-size: 1.32rem; letter-spacing: -.02em; transition: color .5s ease; }
 .brand-name b { color: var(--cobalt); font-weight: 700; }
