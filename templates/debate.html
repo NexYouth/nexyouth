@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block title %}Summer Debate Program — NexYouth{% endblock %}
+{% block description %}The NexYouth Summer Debate Program is a free eight-week online course for students in grades 5–8, taking them from their first speech to a full debate round across Beginner, Intermediate, and Advanced levels.{% endblock %}
+
+{% block content %}
+{# TODO(Max): replace both with the real public links. The course link below is a
+   best-guess /viewform from the editor URL you gave me — confirm it opens for a
+   logged-out student. The workshop link needs Achēv's real "Register Now" URL. #}
+{% set debate_register_url = "https://docs.google.com/forms/d/1VtvJbEWy7AFrj9uFc8m2g8ulazZhRQe7E6wQhfMa2wQ/viewform" %}
+{% set workshop_register_url = "/contact" %}
+
+<!-- HERO -->
+<section class="section section--tint">
+    <div class="container">
+        <div class="section-head center anim">
+            <span class="eyebrow">Public Speaking &amp; Debate</span>
+            <h1>NexYouth Summer Debate Program</h1>
+            <p class="lead">An eight-week summer course for students in grades 5–8 that takes them from their first speech to a full debate round — with three levels, so every student is challenged at the right pace.</p>
+            <div class="pill-row" style="justify-content:center;margin-top:1.5rem">
+                <span class="pill">Free</span>
+                <span class="pill">Grades 5–8</span>
+                <span class="pill">8 weeks</span>
+                <span class="pill">Online</span>
+                <span class="pill">30 spots</span>
+                <span class="pill">Starts July 9</span>
+            </div>
+            <div class="cta-actions" style="justify-content:center;margin-top:1.75rem">
+                <a href="{{ debate_register_url }}" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Pre-register</a>
+                <a href="#workshop" class="btn btn-ghost btn-lg">See the Achēv workshop</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- THREE LEVELS -->
+<section class="section section--navy">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">Three levels</span>
+            <h2>A track for every debater</h2>
+            <p class="lead">Pre-registration required — spots are limited to 30 students, and classes run online for eight weeks.</p>
+        </div>
+        <div class="grid grid-auto anim-stagger">
+            <div class="card">
+                <h3>Beginner</h3>
+                <p><strong>Thursdays 3:00–4:00 pm</strong><br>July 9 – August 27</p>
+                <p>Confidence building, an introduction to debate, and the fundamentals — the perfect first step onto the stage.</p>
+            </div>
+            <div class="card">
+                <h3>Intermediate</h3>
+                <p><strong>Thursdays 4:15–5:30 pm</strong><br>July 9 – August 27</p>
+                <p>Argumentation, refutation, and weighing, plus the common motion types debaters need to know.</p>
+            </div>
+            <div class="card">
+                <h3>Advanced</h3>
+                <p><strong>Fridays 4:00–5:30 pm</strong><br>July 10 – August 29</p>
+                <p>Advanced strategy, consistent full debate practice, and personalized resources to sharpen every round.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHAT WE PROVIDE -->
+<section class="section section--tint">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">Every student gets</span>
+            <h2>What we provide</h2>
+        </div>
+        <div class="grid grid-auto anim-stagger">
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+                <h3>Detailed report cards</h3>
+                <p>An end-of-program report card for every student, with concrete feedback on their progress.</p>
+            </div>
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></span>
+                <h3>Self-rating trends</h3>
+                <p>Students track their own growth over the eight weeks and see exactly how far they've come.</p>
+            </div>
+            <div class="card">
+                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+                <h3>Advanced resources &amp; readings</h3>
+                <p>Curated materials and readings to keep improving well beyond the classroom.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COACHES -->
+<section class="section section--paper">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">Meet the coaches</span>
+            <h2>An experienced team of competitive debaters</h2>
+            <p class="lead">Led by Head Coach William Zhou, with a coaching team that has broken and won at the national and international level.</p>
+        </div>
+        <div class="grid grid-auto anim-stagger">
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">WZ</span>
+                <h3>William Zhou</h3>
+                <p>Head Coach · Upper Canada College</p>
+                <ul>
+                    <li>Champion, Queen's Summer Open</li>
+                    <li>Top Open &amp; Junior Speaker, Western Open</li>
+                    <li>Top 6th Speaker, CUSID High School Nationals</li>
+                    <li>Quarterfinalist, Hart House High Schools</li>
+                    <li>Junior Semi-finalist, Harvard WSDC</li>
+                </ul>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">AG</span>
+                <h3>Alston Guo</h3>
+                <p>Intermediate Coach · St. Andrew's College</p>
+                <ul>
+                    <li>South Asian BP Grand Champion</li>
+                    <li>Asia Pre-WSDC Semi-finalist &amp; Top Breaking Team</li>
+                    <li>Vietnam IV Asian Parliamentary Semi-finalist</li>
+                </ul>
+            </div>
+            <div class="card">
+                <img class="avatar" src="/static/HaimJoshi.jpg" alt="Haim Joshi" style="width:72px;height:72px;object-fit:cover">
+                <h3>Haim Joshi</h3>
+                <p>Advanced Coach · Upper Canada College</p>
+                <ul>
+                    <li>HHHS 2026 — 4th Breaking</li>
+                    <li>Team Oxford WSDC 2025 Octofinalist</li>
+                    <li>HHSO Top Speaker</li>
+                </ul>
+            </div>
+            <div class="card">
+                <span class="avatar" aria-hidden="true" style="width:72px;height:72px;font-size:1.4rem">HD</span>
+                <h3>Heather Dong</h3>
+                <p>Beginner Coach · Abbey Park High School</p>
+                <ul>
+                    <li>Semi-finalist, McGill Winter Nationals</li>
+                    <li>Grand Finalist, Harvard BP 2026</li>
+                    <li>Team Canada Pre-WSDC — 6th team</li>
+                </ul>
+            </div>
+            <div class="card">
+                <img class="avatar" src="/static/Volunteer_DebateCoach_IsoldeLi.png" alt="Isolde Li" style="width:72px;height:72px;object-fit:cover">
+                <h3>Isolde Li</h3>
+                <p>Assistant Coach</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ACHĒV WORKSHOP -->
+<section class="section section--tint" id="workshop">
+    <div class="container">
+        <div class="section-head anim">
+            <span class="eyebrow">In collaboration with Achēv</span>
+            <h2>Summer Debate Workshop — in person</h2>
+            <p class="lead">A five-day, in-person debate workshop run with the Achēv Newcomer Information Centre, developing critical thinking, argumentation, and persuasive speaking.</p>
+        </div>
+        <div class="grid grid-auto anim-stagger">
+            <div class="card">
+                <h3>The program</h3>
+                <p>Over five days students cover debate structure, motion analysis, speaker roles, strategy, and formal debate practice — learning to present ideas logically, respond effectively, and communicate with confidence in structured discussions.</p>
+                <p><strong>Taught by Ethan.</strong></p>
+            </div>
+            <div class="card">
+                <h3>Details</h3>
+                <p><strong>Dates:</strong> July 13–17, 2026<br>
+                   <strong>Time:</strong> 1:00 – 3:00 pm<br>
+                   <strong>Location:</strong> 690 Dorval Dr., Suite 100, Oakville, L6K 3X9</p>
+                <p style="margin-top:1rem"><a href="{{ workshop_register_url }}" target="_blank" rel="noopener" class="btn btn-primary">Register with Achēv</a></p>
+            </div>
+            <div class="card">
+                <h3>Eligibility</h3>
+                <p>Open to Permanent Residents or Convention Refugees (with Confirmation of PR or Notice of Decision).</p>
+                <p style="margin-top:1rem"><span class="tag">Funded by Immigration, Refugees and Citizenship Canada</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section--blue">
+    <div class="container">
+        <div class="cta-band anim">
+            <h2>Ready to find your voice?</h2>
+            <p>Spots are limited to 30 students and pre-registration is required. Questions? Email wizyzhou@gmail.com.</p>
+            <div class="cta-actions">
+                <a href="{{ debate_register_url }}" target="_blank" rel="noopener" class="btn btn-light btn-lg">Pre-register now</a>
+                <a href="/contact" class="btn btn-on-dark-ghost btn-lg">Contact us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

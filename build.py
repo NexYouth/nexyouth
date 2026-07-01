@@ -26,6 +26,7 @@ PAGES = {
     "partnership-packages.html": "partnership-packages.html",
     "success.html": "success.html",
     "programs/skill-development.html": "skill-development.html",
+    "programs/debate.html": "debate.html",
     "programs/seminars.html": "seminars.html",
     "programs/mentorship.html": "mentorship.html",
     "programs/environmental-competition.html": "environmental-competition.html",
