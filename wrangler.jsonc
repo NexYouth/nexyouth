@@ -1,0 +1,10 @@
+{
+  // Serve the built static site (dist/) via Cloudflare. `build.py` generates
+  // dist/ during the build step; `npx wrangler deploy` publishes it.
+  "name": "nexyouth",
+  "compatibility_date": "2026-07-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
