@@ -29,8 +29,10 @@ PAGES = {
     "programs/debate.html": "debate.html",
     "programs/seminars.html": "seminars.html",
     "programs/mentorship.html": "mentorship.html",
-    "programs/environmental-competition.html": "environmental-competition.html",
-    "programs/iyec-2026-results.html": "iyec-2026-results.html",
+    # These two now redirect to globalenvironmentchallenge.org (the live competition
+    # site). The original rich pages are kept for reference in templates/_reference/.
+    "programs/environmental-competition.html": "_redirect-gec.html",
+    "programs/iyec-2026-results.html": "_redirect-gec.html",
     "programs/youth-tech-lab.html": "youth-tech-lab.html",
     "programs/eco-classroom.html": "eco-classroom.html",
     "programs/eco-classroom/eco-literacy.html": "course-eco-literacy.html",
