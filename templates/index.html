@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NexYouth - Empowering youth globally through skill development and mentorship.">
+    <title>NexYouth - Empowering Youth</title>
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="NexYouth - Empowering Youth">
+    <meta property="og:description" content="Empowering youth globally through skill development and mentorship.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nexyouth.org">
+    <meta property="og:image" content="/static/logo.svg">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+    <link rel="apple-touch-icon" href="/static/logo.svg">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 0.8rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        nav .logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            background: #0f0f1a;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: auto;
+            object-fit: contain;
+            z-index: 0;
+        }
+
+        .hero .content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b35;
+            color: white;
+            padding: 0.9rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #ff5520;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        section h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* What We Do Section */
+        .what-we-do {
+            background: #f9f9f9;
+        }
+
+        .what-we-do p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            text-align: center;
+            color: #666;
+        }
+
+        .action-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .action-links a {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        /* Programs Grid */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .program-card {
+            background: white;
+            border: 1px solid #eee;
+            padding: 2.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: block;
+            cursor: pointer;
+        }
+
+        .program-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
+            border-color: #00d4ff;
+        }
+
+        .program-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .program-card:hover h3 {
+            color: #00d4ff;
+        }
+
+        .program-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        /* Statistics Section */
+        .statistics {
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d2137 100%);
+            color: white;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .statistics::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .statistics h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            position: relative;
+        }
+
+        .statistics > .container > p {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .stat-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            color: #ccc;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: #f9f9f9;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 4px;
+            border-left: 4px solid #ff6b35;
+        }
+
+        .testimonial-quote {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .testimonial-title {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        /* Video Testimonials */
+        .video-testimonials {
+            margin-top: 3rem;
+        }
+
+        .video-testimonials h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-card video {
+            width: 100%;
+            display: block;
+        }
+
+        .video-info {
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .video-info h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+
+        .video-info p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        @media (max-width: 1024px) {
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .video-testimonials h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: #ff6b35;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.8rem 1rem;
+            }
+
+            nav .logo img {
+                height: 50px;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                gap: 0;
+                border-top: 1px solid #eee;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                width: 100%;
+                position: relative;
+            }
+
+            nav a {
+                display: block;
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: #f5f5f5;
+                border-radius: 0;
+                min-width: auto;
+            }
+
+            .dropdown-menu.active {
+                display: block;
+            }
+
+            .dropdown-menu a {
+                padding: 0.6rem 2rem 0.6rem 3rem;
+                font-size: 0.85rem;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.6rem;
+                margin-bottom: 2rem;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .action-links {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .action-links a {
+                padding: 0.8rem 1.5rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem 0.8rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-label {
+                font-size: 0.95rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            footer .links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.6rem 0.8rem;
+            }
+
+            nav .logo img {
+                height: 40px;
+            }
+
+            .hero {
+                min-height: 35vh;
+                max-width: 100%;
+                padding: 1rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .cta-button {
+                padding: 0.7rem 1.8rem;
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 1.5rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.3rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .what-we-do p {
+                font-size: 0.95rem;
+            }
+
+            .program-card {
+                padding: 1.5rem;
+            }
+
+            .program-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .program-card p {
+                font-size: 0.9rem;
+            }
+
+            .statistics {
+                padding: 3rem 1rem;
+            }
+
+            .statistics h2 {
+                font-size: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .stat-label {
+                font-size: 0.85rem;
+            }
+
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+
+            .testimonial-quote {
+                font-size: 0.95rem;
+            }
+
+            .cta-section {
+                padding: 2rem 1rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.3rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+            }
+
+            footer p {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/static/logo.svg" alt="NexYouth">
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#what-we-do">What We Do</a></li>
+                <li class="dropdown">
+                    <a href="/#programs">Programs ▾</a>
+                    <div class="dropdown-menu" id="programsDropdown">
+                        <a href="/programs/skill-development">Skill Development Courses</a>
+                        <a href="/programs/seminars">Seminars & Workships</a>
+                        <a href="/programs/mentorship">Global Mentorship Network</a>
+                        <a href="/programs/eco-classroom">Eco Classroom</a>
+                        <a href="/programs/youth-tech-lab">Youth Tech Lab</a>
+                    </div>
+                </li>
+                <li><a href="/chapters">Chapters</a></li>
+                <li><a href="/partner">Partner</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <video autoplay muted loop playsinline preload="metadata">
+            <source src="/static/main_background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="content">
+            <h1> Creating Space for Youth. Shaping Futures.</h1>
+            <p>Connect with mentors, develop in-demand skills, and unlock global opportunities</p>
+            <a href="#what-we-do" class="cta-button">Learn More</a>
+        </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section id="what-we-do" class="what-we-do">
+        <div class="container">
+            <h2>What We Do</h2>
+            <p>At NexYouth, we're on a mission to empower young people globally through skill development, mentorship, and community. We connect youth with industry experts, provide practical training, and create pathways to success in an ever-changing world.</p>
+            <div class="action-links">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform?pli=1" target="_blank">Get Involved</a>
+                <a href="/contact">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="programs">
+        <div class="container">
+            <h2>Featured Programs</h2>
+            <div class="programs-grid">
+                <a href="/programs/skill-development" class="program-card" style="text-decoration: none; color: inherit;">
+                    <h3>Skill Development Courses</h3>
+                    <p>Comprehensive programs focus on developing critical thinking, data literacy, environmental stewardship, and strong STEM foundations, guided by instructors committed to youth growth and success.</p>
+                </a>
+                <a href="/programs/seminars" class="program-card" style="text-decoration: none; color: inherit;">
+                    <h3>Seminars & Workshops</h3>
+                    <p>Learn directly from industry leaders and experienced professionals. Our seminars provide insights into emerging opportunities and inspire the next generation of innovators.</p>
+                </a>
+                <a href="/programs/mentorship" class="program-card" style="text-decoration: none; color: inherit;">
+                    <h3>Global Mentorship Network</h3>
+                    <p>Get paired with mentors who can guide your personal and professional development. Our mentors bring real-world experience and genuine commitment to your growth.</p>
+                </a>
+                <a href="/programs/eco-classroom" class="program-card" style="text-decoration: none; color: inherit;">
+                    <h3>Eco Classroom</h3>
+                    <p>Free, self-paced courses for young environmental leaders — grounded in real science, with certificates and completion awards. Learn how environmental systems work and design your own action plan.</p>
+                </a>
+                <a href="/programs/youth-tech-lab" class="program-card" style="text-decoration: none; color: inherit;">
+                    <h3>Youth Tech Lab</h3>
+                    <p>Connects talented youth creaters with organizations needing professional websites and apps—delivering modern, affordable digital solutions while 100% of proceeds fund youth education.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="testimonials">
+        <div class="container">
+            <h2>Words From Our Community</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"NexYouth completely transformed my perspective on personal development. The mentorship I received helped me navigate challenges and achieve my goals."</div>
+                    <div class="testimonial-author">Sarah J.</div>
+                    <div class="testimonial-title">Course Participant</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"Being part of this community showed me that I'm not alone in my journey. The support and guidance from mentors made all the difference in my success."</div>
+                    <div class="testimonial-author">Marcus C.</div>
+                    <div class="testimonial-title">Program Graduate</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"The practical skills and confidence I gained through NexYouth's programs have been instrumental in landing my dream internship and building my career."</div>
+                    <div class="testimonial-author">Amina P.</div>
+                    <div class="testimonial-title">Scholarship Winner</div>
+                </div>
+            </div>
+
+            <!-- Student Video Testimonials -->
+            <div class="video-testimonials">
+                <div class="video-grid">
+                    <div class="video-card">
+                        <video controls preload="metadata">
+                            <source src="/static/testimonial_andy_Ottawa.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Andy</h4>
+                            <p>Ottawa, Canada | Grade 7, 2025</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata">
+                            <source src="/static/testimony_connie_RichmondHill.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Connie</h4>
+                            <p>Richmond Hill, Canada | Grade 8, 2025</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata">
+                            <source src="/static/testimony_hannah_Markham.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Hannah</h4>
+                            <p>Markham, Canada | Grade 6, 2025</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata">
+                            <source src="/static/testimony_Cynthia_NorthYork.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Cynthia</h4>
+                            <p>North York, Canada | Grade 5, 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Volunteer Video Testimonials -->
+            <div class="video-testimonials">
+                <h3>Hear From Our Volunteers</h3>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <video controls preload="metadata">
+                            <source src="/static/Volunteer_Oakville_president_EthanLuo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Ethan Luo</h4>
+                            <p>Oakville Chapter President</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata">
+                            <source src="/static/Volunteer_Coding_Instructor_LucasHo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Lucas Ho</h4>
+                            <p>Coding Instructor</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata">
+                            <source src="/static/Volunteer_codiingInstructor_VincentPham.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Vincent Pham</h4>
+                            <p>Coding Instructor</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata">
+                            <source src="/static/volunteer_codingIntructor_WilliamWu.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>William Wu</h4>
+                            <p>Coding Instructor</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata">
+                            <source src="/static/Volunteer_DebateCoach_KateSergieieva.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Kate Sergieieva</h4>
+                            <p>Debate Coach</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata">
+                            <source src="/static/Volunteer_DetateCoach_KristenYip.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Kristen Yip</h4>
+                            <p>Debate Coach</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video controls preload="metadata">
+                            <source src="/static/Volunteer_deabateCoach_HaimJoshi.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Haim Joshi</h4>
+                            <p>Debate Coach</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <h2>Join Our Community Today</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">Ready to start your journey? Join us now!</p>
+            <div class="action-links" style="justify-content: center;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-FbV-GMP_rSv8mAYaFT-QxQzdWJqYcRXd_7QfwITUNkQzhw/viewform?pli=1" target="_blank" style="color: #ff6b35;">Get Involved</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact-footer">
+        <div class="container">
+            <p>&copy; 2023 NexYouth. All rights reserved. | Grow • Lead • Act</p>
+        </div>
+    </footer>
+
+    <script>
+        // Auto-play video on desktop, allow manual play on mobile
+        const video = document.querySelector('.hero video');
+        if (video) {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (!isMobile) {
+                video.autoplay = true;
+            }
+        }
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        const programsDropdown = document.querySelector('.dropdown a');
+        const dropdownMenu = document.getElementById('programsDropdown');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('#navMenu a:not([href*="Programs"])');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Handle programs dropdown on mobile
+        const dropdownTrigger = document.querySelector('.dropdown a');
+        dropdownTrigger.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdownMenu.classList.toggle('active');
+            }
+        });
+
+        // Handle dropdown menu items click on mobile
+        const dropdownItems = document.querySelectorAll('.dropdown-menu a');
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    // Close menu but allow navigation to proceed
+                    mobileMenuBtn.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    dropdownMenu.classList.remove('active');
+                    // Let the link navigate
+                }
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                mobileMenuBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+                dropdownMenu.classList.remove('active');
+            }
+        });
+
+        // Auto-play hero video on load with fallback
+        const heroVideo = document.querySelector('.hero video');
+        if (heroVideo) {
+            heroVideo.play().catch(error => {
+                console.log('Autoplay not allowed, will play on first interaction');
+            });
+            
+            // Fallback: play on first user interaction if autoplay failed
+            const playOnce = () => {
+                heroVideo.play().catch(e => console.log('Play failed:', e));
+                document.removeEventListener('touchstart', playOnce);
+                document.removeEventListener('click', playOnce);
+            };
+            
+            document.addEventListener('touchstart', playOnce, { once: true });
+            document.addEventListener('click', playOnce, { once: true });
+        }
+    </script>
+</body>
+</html>

@@ -1,205 +1,706 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Speaking & Debate Courses - NexYouth</title>
+    <meta name="description" content="NexYouth Public Speaking & Debate Courses - Build confidence and communication skills through structured debate training.">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Public Speaking & Debate Courses - NexYouth">
+    <meta property="og:description" content="Build confidence and communication skills through structured debate training and public speaking exercises.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nexyouth.org/courses/debate">
+    <meta property="og:image" content="/static/logo.svg">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+    <link rel="apple-touch-icon" href="/static/logo.svg">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-{% block title %}Summer Debate Program, NexYouth{% endblock %}
-{% block description %}The NexYouth Summer Debate Program is a free eight-week online course for students in grades 5–8, taking them from their first speech to a full debate round across Beginner, Intermediate, and Advanced levels.{% endblock %}
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
 
-{% block content %}
-{# Workshop registration is run by Achēv; no public link yet, so the workshop CTA
-   points to /contact until Max supplies Achēv's "Register Now" URL. #}
-{% set debate_register_url = "https://forms.gle/qTNe2HjFkUsW79ap8" %}
-{% set workshop_register_url = "/contact" %}
+        nav {
+            background: white;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 0.8rem 2rem;
+        }
 
-<!-- HERO -->
-<section class="section section--tint">
-    <div class="container">
-        <div class="section-head center anim">
-            <span class="eyebrow">Public Speaking &amp; Debate</span>
-            <h1>NexYouth Summer Debate Program</h1>
-            <p class="lead">An eight-week summer course for students in grades 5–8 that takes them from their first speech to a full debate round, with three levels, so every student is challenged at the right pace.</p>
-            <div class="pill-row" style="justify-content:center;margin-top:1.5rem">
-                <span class="pill">Free</span>
-                <span class="pill">Grades 5–8</span>
-                <span class="pill">8 weeks</span>
-                <span class="pill">Online</span>
-                <span class="pill">30 spots</span>
-                <span class="pill">Starts July 9</span>
-            </div>
-            <div class="cta-actions" style="justify-content:center;margin-top:1.75rem">
-                <a href="{{ debate_register_url }}" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Pre-register</a>
-                <a href="#workshop" class="btn btn-ghost btn-lg">See the Achēv workshop</a>
-            </div>
-        </div>
-    </div>
-</section>
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-<!-- THREE LEVELS -->
-<section class="section section--navy">
-    <div class="container">
-        <div class="section-head anim">
-            <span class="eyebrow">Three levels</span>
-            <h2>A track for every debater</h2>
-            <p class="lead">Pre-registration required, spots are limited to 30 students, and classes run online for eight weeks.</p>
-        </div>
-        <div class="grid grid-auto anim-stagger">
-            <div class="card">
-                <h3>Beginner</h3>
-                <p><strong>Thursdays 3:00–4:00 pm</strong><br>July 9 – August 27</p>
-                <p>Confidence building, an introduction to debate, and the fundamentals, the perfect first step onto the stage.</p>
-            </div>
-            <div class="card">
-                <h3>Intermediate</h3>
-                <p><strong>Thursdays 4:15–5:30 pm</strong><br>July 9 – August 27</p>
-                <p>Argumentation, refutation, and weighing, plus the common motion types debaters need to know.</p>
-            </div>
-            <div class="card">
-                <h3>Advanced</h3>
-                <p><strong>Fridays 4:00–5:30 pm</strong><br>July 10 – August 29</p>
-                <p>Advanced strategy, consistent full debate practice, and personalized resources to sharpen every round.</p>
-            </div>
-        </div>
-    </div>
-</section>
+        nav .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
 
-<!-- WHAT WE PROVIDE -->
-<section class="section section--tint">
-    <div class="container">
-        <div class="section-head anim">
-            <span class="eyebrow">Every student gets</span>
-            <h2>What we provide</h2>
-        </div>
-        <div class="grid grid-auto anim-stagger">
-            <div class="card">
-                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
-                <h3>Detailed report cards</h3>
-                <p>An end-of-program report card for every student, with concrete feedback on their progress.</p>
-            </div>
-            <div class="card">
-                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg></span>
-                <h3>Self-rating trends</h3>
-                <p>Students track their own growth over the eight weeks and see exactly how far they've come.</p>
-            </div>
-            <div class="card">
-                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
-                <h3>Advanced resources &amp; readings</h3>
-                <p>Curated materials and readings to keep improving well beyond the classroom.</p>
-            </div>
-        </div>
-    </div>
-</section>
+        nav .logo img {
+            height: 70px;
+            width: auto;
+        }
 
-<!-- HEAD COACH -->
-<section class="section section--paper">
-    <div class="container">
-        <div class="section-head anim">
-            <span class="eyebrow">Meet the head coach</span>
-            <h2>Why William leads the program</h2>
-        </div>
-        <div class="card anim" style="max-width:780px;margin-inline:auto">
-            <img class="avatar" src="/static/william_zhou.jpg" alt="William Zhou" style="width:88px;height:88px;object-fit:cover">
-            <h3>William Zhou</h3>
-            <p>Head Coach · Upper Canada College</p>
-            <p>William was a natural choice to head the program. What first stood out was his critical thinking: the instinct to question and pressure-test ideas that defines every strong debater. As a teacher he keeps things simple, explaining concepts clearly without the jargon that can lose younger students.</p>
-            <p>He also brings real ownership, having built the full curriculum and lesson plans for all three levels himself. At Upper Canada College he served as a junior executive on the debate team, where he ran a mentorship programme for younger debaters. We're glad to have him on the NexYouth team.</p>
-            <ul>
-                <li>Champion, Queen's Summer Open</li>
-                <li>Top Open &amp; Junior Speaker, Western Open</li>
-                <li>Top 6th Speaker, CUSID High School Nationals</li>
-                <li>Quarterfinalist, Hart House High Schools</li>
-                <li>Junior Semi-finalist, Harvard WSDC</li>
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            z-index: 100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.9rem;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #333;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5;
+            color: #00d4ff;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .program-hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .program-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .program-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .breadcrumb {
+            padding: 1rem 2rem;
+            background: #f9f9f9;
+        }
+
+        .breadcrumb a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            color: #666;
+        }
+
+        .class-preview {
+            padding: 3rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .class-preview h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+            text-align: center;
+        }
+
+        .preview-video {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .preview-video video {
+            width: 100%;
+            display: block;
+        }
+
+        .courses-section {
+            padding: 4rem 2rem;
+        }
+
+        .courses-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .courses-section > .container > p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .class-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #00d4ff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .class-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .class-card.active {
+            border-left-color: #ff6b35;
+        }
+
+        .class-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .class-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+        }
+
+        .class-info .instructor {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .class-info .schedule {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .class-meta {
+            text-align: right;
+        }
+
+        .class-meta .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .class-meta .spots {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .class-details {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .class-details.show {
+            display: block;
+        }
+
+        .class-details p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .class-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .feature-icon {
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        .register-section {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .register-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+
+        .register-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+
+        .btn-register {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .btn-register:hover {
+            background: #e55a28;
+        }
+
+        .payment-info {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+
+        .payment-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .payment-method {
+            padding: 0.5rem 1rem;
+            background: #f0f0f0;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                border-bottom: 1px solid #eee;
+                z-index: 99;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            nav ul li {
+                border-bottom: 1px solid #eee;
+            }
+            nav ul a {
+                display: block;
+                padding: 1rem 2rem;
+            }
+            .dropdown-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: #f9f9f9;
+            }
+            #programsDropdown.active {
+                display: block;
+            }
+            .dropdown-menu a {
+                padding-left: 3rem;
+            }
+            .program-hero h1 {
+                font-size: 2rem;
+            }
+            .class-header {
+                flex-direction: column;
+            }
+            .class-meta {
+                text-align: left;
+            }
+            .register-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/static/logo.svg" alt="NexYouth">
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#what-we-do">What We Do</a></li>
+                <li class="dropdown">
+                    <a href="/#programs">Programs ▾</a>
+                    <div class="dropdown-menu" id="programsDropdown">
+                        <a href="/programs/skill-development">Skill Development Courses</a>
+                        <a href="/programs/seminars">Seminars & Workshops</a>
+                        <a href="/programs/mentorship">Global Mentorship Network</a>
+                        <a href="/programs/eco-classroom">Eco Classroom</a>
+                        <a href="/programs/youth-tech-lab">Youth Tech Lab</a>
+                    </div>
+                </li>
+                <li><a href="/chapters">Chapters</a></li>
+                <li><a href="/partner">Partner</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
         </div>
-    </div>
-</section>
+    </nav>
 
-<!-- COACHING TEAM -->
-<section class="section section--tint">
-    <div class="container">
-        <div class="section-head anim">
-            <span class="eyebrow">The coaching team</span>
-            <h2>Coaches who've competed at every level</h2>
-        </div>
-        <div class="grid grid-auto anim-stagger">
-            <div class="card">
-                <img class="avatar" src="/static/placeholder.svg" alt="Alston Guo" style="width:72px;height:72px;object-fit:cover">
-                <h3>Alston Guo</h3>
-                <p>Intermediate Coach · St. Andrew's College</p>
-                <ul>
-                    <li>South Asian BP Grand Champion</li>
-                    <li>Asia Pre-WSDC Semi-finalist &amp; Top Breaking Team</li>
-                    <li>Vietnam IV Asian Parliamentary Semi-finalist</li>
-                </ul>
-            </div>
-            <div class="card">
-                <img class="avatar" src="/static/HaimJoshi.jpg" alt="Haim Joshi" style="width:72px;height:72px;object-fit:cover">
-                <h3>Haim Joshi</h3>
-                <p>Advanced Coach · Upper Canada College</p>
-                <ul>
-                    <li>HHHS 2026, 4th Breaking</li>
-                    <li>Team Oxford WSDC 2025 Octofinalist</li>
-                    <li>HHSO Top Speaker</li>
-                </ul>
-            </div>
-            <div class="card">
-                <img class="avatar" src="/static/placeholder.svg" alt="Heather Dong" style="width:72px;height:72px;object-fit:cover">
-                <h3>Heather Dong</h3>
-                <p>Beginner Coach · Abbey Park High School</p>
-                <ul>
-                    <li>Semi-finalist, McGill Winter Nationals</li>
-                    <li>Grand Finalist, Harvard BP 2026</li>
-                    <li>Team Canada Pre-WSDC, 6th team</li>
-                </ul>
-            </div>
-            <div class="card">
-                <img class="avatar" src="/static/Volunteer_DebateCoach_IsoldeLi.png" alt="Isolde Li" style="width:72px;height:72px;object-fit:cover">
-                <h3>Isolde Li</h3>
-                <p>Assistant Coach</p>
-            </div>
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="/">Home</a> <span>/</span>
+            <a href="/programs/skill-development">Skill Development</a> <span>/</span>
+            <span>Public Speaking & Debate</span>
         </div>
     </div>
-</section>
 
-<!-- ACHĒV WORKSHOP -->
-<section class="section section--tint" id="workshop">
-    <div class="container">
-        <div class="section-head anim">
-            <span class="eyebrow">In collaboration with Achēv</span>
-            <h2>Summer Debate Workshop, in person</h2>
-            <p class="lead">A five-day, in-person debate workshop run with the Achēv Newcomer Information Centre, developing critical thinking, argumentation, and persuasive speaking.</p>
+    <section class="program-hero">
+        <div class="container">
+            <h1>2026 Spring Online Debate Course</h1>
+            <p>Build confidence, critical thinking, and persuasive communication skills. Award-winning coaches from national and university debate competitions. Limited spots available - register now!</p>
         </div>
-        <div class="grid grid-auto anim-stagger">
-            <div class="card">
-                <h3>The program</h3>
-                <p>Over five days students cover debate structure, motion analysis, speaker roles, strategy, and formal debate practice, learning to present ideas logically, respond effectively, and communicate with confidence in structured discussions.</p>
-                <p><strong>Taught by Ethan.</strong></p>
-            </div>
-            <div class="card">
-                <h3>Details</h3>
-                <p><strong>Dates:</strong> July 13–17, 2026<br>
-                   <strong>Time:</strong> 1:00 – 3:00 pm<br>
-                   <strong>Location:</strong> 690 Dorval Dr., Suite 100, Oakville, L6K 3X9</p>
-                <p style="margin-top:1rem"><a href="{{ workshop_register_url }}" class="btn btn-primary">Contact us to register</a></p>
-            </div>
-            <div class="card">
-                <h3>Eligibility</h3>
-                <p>Open to Permanent Residents or Convention Refugees (with Confirmation of PR or Notice of Decision).</p>
-                <p style="margin-top:1rem"><span class="tag">Funded by Immigration, Refugees and Citizenship Canada</span></p>
+    </section>
+
+    <section class="class-preview">
+        <div class="container">
+            <h2>See Our Class in Action</h2>
+            <div class="preview-video">
+                <video controls preload="metadata">
+                    <source src="/static/2026SpringDebatingClass.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- CTA -->
-<section class="section--blue">
-    <div class="container">
-        <div class="cta-band anim">
-            <h2>Ready to find your voice?</h2>
-            <p>Spots are limited to 30 students and pre-registration is required. Questions? Email wizyzhou@gmail.com.</p>
-            <div class="cta-actions">
-                <a href="{{ debate_register_url }}" target="_blank" rel="noopener" class="btn btn-light btn-lg">Pre-register now</a>
-                <a href="/contact" class="btn btn-on-dark-ghost btn-lg">Contact us</a>
+    <section class="courses-section">
+        <div class="container">
+            <h2>Available Classes - 2026 Spring Session</h2>
+            <p>Starting February 8th | 8 weeks | Every Sunday 8:00-9:15 PM EST<br>Classes for all levels - beginners to advanced. Click on any class to view details and register.</p>
+
+            <!-- Class 1: Beginner Debate -->
+            <div class="class-card" data-class="beginner">
+                <div class="class-header">
+                    <div class="class-info">
+                        <h3>Beginner Debate Class</h3>
+                        <p class="instructor">For students new to debate</p>
+                        <p class="schedule">Sundays, 8:00 PM - 9:15 PM EST | 8 weeks starting Feb 8</p>
+                    </div>
+                    <div class="class-meta">
+                        <div class="spots">Limited spots</div>
+                    </div>
+                </div>
+                <div class="class-details">
+                    <p>Perfect for students with no debate experience. Learn the fundamentals of argumentation, speech structure, and confident delivery. Our award-winning coaches will help you build a strong foundation in public speaking and debate.</p>
+                    <div class="class-features">
+                        <div class="feature"><span class="feature-icon">✓</span> 8 live online sessions</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Small group learning</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Award-winning coaches</div>
+                    </div>
+                    <div class="register-section">
+                        <h4>Register for Beginner Class</h4>
+                        <form class="register-form" action="https://form.jotform.com/260246775658065" method="GET" target="_blank">
+                            <div class="form-group full-width">
+                                <button type="submit" class="btn-register">Register Now</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
 
-{% endblock %}
+            <!-- Class 2: Intermediate Debate -->
+            <div class="class-card" data-class="intermediate">
+                <div class="class-header">
+                    <div class="class-info">
+                        <h3>Intermediate Debate Class</h3>
+                        <p class="instructor">For students with some debate experience</p>
+                        <p class="schedule">Sundays, 8:00 PM - 9:15 PM EST | 8 weeks starting Feb 8</p>
+                    </div>
+                    <div class="class-meta">
+                        <div class="spots">Limited spots</div>
+                    </div>
+                </div>
+                <div class="class-details">
+                    <p>For students who have basic debate knowledge and want to improve their skills. Focus on case construction, rebuttal techniques, and competitive strategies. Practice rounds and personalized feedback included.</p>
+                    <div class="class-features">
+                        <div class="feature"><span class="feature-icon">✓</span> 8 live online sessions</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Practice debate rounds</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Personalized feedback</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Competition preparation</div>
+                    </div>
+                    <div class="register-section">
+                        <h4>Register for Intermediate Class</h4>
+                        <form class="register-form" action="https://form.jotform.com/260246775658065" method="GET" target="_blank">
+                            <div class="form-group full-width">
+                                <button type="submit" class="btn-register">Register Now</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Class 3: Advanced Debate -->
+            <div class="class-card" data-class="advanced">
+                <div class="class-header">
+                    <div class="class-info">
+                        <h3>Advanced Debate Class</h3>
+                        <p class="instructor">For experienced debaters</p>
+                        <p class="schedule">Sundays, 8:00 PM - 9:15 PM EST | 8 weeks starting Feb 8</p>
+                    </div>
+                    <div class="class-meta">
+                        <div class="spots">Limited spots</div>
+                    </div>
+                </div>
+                <div class="class-details">
+                    <p>For experienced debaters looking to excel in competitions. Advanced argumentation, rhetorical techniques, and tournament preparation. Learn from coaches who have won national and university-level competitions.</p>
+                    <div class="class-features">
+                        <div class="feature"><span class="feature-icon">✓</span> 8 intensive sessions</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Advanced techniques</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Mock tournaments</div>
+                        <div class="feature"><span class="feature-icon">✓</span> Competition coaching</div>
+                    </div>
+                    <div class="register-section">
+                        <h4>Register for Advanced Class</h4>
+                        <form class="register-form" action="https://form.jotform.com/260246775658065" method="GET" target="_blank">
+                            <div class="form-group full-width">
+                                <button type="submit" class="btn-register">Register Now</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 NexYouth. All rights reserved. | Grow - Lead - Act</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        const dropdownMenu = document.getElementById('programsDropdown');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Handle programs dropdown on mobile
+        const dropdownTrigger = document.querySelector('.dropdown a');
+        dropdownTrigger.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdownMenu.classList.toggle('active');
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                mobileMenuBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+                dropdownMenu.classList.remove('active');
+            }
+        });
+
+        // Class card expand/collapse functionality
+        const classCards = document.querySelectorAll('.class-card');
+
+        classCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Don't collapse if clicking on form elements
+                if (e.target.tagName === 'INPUT' ||
+                    e.target.tagName === 'SELECT' ||
+                    e.target.tagName === 'BUTTON' ||
+                    e.target.tagName === 'LABEL') {
+                    return;
+                }
+
+                const details = card.querySelector('.class-details');
+                const isOpen = details.classList.contains('show');
+
+                // Close all other cards
+                classCards.forEach(otherCard => {
+                    otherCard.classList.remove('active');
+                    otherCard.querySelector('.class-details').classList.remove('show');
+                });
+
+                // Toggle current card
+                if (!isOpen) {
+                    card.classList.add('active');
+                    details.classList.add('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
