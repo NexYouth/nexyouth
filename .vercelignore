@@ -1,0 +1,14 @@
+# 本地备份，不需要部署
+backup_2026-07-02/
+
+# 旧版本素材，页面已不引用
+static/old/
+
+# IYEC 获奖者图片（约100MB），页面暂不上线，文件保留在本地
+static/winners/
+
+# 参考用旧模板
+templates/_reference/
+
+# 开发工具目录
+.claude/

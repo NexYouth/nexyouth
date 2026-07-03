@@ -29,3 +29,6 @@ data/
 
 # static build for Cloudflare Pages
 dist/
+
+# IYEC 获奖者照片只保留在本地
+static/winners/
