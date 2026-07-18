@@ -668,6 +668,40 @@
             border: none;
         }
 
+        .partner-card.partner-card-featured {
+            grid-column: 1 / -1;
+        }
+
+        .partner-media {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin: 1.5rem 0;
+        }
+
+        .partner-media .partner-flyer {
+            flex: 0 1 320px;
+            width: 100%;
+            max-width: 340px;
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .partner-media .partner-embed {
+            flex: 1 1 420px;
+        }
+
+        .partner-media .partner-embed iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: none;
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
         .partner-tag {
             display: inline-block;
             background: linear-gradient(135deg, #e8f9ff 0%, #d0f0ff 100%);
@@ -924,7 +958,7 @@
             <h2>Our Partners in Action</h2>
             <p>See how our partnerships create real impact for youth around the world.</p>
             <div class="partners-grid">
-                <div class="partner-card">
+                <div class="partner-card partner-card-featured">
                     <div class="partner-card-header">
                         <h3>ACHEV Newcomer Information Centre</h3>
                         <span>Community Partner</span>
@@ -932,13 +966,16 @@
                     <div class="partner-card-body">
                         <h4>🎤 Public Speaking Series</h4>
                         <p>We partner with ACHEV Newcomer Information Centre to deliver a hands-on public speaking series for newcomers to Canada. Led by NexYouth Oakville Chapter President Ethan Luo, the workshops help participants build the confidence, voice, and communication skills to express themselves and connect with their community.</p>
-                        <div class="partner-video">
-                            <iframe
-                                src="https://www.youtube.com/embed/nbB6YVbqhlU"
-                                title="Public Speaking Series for Newcomers — NexYouth × ACHEV Newcomer Information Centre"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
+                        <div class="partner-media">
+                            <img src="/static/Partner/Parter_Achev_PublicSpeaking.jpg" alt="ACHEV Public Speaking Workshop flyer — July 13-17, 2026, Oakville" class="partner-flyer">
+                            <div class="partner-embed">
+                                <iframe
+                                    src="https://www.youtube.com/embed/nbB6YVbqhlU"
+                                    title="Public Speaking Series for Newcomers — NexYouth × ACHEV Newcomer Information Centre"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
                         </div>
                         <span class="partner-tag">Public Speaking</span>
                     </div>
