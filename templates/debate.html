@@ -202,6 +202,39 @@
             display: block;
         }
 
+        /* Row of videos that share one year heading (e.g. three 2026 clips) */
+        .video-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-row .row-item {
+            flex: 1 1 300px;
+            max-width: 380px;
+            margin: 0;
+            position: relative;
+            aspect-ratio: 16 / 9;
+            height: auto;
+        }
+
+        .video-row .row-item iframe,
+        .video-row .row-item video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 12px;
+            object-fit: contain;
+            background: #000;
+        }
+
         .courses-section {
             padding: 4rem 2rem;
         }
@@ -528,43 +561,31 @@
     <section class="class-preview">
         <div class="container">
             <h2>Glimpses of NexYouth 2026</h2>
-            <div class="preview-video" style="position: relative; padding-bottom: 56.25%; height: 0; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);">
-                <iframe
-                    src="https://www.youtube.com/embed/nMEexdApbus"
-                    title="Glimpses of NexYouth 2026 — Fall debate class"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px;">
-                </iframe>
-            </div>
-        </div>
-    </section>
-
-    <section class="class-preview" style="background: #fff;">
-        <div class="container">
-            <h2>Glimpses of NexYouth 2026</h2>
-            <div class="preview-video" style="position: relative; padding-bottom: 56.25%; height: 0; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);">
-                <iframe
-                    src="https://www.youtube.com/embed/RMNxu7wIJzM"
-                    title="Glimpses of NexYouth 2026 — Summer debate class"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px;">
-                </iframe>
-            </div>
-        </div>
-    </section>
-
-    <section class="class-preview">
-        <div class="container">
-            <h2>Glimpses of NexYouth 2026</h2>
-            <div class="preview-video">
-                <video controls preload="metadata">
-                    <source src="/static/2026SpringDebatingClass.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="video-row">
+                <div class="preview-video row-item" style="box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);">
+                    <iframe
+                        src="https://www.youtube.com/embed/nMEexdApbus"
+                        title="Glimpses of NexYouth 2026 — Fall debate class"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="preview-video row-item" style="box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);">
+                    <iframe
+                        src="https://www.youtube.com/embed/RMNxu7wIJzM"
+                        title="Glimpses of NexYouth 2026 — Summer debate class"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="preview-video row-item" style="box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);">
+                    <video controls preload="metadata">
+                        <source src="/static/2026SpringDebatingClass.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
             </div>
         </div>
     </section>
