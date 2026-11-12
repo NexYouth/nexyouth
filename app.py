@@ -687,6 +687,11 @@ def chapters():
 def debate():
     return render_template('debate.html')
 
+@app.route('/programs/stem')
+@app.route('/courses/stem')
+def stem():
+    return render_template('stem.html')
+
 # Program Routes
 @app.route('/programs/skill-development')
 def skill_development():

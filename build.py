@@ -27,6 +27,7 @@ PAGES = {
     "success.html": "success.html",
     "programs/skill-development.html": "skill-development.html",
     "programs/debate.html": "debate.html",
+    "programs/stem.html": "stem.html",
     "programs/seminars.html": "seminars.html",
     "programs/mentorship.html": "mentorship.html",
     # These two now redirect to globalenvironmentchallenge.org (the live competition
