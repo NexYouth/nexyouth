@@ -59,4 +59,4 @@ Disallow: /
 User-agent: Applebot-Extended
 Disallow: /
 
-Sitemap: https://nexyouth.org/sitemap.xml
+Sitemap: https://www.nexyouth.org/sitemap.xml
