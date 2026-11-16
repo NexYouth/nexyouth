@@ -25,6 +25,10 @@
       "dest": "/public/sitemap.xml"
     },
     {
+      "src": "/google2239ef0ebcbc2e26.html",
+      "dest": "/public/google2239ef0ebcbc2e26.html"
+    },
+    {
       "src": "/static/(.*\\.(mp4|webm|mov))",
       "dest": "/static/$1",
       "headers": {
